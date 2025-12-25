@@ -59,14 +59,6 @@
                         <span>AFTER EFFECTS</span> <span class="dot">•</span>
                         <span>COLOR GRADING</span> <span class="dot">•</span>
                     </div>
-                    <div class="marquee-group">
-                        <span>PREMIERE PRO</span> <span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
-                        <span>LIGHTROOM</span> <span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
-                        <span>AFTER EFFECTS</span> <span class="dot">•</span>
-                        <span>COLOR GRADING</span> <span class="dot">•</span>
-                    </div>
                 </div>
             </div>
 
@@ -99,58 +91,53 @@
             </div>
 
             <section id="gallery" class="gallery">
-                <div class="column photo-col">
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden">
-                        <img src="images/onin.JPG" alt="" />
+                <div id="photo-grid" class="gallery-grid">
+                    <div class="photo-item wide tilt hidden">
+                        <img src="images/fly.png" alt="Motion" loading="lazy" />
                     </div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden">
-                        <img src="images/can.JPG" alt="" />
+
+                    <div class="photo-item tilt hidden">
+                        <img src="images/q.png" alt="Portrait" loading="lazy" />
                     </div>
-                    <div class="placeholder short tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
+
+                    <div class="photo-item tall tilt hidden">
+                        <img
+                            src="images/chu.JPG"
+                            alt="Architecture"
+                            loading="lazy"
+                        />
+                    </div>
+
+                    <div class="photo-item tilt hidden">
+                        <img
+                            src="images/can.JPG"
+                            alt="Candles"
+                            loading="lazy"
+                        />
+                    </div>
+
+                    <div class="photo-item tilt hidden">
+                        <img
+                            src="images/onin.JPG"
+                            alt="Selfie"
+                            loading="lazy"
+                        />
+                    </div>
+
+                    <div class="photo-item big tilt hidden">
+                        <img src="images/wut.JPG" alt="City" loading="lazy" />
+                    </div>
+
+                    <div class="photo-item tilt hidden">
+                        <img
+                            src="images/go.png"
+                            alt="White Dress"
+                            loading="lazy"
+                        />
+                    </div>
                 </div>
 
-                <div class="column photo-col">
-                    <div class="placeholder short tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden">
-                        <img src="images/q.png" alt="" />
-                    </div>
-                    <div class="placeholder short tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden">
-                        <img src="images/wut.JPG" alt="" />
-                    </div>
-                    <div class="placeholder short tilt hidden"></div>
-                </div>
-
-                <div class="column photo-col">
-                    <div class="placeholder tall tilt hidden">
-                        <img src="images/go.png" alt="" />
-                    </div>
-                    <div class="placeholder short tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden">
-                        <img src="images/fly.png" alt="" />
-                    </div>
-                    <div class="placeholder short tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
-                </div>
-
-                <div class="column photo-col">
-                    <div class="placeholder short tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden">
-                        <img src="images/chu.JPG" alt="" />
-                    </div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder tall tilt hidden"></div>
-                    <div class="placeholder short tilt hidden"></div>
-                </div>
-
-                <div class="film-grid hidden-tab">
+                <div id="film-grid" class="film-grid hidden-tab">
                     <div class="film-card tilt hidden">
                         <div class="poster-placeholder"></div>
                         <h3>The Halloween Cut</h3>
@@ -185,10 +172,6 @@
 
             <section id="contact" class="contact hidden">
                 <div class="contact-header">
-                    <!--
-                <div class="status-indicator">
-                    <span class="pulse"></span> STATUS: OPEN FOR COMMISSIONS
-                </div>-->
                     <div class="status-indicator" style="color: #ff4d4d">
                         <span
                             class="pulse"

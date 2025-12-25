@@ -1,6 +1,5 @@
 :root {
     --blue-primary: #0088ff;
-    --red-primary: #ff0000;
     --blue-dark: #001a33;
     --bg: #050505;
     --text: #ffffff;
@@ -93,14 +92,8 @@ nav {
     opacity: 1;
 }
 .nav-item.switch:hover {
-    border-color: var(--red-primary);
-    color: var(--red-primary);
-
-    /* 1. Glow around the button */
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-
-    /* 2. Glow on the text itself */
-    text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+    border-color: var(--blue-primary);
+    color: var(--blue-primary);
 }
 
 /* --- HERO --- */
@@ -245,11 +238,9 @@ h1 {
     align-self: center;
 }
 
-/* --- GALLERY LAYOUT (FIXED) --- */
+/* --- BENTO GRID LAYOUT --- */
 .gallery {
     padding: 2rem 4rem;
-    display: flex;
-    gap: 15px; /* Comfortable gap */
     min-height: 100vh;
     transition: opacity 0.3s ease-out;
     opacity: 1;
@@ -258,68 +249,60 @@ h1 {
     opacity: 0;
 }
 
-.column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    /* CRITICAL FIX: PREVENTS EXPLOSION */
-    min-width: 0;
+.gallery-grid {
+    display: grid;
+    /* 3 Columns for Desktop */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    grid-auto-flow: dense;
 }
 
-/* --- PHOTO RATIOS & SIZING --- */
-/* Portrait (Vertical) -> 2:3 Ratio */
-.tall {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Landscape (Horizontal) -> 3:2 Ratio */
-.short {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    position: relative;
-    overflow: hidden;
-}
-
-/* --- IMAGE CONTAINMENT --- */
-.placeholder {
+.photo-item {
     background: #1a1a1a;
-    border-radius: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    /* Forces images to fill the height of the grid cell */
+    height: 100%;
+    min-height: 300px; /* Base height for standard cells */
     border: 1px solid #333;
-
-    /* 3D Tilt Settings */
     transform-style: preserve-3d;
     perspective: 1000px;
-    transition: border-color 0.2s ease-out;
 }
 
-/* Forces the image to perfectly fill the aspect ratio box */
-.placeholder img {
+.photo-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* The magic crop */
+    /* BENTO REQUIRES COVER: Fills the cell, crops edges if needed */
+    object-fit: cover;
     display: block;
-    border-radius: 3px;
-    pointer-events: none; /* Stops image dragging issues */
+    pointer-events: none;
 }
 
-/* Hover Z-Index Fix */
-.placeholder:hover {
-    z-index: 20;
-    border-color: #8282828e;
+/* --- BENTO SIZES --- */
+.wide {
+    grid-column: span 2;
+}
+.tall {
+    grid-row: span 2;
+    min-height: 620px;
+} /* Double height + gap */
+.big {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 620px;
 }
 
 /* --- FILM GRID --- */
 .film-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
     width: 100%;
 }
+
 .film-card {
     background: #0f0f0f;
     padding: 1rem;
@@ -329,7 +312,7 @@ h1 {
     perspective: 1000px;
 }
 .poster-placeholder {
-    height: 400px;
+    height: 350px;
     background: #1a1a1a;
     margin-bottom: 1rem;
 }
@@ -341,6 +324,7 @@ h1 {
     opacity: 0.6;
     font-size: 0.9rem;
 }
+
 .hidden-tab {
     display: none !important;
 }
@@ -524,6 +508,7 @@ footer {
     transition: all 0.05s linear;
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 900px) {
     .vision-layout {
         flex-direction: column;
@@ -532,14 +517,18 @@ footer {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Bento Tablet Adjustments */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .wide,
+    .big {
+        grid-column: span 2;
+    }
 }
+
 @media (max-width: 768px) {
-    .gallery {
-        flex-direction: column;
-    }
-    .film-grid {
-        grid-template-columns: 1fr;
-    }
     nav,
     .hero,
     .gallery,
@@ -548,5 +537,17 @@ footer {
     .contact {
         padding-left: 2rem;
         padding-right: 2rem;
+    }
+
+    /* Bento Mobile Reset */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .wide,
+    .tall,
+    .big {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 300px;
     }
 }
