@@ -72,7 +72,6 @@ nav {
     font-size: 1.5rem;
     letter-spacing: -1px;
 }
-
 .nav-item {
     color: var(--text);
     text-decoration: none;
@@ -85,7 +84,6 @@ nav {
     opacity: 1;
     color: var(--blue-primary);
 }
-
 .nav-item.switch {
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 8px 16px;
@@ -95,11 +93,7 @@ nav {
 .nav-item.switch:hover {
     border-color: var(--red-primary);
     color: var(--red-primary);
-
-    /* 1. Glow around the button */
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-
-    /* 2. Glow on the text itself */
     text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
 }
 
@@ -245,11 +239,11 @@ h1 {
     align-self: center;
 }
 
-/* --- GALLERY LAYOUT (FIXED) --- */
+/* --- GALLERY LAYOUT --- */
 .gallery {
     padding: 2rem 4rem;
     display: flex;
-    gap: 15px; /* Comfortable gap */
+    gap: 15px;
     min-height: 100vh;
     transition: opacity 0.3s ease-out;
     opacity: 1;
@@ -258,26 +252,26 @@ h1 {
     opacity: 0;
 }
 
-.column {
+.photo-wrapper {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+.photo-wrapper .column {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 15px;
-
-    /* CRITICAL FIX: PREVENTS EXPLOSION */
     min-width: 0;
 }
 
 /* --- PHOTO RATIOS & SIZING --- */
-/* Portrait (Vertical) -> 2:3 Ratio */
 .tall {
     width: 100%;
     aspect-ratio: 2 / 3;
     position: relative;
     overflow: hidden;
 }
-
-/* Landscape (Horizontal) -> 3:2 Ratio */
 .short {
     width: 100%;
     aspect-ratio: 3 / 2;
@@ -285,32 +279,46 @@ h1 {
     overflow: hidden;
 }
 
-/* --- IMAGE CONTAINMENT --- */
+/* --- IMAGE CONTAINMENT & HOVER (OPTIMIZED) --- */
 .placeholder {
     background: #1a1a1a;
     border-radius: 4px;
     border: 1px solid #333;
+    cursor: pointer;
+    overflow: hidden;
 
-    /* 3D Tilt Settings */
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: border-color 0.2s ease-out;
+    /* SEPARATE TRANSITIONS TO AVOID JS CONFLICT */
+    /* scale/box-shadow/border are purely CSS governed */
+    transition: scale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s ease, border-color 0.3s ease, transform 0.1s ease-out; /* Smooths the JS tilt slightly */
+
+    scale: 1; /* Default CSS scale */
 }
 
-/* Forces the image to perfectly fill the aspect ratio box */
+/* The tilt class handles hardware acceleration for JS */
+.tilt {
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
 .placeholder img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* The magic crop */
+    object-fit: cover;
     display: block;
     border-radius: 3px;
-    pointer-events: none; /* Stops image dragging issues */
+    pointer-events: none;
 }
 
-/* Hover Z-Index Fix */
+/* CSS HOVER EFFECT */
 .placeholder:hover {
     z-index: 20;
-    border-color: #8282828e;
+    border-color: #ebebeb;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    /* MODERN CSS PROPERTY - Does not conflict with transform */
+    scale: 1.05;
 }
 
 /* --- FILM GRID --- */
@@ -456,7 +464,6 @@ h1 {
 .tile-icon {
     font-size: 2rem;
 }
-
 .contact-tile.disabled {
     opacity: 0.2;
     cursor: not-allowed;
@@ -524,6 +531,51 @@ footer {
     transition: all 0.05s linear;
 }
 
+/* --- LIGHTBOX --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+.lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family: var(--font-head);
+    z-index: 2001;
+}
+.close-btn:hover {
+    color: var(--red-primary);
+}
+
 @media (max-width: 900px) {
     .vision-layout {
         flex-direction: column;
@@ -540,6 +592,9 @@ footer {
     .film-grid {
         grid-template-columns: 1fr;
     }
+    .photo-wrapper {
+        flex-direction: column;
+    }
     nav,
     .hero,
     .gallery,
@@ -548,26 +603,5 @@ footer {
     .contact {
         padding-left: 2rem;
         padding-right: 2rem;
-    }
-}
-
-/* --- NEW SCALABLE GALLERY STYLES --- */
-.photo-wrapper {
-    display: flex;
-    gap: 15px;
-    width: 100%;
-}
-
-.photo-wrapper .column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    min-width: 0;
-}
-
-@media (max-width: 768px) {
-    .photo-wrapper {
-        flex-direction: column;
     }
 }
