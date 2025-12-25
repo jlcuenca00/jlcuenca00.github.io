@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@700&display=swap');
+
+:root {
+    /* --- PALETTE --- */
+    --red-glow: #ff0000;
+    --red-dark: #3a0000;
+    --red-black: #080000;
+    
+    --blue-glow: #004cff;
+    --blue-dark: #00103a;
+    --blue-black: #000000;
+
+    --text-white: #ffffff;
+    
+    /* --- ANIMATION --- */
+    --transition-speed: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- RESET & GLOBAL --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #000;
+    height: 100vh; width: 100vw;
+    overflow: hidden;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.split-container {
+    position: relative; width: 100%; height: 100%;
+    display: flex;
+}
+
+/* --- TEXTURE OVERLAY --- */
+.split-container::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.03) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,0.02) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, transparent 20%, rgba(0,0,0,0.5) 100%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 20; /* TOP LAYER */
+}
+
+/* ==================== SIDES (LAYOUT) ==================== */
+
+.side {
+    position: absolute; inset: 0;
+    display: flex; align-items: center;
+    text-decoration: none;
+    
+    /* PERFORMANCE OPTIMIZATION */
+    transition: background var(--transition-speed);
+    transform: translateZ(0); /* Hardware Acceleration */
+    will-change: transform;   /* Hints browser to optimize rendering */
+}
+
+/* --- LEFT SIDE (DEVELOPER) --- */
+.left {
+    z-index: 2;
+    justify-content: flex-start;
+    clip-path: polygon(0 0, 56% 0, 44% 100%, 0 100%);
+    
+    /* Dark Red Gradient */
+    background: radial-gradient(circle at 35% 45%, var(--red-dark) 0%, #1a0000 60%, var(--red-black) 100%);
+}
+
+.left:hover {
+    z-index: 3; /* Bring to top on hover */
+    background: radial-gradient(circle at 40% 50%, #700000 0%, #b00000 100%);
+}
+
+/* --- RIGHT SIDE (CREATOR) --- */
+.right {
+    z-index: 1;
+    justify-content: flex-end;
+    clip-path: polygon(56% 0, 100% 0, 100% 100%, 44% 100%);
+    
+    /* Dark Blue Gradient */
+    background: radial-gradient(circle at 65% 55%, var(--blue-dark) 0%, #00051a 60%, var(--blue-black) 100%);
+}
+
+.right:hover {
+    z-index: 3; /* Bring to top on hover */
+    background: radial-gradient(circle at 60% 50%, #000022 0%, var(--blue-glow) 100%);
+}
+
+/* ==================== GLOW EDGES (VISUAL FX) ==================== */
+
+.glow-edge {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 15; /* Between Sides and Texture */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(2px);
+}
+
+/* RED SPLIT LINE */
+.left-edge {
+    background: linear-gradient(to right, #fff, var(--red-glow) 20%, transparent 100%);
+    clip-path: polygon(55.9% 0, 56.1% 0, 44.1% 100%, 43.9% 100%);
+}
+
+/* BLUE SPLIT LINE */
+.right-edge {
+    background: linear-gradient(to left, #fff, var(--blue-glow) 20%, transparent 100%);
+    clip-path: polygon(55.9% 0, 56.1% 0, 44.1% 100%, 43.9% 100%);
+}
+
+/* Reveal Edge on Hover using :has() */
+.split-container:has(.left:hover) .left-edge { opacity: 1; }
+.split-container:has(.right:hover) .right-edge { opacity: 1; }
+
+/* ==================== TYPOGRAPHY ==================== */
+
+.content-wrapper {
+    width: 50%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; /* Let clicks pass through to .side */
+}
+
+.content { 
+    position: relative; text-align: center; 
+    pointer-events: auto; 
+}
+
+/* --- HEADLINES (H1) --- */
+h1 {
+    font-size: clamp(2.2rem, 5.5vw, 7rem);
+    font-style: italic;
+    text-transform: uppercase;
+    transition: 0.4s ease;
+}
+
+/* Default States (Colored Text + Soft Glow) */
+.left h1 { 
+    color: var(--red-glow);
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6)); 
+}
+
+.right h1 { 
+    color: var(--blue-glow);
+    filter: drop-shadow(0 0 15px rgba(0, 76, 255, 0.6)); 
+}
+
+/* Hover States (White Text + Hard Glow) */
+.left:hover h1 {
+    color: var(--text-white);
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 25px var(--red-glow)) drop-shadow(0 0 50px var(--red-glow));
+}
+
+.right:hover h1 {
+    color: var(--text-white);
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 25px var(--blue-glow)) drop-shadow(0 0 50px var(--blue-glow));
+}
+
+/* --- BACKGROUND OUTLINE TEXT --- */
+.outline {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(4rem, 13vw, 16rem);
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.54); /* Subtle stroke */
+    opacity: 0;
+    transition: var(--transition-speed);
+    white-space: nowrap;
+    z-index: -1;
+}
+
+.side:hover .outline {
+    opacity: 0.15; /* Kept subtle so it doesn't fight H1 */
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* --- SUBTITLES (P) --- */
+p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; letter-spacing: 5px;
+    margin-top: 15px; 
+    color: var(--text-white); 
+    opacity: 0.5;
+    transition: 0.4s ease;
+}
+.side:hover p { opacity: 1; }
+
+/* ==================== FOOTER / WATERMARK ==================== */
+.watermark {
+    position: absolute; bottom: 40px; left: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 4px;
+    color: var(--text-white);
+    opacity: 0.6;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 100;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.watermark .year { color: #888; font-weight: 400; }

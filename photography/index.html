@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Jake Cuenca | Creator</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="bg-noise"></div>
+        <div class="bg-glow"></div>
+
+        <nav>
+            <div class="logo">JAKE.ART</div>
+            <div class="links">
+                <a href="../index.html" class="nav-item">HOME</a>
+                <a href="#gallery" class="nav-item">WORKS</a>
+                <a href="#contact" class="nav-item">CONTACT</a>
+                <a href="../developer/index.html" class="nav-item switch"
+                    >SWITCH TO DEVELOPER</a
+                >
+            </div>
+        </nav>
+
+        <main>
+            <section class="hero hidden">
+                <div class="hero-text">
+                    <span class="tag">/// VISUAL DIRECTOR</span>
+                    <h1>
+                        CAPTURER<br /><span class="hollow">OF MOMENTS.</span>
+                    </h1>
+                    <p>
+                        I tell stories through light and motion. A visual
+                        director capturing immersive, cinematic moments and
+                        compelling narratives for the screen.
+                    </p>
+                </div>
+            </section>
+
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="marquee-group">
+                        <span>PREMIERE PRO</span> <span class="dot">•</span>
+                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
+                        <span>LIGHTROOM</span> <span class="dot">•</span>
+                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
+                        <span>AFTER EFFECTS</span> <span class="dot">•</span>
+                        <span>COLOR GRADING</span> <span class="dot">•</span>
+                    </div>
+                    <div class="marquee-group">
+                        <span>PREMIERE PRO</span> <span class="dot">•</span>
+                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
+                        <span>LIGHTROOM</span> <span class="dot">•</span>
+                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
+                        <span>AFTER EFFECTS</span> <span class="dot">•</span>
+                        <span>COLOR GRADING</span> <span class="dot">•</span>
+                    </div>
+                    <div class="marquee-group">
+                        <span>PREMIERE PRO</span> <span class="dot">•</span>
+                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
+                        <span>LIGHTROOM</span> <span class="dot">•</span>
+                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
+                        <span>AFTER EFFECTS</span> <span class="dot">•</span>
+                        <span>COLOR GRADING</span> <span class="dot">•</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="vision hidden">
+                <div class="vision-layout">
+                    <h2>
+                        NOT JUST A CAMERA.<br />AN EXTENSION OF
+                        <span class="text-blue">VISION.</span>
+                    </h2>
+                    <div class="vision-line"></div>
+                    <p>
+                        I don't just record footage. I craft narratives through
+                        composition, color, and light. Every frame is a
+                        decision, and every cut is an emotion.
+                    </p>
+                </div>
+            </section>
+
+            <div class="tabs-container hidden">
+                <button
+                    class="tab-btn active"
+                    onclick="filterGallery('photos')"
+                >
+                    PHOTOGRAPHY
+                </button>
+                <button class="tab-btn" onclick="filterGallery('films')">
+                    FILMS
+                </button>
+                <div class="line"></div>
+            </div>
+
+            <section id="gallery" class="gallery">
+                <div class="column photo-col">
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden">
+                        <img src="images/onin.JPG" alt="" />
+                    </div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden">
+                        <img src="images/can.JPG" alt="" />
+                    </div>
+                    <div class="placeholder short tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                </div>
+
+                <div class="column photo-col">
+                    <div class="placeholder short tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden">
+                        <img src="images/q.png" alt="" />
+                    </div>
+                    <div class="placeholder short tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden">
+                        <img src="images/wut.JPG" alt="" />
+                    </div>
+                    <div class="placeholder short tilt hidden"></div>
+                </div>
+
+                <div class="column photo-col">
+                    <div class="placeholder tall tilt hidden">
+                        <img src="images/go.png" alt="" />
+                    </div>
+                    <div class="placeholder short tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden">
+                        <img src="images/fly.png" alt="" />
+                    </div>
+                    <div class="placeholder short tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                </div>
+
+                <div class="column photo-col">
+                    <div class="placeholder short tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden">
+                        <img src="images/chu.JPG" alt="" />
+                    </div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder tall tilt hidden"></div>
+                    <div class="placeholder short tilt hidden"></div>
+                </div>
+
+                <div class="film-grid hidden-tab">
+                    <div class="film-card tilt hidden">
+                        <div class="poster-placeholder"></div>
+                        <h3>The Halloween Cut</h3>
+                        <p>Horror Short • 2025</p>
+                    </div>
+                    <div
+                        class="film-card tilt hidden"
+                        style="transition-delay: 100ms"
+                    >
+                        <div class="poster-placeholder"></div>
+                        <h3>School Skit #1</h3>
+                        <p>Comedy • 2025</p>
+                    </div>
+                    <div
+                        class="film-card tilt hidden"
+                        style="transition-delay: 200ms"
+                    >
+                        <div class="poster-placeholder"></div>
+                        <h3>School Skit #2</h3>
+                        <p>Comedy • 2025</p>
+                    </div>
+                    <div
+                        class="film-card tilt hidden"
+                        style="transition-delay: 300ms"
+                    >
+                        <div class="poster-placeholder"></div>
+                        <h3>Experimental</h3>
+                        <p>VFX • 2025</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact hidden">
+                <div class="contact-header">
+                    <!--
+                <div class="status-indicator">
+                    <span class="pulse"></span> STATUS: OPEN FOR COMMISSIONS
+                </div>-->
+                    <div class="status-indicator" style="color: #ff4d4d">
+                        <span
+                            class="pulse"
+                            style="
+                                background-color: #ff4d4d;
+                                box-shadow: 0 0 10px #ff4d4d;
+                            "
+                        ></span>
+                        STATUS: CURRENTLY BOOKED
+                    </div>
+                    <h2>START<br />COLLABORATION.</h2>
+                </div>
+
+                <div class="contact-grid">
+                    <a
+                        href="mailto:deklaired@gmail.com"
+                        class="contact-tile primary"
+                    >
+                        <div class="tile-content">
+                            <span class="tile-label">/// DIRECT LINE</span>
+                            <span class="tile-text">SEND EMAIL</span>
+                        </div>
+                        <div class="tile-icon">→</div>
+                    </a>
+                    <a href="https://instagram.com/" class="contact-tile">
+                        <div class="tile-content">
+                            <span class="tile-label">/// VISUAL FEED</span>
+                            <span class="tile-text">INSTAGRAM</span>
+                        </div>
+                        <div class="tile-icon">↗</div>
+                    </a>
+                    <div class="contact-tile disabled">
+                        <div class="tile-content">
+                            <span class="tile-label"
+                                >/// NETWORK [OFFLINE]</span
+                            >
+                            <span class="tile-text">LINKEDIN</span>
+                        </div>
+                        <div class="tile-icon">×</div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>JAKE CUENCA © 2025</p>
+            </footer>
+        </main>
+
+        <button id="backToTop" class="back-to-top">↑</button>
+
+        <script src="script.js"></script>
+    </body>
+</html>
