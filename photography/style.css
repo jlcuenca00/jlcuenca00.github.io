@@ -54,7 +54,7 @@ body {
     pointer-events: none;
 }
 
-/* --- NAV --- */
+/* --- NAVBAR --- */
 nav {
     display: flex;
     justify-content: space-between;
