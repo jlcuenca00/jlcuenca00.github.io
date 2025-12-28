@@ -163,12 +163,14 @@ h1 {
 
 /* --- MARQUEE --- */
 .marquee-container {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
     padding: 1.5rem 0;
     overflow: hidden;
     background: transparent;
     width: 100%;
+    position: relative;
+    z-index: 5;
 }
 
 .marquee-track {
@@ -204,222 +206,117 @@ h1 {
     }
 }
 
-/* --- COMMAND CENTER (INTERACTIVE) --- */
-.command-center {
+/* --- CORE PHILOSOPHY SECTION (FIXED ALIGNMENT) --- */
+.core-section {
     padding: 6rem 4rem;
+    width: 100%;
+    /* FIXED: Removed max-width and margins to allow full alignment */
+    max-width: none;
+    margin: 0;
 }
 
-.cmd-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* LEFT: CONTROL PANEL */
-.cmd-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.panel-header {
-    font-size: 0.7rem;
-    color: #666;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-}
-
-.cmd-btn {
-    background: rgba(20, 0, 0, 0.3);
-    border: 1px solid #333;
-    padding: 1rem;
+.section-header-core {
     text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    transition: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    font-family: var(--font-code);
-}
-
-.cmd-btn:hover {
-    background: var(--red-primary);
-    border-color: var(--red-primary);
-    transform: translateX(5px);
-}
-
-.cmd-btn:active {
-    transform: translateX(2px);
-}
-
-/* Hover effects for text inside button */
-.cmd-btn .btn-icon {
-    color: #666;
-    transition: 0.2s;
-}
-.cmd-btn .btn-title {
-    display: block;
-    color: var(--text);
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-.cmd-btn .btn-desc {
-    display: block;
-    color: #666;
-    font-size: 0.7rem;
-    margin-top: 2px;
-    transition: 0.2s;
-}
-
-.cmd-btn:hover .btn-icon,
-.cmd-btn:hover .btn-title,
-.cmd-btn:hover .btn-desc {
-    color: #000;
-} /* Text turns black on red bg */
-
-.cmd-btn.clear {
-    border-color: #333;
-    opacity: 0.7;
-}
-.cmd-btn.clear:hover {
-    background: #333;
-    border-color: #555;
-    color: #fff;
-}
-.cmd-btn.clear:hover * {
-    color: #fff;
-}
-
-/* RIGHT: TERMINAL WINDOW */
-.cmd-terminal {
-    background: #050505;
-    border: 1px solid #333;
-    border-radius: 4px;
-    height: 400px;
+    margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+}
+
+.section-header-core h2 {
+    font-family: var(--font-head);
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.core-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    /* FIXED: Removed max-width to allow grid to stretch fully */
+    max-width: none;
+}
+
+.core-card {
     position: relative;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    padding: 2.5rem;
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Header */
-.term-header {
-    background: #111;
-    padding: 8px 15px;
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.dots {
-    display: flex;
-    gap: 6px;
-}
-.dot-ctrl {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #333;
-}
-.dot-ctrl.red {
-    background: var(--red-primary);
-}
-.term-title {
-    font-size: 0.75rem;
-    color: #666;
-}
-
-/* Body */
-.term-body {
-    padding: 1.5rem;
-    flex-grow: 1;
-    overflow-y: auto;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.9rem;
-    color: #ccc;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-/* Scrollbar Styling */
-.term-body::-webkit-scrollbar {
-    width: 5px;
-}
-.term-body::-webkit-scrollbar-thumb {
-    background: #333;
-}
-
-/* Scanline Overlay */
-.scan-line {
+/* Decorative Background Grid in Card */
+.card-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0) 50%,
-        rgba(0, 0, 0, 0.2) 50%,
-        rgba(0, 0, 0, 0.2)
-    );
-    background-size: 100% 4px;
+    background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+        ),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0;
+    transition: opacity 0.5s;
     pointer-events: none;
-    z-index: 10;
-    opacity: 0.3;
+    z-index: 0;
 }
 
-/* TERMINAL TEXT STYLES */
-.term-line {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px;
+.core-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--red-primary);
+}
+.core-card:hover .card-bg {
+    opacity: 1;
 }
 
-.prompt {
+.core-icon {
+    font-size: 2rem;
     color: var(--red-primary);
-    margin-right: 8px;
-}
-.system-msg {
-    color: #666;
-    font-style: italic;
-}
-.cmd-input {
-    color: #fff;
-    font-weight: bold;
-}
-.response {
-    color: #aaa;
-    margin-bottom: 15px;
-    white-space: pre-wrap;
-    line-height: 1.4;
-    display: block;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
-/* Typing Cursor */
-.cursor {
-    display: inline-block;
-    width: 8px;
-    height: 15px;
-    background: var(--red-primary);
-    animation: blink 1s infinite;
-    vertical-align: middle;
-    margin-left: 5px;
+.core-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
 }
-@keyframes blink {
-    0%,
-    100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
+
+.core-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #888;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.core-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: #111;
+    border-top: 1px solid #222;
+    font-family: var(--font-code);
+    font-size: 0.7rem;
+    color: #555;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.core-card:hover .core-footer {
+    color: #fff;
+    background: #1a0505;
+    border-color: var(--red-primary);
 }
 
 /* --- PROJECTS (BENTO GRID) --- */
@@ -779,14 +676,8 @@ footer {
         margin-top: 1rem;
     }
 
-    .cmd-layout {
+    .core-grid {
         grid-template-columns: 1fr;
-    }
-    .command-center {
-        padding: 4rem 2rem;
-    }
-    .cmd-terminal {
-        height: 300px;
     }
 }
 
@@ -799,7 +690,8 @@ footer {
         padding: 1.5rem 2rem;
     }
     .projects,
-    .contact {
+    .contact,
+    .core-section {
         padding: 4rem 2rem;
     }
     .contact-links {
