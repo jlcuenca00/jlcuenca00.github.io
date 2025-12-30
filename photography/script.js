@@ -8,13 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
    OPTIMIZED CONFIGURATION
    ========================================= */
 const portfolioData = [
-    { src: "images/onin.JPG", type: "short", alt: "Onin Portrait" },
-    { src: "images/can.JPG", type: "short", alt: "Candles" },
-    { src: "images/q.png", type: "short", alt: "Q Model" },
-    { src: "images/wut.JPG", type: "short", alt: "Night City" },
-    { src: "images/go.png", type: "tall", alt: "Gown Blue" },
-    { src: "images/fly.png", type: "short", alt: "Flowing Dress" },
+    { src: "images/punk.JPG", type: "tall", alt: "Onin Portrait" },
+    { src: "images/bot.JPG", type: "short", alt: "Candles" },
+    { src: "images/q.png", type: "tall", alt: "Queen" },
     { src: "images/chu.JPG", type: "short", alt: "Church" },
+    { src: "images/wut.JPG", type: "short", alt: "Night City" },
+    { src: "images/can.JPG", type: "tall", alt: "Flowing Dress" },
+    { src: "images/ong.JPG", type: "short", alt: "Contrast" },
+    { src: "images/flo.JPG", type: "tall", alt: "Rose Model" },
+    { src: "images/bui.JPG", type: "tall", alt: "Building" },
+    { src: "images/hor.JPG", type: "short", alt: "Horns" },
+
+    //{ src: "images/go.png", type: "tall", alt: "Zen Garden" },
+    //{ src: "images/fly.png", type: "short", alt: "Zen Garden" },
     // Spacers for aesthetic gaps
     { spacer: true, type: "tall" },
     { spacer: true, type: "short" },
