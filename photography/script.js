@@ -8,20 +8,106 @@ document.addEventListener("DOMContentLoaded", () => {
    OPTIMIZED CONFIGURATION
    ========================================= */
 const portfolioData = [
-    { src: "images/punk.JPG", type: "tall", alt: "Onin Portrait" },
-    { src: "images/bot.JPG", type: "short", alt: "Candles" },
-    { src: "images/q.png", type: "tall", alt: "Queen" },
-    { src: "images/chu.JPG", type: "short", alt: "Church" },
-    { src: "images/wut.JPG", type: "short", alt: "Night City" },
-    { src: "images/can.JPG", type: "tall", alt: "Flowing Dress" },
-    { src: "images/ong.JPG", type: "short", alt: "Contrast" },
-    { src: "images/flo.JPG", type: "tall", alt: "Rose Model" },
-    { src: "images/bui.JPG", type: "tall", alt: "Building" },
-    { src: "images/hor.JPG", type: "short", alt: "Horns" },
+    {
+        src: "https://live.staticflickr.com/65535/55019831164_97561930b2_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019831164_97561930b2.jpg",
+        type: "tall",
+        alt: "Skull Post",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019790263_a1e4b36140_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019790263_a1e4b36140.jpg",
+        type: "short",
+        alt: "Electric Lines",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019882270_d0fd60ed47_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019882270_d0fd60ed47.jpg",
+        type: "tall",
+        alt: "Queen",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55018648587_2157726175_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55018648587_2157726175.jpg",
+        type: "short",
+        alt: "Boat in the Bay",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019747288_0946be6844_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019747288_0946be6844.jpg",
+        type: "short",
+        alt: "Night Shore",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019564886_12c4f83e2e_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019564886_12c4f83e2e.jpg",
+        type: "tall",
+        alt: "Flowing Dress",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55018684772_83fed20bca_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55018684772_83fed20bca.jpg",
+        type: "short",
+        alt: "Contrast",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019831214_2db986e39d_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019831214_2db986e39d.jpg",
+        type: "tall",
+        alt: "Flowers",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019608466_260405af16_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019608466_260405af16.jpg",
+        type: "tall",
+        alt: "Woman Walking",
+    },
 
-    //{ src: "images/go.png", type: "tall", alt: "Zen Garden" },
-    //{ src: "images/fly.png", type: "short", alt: "Zen Garden" },
-    // Spacers for aesthetic gaps
+    {
+        src: "https://live.staticflickr.com/65535/55019831159_0c3c87342a_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019831159_0c3c87342a.jpg",
+        type: "short",
+        alt: "Horns",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019926420_e353939ec9_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019926420_e353939ec9.jpg",
+        type: "tall",
+        alt: "Portrait",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019609351_faa7e9edc9_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019609351_faa7e9edc9.jpg",
+        type: "short",
+        alt: "City Lights",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55018727342_1c973a3c64_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55018727342_1c973a3c64.jpg",
+        type: "short",
+        alt: "Man",
+    },
+
+    {
+        src: "https://live.staticflickr.com/65535/55019606561_97c3d7f33c_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019606561_97c3d7f33c.jpg",
+        type: "tall",
+        alt: "Mirror",
+    },
+    {
+        src: "https://live.staticflickr.com/65535/55019564846_6d17bc5256_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55019564846_6d17bc5256.jpg",
+        type: "short",
+        alt: "Church",
+    },
+
+    {
+        src: "https://live.staticflickr.com/65535/55018684897_445fd4ea70_b.jpg",
+        thumb: "https://live.staticflickr.com/65535/55018684897_445fd4ea70.jpg",
+        type: "tall",
+        alt: "Building",
+    },
+
     { spacer: true, type: "tall" },
     { spacer: true, type: "short" },
 ];
@@ -44,14 +130,16 @@ function renderGallery() {
         const targetColumn = columns[index % columnCount];
         const card = document.createElement("div");
 
-        // Add "tilt" class for effect
         card.className = `placeholder ${item.type} tilt hidden`;
 
         if (!item.spacer && item.src) {
             const img = document.createElement("img");
 
-            // Lazy Load + Lightbox setup
-            img.loading = "lazy";
+            // --- PERFORMANCE OPTIMIZATIONS ---
+            img.loading = "lazy"; // Load only when near viewport
+            img.decoding = "async"; // Decode off main thread to prevent stuttering
+            img.fetchPriority = "low"; // Prioritize CSS/JS over gallery images
+
             img.src = item.thumb || item.src;
             img.alt = item.alt || "";
 
@@ -71,41 +159,29 @@ function renderGallery() {
    ========================================= */
 function initTiltEffect() {
     const tiltCards = document.querySelectorAll(".tilt");
-
-    // Disable tilt on touch devices for performance
     const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     if (isTouch) return;
 
     tiltCards.forEach((card) => {
         let isHovering = false;
-
         card.addEventListener("mouseenter", () => {
             isHovering = true;
         });
-
         card.addEventListener("mousemove", (e) => {
             if (!isHovering) return;
-
             requestAnimationFrame(() => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-
                 const rotateX = ((y - centerY) / centerY) * -5;
                 const rotateY = ((x - centerX) / centerX) * 5;
-
-                // JS ONLY handles Transform (Rotate/Perspective)
-                // CSS handles Scale property independently
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
         });
-
         card.addEventListener("mouseleave", () => {
             isHovering = false;
-            // Clear transform so CSS transition can smoothly return it to 0
             card.style.transform = "";
         });
     });
