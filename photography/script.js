@@ -130,15 +130,16 @@ function renderGallery() {
         const targetColumn = columns[index % columnCount];
         const card = document.createElement("div");
 
-        card.className = `placeholder ${item.type} tilt hidden`;
+        // REMOVED 'tilt' class to disable 3D effect
+        card.className = `placeholder ${item.type} hidden`;
 
         if (!item.spacer && item.src) {
             const img = document.createElement("img");
 
             // --- PERFORMANCE OPTIMIZATIONS ---
-            img.loading = "lazy"; // Load only when near viewport
-            img.decoding = "async"; // Decode off main thread to prevent stuttering
-            img.fetchPriority = "low"; // Prioritize CSS/JS over gallery images
+            img.loading = "lazy";
+            img.decoding = "async";
+            img.fetchPriority = "low";
 
             img.src = item.thumb || item.src;
             img.alt = item.alt || "";
@@ -150,41 +151,8 @@ function renderGallery() {
         targetColumn.appendChild(card);
     });
 
-    initTiltEffect();
+    // Removed initTiltEffect() call
     initScrollReveal();
-}
-
-/* =========================================
-   HYBRID TILT EFFECT (JS Rotation + CSS Scale)
-   ========================================= */
-function initTiltEffect() {
-    const tiltCards = document.querySelectorAll(".tilt");
-    const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouch) return;
-
-    tiltCards.forEach((card) => {
-        let isHovering = false;
-        card.addEventListener("mouseenter", () => {
-            isHovering = true;
-        });
-        card.addEventListener("mousemove", (e) => {
-            if (!isHovering) return;
-            requestAnimationFrame(() => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-        });
-        card.addEventListener("mouseleave", () => {
-            isHovering = false;
-            card.style.transform = "";
-        });
-    });
 }
 
 /* =========================================
