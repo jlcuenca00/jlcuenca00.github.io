@@ -1,10 +1,18 @@
+@font-face {
+    font-family: "Oughter";
+    src: url("../fonts/Oughter.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --blue-primary: #0088ff;
     --red-primary: #ff0000;
     --blue-dark: #001a33;
     --bg: #050505;
     --text: #ffffff;
-    --font-head: "Archivo Black", sans-serif;
+    --font-head: "Oughter", sans-serif;
+    --font-text: "Montserrat", sans-serif;
     --font-code: "JetBrains Mono", monospace;
 }
 
@@ -18,7 +26,7 @@
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: var(--font-code);
+    font-family: var(--font-text);
     overflow-x: hidden;
 }
 
@@ -79,6 +87,7 @@ nav {
     margin-left: 2rem;
     opacity: 0.6;
     transition: 0.3s;
+    font-family: var(--font-code);
 }
 .nav-item:hover {
     opacity: 1;
@@ -117,6 +126,7 @@ nav {
     letter-spacing: 3px;
     display: block;
     margin-bottom: 15px;
+    font-family: var(--font-code);
 }
 h1 {
     font-family: var(--font-head);
@@ -130,7 +140,137 @@ h1 {
     -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
 }
 
-/* --- MARQUEE --- */
+/* --- JUSTIFIED GALLERY LAYOUT --- */
+.gallery {
+    padding: 2rem 4rem;
+    min-height: 100vh;
+    transition: opacity 0.3s ease-out;
+}
+.gallery.fade-out {
+    opacity: 0;
+}
+
+.justified-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px; /* Matches the tight spacing of the reference */
+}
+
+/* CRITICAL FIX: This invisible element absorbs all extra space in the last row.
+   It prevents the last few images from stretching to full width.
+*/
+.justified-gallery::after {
+    content: "";
+    flex-grow: 999999999; /* Massive grow factor to eat up space */
+    min-width: 200px; /* Prevents it from disappearing completely if row is tight */
+}
+
+.gallery-item {
+    height: 350px; /* Increased height for better visibility of 2:3 portraits */
+    flex-grow: 1;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: #050505;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    /* Object-fit cover ensures the box is filled, 
+       but since the JS calculates the box ratio to match the image,
+       this won't actually crop anything. It just handles sub-pixel rounding. */
+    object-fit: cover;
+    display: block;
+    transition: filter 0.2s ease;
+    filter: brightness(100%);
+}
+
+/* HOVER EFFECT: Darken Only */
+.gallery-item:hover img {
+    filter: brightness(60%);
+}
+
+/* --- LIGHTBOX --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+.lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    font-family: var(--font-head);
+    z-index: 2001;
+}
+.close-btn:hover {
+    color: var(--red-primary);
+}
+
+/* --- ANIMATION CLASSES --- */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.6s ease;
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.hidden-tab {
+    display: none !important;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1000px) {
+    .gallery-item {
+        height: 250px;
+    }
+}
+@media (max-width: 600px) {
+    .gallery-item {
+        height: 180px;
+    }
+    nav {
+        padding: 1.5rem 2rem;
+    }
+    .hero,
+    .gallery,
+    .contact {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+/* --- MARQUEE, GEAR, CONTACT --- */
 .marquee-container {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -167,12 +307,10 @@ h1 {
     }
 }
 
-/* --- HARDWARE MANIFEST (GEAR GRID) --- */
 .hardware {
     padding: 6rem 4rem;
     width: 100%;
 }
-
 .hardware-header {
     margin-bottom: 4rem;
 }
@@ -180,13 +318,11 @@ h1 {
     font-size: 3rem;
     margin-top: 0.5rem;
 }
-
 .gear-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
-
 .gear-card {
     background: #0f0f0f;
     border: 1px solid #222;
@@ -195,7 +331,6 @@ h1 {
     overflow: hidden;
     transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 .gear-visual {
     width: 100%;
     aspect-ratio: 1/1;
@@ -207,17 +342,14 @@ h1 {
     align-items: center;
     overflow: hidden;
 }
-
 .gear-visual img {
     max-width: 80%;
     max-height: 80%;
     object-fit: contain;
-    filter: grayscale(100%) contrast(1.1); /* Cinematic look */
+    filter: grayscale(100%) contrast(1.1);
     opacity: 0.7;
     transition: 0.4s ease;
 }
-
-/* The Sci-Fi Scanning Line Animation */
 .scan-line {
     position: absolute;
     top: 0;
@@ -235,7 +367,6 @@ h1 {
     pointer-events: none;
     opacity: 0;
 }
-
 @keyframes scan {
     0% {
         transform: translateY(-100%);
@@ -252,11 +383,9 @@ h1 {
         opacity: 0;
     }
 }
-
 .gear-info {
     padding: 1.5rem;
 }
-
 .gear-type {
     font-family: var(--font-code);
     font-size: 0.65rem;
@@ -266,195 +395,31 @@ h1 {
     display: block;
     margin-bottom: 0.5rem;
 }
-
 .gear-card h3 {
     font-family: var(--font-head);
     font-size: 1.2rem;
     margin-bottom: 0.3rem;
     color: #fff;
 }
-
 .gear-card p {
     font-family: var(--font-code);
     font-size: 0.8rem;
     opacity: 0.5;
 }
-
-/* Hover Effects */
 .gear-card:hover {
     border-color: var(--blue-primary);
     transform: translateY(-5px);
 }
-
 .gear-card:hover .gear-visual img {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.05);
 }
-
 .gear-card:hover .scan-line {
-    animation-duration: 2s; /* Scan faster on hover */
+    animation-duration: 2s;
     opacity: 1;
 }
 
-@media (max-width: 1024px) {
-    .gear-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 600px) {
-    .gear-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* --- TABS --- */
-.tabs-container {
-    padding: 0 4rem;
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 2rem;
-    justify-content: left;
-}
-.tab-btn {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.4);
-    font-family: var(--font-head);
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.tab-btn:hover {
-    color: #fff;
-}
-.tab-btn.active {
-    color: var(--blue-primary);
-    text-decoration: underline;
-    text-underline-offset: 10px;
-}
-.line {
-    height: 1px;
-    flex-grow: 1;
-    background: rgba(255, 255, 255, 0.1);
-    align-self: center;
-}
-
-/* --- GALLERY LAYOUT --- */
-.gallery {
-    padding: 2rem 4rem;
-    display: flex;
-    gap: 15px;
-    min-height: 100vh;
-    transition: opacity 0.3s ease-out;
-    opacity: 1;
-}
-.gallery.fade-out {
-    opacity: 0;
-}
-
-.photo-wrapper {
-    display: flex;
-    gap: 15px;
-    width: 100%;
-}
-.photo-wrapper .column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    min-width: 0;
-}
-
-/* --- PHOTO RATIOS & SIZING --- */
-.tall {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    position: relative;
-    overflow: hidden;
-}
-.short {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    position: relative;
-    overflow: hidden;
-}
-
-/* --- IMAGE CONTAINMENT & HOVER (OPTIMIZED) --- */
-.placeholder {
-    background: #1a1a1a;
-    border-radius: 4px;
-    border: 1px solid #333;
-    cursor: pointer;
-    overflow: hidden;
-
-    /* SEPARATE TRANSITIONS TO AVOID JS CONFLICT */
-    /* scale/box-shadow/border are purely CSS governed */
-    transition: scale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        box-shadow 0.4s ease, border-color 0.3s ease, transform 0.1s ease-out; /* Smooths the JS tilt slightly */
-
-    scale: 1; /* Default CSS scale */
-}
-
-/* The tilt class handles hardware acceleration for JS */
-.tilt {
-    will-change: transform;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-}
-
-.placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 3px;
-    pointer-events: none;
-}
-
-/* CSS HOVER EFFECT */
-.placeholder:hover {
-    z-index: 20;
-    border-color: #ebebeb;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-
-    /* MODERN CSS PROPERTY - Does not conflict with transform */
-    scale: 1.05;
-}
-
-/* --- FILM GRID --- */
-.film-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    width: 100%;
-}
-.film-card {
-    background: #0f0f0f;
-    padding: 1rem;
-    border: 1px solid #333;
-    position: relative;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-.poster-placeholder {
-    height: 400px;
-    background: #1a1a1a;
-    margin-bottom: 1rem;
-}
-.film-card h3 {
-    font-family: var(--font-head);
-    margin-bottom: 0.5rem;
-}
-.film-card p {
-    opacity: 0.6;
-    font-size: 0.9rem;
-}
-.hidden-tab {
-    display: none !important;
-}
-
-/* --- CONTACT --- */
 .contact {
     padding: 6rem 4rem;
     margin-bottom: 4rem;
@@ -483,17 +448,6 @@ h1 {
     border-radius: 50%;
     box-shadow: 0 0 10px #4ade80;
     animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 1;
-    }
 }
 .contact h2 {
     font-family: var(--font-head);
@@ -578,11 +532,10 @@ h1 {
     transform: none;
 }
 .contact-tile.disabled:hover .tile-content,
-.contact-tile:hover .tile-icon {
-    color: #ffffff;
+.contact-tile.disabled:hover .tile-icon {
+    color: #fff;
 }
 
-/* --- FOOTER & UTILS --- */
 footer {
     padding: 2rem;
     border-top: 1px solid #222;
@@ -590,17 +543,6 @@ footer {
     opacity: 0.5;
     font-size: 0.8rem;
     margin-top: 4rem;
-}
-.hidden {
-    opacity: 0;
-    filter: blur(5px);
-    transform: translateY(20px);
-    transition: 0.6s ease;
-}
-.show {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
 }
 .back-to-top {
     position: fixed;
@@ -632,81 +574,33 @@ footer {
     transition: all 0.05s linear;
 }
 
-/* --- LIGHTBOX --- */
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 2000;
+.tabs-container {
+    padding: 0 4rem;
+    margin-bottom: 2rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(10px);
+    gap: 2rem;
+    justify-content: left;
 }
-.lightbox.active {
-    opacity: 1;
-    pointer-events: all;
-}
-.lightbox-content img {
-    max-width: 90vw;
-    max-height: 90vh;
-    border: 1px solid #333;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
-}
-.close-btn {
-    position: absolute;
-    top: 30px;
-    right: 40px;
+.tab-btn {
     background: none;
     border: none;
-    color: #fff;
-    font-size: 3rem;
-    cursor: pointer;
-    transition: color 0.2s;
+    color: rgba(255, 255, 255, 0.4);
     font-family: var(--font-head);
-    z-index: 2001;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
 }
-.close-btn:hover {
-    color: var(--red-primary);
+.tab-btn:hover {
+    color: #fff;
 }
-
-@media (max-width: 900px) {
-    .vision-layout {
-        flex-direction: column;
-        text-align: center;
-    }
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-    .hardware {
-        padding: 4rem 2rem;
-    }
+.tab-btn.active {
+    color: var(--blue-primary);
+    text-decoration: underline;
+    text-underline-offset: 10px;
 }
-@media (max-width: 768px) {
-    .gallery {
-        flex-direction: column;
-    }
-    .film-grid {
-        grid-template-columns: 1fr;
-    }
-    .photo-wrapper {
-        flex-direction: column;
-    }
-    nav,
-    .hero,
-    .gallery,
-    .tabs-container,
-    .hardware,
-    .vision,
-    .contact {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
+.line {
+    height: 1px;
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.1);
+    align-self: center;
 }
