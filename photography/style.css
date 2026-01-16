@@ -166,7 +166,7 @@ h1 {
 }
 
 .gallery-item {
-    height: 350px; /* Increased height for better visibility of 2:3 portraits */
+    height: 200px; /* Increased height for better visibility of 2:3 portraits */
     flex-grow: 1;
     position: relative;
     cursor: pointer;
@@ -214,7 +214,7 @@ h1 {
 }
 .lightbox-content img {
     max-width: 90vw;
-    max-height: 90vh;
+    height: 85vh;
     border: 1px solid #333;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     border-radius: 4px;

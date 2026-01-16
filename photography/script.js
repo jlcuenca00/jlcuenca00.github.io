@@ -40,6 +40,9 @@ function renderGallery() {
     const container = document.getElementById("photo-container");
     if (!container) return;
 
+    // --- SHUFFLE ENABLED ---
+    shuffleArray(photoLinks);
+
     photoLinks.forEach((src) => {
         const div = document.createElement("div");
         div.className = "gallery-item hidden";
@@ -58,8 +61,9 @@ function renderGallery() {
         img.onload = () => {
             const aspectRatio = img.naturalWidth / img.naturalHeight;
             div.style.flexGrow = aspectRatio;
-            // 350 matches the CSS height to ensure calculations align
-            div.style.flexBasis = aspectRatio * 350 + "px";
+
+            // UPDATED: 250 matches your new CSS height
+            div.style.flexBasis = aspectRatio * 200 + "px";
         };
 
         div.appendChild(img);
@@ -167,4 +171,15 @@ function filterGallery(category) {
         }
         gallerySection.classList.remove("fade-out");
     }, 300);
+}
+
+/* =========================================
+   HELPER FUNCTIONS
+   ========================================= */
+// Fisher-Yates Shuffle Algorithm
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
