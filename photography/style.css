@@ -1,18 +1,10 @@
-@font-face {
-    font-family: "Oughter";
-    src: url("../fonts/Oughter.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
-
 :root {
     --blue-primary: #0088ff;
     --red-primary: #ff0000;
     --blue-dark: #001a33;
     --bg: #050505;
     --text: #ffffff;
-    --font-head: "Oughter", sans-serif;
-    --font-text: "Montserrat", sans-serif;
+    --font-head: "Archivo Black", sans-serif;
     --font-code: "JetBrains Mono", monospace;
 }
 
@@ -26,7 +18,7 @@
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: var(--font-text);
+    font-family: var(--font-code);
     overflow-x: hidden;
 }
 
@@ -140,6 +132,21 @@ h1 {
     -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
 }
 
+/* NEW BUTTON STYLE (BLUE) */
+.btn {
+    display: inline-block;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue-primary);
+    padding-bottom: 5px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    font-family: var(--font-code);
+}
+.btn:hover {
+    color: var(--blue-primary);
+}
+
 /* --- JUSTIFIED GALLERY LAYOUT --- */
 .gallery {
     padding: 2rem 4rem;
@@ -153,20 +160,17 @@ h1 {
 .justified-gallery {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px; /* Matches the tight spacing of the reference */
+    gap: 4px;
 }
 
-/* CRITICAL FIX: This invisible element absorbs all extra space in the last row.
-   It prevents the last few images from stretching to full width.
-*/
 .justified-gallery::after {
     content: "";
-    flex-grow: 999999999; /* Massive grow factor to eat up space */
-    min-width: 200px; /* Prevents it from disappearing completely if row is tight */
+    flex-grow: 999999999;
+    min-width: 200px;
 }
 
 .gallery-item {
-    height: 200px; /* Increased height for better visibility of 2:3 portraits */
+    height: 200px;
     flex-grow: 1;
     position: relative;
     cursor: pointer;
@@ -177,16 +181,12 @@ h1 {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    /* Object-fit cover ensures the box is filled, 
-       but since the JS calculates the box ratio to match the image,
-       this won't actually crop anything. It just handles sub-pixel rounding. */
     object-fit: cover;
     display: block;
     transition: filter 0.2s ease;
     filter: brightness(100%);
 }
 
-/* HOVER EFFECT: Darken Only */
 .gallery-item:hover img {
     filter: brightness(60%);
 }
