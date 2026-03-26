@@ -256,8 +256,26 @@ h1 {
     }
 }
 @media (max-width: 600px) {
+    .justified-gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .justified-gallery::after {
+        display: none;
+    }
     .gallery-item {
-        height: 180px;
+        height: auto;
+        margin-bottom: 0;
+        background: transparent;
+        width: 100%;
+    }
+    .gallery-item img {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        aspect-ratio: auto;
     }
     nav {
         padding: 1.5rem 2rem;

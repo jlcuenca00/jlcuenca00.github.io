@@ -39,6 +39,7 @@ const photoLinks = [
 function renderGallery() {
     const container = document.getElementById("photo-container");
     if (!container) return;
+    const isMobileView = window.matchMedia("(max-width: 600px)").matches;
 
     // --- SHUFFLE ENABLED ---
     shuffleArray(photoLinks);
@@ -59,11 +60,14 @@ function renderGallery() {
            CSS exactly how wide this box should be relative to its height.
            This prevents cropping and weird stretching. */
         img.onload = () => {
-            const aspectRatio = img.naturalWidth / img.naturalHeight;
-            div.style.flexGrow = aspectRatio;
-
-            // UPDATED: 250 matches your new CSS height
-            div.style.flexBasis = aspectRatio * 200 + "px";
+            if (!isMobileView) {
+                const aspectRatio = img.naturalWidth / img.naturalHeight;
+                div.style.flexGrow = aspectRatio;
+                div.style.flexBasis = aspectRatio * 200 + "px";
+            } else {
+                div.style.flexGrow = "unset";
+                div.style.flexBasis = "100%";
+            }
         };
 
         div.appendChild(img);
