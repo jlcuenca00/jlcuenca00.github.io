@@ -1,142 +1,195 @@
-.landing-page {
-    min-height: 100svh;
-    width: 100vw;
-    overflow: hidden;
-    background: #000;
-    font-family: var(--font-head);
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@700&display=swap");
 
+:root {
+    /* --- PALETTE --- */
     --red-glow: #ff0000;
     --red-dark: #3a0000;
     --red-black: #080000;
+
     --blue-glow: #004cff;
     --blue-dark: #00103a;
     --blue-black: #000000;
+
+    --text-white: #ffffff;
+
+    /* --- ANIMATION --- */
     --transition-speed: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: "Archivo Black", sans-serif;
 }
 
 .split-container {
     position: relative;
     width: 100%;
-    min-height: 100svh;
+    height: 100%;
     display: flex;
-    overflow: hidden;
-    isolation: isolate;
 }
 
+/* --- TEXTURE OVERLAY --- */
 .split-container::before {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: 20;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
-        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 35%),
-        radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.5) 100%);
+    background: radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 255, 255, 0.02) 0%,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            transparent 20%,
+            rgba(0, 0, 0, 0.5) 100%
+        );
     mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 20; /* TOP LAYER */
 }
+
+/* ==================== SIDES (LAYOUT) ==================== */
 
 .side {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
-    color: var(--text);
     text-decoration: none;
-    transition: background var(--transition-speed), filter var(--transition-speed);
-    transform: translateZ(0);
-    will-change: background, filter;
+
+    /* PERFORMANCE OPTIMIZATION */
+    transition: background var(--transition-speed);
+    transform: translateZ(0); /* Hardware Acceleration */
+    will-change: transform; /* Hints browser to optimize rendering */
 }
 
+/* --- LEFT SIDE (DEVELOPER) --- */
 .left {
     z-index: 2;
     justify-content: flex-start;
     clip-path: polygon(0 0, 56% 0, 44% 100%, 0 100%);
-    background: radial-gradient(circle at 35% 45%, var(--red-dark) 0%, #1a0000 60%, var(--red-black) 100%);
+
+    /* Dark Red Gradient */
+    background: radial-gradient(
+        circle at 35% 45%,
+        var(--red-dark) 0%,
+        #1a0000 60%,
+        var(--red-black) 100%
+    );
 }
 
-.left:hover,
-.left:focus-visible {
-    z-index: 3;
+.left:hover {
+    z-index: 3; /* Bring to top on hover */
     background: radial-gradient(circle at 40% 50%, #700000 0%, #b00000 100%);
-    outline: none;
 }
 
+/* --- RIGHT SIDE (CREATOR) --- */
 .right {
     z-index: 1;
     justify-content: flex-end;
     clip-path: polygon(56% 0, 100% 0, 100% 100%, 44% 100%);
-    background: radial-gradient(circle at 65% 55%, var(--blue-dark) 0%, #00051a 60%, var(--blue-black) 100%);
+
+    /* Dark Blue Gradient */
+    background: radial-gradient(
+        circle at 65% 55%,
+        var(--blue-dark) 0%,
+        #00051a 60%,
+        var(--blue-black) 100%
+    );
 }
 
-.right:hover,
-.right:focus-visible {
-    z-index: 3;
-    background: radial-gradient(circle at 60% 50%, #000022 0%, var(--blue-glow) 100%);
-    outline: none;
+.right:hover {
+    z-index: 3; /* Bring to top on hover */
+    background: radial-gradient(
+        circle at 60% 50%,
+        #000022 0%,
+        var(--blue-glow) 100%
+    );
 }
+
+/* ==================== GLOW EDGES (VISUAL FX) ==================== */
 
 .glow-edge {
     position: absolute;
     inset: 0;
-    z-index: 15;
-    opacity: 0;
     pointer-events: none;
-    filter: blur(2px);
+    z-index: 15; /* Between Sides and Texture */
+    opacity: 0;
     transition: opacity 0.3s ease;
+    filter: blur(2px);
 }
 
+/* RED SPLIT LINE */
 .left-edge {
-    background: linear-gradient(to right, #fff, var(--red-glow) 20%, transparent 100%);
+    background: linear-gradient(
+        to right,
+        #fff,
+        var(--red-glow) 20%,
+        transparent 100%
+    );
     clip-path: polygon(55.9% 0, 56.1% 0, 44.1% 100%, 43.9% 100%);
 }
 
+/* BLUE SPLIT LINE */
 .right-edge {
-    background: linear-gradient(to left, #fff, var(--blue-glow) 20%, transparent 100%);
+    background: linear-gradient(
+        to left,
+        #fff,
+        var(--blue-glow) 20%,
+        transparent 100%
+    );
     clip-path: polygon(55.9% 0, 56.1% 0, 44.1% 100%, 43.9% 100%);
 }
 
-.split-container:has(.left:hover) .left-edge,
-.split-container:has(.left:focus-visible) .left-edge {
+/* Reveal Edge on Hover using :has() */
+.split-container:has(.left:hover) .left-edge {
+    opacity: 1;
+}
+.split-container:has(.right:hover) .right-edge {
     opacity: 1;
 }
 
-.split-container:has(.right:hover) .right-edge,
-.split-container:has(.right:focus-visible) .right-edge {
-    opacity: 1;
-}
+/* ==================== TYPOGRAPHY ==================== */
 
 .content-wrapper {
     width: 50%;
     height: 100%;
-    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
-}
-
-.right .content-wrapper {
-    margin-left: auto;
+    pointer-events: none; /* Let clicks pass through to .side */
 }
 
 .content {
     position: relative;
-    max-width: min(42vw, 760px);
     text-align: center;
     pointer-events: auto;
 }
 
-.side h1 {
-    margin: 0;
-    font-size: clamp(2.6rem, 5.5vw, 7rem);
-    line-height: 0.95;
+/* --- HEADLINES (H1) --- */
+h1 {
+    font-size: clamp(2.2rem, 5.5vw, 7rem);
     font-style: italic;
     text-transform: uppercase;
-    white-space: nowrap;
-    transition: color 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+    transition: 0.4s ease;
 }
 
+/* Default States (Colored Text + Soft Glow) */
 .left h1 {
     color: var(--red-glow);
     filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
@@ -147,66 +200,65 @@
     filter: drop-shadow(0 0 15px rgba(0, 76, 255, 0.6));
 }
 
-.left:hover h1,
-.left:focus-visible h1 {
-    color: #fff;
+/* Hover States (White Text + Hard Glow) */
+.left:hover h1 {
+    color: var(--text-white);
     transform: scale(1.06);
-    filter: drop-shadow(0 0 25px var(--red-glow)) drop-shadow(0 0 50px var(--red-glow));
+    filter: drop-shadow(0 0 25px var(--red-glow))
+        drop-shadow(0 0 50px var(--red-glow));
 }
 
-.right:hover h1,
-.right:focus-visible h1 {
-    color: #fff;
+.right:hover h1 {
+    color: var(--text-white);
     transform: scale(1.06);
-    filter: drop-shadow(0 0 25px var(--blue-glow)) drop-shadow(0 0 50px var(--blue-glow));
+    filter: drop-shadow(0 0 25px var(--blue-glow))
+        drop-shadow(0 0 50px var(--blue-glow));
 }
 
+/* --- BACKGROUND OUTLINE TEXT --- */
 .outline {
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: -1;
     transform: translate(-50%, -50%);
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.54);
     font-size: clamp(4rem, 13vw, 16rem);
-    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.54); /* Subtle stroke */
     opacity: 0;
-    white-space: nowrap;
     transition: var(--transition-speed);
+    white-space: nowrap;
+    z-index: -1;
 }
 
-.side:hover .outline,
-.side:focus-visible .outline {
-    opacity: 0.15;
+.side:hover .outline {
+    opacity: 0.15; /* Kept subtle so it doesn't fight H1 */
     transform: translate(-50%, -50%) scale(1.15);
 }
 
-.side p {
-    margin: 15px 0 0;
-    color: #fff;
-    font-family: var(--font-code);
-    font-size: clamp(0.68rem, 0.8vw, 0.85rem);
-    letter-spacing: clamp(3px, 0.45vw, 5px);
+/* --- SUBTITLES (P) --- */
+p {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    margin-top: 15px;
+    color: var(--text-white);
     opacity: 0.5;
-    white-space: nowrap;
-    transition: opacity 0.4s ease;
+    transition: 0.4s ease;
 }
-
-.side:hover p,
-.side:focus-visible p {
+.side:hover p {
     opacity: 1;
 }
 
+/* ==================== FOOTER / WATERMARK ==================== */
 .watermark {
     position: absolute;
     bottom: 40px;
     left: 40px;
-    z-index: 100;
-    color: #fff;
-    font-family: var(--font-code);
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.7rem;
     letter-spacing: 4px;
+    color: var(--text-white);
+    z-index: 100;
     pointer-events: none;
     white-space: nowrap;
 }
@@ -216,80 +268,59 @@
     font-weight: 400;
 }
 
-@media (max-width: 1120px) {
-    .side h1 {
-        font-size: clamp(2.25rem, 5vw, 5rem);
-    }
-
-    .content {
-        max-width: 40vw;
-    }
-
-    .side p {
-        letter-spacing: 3px;
-    }
-}
-
-@media (max-width: 760px) {
-    .landing-page {
-        overflow: auto;
+/* --- MOBILE ONLY: keep the original desktop effect untouched --- */
+@media (max-width: 700px) {
+    body {
+        height: auto;
+        min-height: 100svh;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .split-container {
         min-height: 100svh;
-        display: grid;
-        grid-template-columns: 1fr;
+        height: auto;
+        display: block;
     }
 
     .side {
         position: relative;
         inset: auto;
-        min-height: 50svh;
+        height: 50svh;
+        min-height: 320px;
         justify-content: center;
         clip-path: none;
     }
 
-    .content-wrapper,
-    .right .content-wrapper {
+    .content-wrapper {
         width: 100%;
-        min-height: 50svh;
-        margin-left: 0;
-        padding: 2rem 1.25rem;
+        height: 100%;
     }
 
-    .content {
-        max-width: 100%;
-    }
-
-    .side h1 {
-        font-size: clamp(2.5rem, 14vw, 5rem);
-    }
-
-    .side p {
-        font-size: 0.68rem;
-        letter-spacing: 3px;
-        white-space: normal;
-    }
-
-    .glow-edge {
-        display: none;
+    h1 {
+        font-size: clamp(2.5rem, 14vw, 4.8rem);
     }
 
     .outline {
         font-size: clamp(4rem, 25vw, 9rem);
     }
 
+    p {
+        padding: 0 1rem;
+        font-size: 0.68rem;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+
+    .glow-edge {
+        display: none;
+    }
+
     .watermark {
         position: fixed;
-        bottom: 1rem;
-        left: 1rem;
+        bottom: 16px;
+        left: 16px;
         font-size: 0.6rem;
         letter-spacing: 3px;
-    }
-}
-
-@media (max-width: 420px) {
-    .side h1 {
-        font-size: clamp(2.1rem, 13vw, 3.6rem);
     }
 }
