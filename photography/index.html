@@ -3,208 +3,181 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jake Cuenca | Creator</title>
-        <link rel="stylesheet" href="style.css" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap"
-            rel="stylesheet"
+        <meta
+            name="description"
+            content="Creator portfolio of Jake Cuenca, featuring photography, film work, and visual gear."
         />
+        <title>Jake Cuenca | Creator</title>
+        <link rel="stylesheet" href="../assets/css/base.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="../assets/js/site.js" defer></script>
+        <script src="script.js" defer></script>
     </head>
-    <body>
-        <div class="bg-noise"></div>
-        <div class="bg-glow"></div>
+    <body class="photography-page">
+        <div class="bg-noise" aria-hidden="true"></div>
+        <div class="bg-glow" aria-hidden="true"></div>
 
-        <nav>
-            <div class="logo">JAKE.ART</div>
-            <div class="links">
+        <nav class="site-nav" aria-label="Creator navigation">
+            <a href="../index.html" class="logo">JAKE.ART</a>
+
+            <div class="site-nav__links">
                 <a href="../index.html" class="nav-item">HOME</a>
                 <a href="#gallery" class="nav-item">WORKS</a>
                 <a href="#contact" class="nav-item">CONTACT</a>
-                <a href="../developer/index.html" class="nav-item switch"
-                    >SWITCH TO DEVELOPER</a
-                >
+                <a href="../developer/index.html" class="nav-item switch">SWITCH TO DEVELOPER</a>
             </div>
         </nav>
 
-        <main>
-            <section class="hero hidden">
+        <main class="site-main">
+            <section class="hero reveal">
                 <div class="hero-text">
                     <span class="tag">/// VISUAL DIRECTOR</span>
-                    <h1>
+                    <h1 class="display-title">
                         CAPTURER<br /><span class="hollow">OF MOMENTS.</span>
                     </h1>
-                    <p>
-                        I tell stories through light and motion. A capturer of
-                        immersive, cinematic moments and compelling narratives
-                        for the screen.
+                    <p class="lead">
+                        I tell stories through light and motion. A capturer of immersive,
+                        cinematic moments and compelling narratives for the screen.
                     </p>
                     <a href="#gallery" class="btn">EXPLORE GALLERY</a>
                 </div>
             </section>
 
-            <div class="marquee-container">
+            <div class="marquee-container" aria-label="Creative tools and skills">
                 <div class="marquee-track">
                     <div class="marquee-group">
-                        <span>PREMIERE PRO</span> <span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
-                        <span>LIGHTROOM</span> <span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
-                        <span>PHOTOSHOP</span> <span class="dot">•</span>
+                        <span>PREMIERE PRO</span><span class="dot">•</span>
+                        <span>DAVINCI RESOLVE</span><span class="dot">•</span>
+                        <span>LIGHTROOM</span><span class="dot">•</span>
+                        <span>CINEMATOGRAPHY</span><span class="dot">•</span>
+                        <span>PHOTOSHOP</span><span class="dot">•</span>
                     </div>
-                    <div class="marquee-group">
-                        <span>PREMIERE PRO</span> <span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
-                        <span>LIGHTROOM</span> <span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
-                        <span>PHOTOSHOP</span> <span class="dot">•</span>
+                    <div class="marquee-group" aria-hidden="true">
+                        <span>PREMIERE PRO</span><span class="dot">•</span>
+                        <span>DAVINCI RESOLVE</span><span class="dot">•</span>
+                        <span>LIGHTROOM</span><span class="dot">•</span>
+                        <span>CINEMATOGRAPHY</span><span class="dot">•</span>
+                        <span>PHOTOSHOP</span><span class="dot">•</span>
                     </div>
-                    <div class="marquee-group">
-                        <span>PREMIERE PRO</span> <span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span> <span class="dot">•</span>
-                        <span>LIGHTROOM</span> <span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span> <span class="dot">•</span>
-                        <span>PHOTOSHOP</span> <span class="dot">•</span>
+                    <div class="marquee-group" aria-hidden="true">
+                        <span>PREMIERE PRO</span><span class="dot">•</span>
+                        <span>DAVINCI RESOLVE</span><span class="dot">•</span>
+                        <span>LIGHTROOM</span><span class="dot">•</span>
+                        <span>CINEMATOGRAPHY</span><span class="dot">•</span>
+                        <span>PHOTOSHOP</span><span class="dot">•</span>
                     </div>
                 </div>
             </div>
 
-            <section class="hardware hidden">
-                <div class="hardware-header">
-                    <span class="tag">/// TECHNICAL_SPECIFICATIONS</span>
-                    <h2>GEAR<br /><span class="hollow">MANIFEST.</span></h2>
-                </div>
+            <section class="hardware reveal">
+                <div class="hardware-inner">
+                    <div class="hardware-header">
+                        <span class="tag">/// TECHNICAL_SPECIFICATIONS</span>
+                        <h2>GEAR<br /><span class="hollow">MANIFEST.</span></h2>
+                    </div>
 
-                <div class="gear-grid">
-                    <div class="gear-card">
-                        <div class="gear-visual">
-                            <img
-                                src="images/gear/cam.png"
-                                alt="Fuji X-S20"
-                                onerror="this.style.display='none'"
-                            />
-                            <div class="scan-line"></div>
-                        </div>
-                        <div class="gear-info">
-                            <span class="gear-type">[PRIMARY_OPTIC]</span>
-                            <h3>FUJIFILM X-S20</h3>
-                            <p>6.2K Open Gate • 26.1MP X-Trans</p>
-                        </div>
-                    </div>
-                    <div class="gear-card">
-                        <div class="gear-visual">
-                            <img
-                                src="images/gear/lens.png"
-                                alt="18-55mm Lens"
-                                onerror="this.style.display='none'"
-                            />
-                            <div
-                                class="scan-line"
-                                style="animation-delay: 1s"
-                            ></div>
-                        </div>
-                        <div class="gear-info">
-                            <span class="gear-type">[GLASS]</span>
-                            <h3>XF 18-55mm OIS</h3>
-                            <p>Versatile Zoom • f/2.8-4.0</p>
-                        </div>
-                    </div>
-                    <div class="gear-card">
-                        <div class="gear-visual">
-                            <img
-                                src="images/gear/rig.png"
-                                alt="Gimbal Rig"
-                                onerror="this.style.display='none'"
-                            />
-                            <div
-                                class="scan-line"
-                                style="animation-delay: 0.5s"
-                            ></div>
-                        </div>
-                        <div class="gear-info">
-                            <span class="gear-type">[STABILIZATION]</span>
-                            <h3>DJI RS4 MINI</h3>
-                            <p>3-Axis Gimbal • Full Cage Support</p>
-                        </div>
-                    </div>
-                    <div class="gear-card">
-                        <div class="gear-visual">
-                            <img
-                                src="images/gear/edit.png"
-                                alt="Workstation"
-                                onerror="this.style.display='none'"
-                            />
-                            <div
-                                class="scan-line"
-                                style="animation-delay: 1.5s"
-                            ></div>
-                        </div>
-                        <div class="gear-info">
-                            <span class="gear-type">[WORKSTATION]</span>
-                            <h3>ASUS TUF</h3>
-                            <p>Adobe Essentials • High-Bitrate Workflow</p>
-                        </div>
+                    <div class="gear-grid">
+                        <article class="gear-card">
+                            <div class="gear-visual">
+                                <img src="images/gear/cam.png" alt="Fujifilm X-S20 camera" />
+                                <div class="scan-line" aria-hidden="true"></div>
+                            </div>
+                            <div class="gear-info">
+                                <span class="gear-type">[PRIMARY_OPTIC]</span>
+                                <h3>FUJIFILM X-S20</h3>
+                                <p>6.2K Open Gate • 26.1MP X-Trans</p>
+                            </div>
+                        </article>
+
+                        <article class="gear-card">
+                            <div class="gear-visual">
+                                <img src="images/gear/lens.png" alt="Fujifilm XF 18-55mm OIS lens" />
+                                <div class="scan-line" style="animation-delay: 1s" aria-hidden="true"></div>
+                            </div>
+                            <div class="gear-info">
+                                <span class="gear-type">[GLASS]</span>
+                                <h3>XF 18-55mm OIS</h3>
+                                <p>Versatile Zoom • f/2.8-4.0</p>
+                            </div>
+                        </article>
+
+                        <article class="gear-card">
+                            <div class="gear-visual">
+                                <img src="images/gear/rig.png" alt="DJI RS4 Mini gimbal rig" />
+                                <div class="scan-line" style="animation-delay: 0.5s" aria-hidden="true"></div>
+                            </div>
+                            <div class="gear-info">
+                                <span class="gear-type">[STABILIZATION]</span>
+                                <h3>DJI RS4 MINI</h3>
+                                <p>3-Axis Gimbal • Full Cage Support</p>
+                            </div>
+                        </article>
+
+                        <article class="gear-card">
+                            <div class="gear-visual">
+                                <img src="images/gear/edit.png" alt="ASUS TUF editing workstation" />
+                                <div class="scan-line" style="animation-delay: 1.5s" aria-hidden="true"></div>
+                            </div>
+                            <div class="gear-info">
+                                <span class="gear-type">[WORKSTATION]</span>
+                                <h3>ASUS TUF</h3>
+                                <p>Adobe Essentials • High-Bitrate Workflow</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </section>
 
-            <div class="tabs-container hidden">
-                <button
-                    class="tab-btn active"
-                    onclick="filterGallery('photos')"
-                >
+            <div class="tabs-container reveal" role="tablist" aria-label="Gallery category">
+                <button class="tab-btn active" type="button" data-gallery-tab="photos" role="tab" aria-selected="true">
                     PHOTOGRAPHY
                 </button>
-                <button class="tab-btn" onclick="filterGallery('films')">
+                <button class="tab-btn" type="button" data-gallery-tab="films" role="tab" aria-selected="false">
                     FILMS
                 </button>
-                <div class="line"></div>
+                <div class="line" aria-hidden="true"></div>
             </div>
 
             <section id="gallery" class="gallery">
-                <div id="photo-container" class="justified-gallery"></div>
+                <div class="gallery-inner">
+                    <div id="photo-container" class="justified-gallery" aria-live="polite"></div>
 
-                <div class="film-grid hidden-tab">
-                    <div class="film-card tilt hidden">
-                        <div class="poster-placeholder"></div>
-                        <h3>The Halloween Cut</h3>
-                        <p>Horror Short • 2025</p>
-                    </div>
-                    <div
-                        class="film-card tilt hidden"
-                        style="transition-delay: 100ms"
-                    >
-                        <div class="poster-placeholder"></div>
-                        <h3>School Skit #1</h3>
-                        <p>Comedy • 2025</p>
+                    <div class="film-grid hidden-tab">
+                        <article class="film-card reveal">
+                            <div class="poster-placeholder" aria-hidden="true"></div>
+                            <h3>The Halloween Cut</h3>
+                            <p>Horror Short • 2025</p>
+                        </article>
+
+                        <article class="film-card reveal" style="transition-delay: 100ms">
+                            <div class="poster-placeholder" aria-hidden="true"></div>
+                            <h3>School Skit #1</h3>
+                            <p>Comedy • 2025</p>
+                        </article>
                     </div>
                 </div>
             </section>
 
-            <section id="contact" class="contact hidden">
+            <section id="contact" class="contact reveal">
                 <div class="contact-header">
-                    <div class="status-indicator" style="color: #ff4d4d">
-                        <span
-                            class="pulse"
-                            style="
-                                background-color: #ff4d4d;
-                                box-shadow: 0 0 10px #ff4d4d;
-                            "
-                        ></span>
-                        STATUS: CURRENTLY BOOKED
+                    <div>
+                        <div class="status-indicator" style="color: #ff4d4d">
+                            <span class="pulse"></span>
+                            STATUS: CURRENTLY BOOKED
+                        </div>
                     </div>
                     <h2>START<br />COLLABORATION.</h2>
                 </div>
+
                 <div class="contact-grid">
-                    <a
-                        href="mailto:deklaired@gmail.com"
-                        class="contact-tile primary"
-                    >
+                    <a href="mailto:deklaired@gmail.com" class="contact-tile primary">
                         <div class="tile-content">
                             <span class="tile-label">/// DIRECT LINE</span>
                             <span class="tile-text">SEND EMAIL</span>
                         </div>
                         <div class="tile-icon">→</div>
                     </a>
+
                     <a href="https://instagram.com/" class="contact-tile">
                         <div class="tile-content">
                             <span class="tile-label">/// VISUAL FEED</span>
@@ -212,11 +185,10 @@
                         </div>
                         <div class="tile-icon">↗</div>
                     </a>
-                    <div class="contact-tile disabled">
+
+                    <div class="contact-tile disabled" aria-disabled="true">
                         <div class="tile-content">
-                            <span class="tile-label"
-                                >/// NETWORK [OFFLINE]</span
-                            >
+                            <span class="tile-label">/// NETWORK [OFFLINE]</span>
                             <span class="tile-text">LINKEDIN</span>
                         </div>
                         <div class="tile-icon">×</div>
@@ -229,15 +201,13 @@
             </footer>
         </main>
 
-        <div id="lightbox" class="lightbox hidden-lightbox">
-            <button id="close-lightbox" class="close-btn">×</button>
+        <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image preview">
+            <button id="close-lightbox" class="close-btn" type="button" aria-label="Close image preview">×</button>
             <div class="lightbox-content">
                 <img id="lightbox-img" src="" alt="" />
             </div>
         </div>
 
-        <button id="backToTop" class="back-to-top">↑</button>
-
-        <script src="script.js"></script>
+        <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
     </body>
 </html>
