@@ -3,37 +3,57 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Portfolio of Jake Cuenca. Choose between developer work and photography and visual storytelling."
+        />
+        <meta name="theme-color" content="#050505" />
         <title>Jake Cuenca | Select Path</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="landing-style.css" />
+        <script src="landing-script.js" defer></script>
     </head>
+
     <body>
-        <div class="split-container">
-            <a href="developer/index.html" class="side left">
-                <div class="content-wrapper">
-                    <div class="content">
-                        <span class="outline">DEVELOPER</span>
-                        <h1>DEVELOPER</h1>
-                        <p>CODE • ARCHITECTURE • LOGIC</p>
-                    </div>
+        <main class="landing" aria-label="Portfolio paths">
+            <a
+                href="developer/index.html"
+                class="path path--developer"
+                data-path="developer"
+                aria-label="Open Jake Cuenca's developer portfolio"
+            >
+                <div class="path__content">
+                    <span class="path__outline" aria-hidden="true">DEVELOPER</span>
+                    <h1>DEVELOPER</h1>
+                    <p>CODE <span aria-hidden="true">•</span> ARCHITECTURE <span aria-hidden="true">•</span> LOGIC</p>
                 </div>
             </a>
 
-            <a href="photography/index.html" class="side right">
-                <div class="content-wrapper">
-                    <div class="content">
-                        <span class="outline">CREATOR</span>
-                        <h1>CREATOR</h1>
-                        <p>LENS • LIGHT • PERSPECTIVE</p>
-                    </div>
+            <a
+                href="photography/index.html"
+                class="path path--creator"
+                data-path="creator"
+                aria-label="Open Jake Cuenca's creator portfolio"
+            >
+                <div class="path__content">
+                    <span class="path__outline" aria-hidden="true">CREATOR</span>
+                    <h1>CREATOR</h1>
+                    <p>LENS <span aria-hidden="true">•</span> LIGHT <span aria-hidden="true">•</span> PERSPECTIVE</p>
                 </div>
             </a>
 
-            <div class="glow-edge left-edge"></div>
-            <div class="glow-edge right-edge"></div>
+            <div class="split-glow split-glow--developer" aria-hidden="true"></div>
+            <div class="split-glow split-glow--creator" aria-hidden="true"></div>
 
-            <div class="watermark">
-                JAKE CUENCA <span class="year">2025</span>
-            </div>
-        </div>
+            <footer class="watermark" aria-label="Jake Cuenca portfolio">
+                JAKE CUENCA <span class="watermark__year" data-current-year>2026</span>
+            </footer>
+        </main>
     </body>
 </html>
