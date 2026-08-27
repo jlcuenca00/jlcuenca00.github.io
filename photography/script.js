@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     renderGallery();
     initLightbox();
+    initCreatorCursor();
 
     document.querySelectorAll("[data-current-year]").forEach((node) => {
         node.textContent = new Date().getFullYear();
@@ -151,4 +152,213 @@ function closeLightbox() {
     }
 
     lastFocusedElement = null;
+}
+
+function initCreatorCursor() {
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!canHover || reducedMotion) return;
+
+    const style = document.createElement("style");
+    style.textContent = `
+        .photography-page.creator-cursor-enabled,
+        .photography-page.creator-cursor-enabled a,
+        .photography-page.creator-cursor-enabled button {
+            cursor: none !important;
+        }
+
+        .creator-cursor-light,
+        .creator-cursor-ring,
+        .creator-cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5000;
+            pointer-events: none;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .creator-cursor-light {
+            width: 250px;
+            height: 250px;
+            margin: -125px 0 0 -125px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(47, 103, 255, 0.16) 0%,
+                rgba(47, 103, 255, 0.075) 28%,
+                rgba(47, 103, 255, 0.025) 48%,
+                transparent 70%
+            );
+            filter: blur(8px);
+            mix-blend-mode: screen;
+            transition: opacity 180ms ease;
+        }
+
+        .creator-cursor-ring {
+            width: 42px;
+            height: 42px;
+            margin: -21px 0 0 -21px;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            border-radius: 50%;
+            box-shadow:
+                inset 0 0 0 1px rgba(47, 103, 255, 0.12),
+                0 0 26px rgba(47, 103, 255, 0.16);
+            transition:
+                width 240ms cubic-bezier(0.16, 1, 0.3, 1),
+                height 240ms cubic-bezier(0.16, 1, 0.3, 1),
+                margin 240ms cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 180ms ease,
+                background 180ms ease,
+                opacity 120ms ease;
+        }
+
+        .creator-cursor-ring::before,
+        .creator-cursor-ring::after {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .creator-cursor-ring::before {
+            background: conic-gradient(
+                from 0deg,
+                #2f67ff 0 3deg,
+                transparent 3deg 87deg,
+                #2f67ff 87deg 93deg,
+                transparent 93deg 177deg,
+                #2f67ff 177deg 183deg,
+                transparent 183deg 267deg,
+                #2f67ff 267deg 273deg,
+                transparent 273deg 357deg,
+                #2f67ff 357deg 360deg
+            );
+            -webkit-mask: radial-gradient(circle, transparent 0 62%, #000 64% 69%, transparent 71%);
+            mask: radial-gradient(circle, transparent 0 62%, #000 64% 69%, transparent 71%);
+            opacity: 0.72;
+        }
+
+        .creator-cursor-ring::after {
+            content: "VIEW";
+            inset: 50% auto auto 50%;
+            width: auto;
+            height: auto;
+            color: #fff;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.14em;
+            opacity: 0;
+            transform: translate(-47%, -50%);
+            transition: opacity 160ms ease;
+        }
+
+        .creator-cursor-dot {
+            width: 4px;
+            height: 4px;
+            margin: -2px 0 0 -2px;
+            border-radius: 50%;
+            background: #2f67ff;
+            box-shadow: 0 0 12px rgba(47, 103, 255, 0.95);
+            transition: opacity 120ms ease;
+        }
+
+        .creator-cursor-enabled.creator-cursor-visible .creator-cursor-light,
+        .creator-cursor-enabled.creator-cursor-visible .creator-cursor-ring,
+        .creator-cursor-enabled.creator-cursor-visible .creator-cursor-dot {
+            opacity: 1;
+        }
+
+        .creator-cursor-enabled.creator-cursor-active .creator-cursor-ring {
+            width: 56px;
+            height: 56px;
+            margin: -28px 0 0 -28px;
+            border-color: rgba(47, 103, 255, 0.92);
+            background: rgba(47, 103, 255, 0.04);
+        }
+
+        .creator-cursor-enabled.creator-cursor-gallery .creator-cursor-ring {
+            width: 76px;
+            height: 76px;
+            margin: -38px 0 0 -38px;
+            border-color: rgba(255, 255, 255, 0.88);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .creator-cursor-enabled.creator-cursor-gallery .creator-cursor-ring::after {
+            opacity: 1;
+        }
+
+        .creator-cursor-enabled.creator-cursor-gallery .creator-cursor-dot {
+            opacity: 0;
+        }
+
+        .creator-cursor-enabled.creator-cursor-gallery .creator-cursor-light {
+            opacity: 0.72;
+        }
+
+        .creator-cursor-enabled.creator-cursor-lightbox .creator-cursor-light {
+            opacity: 0.25;
+        }
+    `;
+    document.head.appendChild(style);
+
+    const light = document.createElement("div");
+    const ring = document.createElement("div");
+    const dot = document.createElement("div");
+    light.className = "creator-cursor-light";
+    ring.className = "creator-cursor-ring";
+    dot.className = "creator-cursor-dot";
+    document.body.append(light, ring, dot);
+    document.body.classList.add("creator-cursor-enabled");
+
+    let pointerX = window.innerWidth / 2;
+    let pointerY = window.innerHeight / 2;
+    let ringX = pointerX;
+    let ringY = pointerY;
+    let lightX = pointerX;
+    let lightY = pointerY;
+
+    const interactiveSelector = "a, button, [role='button']";
+
+    document.addEventListener("pointermove", (event) => {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        dot.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+        document.body.classList.add("creator-cursor-visible");
+
+        const target = event.target instanceof Element ? event.target : null;
+        document.body.classList.toggle("creator-cursor-active", Boolean(target?.closest(interactiveSelector)));
+        document.body.classList.toggle("creator-cursor-gallery", Boolean(target?.closest(".gallery-frame")));
+        document.body.classList.toggle("creator-cursor-lightbox", Boolean(target?.closest(".lightbox.active")));
+    }, { passive: true });
+
+    document.documentElement.addEventListener("mouseleave", () => {
+        document.body.classList.remove(
+            "creator-cursor-visible",
+            "creator-cursor-active",
+            "creator-cursor-gallery",
+            "creator-cursor-lightbox"
+        );
+    });
+
+    document.addEventListener("pointerdown", () => ring.style.scale = "0.9");
+    document.addEventListener("pointerup", () => ring.style.scale = "1");
+
+    const render = () => {
+        ringX += (pointerX - ringX) * 0.2;
+        ringY += (pointerY - ringY) * 0.2;
+        lightX += (pointerX - lightX) * 0.07;
+        lightY += (pointerY - lightY) * 0.07;
+
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+        light.style.transform = `translate3d(${lightX}px, ${lightY}px, 0)`;
+        requestAnimationFrame(render);
+    };
+
+    requestAnimationFrame(render);
 }
