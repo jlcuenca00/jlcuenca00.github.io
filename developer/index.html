@@ -5,217 +5,269 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Developer portfolio of Jake Cuenca, featuring web projects, interface work, and software experiments."
+            content="Developer portfolio of Jake Cuenca — systems, web applications, interfaces, and selected experiments."
         />
-        <title>Jake Cuenca | Developer</title>
+        <meta name="theme-color" content="#050505" />
+        <title>Jake Cuenca — Developer</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="../assets/css/base.css" />
         <link rel="stylesheet" href="style.css" />
         <script src="../assets/js/site.js" defer></script>
         <script src="script.js" defer></script>
     </head>
+
     <body class="dev-page">
-        <div class="bg-noise" aria-hidden="true"></div>
-        <div class="bg-glow" aria-hidden="true"></div>
+        <div class="dev-grid" aria-hidden="true"></div>
+        <div class="dev-scan" aria-hidden="true"></div>
 
-        <nav class="site-nav" aria-label="Developer navigation">
-            <a href="../index.html" class="logo">JAKE.DEV</a>
+        <nav class="dev-nav" aria-label="Developer portfolio navigation">
+            <a class="dev-brand" href="../index.html" aria-label="Return to portfolio landing page">
+                <span>J/C</span>
+                <small>DEVELOPER</small>
+            </a>
 
-            <div class="site-nav__links">
-                <a href="../index.html" class="nav-item">HOME</a>
-                <a href="#projects" class="nav-item">WORKS</a>
-                <a href="#contact" class="nav-item">CONTACT</a>
-                <a href="../photography/index.html" class="nav-item switch">SWITCH TO CREATOR</a>
+            <div class="dev-nav__links">
+                <a href="#work">INDEX</a>
+                <a href="#about">ABOUT</a>
+                <a href="#contact">CONTACT</a>
+                <a class="world-switch" href="../photography/index.html">CREATOR ↗</a>
             </div>
         </nav>
 
-        <main class="site-main">
-            <section id="hero" class="hero reveal">
-                <div class="hero-text">
-                    <span class="tag">/// TECHNICAL DIRECTOR</span>
-                    <h1 class="display-title">
-                        ARCHITECT<br /><span class="hollow">OF SYSTEMS.</span>
+        <main>
+            <section class="dev-hero" id="top">
+                <div class="hero-status reveal">
+                    <span>PORTFOLIO / <span data-current-year>2026</span></span>
+                    <span>DUMAGUETE, PH</span>
+                    <span class="hero-status__live">SYSTEM ONLINE</span>
+                </div>
+
+                <div class="dev-hero__title reveal">
+                    <p class="eyebrow">DEVELOPER / SYSTEM BUILDER</p>
+                    <h1>
+                        I BUILD<br />
+                        <span>SYSTEMS</span><br />
+                        FOR THE REAL WORLD.
                     </h1>
-                    <p class="lead">
-                        I craft digital experiences through code. A developer building clean,
-                        practical, and maintainable applications for the web.
+                </div>
+
+                <div class="dev-hero__foot reveal">
+                    <p>
+                        Full-stack web applications, practical interfaces, and systems built around
+                        how people actually work.
                     </p>
-                    <a href="#projects" class="btn">EXPLORE CODE</a>
+                    <a href="#work">VIEW SELECTED WORK ↓</a>
                 </div>
             </section>
 
-            <div class="marquee-container" aria-label="Technical skills">
-                <div class="marquee-track">
-                    <div class="marquee-group">
-                        <span>C++</span><span class="dot">•</span>
-                        <span>PYTHON</span><span class="dot">•</span>
-                        <span>REACT</span><span class="dot">•</span>
-                        <span>JAVASCRIPT</span><span class="dot">•</span>
-                        <span>FLUTTER</span><span class="dot">•</span>
-                        <span>PHP</span><span class="dot">•</span>
-                        <span>MYSQL</span><span class="dot">•</span>
-                        <span>HTML</span><span class="dot">•</span>
-                        <span>CSS</span><span class="dot">•</span>
-                    </div>
-                    <div class="marquee-group" aria-hidden="true">
-                        <span>C++</span><span class="dot">•</span>
-                        <span>PYTHON</span><span class="dot">•</span>
-                        <span>REACT</span><span class="dot">•</span>
-                        <span>JAVASCRIPT</span><span class="dot">•</span>
-                        <span>FLUTTER</span><span class="dot">•</span>
-                        <span>PHP</span><span class="dot">•</span>
-                        <span>MYSQL</span><span class="dot">•</span>
-                        <span>HTML</span><span class="dot">•</span>
-                        <span>CSS</span><span class="dot">•</span>
-                    </div>
-                    <div class="marquee-group" aria-hidden="true">
-                        <span>C++</span><span class="dot">•</span>
-                        <span>PYTHON</span><span class="dot">•</span>
-                        <span>REACT</span><span class="dot">•</span>
-                        <span>JAVASCRIPT</span><span class="dot">•</span>
-                        <span>FLUTTER</span><span class="dot">•</span>
-                        <span>PHP</span><span class="dot">•</span>
-                        <span>MYSQL</span><span class="dot">•</span>
-                        <span>HTML</span><span class="dot">•</span>
-                        <span>CSS</span><span class="dot">•</span>
-                    </div>
-                </div>
-            </div>
-
-            <section id="projects" class="section projects">
-                <div class="section-inner">
-                    <div class="section-header reveal">
-                        <h2>CODING_JOURNEY</h2>
-                        <div class="line" aria-hidden="true"></div>
-                    </div>
-
-                    <div class="project-grid">
-                        <article class="project-card project-card--wide reveal">
-                            <div class="card-content">
-                                <div class="card-icon">VORTEX</div>
-                                <h3>Weather App</h3>
-                                <p>
-                                    A comprehensive forecasting interface planned around the OpenWeatherMap
-                                    API, real-time conditions, and a responsive weather dashboard.
-                                </p>
-                                <div class="tags">
-                                    <span>REST API</span><span>ASYNC/AWAIT</span><span>JS</span>
-                                </div>
-                                <a href="#" class="arrow-link" aria-label="Open Weather App project">→</a>
-                            </div>
-                        </article>
-
-                        <article class="project-card reveal" style="transition-delay: 100ms">
-                            <div class="card-content">
-                                <div class="card-icon">CODEX</div>
-                                <h3>Notes App</h3>
-                                <p>A lightweight local-first text editor that persists data in the browser.</p>
-                                <div class="tags">
-                                    <span>LocalStorage</span><span>JS</span>
-                                </div>
-                                <a href="#" class="arrow-link" aria-label="Open Notes App project">→</a>
-                            </div>
-                        </article>
-
-                        <article class="project-card project-card--tall reveal" style="transition-delay: 200ms">
-                            <div class="card-content">
-                                <div class="card-icon">MANIFEST</div>
-                                <h3>Blog UI</h3>
-                                <p>
-                                    A typography and layout study focused on readability, whitespace,
-                                    responsive grid alignment, and dynamic article rendering.
-                                </p>
-                                <div class="tags">
-                                    <span>CSS GRID</span><span>TYPOGRAPHY</span>
-                                </div>
-                                <a href="#" class="arrow-link" aria-label="Open Blog UI project">→</a>
-                            </div>
-                        </article>
-
-                        <article class="project-card reveal">
-                            <div class="card-content">
-                                <div class="card-icon">CIPHER</div>
-                                <h3>Calculator</h3>
-                                <p>Standard mathematical operations with a focus on UI interaction states.</p>
-                                <div class="tags">
-                                    <span>JS</span><span>LOGIC</span>
-                                </div>
-                                <a href="#" class="arrow-link" aria-label="Open Calculator project">→</a>
-                            </div>
-                        </article>
-
-                        <article class="project-card project-card--wide reveal" style="transition-delay: 100ms">
-                            <div class="card-content">
-                                <div class="card-icon">SPECTRE</div>
-                                <h3>API Search Tool</h3>
-                                <p>
-                                    A search interface concept for filtering larger datasets in real time,
-                                    with debounced input and network error handling.
-                                </p>
-                                <div class="tags">
-                                    <span>FETCH API</span><span>DOM MANIPULATION</span>
-                                </div>
-                                <a href="#" class="arrow-link" aria-label="Open API Search Tool project">→</a>
-                            </div>
-                        </article>
-
-                        <article class="project-card reveal" style="transition-delay: 200ms">
-                            <div class="card-content">
-                                <div class="card-icon">PROTOCOL</div>
-                                <h3>To-do App</h3>
-                                <p>CRUD operations for daily task management and execution.</p>
-                                <div class="tags">
-                                    <span>JS</span><span>HTML/CSS</span>
-                                </div>
-                                <a href="#" class="arrow-link" aria-label="Open To-do App project">→</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="contact reveal">
-                <div class="contact-header">
+            <section class="project-index" id="work" aria-labelledby="work-title">
+                <header class="index-heading reveal">
                     <div>
-                        <div class="status-indicator">
-                            <span class="pulse"></span> SYSTEM_STATUS: ONLINE
-                        </div>
+                        <span class="index-kicker">01 / SELECTED WORK</span>
+                        <h2 id="work-title">PROJECT INDEX</h2>
+                    </div>
+                    <p>Hover or focus a project to inspect.</p>
+                </header>
+
+                <div class="project-layout">
+                    <div class="project-list" role="list">
+                        <a
+                            class="project-row reveal is-active"
+                            href="https://darltcms.me/"
+                            target="_blank"
+                            rel="noreferrer"
+                            role="listitem"
+                            data-project="dar"
+                            data-title="DAR-LTCMS"
+                            data-subtitle="Land Transfer Clearance & Monitoring System"
+                            data-stack="Laravel 12 / PostgreSQL / Blade"
+                            data-year="2026"
+                        >
+                            <span class="project-no">01</span>
+                            <span class="project-name">DAR-LTCMS</span>
+                            <span class="project-role">FULL-STACK / SYSTEM DESIGN</span>
+                            <span class="project-year">2026</span>
+                            <span class="project-arrow">↗</span>
+                        </a>
+
+                        <a
+                            class="project-row reveal"
+                            href="#about"
+                            role="listitem"
+                            data-project="weather"
+                            data-title="VORTEX"
+                            data-subtitle="Weather interface study"
+                            data-stack="JavaScript / REST API / Async"
+                            data-year="2025"
+                        >
+                            <span class="project-no">02</span>
+                            <span class="project-name">VORTEX</span>
+                            <span class="project-role">WEB / API STUDY</span>
+                            <span class="project-year">2025</span>
+                            <span class="project-arrow">→</span>
+                        </a>
+
+                        <a
+                            class="project-row reveal"
+                            href="#about"
+                            role="listitem"
+                            data-project="search"
+                            data-title="SPECTRE"
+                            data-subtitle="Search and filtering interface concept"
+                            data-stack="Fetch API / DOM / Debounced Input"
+                            data-year="2025"
+                        >
+                            <span class="project-no">03</span>
+                            <span class="project-name">SPECTRE</span>
+                            <span class="project-role">INTERFACE / EXPERIMENT</span>
+                            <span class="project-year">2025</span>
+                            <span class="project-arrow">→</span>
+                        </a>
+
+                        <a
+                            class="project-row reveal"
+                            href="#about"
+                            role="listitem"
+                            data-project="notes"
+                            data-title="CODEX"
+                            data-subtitle="Local-first notes application"
+                            data-stack="JavaScript / LocalStorage"
+                            data-year="2025"
+                        >
+                            <span class="project-no">04</span>
+                            <span class="project-name">CODEX</span>
+                            <span class="project-role">BROWSER APP / STUDY</span>
+                            <span class="project-year">2025</span>
+                            <span class="project-arrow">→</span>
+                        </a>
+
+                        <a
+                            class="project-row reveal"
+                            href="#about"
+                            role="listitem"
+                            data-project="logic"
+                            data-title="CIPHER"
+                            data-subtitle="Interaction and calculator logic study"
+                            data-stack="JavaScript / UI Logic"
+                            data-year="2025"
+                        >
+                            <span class="project-no">05</span>
+                            <span class="project-name">CIPHER</span>
+                            <span class="project-role">LOGIC / INTERACTION</span>
+                            <span class="project-year">2025</span>
+                            <span class="project-arrow">→</span>
+                        </a>
+
+                        <a
+                            class="project-row reveal"
+                            href="#about"
+                            role="listitem"
+                            data-project="todo"
+                            data-title="PROTOCOL"
+                            data-subtitle="Daily task CRUD application"
+                            data-stack="JavaScript / HTML / CSS"
+                            data-year="2025"
+                        >
+                            <span class="project-no">06</span>
+                            <span class="project-name">PROTOCOL</span>
+                            <span class="project-role">CRUD / FRONTEND</span>
+                            <span class="project-year">2025</span>
+                            <span class="project-arrow">→</span>
+                        </a>
                     </div>
 
-                    <h2>INITIALIZE<br />SEQUENCE.</h2>
+                    <aside class="project-preview reveal" aria-live="polite">
+                        <div class="preview-window" data-preview="dar">
+                            <div class="preview-window__bar">
+                                <span>PREVIEW://SELECTED</span>
+                                <span>●</span>
+                            </div>
+                            <div class="preview-visual" aria-hidden="true">
+                                <span class="preview-code">1803 / LTC</span>
+                                <span class="preview-orbit"></span>
+                                <span class="preview-block preview-block--one"></span>
+                                <span class="preview-block preview-block--two"></span>
+                                <span class="preview-block preview-block--three"></span>
+                                <strong>01</strong>
+                            </div>
+                            <div class="preview-copy">
+                                <p id="preview-year">2026</p>
+                                <h3 id="preview-title">DAR-LTCMS</h3>
+                                <p id="preview-subtitle">Land Transfer Clearance & Monitoring System</p>
+                                <span id="preview-stack">Laravel 12 / PostgreSQL / Blade</span>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="dev-about" id="about" aria-labelledby="about-title">
+                <div class="about-label reveal">
+                    <span>02 / PROFILE</span>
+                    <span>BUILD → TEST → REFINE</span>
                 </div>
 
-                <div class="contact-grid">
-                    <a href="mailto:deklaired@gmail.com" class="contact-tile primary">
-                        <div class="tile-content">
-                            <span class="tile-label">/// DIRECT LINE</span>
-                            <span class="tile-text">SEND EMAIL</span>
-                        </div>
-                        <div class="tile-icon">→</div>
-                    </a>
+                <div class="about-statement reveal">
+                    <h2 id="about-title">
+                        LESS DECORATION.<br />
+                        <span>MORE INTENT.</span>
+                    </h2>
+                    <p>
+                        I like building software around actual workflows: understand the problem,
+                        reduce friction, make the interface legible, and keep the system maintainable.
+                        My work spans backend logic, frontend implementation, database design, and integration.
+                    </p>
+                </div>
 
-                    <a href="https://github.com/jlcuenca00" class="contact-tile">
-                        <div class="tile-content">
-                            <span class="tile-label">/// REPOSITORY</span>
-                            <span class="tile-text">GITHUB</span>
-                        </div>
-                        <div class="tile-icon">↗</div>
-                    </a>
-
-                    <div class="contact-tile disabled" aria-disabled="true">
-                        <div class="tile-content">
-                            <span class="tile-label">/// NETWORK [OFFLINE]</span>
-                            <span class="tile-text">LINKEDIN</span>
-                        </div>
-                        <div class="tile-icon">×</div>
+                <div class="capability-grid reveal">
+                    <div>
+                        <span>01</span>
+                        <h3>WEB APPLICATIONS</h3>
+                        <p>Laravel, PHP, JavaScript, responsive interfaces and practical workflows.</p>
+                    </div>
+                    <div>
+                        <span>02</span>
+                        <h3>DATA & SYSTEMS</h3>
+                        <p>PostgreSQL, relational data, validation, auditability and system structure.</p>
+                    </div>
+                    <div>
+                        <span>03</span>
+                        <h3>INTERFACE</h3>
+                        <p>Accessible, responsive UI with deliberate hierarchy and interaction states.</p>
+                    </div>
+                    <div>
+                        <span>04</span>
+                        <h3>INTEGRATION</h3>
+                        <p>Connecting requirements, backend behavior, frontend implementation and deployment.</p>
                     </div>
                 </div>
             </section>
 
-            <footer>
-                <p>JAKE CUENCA © 2025</p>
-            </footer>
+            <section class="dev-contact" id="contact" aria-labelledby="contact-title">
+                <div class="contact-meta reveal">
+                    <span>03 / CONTACT</span>
+                    <span>OPEN CHANNEL</span>
+                </div>
+                <div class="contact-main reveal">
+                    <h2 id="contact-title">LET'S BUILD<br /><span>SOMETHING USEFUL.</span></h2>
+                    <div class="contact-links">
+                        <a href="mailto:deklaired@gmail.com">EMAIL ↗</a>
+                        <a href="https://github.com/jlcuenca00" target="_blank" rel="noreferrer">GITHUB ↗</a>
+                        <a href="../photography/index.html">ENTER CREATOR ↗</a>
+                    </div>
+                </div>
+            </section>
         </main>
 
-        <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+        <footer class="dev-footer">
+            <span>JAKE CUENCA © <span data-current-year>2026</span></span>
+            <a href="#top">BACK TO TOP ↑</a>
+        </footer>
     </body>
 </html>
