@@ -5,209 +5,191 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Creator portfolio of Jake Cuenca, featuring photography, film work, and visual gear."
+            content="Creator portfolio of Jake Cuenca — photography, film, visual storytelling, and selected frames."
         />
-        <title>Jake Cuenca | Creator</title>
+        <meta name="theme-color" content="#050505" />
+        <title>Jake Cuenca — Creator</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="../assets/css/base.css" />
         <link rel="stylesheet" href="style.css" />
         <script src="../assets/js/site.js" defer></script>
         <script src="script.js" defer></script>
     </head>
+
     <body class="photography-page">
-        <div class="bg-noise" aria-hidden="true"></div>
-        <div class="bg-glow" aria-hidden="true"></div>
+        <nav class="creator-nav" aria-label="Creator portfolio navigation">
+            <a class="creator-brand" href="../index.html" aria-label="Return to portfolio landing page">
+                <span>J/C</span>
+                <small>CREATOR</small>
+            </a>
 
-        <nav class="site-nav" aria-label="Creator navigation">
-            <a href="../index.html" class="logo">JAKE.ART</a>
-
-            <div class="site-nav__links">
-                <a href="../index.html" class="nav-item">HOME</a>
-                <a href="#gallery" class="nav-item">WORKS</a>
-                <a href="#contact" class="nav-item">CONTACT</a>
-                <a href="../developer/index.html" class="nav-item switch">SWITCH TO DEVELOPER</a>
+            <div class="creator-nav__links">
+                <a href="#work">WORK</a>
+                <a href="#motion">MOTION</a>
+                <a href="#about">ABOUT</a>
+                <a href="#contact">CONTACT</a>
+                <a class="world-switch" href="../developer/index.html">DEVELOPER ↗</a>
             </div>
         </nav>
 
-        <main class="site-main">
-            <section class="hero reveal">
-                <div class="hero-text">
-                    <span class="tag">/// VISUAL DIRECTOR</span>
-                    <h1 class="display-title">
-                        CAPTURER<br /><span class="hollow">OF MOMENTS.</span>
+        <main>
+            <section class="creator-hero" id="top">
+                <div class="hero-image" aria-hidden="true">
+                    <img
+                        src="https://live.staticflickr.com/65535/55044685184_893a6b55e6_b.jpg"
+                        alt=""
+                        fetchpriority="high"
+                        decoding="async"
+                    />
+                    <div class="hero-image__veil"></div>
+                </div>
+
+                <div class="creator-hero__meta reveal">
+                    <span>PHOTOGRAPHER / FILMMAKER</span>
+                    <span>DUMAGUETE, PH</span>
+                    <span><span data-current-year>2026</span> / SELECTED WORK</span>
+                </div>
+
+                <div class="creator-hero__title reveal">
+                    <p>JAKE CUENCA</p>
+                    <h1>
+                        LIGHT.<br />
+                        MOTION.<br />
+                        <span>MEMORY.</span>
                     </h1>
-                    <p class="lead">
-                        I tell stories through light and motion. A capturer of immersive,
-                        cinematic moments and compelling narratives for the screen.
+                </div>
+
+                <div class="creator-hero__foot reveal">
+                    <p>Street photography, visual stories, and motion shaped around atmosphere and human moments.</p>
+                    <a href="#work">ENTER THE WORK ↓</a>
+                </div>
+            </section>
+
+            <section class="creator-intro" aria-label="Creator statement">
+                <p class="intro-index reveal">01 / POINT OF VIEW</p>
+                <div class="intro-statement reveal">
+                    <p>
+                        I’m interested in the moment that feels almost ordinary—until light, timing,
+                        distance, or a reflection turns it into something else.
                     </p>
-                    <a href="#gallery" class="btn">EXPLORE GALLERY</a>
                 </div>
             </section>
 
-            <div class="marquee-container" aria-label="Creative tools and skills">
-                <div class="marquee-track">
-                    <div class="marquee-group">
-                        <span>PREMIERE PRO</span><span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span><span class="dot">•</span>
-                        <span>LIGHTROOM</span><span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span><span class="dot">•</span>
-                        <span>PHOTOSHOP</span><span class="dot">•</span>
-                    </div>
-                    <div class="marquee-group" aria-hidden="true">
-                        <span>PREMIERE PRO</span><span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span><span class="dot">•</span>
-                        <span>LIGHTROOM</span><span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span><span class="dot">•</span>
-                        <span>PHOTOSHOP</span><span class="dot">•</span>
-                    </div>
-                    <div class="marquee-group" aria-hidden="true">
-                        <span>PREMIERE PRO</span><span class="dot">•</span>
-                        <span>DAVINCI RESOLVE</span><span class="dot">•</span>
-                        <span>LIGHTROOM</span><span class="dot">•</span>
-                        <span>CINEMATOGRAPHY</span><span class="dot">•</span>
-                        <span>PHOTOSHOP</span><span class="dot">•</span>
-                    </div>
-                </div>
-            </div>
-
-            <section class="hardware reveal">
-                <div class="hardware-inner">
-                    <div class="hardware-header">
-                        <span class="tag">/// TECHNICAL_SPECIFICATIONS</span>
-                        <h2>GEAR<br /><span class="hollow">MANIFEST.</span></h2>
-                    </div>
-
-                    <div class="gear-grid">
-                        <article class="gear-card">
-                            <div class="gear-visual">
-                                <img src="images/gear/cam.png" alt="Fujifilm X-S20 camera" />
-                                <div class="scan-line" aria-hidden="true"></div>
-                            </div>
-                            <div class="gear-info">
-                                <span class="gear-type">[PRIMARY_OPTIC]</span>
-                                <h3>FUJIFILM X-S20</h3>
-                                <p>6.2K Open Gate • 26.1MP X-Trans</p>
-                            </div>
-                        </article>
-
-                        <article class="gear-card">
-                            <div class="gear-visual">
-                                <img src="images/gear/lens.png" alt="Fujifilm XF 18-55mm OIS lens" />
-                                <div class="scan-line" style="animation-delay: 1s" aria-hidden="true"></div>
-                            </div>
-                            <div class="gear-info">
-                                <span class="gear-type">[GLASS]</span>
-                                <h3>XF 18-55mm OIS</h3>
-                                <p>Versatile Zoom • f/2.8-4.0</p>
-                            </div>
-                        </article>
-
-                        <article class="gear-card">
-                            <div class="gear-visual">
-                                <img src="images/gear/rig.png" alt="DJI RS4 Mini gimbal rig" />
-                                <div class="scan-line" style="animation-delay: 0.5s" aria-hidden="true"></div>
-                            </div>
-                            <div class="gear-info">
-                                <span class="gear-type">[STABILIZATION]</span>
-                                <h3>DJI RS4 MINI</h3>
-                                <p>3-Axis Gimbal • Full Cage Support</p>
-                            </div>
-                        </article>
-
-                        <article class="gear-card">
-                            <div class="gear-visual">
-                                <img src="images/gear/edit.png" alt="ASUS TUF editing workstation" />
-                                <div class="scan-line" style="animation-delay: 1.5s" aria-hidden="true"></div>
-                            </div>
-                            <div class="gear-info">
-                                <span class="gear-type">[WORKSTATION]</span>
-                                <h3>ASUS TUF</h3>
-                                <p>Adobe Essentials • High-Bitrate Workflow</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <div class="tabs-container reveal" role="tablist" aria-label="Gallery category">
-                <button class="tab-btn active" type="button" data-gallery-tab="photos" role="tab" aria-selected="true">
-                    PHOTOGRAPHY
-                </button>
-                <button class="tab-btn" type="button" data-gallery-tab="films" role="tab" aria-selected="false">
-                    FILMS
-                </button>
-                <div class="line" aria-hidden="true"></div>
-            </div>
-
-            <section id="gallery" class="gallery">
-                <div class="gallery-inner">
-                    <div id="photo-container" class="justified-gallery" aria-live="polite"></div>
-
-                    <div class="film-grid hidden-tab">
-                        <article class="film-card reveal">
-                            <div class="poster-placeholder" aria-hidden="true"></div>
-                            <h3>The Halloween Cut</h3>
-                            <p>Horror Short • 2025</p>
-                        </article>
-
-                        <article class="film-card reveal" style="transition-delay: 100ms">
-                            <div class="poster-placeholder" aria-hidden="true"></div>
-                            <h3>School Skit #1</h3>
-                            <p>Comedy • 2025</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="contact reveal">
-                <div class="contact-header">
+            <section class="selected-work" id="work" aria-labelledby="work-title">
+                <header class="creator-section-head reveal">
                     <div>
-                        <div class="status-indicator" style="color: #ff4d4d">
-                            <span class="pulse"></span>
-                            STATUS: CURRENTLY BOOKED
-                        </div>
+                        <span>02 / SELECTED FRAMES</span>
+                        <h2 id="work-title">PHOTOGRAPHY</h2>
                     </div>
-                    <h2>START<br />COLLABORATION.</h2>
-                </div>
+                    <p>Selected street and visual work. Click any frame to inspect.</p>
+                </header>
 
-                <div class="contact-grid">
-                    <a href="mailto:deklaired@gmail.com" class="contact-tile primary">
-                        <div class="tile-content">
-                            <span class="tile-label">/// DIRECT LINE</span>
-                            <span class="tile-text">SEND EMAIL</span>
-                        </div>
-                        <div class="tile-icon">→</div>
-                    </a>
+                <div id="photo-container" class="editorial-gallery" aria-live="polite"></div>
+            </section>
 
-                    <a href="https://instagram.com/" class="contact-tile">
-                        <div class="tile-content">
-                            <span class="tile-label">/// VISUAL FEED</span>
-                            <span class="tile-text">INSTAGRAM</span>
-                        </div>
-                        <div class="tile-icon">↗</div>
-                    </a>
-
-                    <div class="contact-tile disabled" aria-disabled="true">
-                        <div class="tile-content">
-                            <span class="tile-label">/// NETWORK [OFFLINE]</span>
-                            <span class="tile-text">LINKEDIN</span>
-                        </div>
-                        <div class="tile-icon">×</div>
+            <section class="motion-section" id="motion" aria-labelledby="motion-title">
+                <header class="creator-section-head reveal">
+                    <div>
+                        <span>03 / MOTION</span>
+                        <h2 id="motion-title">FILM / VIDEO</h2>
                     </div>
+                    <p>Selected motion work and short-form storytelling.</p>
+                </header>
+
+                <div class="motion-list">
+                    <article class="motion-item reveal">
+                        <div class="motion-visual motion-visual--one" aria-hidden="true">
+                            <span>PLAY</span>
+                            <strong>01</strong>
+                        </div>
+                        <div class="motion-copy">
+                            <span>SHORT FILM / 2025</span>
+                            <h3>THE HALLOWEEN CUT</h3>
+                            <p>Atmospheric short-form horror built around pacing, framing, and practical visual tension.</p>
+                        </div>
+                    </article>
+
+                    <article class="motion-item reveal">
+                        <div class="motion-visual motion-visual--two" aria-hidden="true">
+                            <span>PLAY</span>
+                            <strong>02</strong>
+                        </div>
+                        <div class="motion-copy">
+                            <span>COMEDY / 2025</span>
+                            <h3>SCHOOL SKIT #1</h3>
+                            <p>Fast-paced campus storytelling with an emphasis on timing, coverage, and edit rhythm.</p>
+                        </div>
+                    </article>
                 </div>
             </section>
 
-            <footer>
-                <p>JAKE CUENCA © 2025</p>
-            </footer>
+            <section class="creator-about" id="about" aria-labelledby="about-title">
+                <div class="about-index reveal">
+                    <span>04 / ABOUT</span>
+                    <span>OBSERVE → FRAME → REMEMBER</span>
+                </div>
+
+                <div class="creator-about__main reveal">
+                    <h2 id="about-title">THE CAMERA<br />IS THE EXCUSE.</h2>
+                    <div class="creator-about__copy">
+                        <p>
+                            The real interest is observation: people, places, movement, coincidence,
+                            and the small visual details that would otherwise disappear.
+                        </p>
+                        <p>
+                            My work moves between still photography and filmmaking, with an emphasis
+                            on atmosphere, composition, and images that feel lived-in rather than staged.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="kit-line reveal" aria-label="Selected creative kit">
+                    <span>FUJIFILM X-S20</span>
+                    <span>XF 18–55 F/2.8–4</span>
+                    <span>VILTROX 56MM</span>
+                    <span>DJI RS4 MINI</span>
+                    <span>PREMIERE / DAVINCI / LIGHTROOM</span>
+                </div>
+            </section>
+
+            <section class="creator-contact" id="contact" aria-labelledby="contact-title">
+                <div class="contact-index reveal">
+                    <span>05 / CONTACT</span>
+                    <span>AVAILABLE FOR COLLABORATION</span>
+                </div>
+
+                <div class="creator-contact__main reveal">
+                    <h2 id="contact-title">MAKE IT<br /><span>WORTH SEEING.</span></h2>
+                    <div class="creator-contact__links">
+                        <a href="mailto:deklaired@gmail.com">EMAIL ↗</a>
+                        <a href="../developer/index.html">ENTER DEVELOPER ↗</a>
+                    </div>
+                </div>
+            </section>
         </main>
 
-        <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image preview">
-            <button id="close-lightbox" class="close-btn" type="button" aria-label="Close image preview">×</button>
-            <div class="lightbox-content">
-                <img id="lightbox-img" src="" alt="" />
-            </div>
-        </div>
+        <footer class="creator-footer">
+            <span>JAKE CUENCA © <span data-current-year>2026</span></span>
+            <a href="#top">BACK TO TOP ↑</a>
+        </footer>
 
-        <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+        <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Photo preview">
+            <button id="close-lightbox" class="lightbox-close" type="button" aria-label="Close photo preview">CLOSE ×</button>
+            <button id="prev-lightbox" class="lightbox-nav lightbox-nav--prev" type="button" aria-label="Previous photo">←</button>
+            <div class="lightbox-stage">
+                <img id="lightbox-img" src="" alt="" />
+                <div class="lightbox-caption">
+                    <span id="lightbox-count">01 / 25</span>
+                    <p id="lightbox-text">Selected photograph</p>
+                </div>
+            </div>
+            <button id="next-lightbox" class="lightbox-nav lightbox-nav--next" type="button" aria-label="Next photo">→</button>
+        </div>
     </body>
 </html>
