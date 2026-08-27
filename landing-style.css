@@ -1,326 +1,413 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@700&display=swap");
-
 :root {
-    /* --- PALETTE --- */
-    --red-glow: #ff0000;
-    --red-dark: #3a0000;
-    --red-black: #080000;
-
-    --blue-glow: #004cff;
-    --blue-dark: #00103a;
-    --blue-black: #000000;
-
-    --text-white: #ffffff;
-
-    /* --- ANIMATION --- */
-    --transition-speed: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --developer: #ff1f1f;
+    --developer-deep: #3a0000;
+    --developer-black: #080000;
+    --creator: #1f5fff;
+    --creator-deep: #00103a;
+    --creator-black: #00020a;
+    --white: #ffffff;
+    --muted: rgba(255, 255, 255, 0.58);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --split-top: 56%;
+    --split-bottom: 44%;
 }
 
-/* --- RESET & GLOBAL --- */
-* {
-    margin: 0;
-    padding: 0;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html {
+    background: #050505;
+}
+
 body {
-    background: #000;
-    height: 100vh;
-    width: 100vw;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100svh;
     overflow: hidden;
+    background: #050505;
+    color: var(--white);
     font-family: "Archivo Black", sans-serif;
 }
 
-.split-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
+a {
+    color: inherit;
 }
 
-/* --- TEXTURE OVERLAY --- */
-.split-container::before {
+.landing {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 100svh;
+    overflow: hidden;
+    background: #050505;
+}
+
+/* Subtle surface texture keeps the original cinematic feel without extra assets. */
+.landing::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-            circle at 15% 20%,
-            rgba(255, 255, 255, 0.03) 0%,
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(255, 255, 255, 0.02) 0%,
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 50% 50%,
-            transparent 20%,
-            rgba(0, 0, 0, 0.5) 100%
-        );
-    mix-blend-mode: soft-light;
+    z-index: 20;
     pointer-events: none;
-    z-index: 20; /* TOP LAYER */
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.04), transparent 38%),
+        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.025), transparent 34%),
+        radial-gradient(circle at 50% 50%, transparent 24%, rgba(0, 0, 0, 0.56) 100%);
+    mix-blend-mode: soft-light;
 }
 
-/* ==================== SIDES (LAYOUT) ==================== */
-
-.side {
+.path {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     text-decoration: none;
-
-    /* PERFORMANCE OPTIMIZATION */
-    transition: background var(--transition-speed);
-    transform: translateZ(0); /* Hardware Acceleration */
-    will-change: transform; /* Hints browser to optimize rendering */
+    outline: none;
+    transform: translateZ(0);
+    transition:
+        background 600ms var(--ease-out),
+        filter 300ms ease,
+        opacity 300ms ease;
 }
 
-/* --- LEFT SIDE (DEVELOPER) --- */
-.left {
+.path--developer {
     z-index: 2;
     justify-content: flex-start;
-    clip-path: polygon(0 0, 56% 0, 44% 100%, 0 100%);
-
-    /* Dark Red Gradient */
+    clip-path: polygon(0 0, var(--split-top) 0, var(--split-bottom) 100%, 0 100%);
     background: radial-gradient(
         circle at 35% 45%,
-        var(--red-dark) 0%,
-        #1a0000 60%,
-        var(--red-black) 100%
+        var(--developer-deep) 0%,
+        #1a0000 58%,
+        var(--developer-black) 100%
     );
 }
 
-.left:hover {
-    z-index: 3; /* Bring to top on hover */
-    background: radial-gradient(circle at 40% 50%, #700000 0%, #b00000 100%);
-}
-
-/* --- RIGHT SIDE (CREATOR) --- */
-.right {
+.path--creator {
     z-index: 1;
     justify-content: flex-end;
-    clip-path: polygon(56% 0, 100% 0, 100% 100%, 44% 100%);
-
-    /* Dark Blue Gradient */
+    clip-path: polygon(var(--split-top) 0, 100% 0, 100% 100%, var(--split-bottom) 100%);
     background: radial-gradient(
         circle at 65% 55%,
-        var(--blue-dark) 0%,
-        #00051a 60%,
-        var(--blue-black) 100%
+        var(--creator-deep) 0%,
+        #00051a 58%,
+        var(--creator-black) 100%
     );
 }
 
-.right:hover {
-    z-index: 3; /* Bring to top on hover */
-    background: radial-gradient(
-        circle at 60% 50%,
-        #000022 0%,
-        var(--blue-glow) 100%
-    );
-}
-
-/* ==================== GLOW EDGES (VISUAL FX) ==================== */
-
-.glow-edge {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 15; /* Between Sides and Texture */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: blur(2px);
-}
-
-/* RED SPLIT LINE */
-.left-edge {
-    background: linear-gradient(
-        to right,
-        #fff,
-        var(--red-glow) 20%,
-        transparent 100%
-    );
-    clip-path: polygon(55.9% 0, 56.1% 0, 44.1% 100%, 43.9% 100%);
-}
-
-/* BLUE SPLIT LINE */
-.right-edge {
-    background: linear-gradient(
-        to left,
-        #fff,
-        var(--blue-glow) 20%,
-        transparent 100%
-    );
-    clip-path: polygon(55.9% 0, 56.1% 0, 44.1% 100%, 43.9% 100%);
-}
-
-/* Reveal Edge on Hover using :has() */
-.split-container:has(.left:hover) .left-edge {
-    opacity: 1;
-}
-.split-container:has(.right:hover) .right-edge {
-    opacity: 1;
-}
-
-/* ==================== TYPOGRAPHY ==================== */
-
-.content-wrapper {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; /* Let clicks pass through to .side */
-}
-
-.content {
+.path__content {
     position: relative;
+    display: grid;
+    width: 50%;
+    min-height: 100%;
+    place-content: center;
+    padding: clamp(1.5rem, 4vw, 4rem);
     text-align: center;
-    pointer-events: auto;
 }
 
-/* --- HEADLINES (H1) --- */
-h1 {
-    font-size: clamp(2.2rem, 5.5vw, 7rem);
+.path h1 {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-size: clamp(2.5rem, 5.5vw, 7rem);
     font-style: italic;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
     text-transform: uppercase;
-    transition: 0.4s ease;
+    transition:
+        color 350ms ease,
+        filter 350ms ease,
+        transform 450ms var(--ease-out);
 }
 
-/* Default States (Colored Text + Soft Glow) */
-.left h1 {
-    color: var(--red-glow);
-    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
+.path--developer h1 {
+    color: var(--developer);
+    filter: drop-shadow(0 0 15px rgba(255, 31, 31, 0.48));
 }
 
-.right h1 {
-    color: var(--blue-glow);
-    filter: drop-shadow(0 0 15px rgba(0, 76, 255, 0.6));
+.path--creator h1 {
+    color: var(--creator);
+    filter: drop-shadow(0 0 15px rgba(31, 95, 255, 0.48));
 }
 
-/* Hover States (White Text + Hard Glow) */
-.left:hover h1 {
-    color: var(--text-white);
-    transform: scale(1.06);
-    filter: drop-shadow(0 0 25px var(--red-glow))
-        drop-shadow(0 0 50px var(--red-glow));
+.path p {
+    position: relative;
+    z-index: 2;
+    margin: 1rem 0 0;
+    color: var(--muted);
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(0.62rem, 0.8vw, 0.85rem);
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: clamp(0.18rem, 0.35vw, 0.32rem);
+    text-transform: uppercase;
+    transition:
+        color 300ms ease,
+        opacity 300ms ease,
+        transform 450ms var(--ease-out);
 }
 
-.right:hover h1 {
-    color: var(--text-white);
-    transform: scale(1.06);
-    filter: drop-shadow(0 0 25px var(--blue-glow))
-        drop-shadow(0 0 50px var(--blue-glow));
-}
-
-/* --- BACKGROUND OUTLINE TEXT --- */
-.outline {
+.path__outline {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: clamp(4rem, 13vw, 16rem);
+    z-index: 1;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.54); /* Subtle stroke */
-    opacity: 0;
-    transition: var(--transition-speed);
+    font-size: clamp(5rem, 13vw, 16rem);
+    font-style: italic;
+    line-height: 0.8;
     white-space: nowrap;
-    z-index: -1;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.94);
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.52);
+    transition:
+        opacity 500ms var(--ease-out),
+        transform 600ms var(--ease-out);
 }
 
-.side:hover .outline {
-    opacity: 0.15; /* Kept subtle so it doesn't fight H1 */
-    transform: translate(-50%, -50%) scale(1.15);
+.split-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none;
+    opacity: 0;
+    filter: blur(2px);
+    transition: opacity 250ms ease;
+    clip-path: polygon(55.88% 0, 56.12% 0, 44.12% 100%, 43.88% 100%);
 }
 
-/* --- SUBTITLES (P) --- */
-p {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.85rem;
-    letter-spacing: 5px;
-    margin-top: 15px;
-    color: var(--text-white);
-    opacity: 0.5;
-    transition: 0.4s ease;
-}
-.side:hover p {
-    opacity: 1;
+.split-glow--developer {
+    background: linear-gradient(to right, #fff, var(--developer) 24%, transparent 100%);
 }
 
-/* ==================== FOOTER / WATERMARK ==================== */
+.split-glow--creator {
+    background: linear-gradient(to left, #fff, var(--creator) 24%, transparent 100%);
+}
+
 .watermark {
     position: absolute;
-    bottom: 40px;
-    left: 40px;
+    bottom: clamp(1rem, 3vw, 2.5rem);
+    left: clamp(1rem, 3vw, 2.5rem);
+    z-index: 30;
+    color: var(--white);
     font-family: "JetBrains Mono", monospace;
     font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: var(--text-white);
-    z-index: 100;
+    font-weight: 700;
+    letter-spacing: 0.25rem;
     pointer-events: none;
     white-space: nowrap;
 }
 
-.watermark .year {
-    color: #888;
-    font-weight: 400;
+.watermark__year {
+    color: #8b8b8b;
+    font-weight: 500;
 }
 
-/* --- MOBILE ONLY: keep the original desktop effect untouched --- */
+/* Hover-capable devices get the dramatic original interaction. */
+@media (hover: hover) and (pointer: fine) {
+    .path--developer:hover {
+        z-index: 3;
+        background: radial-gradient(circle at 40% 50%, #780000 0%, #b80000 100%);
+    }
+
+    .path--creator:hover {
+        z-index: 3;
+        background: radial-gradient(circle at 60% 50%, #00042d 0%, #0649df 100%);
+    }
+
+    .path:hover h1,
+    .path:focus-visible h1 {
+        color: var(--white);
+        transform: scale(1.055);
+    }
+
+    .path--developer:hover h1,
+    .path--developer:focus-visible h1 {
+        filter:
+            drop-shadow(0 0 24px var(--developer))
+            drop-shadow(0 0 48px var(--developer));
+    }
+
+    .path--creator:hover h1,
+    .path--creator:focus-visible h1 {
+        filter:
+            drop-shadow(0 0 24px var(--creator))
+            drop-shadow(0 0 48px var(--creator));
+    }
+
+    .path:hover p,
+    .path:focus-visible p {
+        color: var(--white);
+        transform: translateY(3px);
+    }
+
+    .path:hover .path__outline,
+    .path:focus-visible .path__outline {
+        opacity: 0.14;
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+
+    .landing:has(.path--developer:hover) .split-glow--developer,
+    .landing:has(.path--developer:focus-visible) .split-glow--developer {
+        opacity: 1;
+    }
+
+    .landing:has(.path--creator:hover) .split-glow--creator,
+    .landing:has(.path--creator:focus-visible) .split-glow--creator {
+        opacity: 1;
+    }
+}
+
+/* Keyboard users receive an explicit focus treatment even without hover support. */
+.path:focus-visible {
+    z-index: 4;
+}
+
+.path:focus-visible::after {
+    content: "";
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    pointer-events: none;
+}
+
+/* Lightweight exit state supplied by landing-script.js. */
+.landing.is-leaving .path:not(.is-selected) {
+    opacity: 0.34;
+    filter: saturate(0.55);
+}
+
+.landing.is-leaving .path.is-selected h1 {
+    color: var(--white);
+    transform: scale(1.075);
+}
+
+.landing.is-leaving .path.is-selected .path__outline {
+    opacity: 0.13;
+    transform: translate(-50%, -50%) scale(1.14);
+}
+
+/* Tablet and narrow desktop: preserve the diagonal split while tightening text. */
+@media (max-width: 900px) and (min-width: 701px) {
+    :root {
+        --split-top: 58%;
+        --split-bottom: 42%;
+    }
+
+    .path__content {
+        padding-inline: 1.25rem;
+    }
+
+    .path h1 {
+        font-size: clamp(2.4rem, 7.5vw, 5rem);
+    }
+
+    .path p {
+        max-width: 19rem;
+        margin-inline: auto;
+    }
+}
+
+/* Mobile keeps the two-world concept, but turns it into a touch-friendly stacked split. */
 @media (max-width: 700px) {
     body {
-        height: auto;
-        min-height: 100svh;
-        overflow-y: auto;
         overflow-x: hidden;
+        overflow-y: auto;
     }
 
-    .split-container {
+    .landing {
+        display: flex;
         min-height: 100svh;
-        height: auto;
-        display: block;
+        flex-direction: column;
+        overflow: hidden;
     }
 
-    .side {
+    .path {
         position: relative;
         inset: auto;
-        height: 50svh;
-        min-height: 320px;
+        flex: 1 0 52svh;
+        min-height: 330px;
         justify-content: center;
-        clip-path: none;
     }
 
-    .content-wrapper {
+    .path--developer {
+        z-index: 2;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        background: radial-gradient(circle at 50% 42%, #4a0000 0%, #1a0000 58%, #080000 100%);
+    }
+
+    .path--creator {
+        z-index: 1;
+        margin-top: -4svh;
+        padding-top: 4svh;
+        clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        background: radial-gradient(circle at 50% 58%, #001548 0%, #00051a 58%, #00020a 100%);
+    }
+
+    .path__content {
         width: 100%;
-        height: 100%;
+        min-height: 100%;
+        padding: 2rem 1.25rem;
     }
 
-    h1 {
-        font-size: clamp(2.5rem, 14vw, 4.8rem);
+    .path h1 {
+        font-size: clamp(3rem, 14vw, 5rem);
     }
 
-    .outline {
-        font-size: clamp(4rem, 25vw, 9rem);
+    .path p {
+        max-width: 22rem;
+        margin-inline: auto;
+        font-size: clamp(0.62rem, 2.6vw, 0.72rem);
+        letter-spacing: clamp(0.14rem, 1vw, 0.24rem);
     }
 
-    p {
-        padding: 0 1rem;
-        font-size: 0.68rem;
-        letter-spacing: 3px;
-        text-align: center;
+    .path__outline {
+        font-size: clamp(5rem, 25vw, 9rem);
+        opacity: 0.07;
+        transform: translate(-50%, -50%) scale(1);
     }
 
-    .glow-edge {
+    .split-glow {
         display: none;
     }
 
     .watermark {
         position: fixed;
-        bottom: 16px;
-        left: 16px;
+        bottom: 1rem;
+        left: 1rem;
         font-size: 0.6rem;
-        letter-spacing: 3px;
+        letter-spacing: 0.2rem;
+    }
+
+    .path:active h1 {
+        color: var(--white);
+        transform: scale(1.035);
+    }
+}
+
+@media (max-height: 620px) and (min-width: 701px) {
+    .path h1 {
+        font-size: clamp(2.3rem, 5vw, 4.5rem);
+    }
+
+    .path p {
+        margin-top: 0.65rem;
+    }
+
+    .watermark {
+        bottom: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }
