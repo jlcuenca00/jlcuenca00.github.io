@@ -50,9 +50,8 @@ window.addEventListener("pageshow", () => {
 });
 
 function initLandingCursor() {
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!canHover || reducedMotion) return;
+    if (reducedMotion) return;
 
     const style = document.createElement("style");
     style.textContent = `
@@ -69,7 +68,7 @@ function initLandingCursor() {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 5000;
+            z-index: 9999;
             pointer-events: none;
             opacity: 0;
             will-change: transform, opacity;
@@ -81,38 +80,30 @@ function initLandingCursor() {
             margin: -120px 0 0 -120px;
             border-radius: 50%;
             background:
-                radial-gradient(circle at 34% 50%, rgba(255, 31, 31, 0.15), transparent 42%),
-                radial-gradient(circle at 66% 50%, rgba(31, 95, 255, 0.15), transparent 42%);
-            filter: blur(10px);
+                radial-gradient(circle at 35% 50%, rgba(255, 31, 31, 0.2), transparent 42%),
+                radial-gradient(circle at 65% 50%, rgba(31, 95, 255, 0.2), transparent 42%);
+            filter: blur(12px);
             mix-blend-mode: screen;
-            transition: opacity 180ms ease, background 260ms ease;
+            transition: opacity 160ms ease, background 220ms ease;
         }
 
         .portal-cursor-ring {
-            width: 48px;
-            height: 48px;
-            margin: -24px 0 0 -24px;
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            width: 46px;
+            height: 46px;
+            margin: -23px 0 0 -23px;
+            border: 1px solid rgba(255, 255, 255, 0.76);
             border-radius: 50%;
-            background:
-                conic-gradient(
-                    from 90deg,
-                    rgba(31, 95, 255, 0.95) 0 24%,
-                    transparent 24% 49%,
-                    rgba(255, 31, 31, 0.95) 49% 74%,
-                    transparent 74% 100%
-                );
-            -webkit-mask: radial-gradient(circle, transparent 0 76%, #000 78% 84%, transparent 86%);
-            mask: radial-gradient(circle, transparent 0 76%, #000 78% 84%, transparent 86%);
-            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.14));
+            box-shadow:
+                -10px 0 24px rgba(255, 31, 31, 0.18),
+                10px 0 24px rgba(31, 95, 255, 0.18);
             transition:
                 width 220ms cubic-bezier(0.16, 1, 0.3, 1),
                 height 220ms cubic-bezier(0.16, 1, 0.3, 1),
                 margin 220ms cubic-bezier(0.16, 1, 0.3, 1),
                 border-radius 220ms cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 180ms ease,
-                background 220ms ease,
-                filter 180ms ease,
+                background 180ms ease,
+                box-shadow 180ms ease,
                 opacity 120ms ease;
         }
 
@@ -122,40 +113,40 @@ function initLandingCursor() {
             position: absolute;
             top: 50%;
             left: 50%;
-            background: rgba(255, 255, 255, 0.42);
-            opacity: 0;
-            transition: opacity 160ms ease;
+            background: rgba(255, 255, 255, 0.44);
+            transform: translate(-50%, -50%);
+            transition: opacity 160ms ease, background 160ms ease;
         }
 
         .portal-cursor-ring::before {
             width: calc(100% + 14px);
             height: 1px;
-            transform: translate(-50%, -50%);
+            opacity: 0.35;
         }
 
         .portal-cursor-ring::after {
             width: 1px;
             height: calc(100% + 14px);
-            transform: translate(-50%, -50%);
+            opacity: 0.35;
         }
 
         .portal-cursor-dot {
-            width: 5px;
-            height: 5px;
-            margin: -2.5px 0 0 -2.5px;
+            width: 6px;
+            height: 6px;
+            margin: -3px 0 0 -3px;
             border-radius: 50%;
             background: #fff;
             box-shadow:
-                -3px 0 9px rgba(255, 31, 31, 0.8),
-                3px 0 9px rgba(31, 95, 255, 0.8);
+                -4px 0 10px rgba(255, 31, 31, 0.95),
+                4px 0 10px rgba(31, 95, 255, 0.95);
             transition: background 160ms ease, box-shadow 160ms ease, opacity 120ms ease;
         }
 
         .portal-cursor-label {
-            margin: 34px 0 0 18px;
-            color: rgba(255, 255, 255, 0.8);
+            margin: 33px 0 0 20px;
+            color: rgba(255, 255, 255, 0.82);
             font-family: "JetBrains Mono", monospace;
-            font-size: 0.52rem;
+            font-size: 0.54rem;
             font-weight: 700;
             letter-spacing: 0.14em;
             white-space: nowrap;
@@ -170,69 +161,76 @@ function initLandingCursor() {
         }
 
         body.portal-cursor-developer .portal-cursor-aura {
-            background: radial-gradient(circle, rgba(255, 31, 31, 0.2), rgba(255, 31, 31, 0.05) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 31, 31, 0.24), rgba(255, 31, 31, 0.06) 42%, transparent 72%);
         }
 
         body.portal-cursor-developer .portal-cursor-ring {
-            width: 58px;
-            height: 58px;
-            margin: -29px 0 0 -29px;
-            border-radius: 4px;
-            border-color: rgba(255, 31, 31, 0.9);
-            background: linear-gradient(135deg, rgba(255, 31, 31, 0.12), transparent 52%);
-            -webkit-mask: none;
-            mask: none;
-            filter: drop-shadow(0 0 18px rgba(255, 31, 31, 0.22));
+            width: 60px;
+            height: 60px;
+            margin: -30px 0 0 -30px;
+            border-radius: 3px;
+            border-color: #ff4a4a;
+            background: rgba(255, 31, 31, 0.035);
+            box-shadow: 0 0 26px rgba(255, 31, 31, 0.22);
         }
 
         body.portal-cursor-developer .portal-cursor-ring::before,
         body.portal-cursor-developer .portal-cursor-ring::after {
+            background: rgba(255, 74, 74, 0.72);
             opacity: 1;
         }
 
         body.portal-cursor-developer .portal-cursor-dot {
             background: #ff1f1f;
-            box-shadow: 0 0 12px rgba(255, 31, 31, 0.95);
+            box-shadow: 0 0 14px rgba(255, 31, 31, 1);
         }
 
         body.portal-cursor-developer .portal-cursor-label {
-            color: #ff6a6a;
+            color: #ff7373;
         }
 
         body.portal-cursor-creator .portal-cursor-aura {
-            background: radial-gradient(circle, rgba(31, 95, 255, 0.2), rgba(31, 95, 255, 0.05) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(31, 95, 255, 0.24), rgba(31, 95, 255, 0.06) 42%, transparent 72%);
         }
 
         body.portal-cursor-creator .portal-cursor-ring {
-            width: 62px;
-            height: 62px;
-            margin: -31px 0 0 -31px;
+            width: 64px;
+            height: 64px;
+            margin: -32px 0 0 -32px;
             border-radius: 50%;
-            border-color: rgba(255, 255, 255, 0.82);
+            border-color: rgba(255, 255, 255, 0.9);
             background:
-                conic-gradient(
-                    #1f5fff 0 5deg,
-                    transparent 5deg 85deg,
-                    #1f5fff 85deg 95deg,
-                    transparent 95deg 175deg,
-                    #1f5fff 175deg 185deg,
-                    transparent 185deg 265deg,
-                    #1f5fff 265deg 275deg,
-                    transparent 275deg 355deg,
-                    #1f5fff 355deg 360deg
-                );
-            -webkit-mask: radial-gradient(circle, transparent 0 69%, #000 71% 76%, transparent 78%);
-            mask: radial-gradient(circle, transparent 0 69%, #000 71% 76%, transparent 78%);
-            filter: drop-shadow(0 0 18px rgba(31, 95, 255, 0.24));
+                radial-gradient(circle, transparent 56%, rgba(31, 95, 255, 0.14) 58% 61%, transparent 63%);
+            box-shadow:
+                inset 0 0 18px rgba(31, 95, 255, 0.08),
+                0 0 26px rgba(31, 95, 255, 0.24);
+        }
+
+        body.portal-cursor-creator .portal-cursor-ring::before {
+            width: 10px;
+            height: 1px;
+            left: -1px;
+            background: #5d88ff;
+            opacity: 1;
+            box-shadow: 56px 0 0 #5d88ff;
+        }
+
+        body.portal-cursor-creator .portal-cursor-ring::after {
+            width: 1px;
+            height: 10px;
+            top: -1px;
+            background: #5d88ff;
+            opacity: 1;
+            box-shadow: 0 56px 0 #5d88ff;
         }
 
         body.portal-cursor-creator .portal-cursor-dot {
             background: #1f5fff;
-            box-shadow: 0 0 12px rgba(31, 95, 255, 0.95);
+            box-shadow: 0 0 14px rgba(31, 95, 255, 1);
         }
 
         body.portal-cursor-creator .portal-cursor-label {
-            color: #72a0ff;
+            color: #7da4ff;
         }
     `;
     document.head.appendChild(style);
@@ -249,8 +247,8 @@ function initLandingCursor() {
     label.textContent = "CHOOSE PATH";
 
     document.body.append(aura, ring, dot, label);
-    document.body.classList.add("portal-cursor-enabled");
 
+    let enabled = false;
     let pointerX = window.innerWidth / 2;
     let pointerY = window.innerHeight / 2;
     let ringX = pointerX;
@@ -258,7 +256,15 @@ function initLandingCursor() {
     let auraX = pointerX;
     let auraY = pointerY;
 
-    document.addEventListener("pointermove", (event) => {
+    const enableForMouse = () => {
+        if (enabled) return;
+        enabled = true;
+        document.body.classList.add("portal-cursor-enabled");
+    };
+
+    document.addEventListener("mousemove", (event) => {
+        enableForMouse();
+
         pointerX = event.clientX;
         pointerY = event.clientY;
 
@@ -291,11 +297,11 @@ function initLandingCursor() {
         );
     });
 
-    document.addEventListener("pointerdown", () => {
+    document.addEventListener("mousedown", () => {
         ring.style.scale = "0.86";
     });
 
-    document.addEventListener("pointerup", () => {
+    document.addEventListener("mouseup", () => {
         ring.style.scale = "1";
     });
 
