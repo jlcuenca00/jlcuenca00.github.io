@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Periphora project visual</title>
+  <desc id="desc">Stylized dark mobile commerce interface for tech peripherals</desc>
+  <rect width="1200" height="750" fill="#080808"/>
+  <circle cx="870" cy="210" r="250" fill="#7f5af0" opacity=".12"/>
+  <g transform="translate(310 60)">
+    <rect width="330" height="630" rx="44" fill="#111" stroke="#3b3b3b" stroke-width="3"/>
+    <rect x="18" y="20" width="294" height="590" rx="30" fill="#151515"/>
+    <text x="42" y="70" fill="#fff" font-family="Arial" font-size="20" font-weight="700">PERIPHORA</text>
+    <text x="42" y="104" fill="#777" font-family="monospace" font-size="12">TECH PERIPHERALS</text>
+    <rect x="42" y="136" width="246" height="192" rx="24" fill="#7f5af0" fill-opacity=".16" stroke="#7f5af0" stroke-opacity=".35"/>
+    <ellipse cx="165" cy="228" rx="62" ry="76" fill="#262626"/>
+    <path d="M142 182c44-22 73 14 72 48-2 54-51 73-78 32-21-31-10-66 6-80z" fill="#9e87f7"/>
+    <text x="42" y="370" fill="#fff" font-family="Arial" font-size="18" font-weight="700">Wireless Mouse</text>
+    <text x="42" y="397" fill="#8b8b8b" font-family="monospace" font-size="12">PURPLE / LIGHTWEIGHT</text>
+    <rect x="42" y="430" width="112" height="42" rx="21" fill="#7f5af0"/><text x="70" y="457" fill="#fff" font-family="Arial" font-size="14" font-weight="700">ADD TO CART</text>
+    <rect x="42" y="508" width="246" height="1" fill="#2c2c2c"/>
+    <text x="42" y="548" fill="#777" font-family="monospace" font-size="12">HOME</text><text x="137" y="548" fill="#777" font-family="monospace" font-size="12">CART</text><text x="225" y="548" fill="#7f5af0" font-family="monospace" font-size="12">PROFILE</text>
+  </g>
+  <text x="710" y="332" fill="#fff" font-family="Arial" font-size="54" font-weight="900">PERIPHORA</text>
+  <text x="714" y="382" fill="#7f5af0" font-family="monospace" font-size="19" letter-spacing="4">FLUTTER / E-COMMERCE UI</text>
+  <text x="714" y="438" fill="#777" font-family="monospace" font-size="16">PARALLAX / CART / CHECKOUT / GESTURES</text>
+</svg>

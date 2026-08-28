@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">DAR-LTCMS project visual</title>
+  <desc id="desc">Stylized dashboard, map, records, and workflow interface</desc>
+  <rect width="1200" height="750" fill="#070707"/>
+  <rect x="42" y="42" width="1116" height="666" rx="16" fill="#0c0c0c" stroke="#2a2a2a"/>
+  <rect x="42" y="42" width="1116" height="58" rx="16" fill="#111"/>
+  <circle cx="78" cy="71" r="6" fill="#ff2a2a"/><circle cx="100" cy="71" r="6" fill="#555"/><circle cx="122" cy="71" r="6" fill="#555"/>
+  <text x="164" y="78" fill="#8a8a8a" font-family="monospace" font-size="18">DAR-LTCMS / STAFF DASHBOARD</text>
+  <rect x="76" y="132" width="218" height="536" rx="10" fill="#0a0a0a" stroke="#1f1f1f"/>
+  <text x="102" y="180" fill="#ff2a2a" font-family="monospace" font-size="17">WORKSPACE</text>
+  <g fill="#3a3a3a"><rect x="102" y="212" width="138" height="9"/><rect x="102" y="250" width="112" height="9"/><rect x="102" y="288" width="154" height="9"/><rect x="102" y="326" width="128" height="9"/><rect x="102" y="364" width="144" height="9"/></g>
+  <rect x="326" y="132" width="388" height="220" rx="10" fill="#0b0b0b" stroke="#242424"/>
+  <text x="352" y="170" fill="#ddd" font-family="monospace" font-size="17">APPLICATION FLOW</text>
+  <g font-family="monospace" font-size="14" fill="#777"><text x="354" y="218">LEGAL</text><text x="452" y="218">LTI</text><text x="540" y="218">CHIEF</text><text x="642" y="218">PARPO</text></g>
+  <path d="M374 256H664" stroke="#ff2a2a" stroke-width="3"/>
+  <g fill="#ff2a2a"><circle cx="374" cy="256" r="9"/><circle cx="470" cy="256" r="9"/><circle cx="566" cy="256" r="9"/><circle cx="664" cy="256" r="9"/></g>
+  <rect x="326" y="384" width="388" height="284" rx="10" fill="#0b0b0b" stroke="#242424"/>
+  <text x="352" y="422" fill="#ddd" font-family="monospace" font-size="17">MONITORING / RECORDS</text>
+  <g fill="#252525"><rect x="352" y="454" width="332" height="34" rx="5"/><rect x="352" y="500" width="332" height="34" rx="5"/><rect x="352" y="546" width="332" height="34" rx="5"/><rect x="352" y="592" width="332" height="34" rx="5"/></g>
+  <g fill="#777"><rect x="368" y="466" width="116" height="8"/><rect x="368" y="512" width="174" height="8"/><rect x="368" y="558" width="138" height="8"/><rect x="368" y="604" width="190" height="8"/></g>
+  <rect x="746" y="132" width="378" height="536" rx="10" fill="#0b0b0b" stroke="#242424"/>
+  <text x="772" y="170" fill="#ddd" font-family="monospace" font-size="17">PARCEL MAP</text>
+  <path d="M792 235L876 196L966 232L1045 206L1086 278L1040 358L958 382L900 340L820 366L774 304Z" fill="#ff2a2a" fill-opacity=".1" stroke="#ff2a2a" stroke-width="3"/>
+  <path d="M818 468h262M818 506h214M818 544h244" stroke="#333" stroke-width="14" stroke-linecap="round"/>
+  <text x="772" y="626" fill="#ff2a2a" font-family="monospace" font-size="18">1803 / LTC / 2026</text>
+</svg>

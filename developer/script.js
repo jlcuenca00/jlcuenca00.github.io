@@ -4,7 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("preview-title");
     const subtitle = document.getElementById("preview-subtitle");
     const stack = document.getElementById("preview-stack");
+    const role = document.getElementById("preview-role");
     const year = document.getElementById("preview-year");
+    const image = document.getElementById("preview-image");
+    const link = document.getElementById("preview-link");
+    const number = document.getElementById("preview-number");
 
     document.querySelectorAll("[data-current-year]").forEach((node) => {
         node.textContent = new Date().getFullYear();
@@ -12,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initDeveloperCursor();
 
-    if (!rows.length || !preview || !title || !subtitle || !stack || !year) return;
+    if (!rows.length || !preview || !title || !subtitle || !stack || !role || !year || !image || !link || !number) {
+        return;
+    }
 
     const activate = (row) => {
         rows.forEach((item) => item.classList.toggle("is-active", item === row));
@@ -21,11 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
         title.textContent = row.dataset.title || "SELECTED PROJECT";
         subtitle.textContent = row.dataset.subtitle || "Project preview";
         stack.textContent = row.dataset.stack || "";
+        role.textContent = row.dataset.role || "";
         year.textContent = row.dataset.year || "";
+        number.textContent = row.querySelector(".project-no")?.textContent || "01";
 
-        const number = preview.querySelector(".preview-visual strong");
-        const rowNumber = row.querySelector(".project-no");
-        if (number && rowNumber) number.textContent = rowNumber.textContent;
+        if (row.dataset.image) {
+            image.src = row.dataset.image;
+            image.alt = row.dataset.alt || `${row.dataset.title || "Selected project"} visual`;
+        }
+
+        if (row.dataset.href) {
+            link.href = row.dataset.href;
+        }
     };
 
     rows.forEach((row) => {
@@ -35,9 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initDeveloperCursor() {
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!canHover || reducedMotion) return;
+    if (reducedMotion) return;
 
     const style = document.createElement("style");
     style.textContent = `
@@ -87,6 +99,7 @@ function initDeveloperCursor() {
                 margin 180ms cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 180ms ease,
                 background 180ms ease,
+                box-shadow 180ms ease,
                 opacity 120ms ease;
         }
 
@@ -117,7 +130,7 @@ function initDeveloperCursor() {
             margin: -2.5px 0 0 -2.5px;
             background: #ff2a2a;
             box-shadow: 0 0 12px rgba(255, 42, 42, 0.9);
-            transition: opacity 120ms ease, transform 80ms ease;
+            transition: opacity 120ms ease;
         }
 
         .dev-cursor-enabled.dev-cursor-visible .dev-cursor-glow,
@@ -139,8 +152,7 @@ function initDeveloperCursor() {
             height: 72px;
             margin: -36px 0 0 -36px;
             border-color: #ff2a2a;
-            background:
-                linear-gradient(135deg, rgba(255, 42, 42, 0.09), transparent 48%);
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.09), transparent 48%);
         }
 
         .dev-cursor-enabled.dev-cursor-project .dev-cursor-frame::before,
@@ -148,8 +160,10 @@ function initDeveloperCursor() {
             background: rgba(255, 255, 255, 0.52);
         }
 
-        .dev-cursor-enabled.dev-cursor-project .dev-cursor-dot {
-            transform: scale(0.55);
+        .dev-cursor-enabled.dev-cursor-pressed .dev-cursor-frame {
+            border-color: #fff;
+            box-shadow: 0 0 34px rgba(255, 42, 42, 0.45);
+            background: rgba(255, 42, 42, 0.08);
         }
     `;
     document.head.appendChild(style);
@@ -161,8 +175,8 @@ function initDeveloperCursor() {
     frame.className = "dev-cursor-frame";
     dot.className = "dev-cursor-dot";
     document.body.append(glow, frame, dot);
-    document.body.classList.add("dev-cursor-enabled");
 
+    let enabled = false;
     let pointerX = window.innerWidth / 2;
     let pointerY = window.innerHeight / 2;
     let frameX = pointerX;
@@ -173,9 +187,17 @@ function initDeveloperCursor() {
 
     const interactiveSelector = "a, button, [role='button']";
 
-    document.addEventListener("pointermove", (event) => {
+    const enableForMouse = () => {
+        if (enabled) return;
+        enabled = true;
+        document.body.classList.add("dev-cursor-enabled");
+    };
+
+    document.addEventListener("mousemove", (event) => {
+        enableForMouse();
         pointerX = event.clientX;
         pointerY = event.clientY;
+
         dot.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
         document.body.classList.add("dev-cursor-visible");
 
@@ -186,22 +208,44 @@ function initDeveloperCursor() {
 
     document.documentElement.addEventListener("mouseleave", () => {
         pressed = false;
-        document.body.classList.remove("dev-cursor-visible", "dev-cursor-active", "dev-cursor-project");
+        document.body.classList.remove(
+            "dev-cursor-visible",
+            "dev-cursor-active",
+            "dev-cursor-project",
+            "dev-cursor-pressed"
+        );
     });
 
-    document.addEventListener("pointerdown", () => { pressed = true; });
-    document.addEventListener("pointerup", () => { pressed = false; });
-    document.addEventListener("pointercancel", () => { pressed = false; });
-    window.addEventListener("blur", () => { pressed = false; });
+    document.addEventListener("mousedown", () => {
+        pressed = true;
+        frameX = pointerX;
+        frameY = pointerY;
+        document.body.classList.add("dev-cursor-pressed");
+    });
+
+    document.addEventListener("mouseup", () => {
+        pressed = false;
+        document.body.classList.remove("dev-cursor-pressed");
+    });
+
+    window.addEventListener("blur", () => {
+        pressed = false;
+        document.body.classList.remove("dev-cursor-pressed");
+    });
 
     const render = () => {
-        frameX += (pointerX - frameX) * 0.24;
-        frameY += (pointerY - frameY) * 0.24;
+        if (pressed) {
+            frameX = pointerX;
+            frameY = pointerY;
+        } else {
+            frameX += (pointerX - frameX) * 0.24;
+            frameY += (pointerY - frameY) * 0.24;
+        }
+
         glowX += (pointerX - glowX) * 0.095;
         glowY += (pointerY - glowY) * 0.095;
 
-        const pressScale = pressed ? 0.86 : 1;
-        frame.style.transform = `translate3d(${frameX}px, ${frameY}px, 0) scale(${pressScale})`;
+        frame.style.transform = `translate3d(${frameX}px, ${frameY}px, 0)`;
         glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0)`;
         requestAnimationFrame(render);
     };

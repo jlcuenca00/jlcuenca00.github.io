@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Flutter To-Do project visual</title>
+  <desc id="desc">Stylized mobile task manager interface in red and navy</desc>
+  <rect width="1200" height="750" fill="#070707"/>
+  <rect x="120" y="110" width="960" height="530" rx="34" fill="#0c0c0c" stroke="#242424"/>
+  <rect x="174" y="164" width="330" height="422" rx="30" fill="#f7f7f7"/>
+  <rect x="174" y="164" width="330" height="88" rx="30" fill="#7d0b17"/>
+  <text x="208" y="218" fill="#fff" font-family="Arial" font-size="25" font-weight="700">My Tasks</text>
+  <g>
+    <rect x="208" y="290" width="262" height="62" rx="12" fill="#fff" stroke="#dedede"/><circle cx="232" cy="321" r="9" fill="none" stroke="#7d0b17" stroke-width="3"/><text x="256" y="326" fill="#333" font-family="Arial" font-size="17">Finish activity</text>
+    <rect x="208" y="370" width="262" height="62" rx="12" fill="#fff" stroke="#dedede"/><circle cx="232" cy="401" r="9" fill="#7d0b17"/><path d="M226 401l4 4 8-10" fill="none" stroke="#fff" stroke-width="2"/><text x="256" y="406" fill="#777" font-family="Arial" font-size="17">Submit project</text>
+    <rect x="208" y="450" width="262" height="62" rx="12" fill="#fff" stroke="#dedede"/><circle cx="232" cy="481" r="9" fill="none" stroke="#7d0b17" stroke-width="3"/><text x="256" y="486" fill="#333" font-family="Arial" font-size="17">Review notes</text>
+  </g>
+  <rect x="426" y="520" width="54" height="54" rx="27" fill="#0f2747"/><text x="453" y="555" fill="#fff" font-family="Arial" font-size="31" text-anchor="middle">+</text>
+  <text x="604" y="302" fill="#fff" font-family="Arial" font-size="58" font-weight="900">FLUTTER TO-DO</text>
+  <text x="608" y="354" fill="#ff2a2a" font-family="monospace" font-size="19" letter-spacing="4">TASK MANAGEMENT / MOBILE</text>
+  <text x="608" y="414" fill="#777" font-family="monospace" font-size="16">ADD / MANAGE / SLIDE TO DELETE</text>
+  <path d="M610 470h324" stroke="#2a2a2a" stroke-width="2"/>
+  <text x="610" y="512" fill="#ddd" font-family="monospace" font-size="14">FLUTTER + DART</text>
+</svg>

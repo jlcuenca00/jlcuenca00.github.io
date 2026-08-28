@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">JC monogram avatar</title>
+  <desc id="desc">Abstract red and black monogram avatar for Jake Cuenca</desc>
+  <rect width="800" height="1000" fill="#070707"/>
+  <g stroke="#1b1b1b" stroke-width="1">
+    <path d="M0 100H800M0 200H800M0 300H800M0 400H800M0 500H800M0 600H800M0 700H800M0 800H800M0 900H800"/>
+    <path d="M100 0V1000M200 0V1000M300 0V1000M400 0V1000M500 0V1000M600 0V1000M700 0V1000"/>
+  </g>
+  <circle cx="590" cy="190" r="150" fill="#ff2a2a" opacity=".08"/>
+  <rect x="80" y="80" width="640" height="840" fill="none" stroke="#ff2a2a" stroke-opacity=".35"/>
+  <path d="M130 140h120M130 140v120M670 860H550M670 860V740" fill="none" stroke="#ff2a2a" stroke-width="5"/>
+  <text x="400" y="565" fill="#f4f4f4" font-family="Arial, Helvetica, sans-serif" font-size="330" font-weight="900" text-anchor="middle" letter-spacing="-32">JC</text>
+  <text x="400" y="680" fill="#ff2a2a" font-family="monospace" font-size="28" text-anchor="middle" letter-spacing="8">DEVELOPER / CREATOR</text>
+  <text x="400" y="840" fill="#777" font-family="monospace" font-size="19" text-anchor="middle" letter-spacing="6">DUMAGUETE / PH / 2026</text>
+</svg>
