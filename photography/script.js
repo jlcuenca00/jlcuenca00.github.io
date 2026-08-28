@@ -322,6 +322,7 @@ function initCreatorCursor() {
     let ringY = pointerY;
     let lightX = pointerX;
     let lightY = pointerY;
+    let pressed = false;
 
     const interactiveSelector = "a, button, [role='button']";
 
@@ -338,6 +339,7 @@ function initCreatorCursor() {
     }, { passive: true });
 
     document.documentElement.addEventListener("mouseleave", () => {
+        pressed = false;
         document.body.classList.remove(
             "creator-cursor-visible",
             "creator-cursor-active",
@@ -346,8 +348,10 @@ function initCreatorCursor() {
         );
     });
 
-    document.addEventListener("pointerdown", () => ring.style.scale = "0.9");
-    document.addEventListener("pointerup", () => ring.style.scale = "1");
+    document.addEventListener("pointerdown", () => { pressed = true; });
+    document.addEventListener("pointerup", () => { pressed = false; });
+    document.addEventListener("pointercancel", () => { pressed = false; });
+    window.addEventListener("blur", () => { pressed = false; });
 
     const render = () => {
         ringX += (pointerX - ringX) * 0.2;
@@ -355,7 +359,8 @@ function initCreatorCursor() {
         lightX += (pointerX - lightX) * 0.07;
         lightY += (pointerY - lightY) * 0.07;
 
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+        const pressScale = pressed ? 0.9 : 1;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${pressScale})`;
         light.style.transform = `translate3d(${lightX}px, ${lightY}px, 0)`;
         requestAnimationFrame(render);
     };
