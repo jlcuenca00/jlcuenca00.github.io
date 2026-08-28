@@ -1,150 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Developer portfolio of Jake Cuenca â€” systems, web applications, mobile projects, skills, education, and selected work."
-        />
-        <meta name="theme-color" content="#050505" />
-        <title>Jake Cuenca â€” Developer</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Developer portfolio of Jake Cuenca â€” systems, web applications, mobile projects, skills, education, achievements, and selected work." />
+  <meta name="theme-color" content="#050505" />
+  <title>Jake Cuenca â€” Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="../assets/js/site.js" defer></script>
+  <script src="script.js?v=20260828-rubric1" defer></script>
+</head>
+<body class="dev-page">
+  <div class="dev-grid" aria-hidden="true"></div>
+  <div class="dev-scan" aria-hidden="true"></div>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="../assets/css/base.css" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="../assets/js/site.js" defer></script>
-        <script src="script.js?v=20260828-rubric1" defer></script>
-    </head>
+  <nav class="dev-nav" aria-label="Developer portfolio navigation">
+    <a class="dev-brand" href="../index.html" aria-label="Return to portfolio landing page"><span>J/C</span><small>DEVELOPER</small></a>
+    <div class="dev-nav__links">
+      <a href="#work">WORK</a>
+      <a href="#about">PROFILE</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#education">EDUCATION</a>
+      <a href="#contact">CONTACT</a>
+      <a class="world-switch" href="../photography/index.html">CREATOR â†—</a>
+    </div>
+  </nav>
 
-    <body class="dev-page">
-        <div class="dev-grid" aria-hidden="true"></div>
-        <div class="dev-scan" aria-hidden="true"></div>
+  <main>
+    <section class="dev-hero" id="top">
+      <div class="hero-status reveal">
+        <span>PORTFOLIO / <span data-current-year>2026</span></span>
+        <span>DUMAGUETE, PH</span>
+        <span class="hero-status__live">SYSTEM ONLINE</span>
+      </div>
+      <div class="dev-hero__title reveal">
+        <p class="eyebrow">JAKE KEVIN KLAIR L. CUENCA / BS INFORMATION TECHNOLOGY</p>
+        <h1>I BUILD<br /><span>SYSTEMS</span><br />FOR THE REAL WORLD.</h1>
+      </div>
+      <div class="dev-hero__foot reveal">
+        <p>BS Information Technology graduate focused on full-stack web applications, practical interfaces, data-driven systems, and software built around how people actually work.</p>
+        <div class="hero-actions"><a href="#work">SELECTED WORK â†“</a><a href="#about">PROFILE â†“</a></div>
+      </div>
+    </section>
 
-        <nav class="dev-nav" aria-label="Developer portfolio navigation">
-            <a class="dev-brand" href="../index.html" aria-label="Return to portfolio landing page">
-                <span>J/C</span>
-                <small>DEVELOPER</small>
-            </a>
+    <section class="project-index" id="work" aria-labelledby="work-title">
+      <header class="index-heading reveal">
+        <div><span class="index-kicker">01 / SELECTED WORK</span><h2 id="work-title">PROJECT INDEX</h2></div>
+        <p>Three real projects. Hover or focus to inspect.</p>
+      </header>
 
-            <div class="dev-nav__links">
-                <a href="#work">WORK</a>
-                <a href="#about">PROFILE</a>
-                <a href="#skills">SKILLS</a>
-                <a href="#education">EDUCATION</a>
-                <a href="#contact">CONTACT</a>
-                <a class="world-switch" href="../photography/index.html">CREATOR â†—</a>
+      <div class="project-layout">
+        <div class="project-list" role="list">
+          <a class="project-row reveal is-active" href="https://darltcms.me/" target="_blank" rel="noreferrer" role="listitem"
+             data-project="dar" data-title="DAR-LTCMS" data-subtitle="Land Transfer Clearance & Monitoring System for DAR Negros Oriental."
+             data-stack="Laravel 12 / PHP / PostgreSQL / Blade / JavaScript" data-year="2026" data-role="Lead / Integrator / Full-stack"
+             data-image="assets/dar-ltcms.svg" data-alt="Stylized interface visual for the DAR-LTCMS project" data-href="https://darltcms.me/">
+            <span class="project-no">01</span><span class="project-name">DAR-LTCMS</span><span class="project-role">LEAD / INTEGRATOR / FULL-STACK</span><span class="project-year">2026</span><span class="project-arrow">â†—</span>
+          </a>
+          <a class="project-row reveal" href="https://github.com/jlcuenca00/periphora" target="_blank" rel="noreferrer" role="listitem"
+             data-project="periphora" data-title="PERIPHORA" data-subtitle="A dark-theme e-commerce mobile UI for browsing and purchasing tech peripherals."
+             data-stack="Flutter / Dart / Reusable Widgets / Mobile UI" data-year="2025" data-role="Individual Project"
+             data-image="assets/periphora.svg" data-alt="Stylized mobile interface visual for the Periphora project" data-href="https://github.com/jlcuenca00/periphora">
+            <span class="project-no">02</span><span class="project-name">PERIPHORA</span><span class="project-role">INDIVIDUAL / FLUTTER UI</span><span class="project-year">2025</span><span class="project-arrow">â†—</span>
+          </a>
+          <a class="project-row reveal" href="https://github.com/jlcuenca00/to_do_app" target="_blank" rel="noreferrer" role="listitem"
+             data-project="todo" data-title="FLUTTER TO-DO" data-subtitle="A clean task-management app with add/manage flows and slide-to-delete interaction."
+             data-stack="Flutter / Dart / Mobile Interaction" data-year="2025" data-role="Individual Project"
+             data-image="assets/flutter-todo.svg" data-alt="Stylized mobile task list visual for the Flutter To-Do project" data-href="https://github.com/jlcuenca00/to_do_app">
+            <span class="project-no">03</span><span class="project-name">FLUTTER TO-DO</span><span class="project-role">INDIVIDUAL / MOBILE APP</span><span class="project-year">2025</span><span class="project-arrow">â†—</span>
+          </a>
+        </div>
+
+        <aside class="project-preview reveal" aria-live="polite">
+          <div class="preview-window" data-preview="dar">
+            <div class="preview-window__bar"><span>PREVIEW://SELECTED</span><span>â—</span></div>
+            <div class="preview-visual--image"><img id="preview-image" src="assets/dar-ltcms.svg" alt="Stylized interface visual for the DAR-LTCMS project" /><strong id="preview-number">01</strong></div>
+            <div class="preview-copy">
+              <p id="preview-year">2026</p><h3 id="preview-title">DAR-LTCMS</h3>
+              <p id="preview-subtitle">Land Transfer Clearance & Monitoring System for DAR Negros Oriental.</p>
+              <span id="preview-role">Lead / Integrator / Full-stack</span><span id="preview-stack">Laravel 12 / PHP / PostgreSQL / Blade / JavaScript</span>
+              <a id="preview-link" href="https://darltcms.me/" target="_blank" rel="noreferrer">OPEN PROJECT â†—</a>
             </div>
-        </nav>
+          </div>
+        </aside>
+      </div>
 
-        <main>
-            <section class="dev-hero" id="top">
-                <div class="hero-status reveal">
-                    <span>PORTFOLIO / <span data-current-year>2026</span></span>
-                    <span>DUMAGUETE, PH</span>
-                    <span class="hero-status__live">SYSTEM ONLINE</span>
-                </div>
+      <div class="case-grid" aria-label="Project details">
+        <article class="case-card reveal">
+          <img src="assets/dar-ltcms.svg" alt="Stylized DAR-LTCMS dashboard and monitoring interface" />
+          <div class="case-card__meta"><span>01 / 2026</span><span>GOVERNMENT WORKFLOW SYSTEM</span></div>
+          <h3>DAR-LTCMS</h3>
+          <p>Administrative processing, records-management, clearance-generation, mapping, monitoring, reporting, and auditability platform for the Department of Agrarian Reform â€” Negros Oriental Provincial Office.</p>
+          <dl><div><dt>ROLE</dt><dd>Lead / Integrator / Full-stack</dd></div><div><dt>TOOLS</dt><dd>Laravel 12, PHP, PostgreSQL, Blade, JavaScript</dd></div></dl>
+          <a href="https://darltcms.me/" target="_blank" rel="noreferrer">LIVE SYSTEM â†—</a>
+        </article>
+        <article class="case-card reveal">
+          <img src="assets/periphora.svg" alt="Stylized Periphora e-commerce mobile interface" />
+          <div class="case-card__meta"><span>02 / 2025</span><span>MOBILE E-COMMERCE UI</span></div>
+          <h3>PERIPHORA</h3>
+          <p>Tech-peripheral shopping app with a dark visual system, animated parallax product browsing, product details, cart and checkout flows, reusable widgets, and interaction-focused mobile UI.</p>
+          <dl><div><dt>ROLE</dt><dd>Individual Project</dd></div><div><dt>TOOLS</dt><dd>Flutter, Dart, reusable widgets, mobile UI</dd></div></dl>
+          <a href="https://github.com/jlcuenca00/periphora" target="_blank" rel="noreferrer">SOURCE â†—</a>
+        </article>
+        <article class="case-card reveal">
+          <img src="assets/flutter-todo.svg" alt="Stylized Flutter To-Do task management interface" />
+          <div class="case-card__meta"><span>03 / 2025</span><span>MOBILE TASK MANAGER</span></div>
+          <h3>FLUTTER TO-DO</h3>
+          <p>Simple task-management application for adding and managing daily tasks, including slide-to-delete interaction and a visual palette based on Asian College branding.</p>
+          <dl><div><dt>ROLE</dt><dd>Individual Project</dd></div><div><dt>TOOLS</dt><dd>Flutter, Dart</dd></div></dl>
+          <a href="https://github.com/jlcuenca00/to_do_app" target="_blank" rel="noreferrer">SOURCE â†—</a>
+        </article>
+      </div>
+    </section>
 
-                <div class="dev-hero__title reveal">
-                    <p class="eyebrow">JAKE KEVIN KLAIR L. CUENCA / BS INFORMATION TECHNOLOGY</p>
-                    <h1>
-                        I BUILD<br />
-                        <span>SYSTEMS</span><br />
-                        FOR THE REAL WORLD.
-                    </h1>
-                </div>
+    <section class="dev-about" id="about" aria-labelledby="about-title">
+      <div class="about-label reveal"><span>02 / PROFILE</span><span>BUILD â†’ TEST â†’ REFINE</span></div>
+      <div class="profile-layout">
+        <figure class="profile-avatar reveal"><img src="assets/jc-avatar.svg" alt="JC monogram avatar for Jake Cuenca" /><figcaption>JAKE KEVIN KLAIR L. CUENCA / CLASS OF 2026</figcaption></figure>
+        <div class="profile-copy reveal">
+          <p class="profile-kicker">DEVELOPER / SYSTEM BUILDER / VISUAL CREATIVE</p>
+          <h2 id="about-title">LESS DECORATION.<br /><span>MORE INTENT.</span></h2>
+          <p>I am a Bachelor of Science in Information Technology graduate from Asian College of Science and Technology â€” Dumaguete City. I enjoy building software around actual workflows: understand the problem, reduce friction, make the interface legible, and keep the system maintainable.</p>
+          <p>Outside development, I work with photography, filmmaking, and visual communication. That creative background shapes how I approach hierarchy, interaction, pacing, and the way people experience an interface. My long-term goal is to keep building practical systems, teach what I learn, and continue advanced study in information technology.</p>
+          <div class="profile-facts" aria-label="Profile details">
+            <div><span>PROGRAM</span><strong>BS Information Technology</strong></div>
+            <div><span>STATUS</span><strong>Graduate / Class of 2026</strong></div>
+            <div><span>LOCATION</span><strong>Dumaguete City, Philippines</strong></div>
+            <div><span>INTERESTS</span><strong>Web Systems / UI / Photography / Film / Teaching</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                <div class="dev-hero__foot reveal">
-                    <p>
-                        BS Information Technology graduate focused on full-stack web applications,
-                        practical interfaces, data-driven systems, and software built around how people actually work.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#work">SELECTED WORK â†“</a>
-                        <a href="#about">PROFILE â†“</a>
-                    </div>
-                </div>
-            </section>
+    <section class="dev-skills" id="skills" aria-labelledby="skills-title">
+      <div class="section-meta reveal"><span>03 / SKILLS</span><span>TECHNICAL + CREATIVE + PROFESSIONAL</span></div>
+      <header class="section-title reveal"><h2 id="skills-title">WHAT I<br /><span>WORK WITH.</span></h2><p>Grouped by how I actually use them instead of arbitrary percentage bars.</p></header>
+      <div class="skill-grid reveal">
+        <article><span>01</span><h3>WEB & BACKEND</h3><p>Laravel, PHP, JavaScript, HTML, CSS, REST APIs, authentication, validation, responsive UI.</p></article>
+        <article><span>02</span><h3>DATA & SYSTEMS</h3><p>PostgreSQL, relational modeling, workflow design, auditability, reporting, Git/GitHub, deployment.</p></article>
+        <article><span>03</span><h3>MOBILE & FRONTEND</h3><p>Flutter, Dart, React + Vite, reusable components, interaction design, accessibility-minded interfaces.</p></article>
+        <article><span>04</span><h3>CREATIVE & SOFT SKILLS</h3><p>Photography, filmmaking, Lightroom, Photoshop, Premiere Pro, DaVinci Resolve, teamwork, communication, project integration.</p></article>
+      </div>
+    </section>
 
-            <section class="project-index" id="work" aria-labelledby="work-title">
-                <header class="index-heading reveal">
-                    <div>
-                        <span class="index-kicker">01 / SELECTED WORK</span>
-                        <h2 id="work-title">PROJECT INDEX</h2>
-                    </div>
-                    <p>Three real projects. Hover or focus to inspect.</p>
-                </header>
+    <section class="dev-education" id="education" aria-labelledby="education-title">
+      <div class="section-meta reveal"><span>04 / EDUCATION</span><span>ACADEMIC BACKGROUND</span></div>
+      <header class="section-title reveal"><h2 id="education-title">EDUCATION &<br /><span>MILESTONES.</span></h2></header>
+      <div class="education-layout">
+        <article class="education-card reveal">
+          <span class="education-year">2026</span>
+          <div><p>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</p><h3>ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY â€” DUMAGUETE CITY</h3><p>Graduated 2026. Academic work covered software development, systems analysis, application development, databases, and capstone research.</p></div>
+        </article>
+        <div class="achievement-list reveal" aria-labelledby="achievement-title">
+          <h3 id="achievement-title">ACHIEVEMENTS / LEADERSHIP</h3>
+          <div><span>2026</span><p>BS Information Technology graduate.</p></div>
+          <div><span>2026</span><p>DAR-LTCMS capstone project approved with revisions at colloquium.</p></div>
+          <div><span>2025â€“2026</span><p>Public Information Officer, ACCLAIMED campus media organization.</p></div>
+        </div>
+      </div>
+    </section>
 
-                <div class="project-layout">
-                    <div class="project-list" role="list">
-                        <a
-                            class="project-row reveal is-active"
-                            href="https://darltcms.me/"
-                            target="_blank"
-                            rel="noreferrer"
-                            role="listitem"
-                            data-project="dar"
-                            data-title="DAR-LTCMS"
-                            data-subtitle="Land Transfer Clearance & Monitoring System for DAR Negros Oriental."
-                            data-stack="Laravel 12 / PHP / PostgreSQL / Blade / JavaScript"
-                            data-year="2026"
-                            data-role="Lead / Integrator / Full-stack"
-                            data-image="assets/dar-ltcms.svg"
-                            data-alt="Stylized interface visual for the DAR-LTCMS project"
-                            data-href="https://darltcms.me/"
-                        >
-                            <span class="project-no">01</span>
-                            <span class="project-name">DAR-LTCMS</span>
-                            <span class="project-role">LEAD / INTEGRATOR / FULL-STACK</span>
-                            <span class="project-year">2026</span>
-                            <span class="project-arrow">â†—</span>
-                        </a>
+    <section class="dev-cv" id="cv" aria-labelledby="cv-title">
+      <div class="cv-copy reveal"><span>05 / RESUME</span><h2 id="cv-title">THE SHORT<br /><em>VERSION.</em></h2><p>Education, selected projects, skills, achievements, and contact information in a one-page PDF.</p></div>
+      <a class="cv-download reveal" href="resume.pdf" download><span>DOWNLOAD CV</span><strong>PDF â†˜</strong></a>
+    </section>
 
-                        <a
-                            class="project-row reveal"
-                            href="https://github.com/jlcuenca00/periphora"
-                            target="_blank"
-                            rel="noreferrer"
-                            role="listitem"
-                            data-project="periphora"
-                            data-title="PERIPHORA"
-                            data-subtitle="A dark-theme e-commerce mobile UI for browsing and purchasing tech peripherals."
-                            data-stack="Flutter / Dart / Reusable Widgets / Mobile UI"
-                            data-year="2025"
-                            data-role="Individual Project"
-                            data-image="assets/periphora.svg"
-                            data-alt="Stylized mobile interface visual for the Periphora project"
-                            data-href="https://github.com/jlcuenca00/periphora"
-                        >
-                            <span class="project-no">02</span>
-                            <span class="project-name">PERIPHORA</span>
-                            <span class="project-role">INDIVIDUAL / FLUTTER UI</span>
-                            <span class="project-year">2025</span>
-                            <span class="project-arrow">â†—</span>
-                        </a>
+    <section class="dev-contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-meta reveal"><span>06 / CONTACT</span><span>OPEN CHANNEL</span></div>
+      <div class="contact-main reveal">
+        <h2 id="contact-title">LET'S BUILD<br /><span>SOMETHING USEFUL.</span></h2>
+        <div class="contact-links">
+          <a href="mailto:deklaired@gmail.com"><span>EMAIL</span><span>â†—</span></a>
+          <a href="https://github.com/jlcuenca00" target="_blank" rel="noreferrer"><span>GITHUB</span><span>â†—</span></a>
+          <a href="resume.pdf" download><span>RESUME / CV</span><span>â†˜</span></a>
+          <a href="../photography/index.html"><span>ENTER CREATOR</span><span>â†—</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                        <a
-                            class="project-row reveal"
-                            href="https://github.com/jlcuenca00/to_do_app"
-                            target="_blank"
-                            rel="noreferrer"
-                            role="listitem"
-                            data-project="todo"
-                            data-title="FLUTTER TO-DO"
-                            data-subtitle="A clean task-management app with add/manage flows and slide-to-delete interaction."
-                            data-stack="Flutter / Dart / Mobile Interaction"
-                            data-year="2025"
-                            data-role="Individual Project"
-                            data-image="assets/flutter-todo.svg"
-                            data-alt="Stylized mobile task list visual for the Flutter To-Do project"
-                            data-href="https://github.com/jlcuenca00/to_do_app"
-                        >
-                            <span class="project-no">03</span>
-                            <span class="project-name">FLUTTER TO-DO</span>
-                            <span class="project-role">IND²È="24€€ð½‘¥Øø((€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰ÁÉ½™¥±”µ±…å½ÕÐˆø(€€€€€€€€€€€€€€€€€€€€ñ™¥ÕÉ”±…ÍÌô‰ÁÉ½™¥±”µ…Ù…Ñ…ÈÉ•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€€€€€ñ¥µœÍÉŒô‰…ÍÍ•ÑÌ½©Œµ…Ù…Ñ…È¹ÍÙœˆ…±Ðô‰)µ½¹½É…´…Ù…Ñ…È™½È)…­”Õ•¹„ˆ€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ™¥…ÁÑ¥½¸ù)--Y%8-1%H0¸U9€¼1ML=€ÈÀÈØð½™¥…ÁÑ¥½¸ø(€€€€€€€€€€€€€€€€€€€€ð½™¥ÕÉ”ø((€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰ÁÉ½™¥±”µ½ÁäÉ•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀ±…ÍÌô‰ÁÉ½™¥±”µ­¥­•ÈˆùY1=AH€¼MeMQ4	U%1H€¼Y%MU0IQ%Yð½Àø(€€€€€€€€€€€€€€€€€€€€€€€€ñ È¥ô‰…‰½ÕÐµÑ¥Ñ±”ˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€1ML=IQ%=8¸ñ‰È€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ù5=I%9Q9P¸ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ð½ Èø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀø(€€€€€€€€€€€€€€€€€€€€€€€€€€€$…´„	…¡•±½È½˜M¥•¹”¥¸%¹™½Éµ…Ñ¥½¸Q•¡¹½±½äÉ…‘Õ…Ñ”™É½´Í¥…¸½±±•”½˜M¥•¹”…¹Q•¡¹½±½ä€´Õµ…Õ•Ñ”¥Ñä¸(€€€€€€€€€€€€€€€€€€€€€€€€€€€$•¹©½ä‰Õ¥±‘¥¹œÍ½™ÑÝ…É”…É½Õ¹…ÑÕ…°Ý½É­™±½ÝÌèÕ¹‘•ÉÍÑ…¹Ñ¡”ÁÉ½‰±•´°É•‘Õ”™É¥Ñ¥½¸°µ…­”Ñ¡”¥¹Ñ•É™…”±•¥‰±”°(€€€€€€€€€€€€€€€€€€€€€€€€€€€…¹­••ÀÑ¡”ÍåÍÑ•´µ…¥¹Ñ…¥¹…‰±”¸(€€€€€€€€€€€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀø(€€€€€€€€€€€€€€€€€€€€€€€€€€€=ÕÑÍ¥‘”‘•Ù•±½Áµ•¹Ð°$Ý½É¬Ý¥Ñ Á¡½Ñ½É…Á¡ä°™¥±µµ…­¥¹œ°…¹Ù¥ÍÕ…°½µµÕ¹¥…Ñ¥½¸¸Q¡…ÐÉ•…Ñ¥Ù”‰…­É½Õ¹Í¡…Á•Ì¡½Ü$…ÁÁÉ½… (€€€€€€€€€€€€€€€€€€€€€€€€€€€¡¥•É…É¡ä°¥¹Ñ•É…Ñ¥½¸°Á…¥¹œ°…¹Ñ¡”Ý…äÁ•½Á±”•áÁ•É¥•¹”…¸¥¹Ñ•É™…”¸5ä±½¹œµÑ•É´½…°¥ÌÑ¼­••À‰Õ¥±‘¥¹œÁÉ…Ñ¥…°ÍåÍÑ•µÌ°(€€€€€€€€€€€€€€€€€€€€€€€€€€€Ñ•… Ý¡…Ð$±•…É¸°…¹½¹Ñ¥¹Õ”…‘Ù…¹•ÍÑÕ‘ä¥¸¥¹™½Éµ…Ñ¥½¸Ñ•¡¹½±½ä¸(€€€€€€€€€€€€€€€€€€€€€€€€ð½Àø((€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰ÁÉ½™¥±”µ™…ÑÌˆ…É¥„µ±…‰•°ô‰AÉ½™¥±”‘•Ñ…¥±Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸ùAI=I4ð½ÍÁ…¸øñÍÑÉ½¹œù	L%¹™½Éµ…Ñ¥½¸Q•¡¹½±½äð½ÍÑÉ½¹œøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸ùMQQULð½ÍÁ…¸øñÍÑÉ½¹œùÉ…‘Õ…Ñ”€¼±…ÍÌ½˜€ÈÀÈØð½ÍÑÉ½¹œøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸ù1=Q%=8ð½ÍÁ…¸øñÍÑÉ½¹œùÕµ…Õ•Ñ”¥Ñä°A¡¥±¥ÁÁ¥¹•Ìð½ÍÑÉ½¹œøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸ù%9QIMQLð½ÍÁ…¸øñÍÑÉ½¹œù]•ˆMåÍÑ•µÌ€¼U$€¼A¡½Ñ½É…Á¡ä€¼¥±´€¼Q•…¡¥¹œð½ÍÑÉ½¹œøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÌô‰‘•ØµÍ­¥±±Ìˆ¥ô‰Í­¥±±Ìˆ…É¥„µ±…‰•±±•‘‰äô‰Í­¥±±ÌµÑ¥Ñ±”ˆø(€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰Í•Ñ¥½¸µµ•Ñ„É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÌ€¼M-%11Lð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ùQ!9%0€¬IQ%Y€¬AI=MM%=90ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ñ¡•…‘•È±…ÍÌô‰Í•Ñ¥½¸µÑ¥Ñ±”É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñ È¥ô‰Í­¥±±ÌµÑ¥Ñ±”ˆù]!P$ñ‰È€¼øñÍÁ…¸ù]=I,]%Q ¸ð½ÍÁ…¸øð½ Èø(€€€€€€€€€€€€€€€€€€€€ñÀùÉ½ÕÁ•‰ä¡½Ü$…ÑÕ…±±äÕÍ”Ñ¡•´¥¹ÍÑ•…½˜…É‰¥ÑÉ…ÉäÁ•É•¹Ñ…”‰…ÉÌ¸ð½Àø(€€€€€€€€€€€€€€€€ð½¡•…‘•Èø((€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰Í­¥±°µÉ¥É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñ…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÄð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ Ìù]€˜	-9ð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀù1…É…Ù•°°A!@°)…Ù…MÉ¥ÁÐ°!Q50°ML°IMPA%Ì°…ÕÑ¡•¹Ñ¥…Ñ¥½¸°Ù…±¥‘…Ñ¥½¸°É•ÍÁ½¹Í¥Ù”U$¸ð½Àø(€€€€€€€€€€€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€ñ…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÈð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ ÌùQ€˜MeMQ5Lð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀùA½ÍÑÉ•ME0°É•±…Ñ¥½¹…°µ½‘•±¥¹œ°Ý½É­™±½Ü‘•Í¥¸°…Õ‘¥Ñ…‰¥±¥Ñä°É•Á½ÉÑ¥¹œ°¥Ð½¥Ñ!Õˆ°‘•Á±½åµ•¹Ð¸ð½Àø(€€€€€€€€€€€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€ñ…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÌð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ Ìù5=	%1€˜I=9Q9ð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀù±ÕÑÑ•È°…ÉÐ°I•…Ð€¬Y¥Ñ”°É•ÕÍ…‰±”½µÁ½¹•¹ÑÌ°¥¹Ñ•É…Ñ¥½¸‘•Í¥¸°…•ÍÍ¥‰¥±¥Ñäµµ¥¹‘•¥¹Ñ•É™…•Ì¸ð½Àø(€€€€€€€€€€€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€ñ…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÐð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ ÌùIQ%Y€˜M=PM-%11Lð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀùA¡½Ñ½É…Á¡ä°™¥±µµ…­¥¹œ°1¥¡ÑÉ½½´°A¡½Ñ½Í¡½À°AÉ•µ¥•É”AÉ¼°…Y¥¹¤I•Í½±Ù”°Ñ•…µÝ½É¬°½µµÕ¹¥…Ñ¥½¸°ÁÉ½©•Ð¥¹Ñ•É…Ñ¥½¸¸ð½Àø(€€€€€€€€€€€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÌô‰‘•Øµ•‘Õ…Ñ¥½¸ˆ¥ô‰•‘Õ…Ñ¥½¸ˆ…É¥„µ±…‰•±±•‘‰äô‰•‘Õ…Ñ¥½¸µÑ¥Ñ±”ˆø(€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰Í•Ñ¥½¸µµ•Ñ„É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÐ€¼UQ%=8ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ù5%	-I=U9ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ñ¡•…‘•È±…ÍÌô‰Í•Ñ¥½¸µÑ¥Ñ±”É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñ È¥ô‰•‘Õ…Ñ¥½¸µÑ¥Ñ±”ˆùUQ%=8€˜ñ‰È€¼øñÍÁ…¸ù5%1MQ=9L¸ð½ÍÁ…¸øð½ Èø(€€€€€€€€€€€€€€€€ð½¡•…‘•Èø((€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰•‘Õ…Ñ¥½¸µ±…å½ÕÐˆø(€€€€€€€€€€€€€€€€€€€€ñ…ÉÑ¥±”±…ÍÌô‰•‘Õ…Ñ¥½¸µ…ÉÉ•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÌô‰•‘Õ…Ñ¥½¸µå•…ÈˆøÈÀÈØð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñÀù	!1=H=M%9%8%9=I5Q%=8Q!9=1=dð½Àø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ ÌùM%8=11=M%99Q!9=1=d€´U5UQ%Qdð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñÀùÉ…‘Õ…Ñ•€ÈÀÈØ¸…‘•µ¥ŒÝ½É¬½Ù•É•Í½™ÑÝ…É”‘•Ù•±½Áµ•¹Ð°ÍåÍÑ•µÌ…¹…±åÍ¥Ì°…ÁÁ±¥…Ñ¥½¸‘•Ù•±½Áµ•¹Ð°‘…Ñ…‰…Í•Ì°…¹…ÁÍÑ½¹”É•Í•…É ¸ð½Àø(€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€ð½…ÉÑ¥±”ø((€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰…¡¥•Ù•µ•¹Ðµ±¥ÍÐÉ•Ù•…°ˆ…É¥„µ±…‰•±±•‘‰äô‰…¡¥•Ù•µ•¹ÐµÑ¥Ñ±”ˆø(€€€€€€€€€€€€€€€€€€€€€€€€ñ Ì¥ô‰…¡¥•Ù•µ•¹ÐµÑ¥Ñ±”ˆù!%Y59QL€¼1IM!%@ð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸øÈÀÈØð½ÍÁ…¸øñÀù	L%¹™½Éµ…Ñ¥½¸Q•¡¹½±½äÉ…‘Õ…Ñ”¸ð½Àøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸øÈÀÈØð½ÍÁ…¸øñÀùHµ1Q5L…ÁÍÑ½¹”ÁÉ½©•Ð…ÁÁÉ½Ù•Ý¥Ñ É•Ù¥Í¥½¹Ì…Ð½±±½ÅÕ¥Õ´¸ð½Àøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥ØøñÍÁ…¸øÈÀÈÔ´ÈÀÈØð½ÍÁ…¸øñÀùAÕ‰±¥Œ%¹™½Éµ…Ñ¥½¸=™™¥•È°1%5…µÁÕÌµ•‘¥„½É…¹¥é…Ñ¥½¸¸ð½Àøð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÌô‰‘•ØµØˆ¥ô‰Øˆ…É¥„µ±…‰•±±•‘‰äô‰ØµÑ¥Ñ±”ˆø(€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰Øµ½ÁäÉ•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀÔ€¼IMU5ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ñ È¥ô‰ØµÑ¥Ñ±”ˆùQ!M!=IPñ‰È€¼øñ•´ùYIM%=8¸ð½•´øð½ Èø(€€€€€€€€€€€€€€€€€€€€ñÀø(€€€€€€€€€€€€€€€€€€€€€€€‘Õ…Ñ¥½¸°Í•±•Ñ•ÁÉ½©•ÑÌ°Í­¥±±Ì°…¡¥•Ù•µ•¹ÑÌ°…¹½¹Ñ…Ð¥¹™½Éµ…Ñ¥½¸¥¸„½¹”µÁ…”A¸(€€€€€€€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ñ„±…ÍÌô‰Øµ‘½Ý¹±½…É•Ù•…°ˆ¡É•˜ô‰É•ÍÕµ”¹Á‘˜ˆ‘½Ý¹±½…ø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ù=]91=Xð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ñÍÑÉ½¹œùAƒŠ`ð½ÍÑÉ½¹œø(€€€€€€€€€€€€€€€€ð½„ø(€€€€€€€€€€€€ð½Í•Ñ¥½¸ø((€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÌô‰‘•Øµ½¹Ñ…Ðˆ¥ô‰½¹Ñ…Ðˆ…É¥„µ±…‰•±±•‘‰äô‰½¹Ñ…ÐµÑ¥Ñ±”ˆø(€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰½¹Ñ…Ðµµ•Ñ„É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸øÀØ€¼=9QPð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ù=A8!990ð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰½¹Ñ…Ðµµ…¥¸É•Ù•…°ˆø(€€€€€€€€€€€€€€€€€€€€ñ È¥ô‰½¹Ñ…ÐµÑ¥Ñ±”ˆù1PL	U%1ñ‰È€¼øñÍÁ…¸ùM=5Q!%9UMU0¸ð½ÍÁ…¸øð½ Èø(€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÌô‰½¹Ñ…Ðµ±¥¹­Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€ñ„¡É•˜ô‰µ…¥±Ñ¼é‘•­±…¥É•‘µ…¥°¹½´ˆøñÍÁ…¸ù5%0ð½ÍÁ…¸øñÍÁ…¸ûŠ\ð½ÍÁ…¸øð½„ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ„¡É•˜ô‰¡ÑÑÁÌè¼½¥Ñ¡Õˆ¹½´½©±Õ•¹„ÀÀˆÑ…É•Ðô‰}‰±…¹¬ˆÉ•°ô‰¹½É•™•ÉÉ•ÈˆøñÍÁ…¸ù%Q!Uð½ÍÁ…¸øñÍÁ…¸ûŠ\ð½ÍÁ…¸øð½„ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ„¡É•˜ô‰É•ÍÕµ”¹Á‘˜ˆ‘½Ý¹±½…øñÍÁ…¸ùIMU5€¼Xð½ÍÁ…¸øñÍÁ…¸ûŠ`ð½ÍÁ…¸øð½„ø(€€€€€€€€€€€€€€€€€€€€€€€€ñ„¡É•˜ôˆ¸¸½Á¡½Ñ½É…Á¡ä½¥¹‘•à¹¡Ñµ°ˆøñÍÁ…¸ù9QHIQ=Hð½ÍÁ…¸øñÍÁ…¸ûŠ\ð½ÍÁ…¸øð½„ø(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€ð½µ…¥¸ø((€€€€€€€€ñ™½½Ñ•È±…ÍÌô‰‘•Øµ™½½Ñ•Èˆø(€€€€€€€€€€€€ñÍÁ…¸ù)-U9ƒ
-¤€ñÍÁ…¸‘…Ñ„µÕÉÉ•¹Ðµå•…ÈøÈÀÈØð½ÍÁ…¸øð½ÍÁ…¸ø(€€€€€€€€€€€€ñÍÁ…¸ù!Q50€¼ML€¼)YMI%AP€¼%Q!UALð½ÍÁ…¸ø(€€€€€€€€€€€€ñ„¡É•˜ôˆÑ½Àˆù	,Q<Q=@ƒŠDð½„ø(€€€€€€€€ð½™½½Ñ•Èø(€€€€ð½‰½‘äø(ð½¡Ñµ°ø(
+  <footer class="dev-footer"><span>JAKE CUENCA Â© <span data-current-year>2026</span></span><span>HTML / CSS / JAVASCRIPT / GITHUB PAGES</span><a href="#top">BACK TO TOP â†‘</a></footer>
+</body>
+</html>
