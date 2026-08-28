@@ -255,11 +255,16 @@ function initLandingCursor() {
     let ringY = pointerY;
     let auraX = pointerX;
     let auraY = pointerY;
+    let pressed = false;
 
     const enableForMouse = () => {
         if (enabled) return;
         enabled = true;
         document.body.classList.add("portal-cursor-enabled");
+    };
+
+    const setPressed = (value) => {
+        pressed = value;
     };
 
     document.addEventListener("mousemove", (event) => {
@@ -290,6 +295,7 @@ function initLandingCursor() {
     }, { passive: true });
 
     document.documentElement.addEventListener("mouseleave", () => {
+        setPressed(false);
         document.body.classList.remove(
             "portal-cursor-visible",
             "portal-cursor-developer",
@@ -297,13 +303,9 @@ function initLandingCursor() {
         );
     });
 
-    document.addEventListener("mousedown", () => {
-        ring.style.scale = "0.86";
-    });
-
-    document.addEventListener("mouseup", () => {
-        ring.style.scale = "1";
-    });
+    document.addEventListener("mousedown", () => setPressed(true));
+    document.addEventListener("mouseup", () => setPressed(false));
+    window.addEventListener("blur", () => setPressed(false));
 
     const render = () => {
         ringX += (pointerX - ringX) * 0.22;
@@ -311,7 +313,8 @@ function initLandingCursor() {
         auraX += (pointerX - auraX) * 0.085;
         auraY += (pointerY - auraY) * 0.085;
 
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+        const pressScale = pressed ? 0.86 : 1;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${pressScale})`;
         aura.style.transform = `translate3d(${auraX}px, ${auraY}px, 0)`;
 
         requestAnimationFrame(render);
