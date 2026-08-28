@@ -101,9 +101,9 @@ function initLandingCursor() {
                 height 220ms cubic-bezier(0.16, 1, 0.3, 1),
                 margin 220ms cubic-bezier(0.16, 1, 0.3, 1),
                 border-radius 220ms cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 180ms ease,
-                background 180ms ease,
-                box-shadow 180ms ease,
+                border-color 120ms ease,
+                background 120ms ease,
+                box-shadow 120ms ease,
                 opacity 120ms ease;
         }
 
@@ -158,6 +158,16 @@ function initLandingCursor() {
         body.portal-cursor-visible .portal-cursor-dot,
         body.portal-cursor-visible .portal-cursor-label {
             opacity: 1;
+        }
+
+        body.portal-cursor-pressed .portal-cursor-ring {
+            border-color: #fff;
+            box-shadow: 0 0 32px rgba(255, 255, 255, 0.2);
+        }
+
+        body.portal-cursor-pressed .portal-cursor-ring::before,
+        body.portal-cursor-pressed .portal-cursor-ring::after {
+            background: rgba(255, 255, 255, 0.9);
         }
 
         body.portal-cursor-developer .portal-cursor-aura {
@@ -232,6 +242,18 @@ function initLandingCursor() {
         body.portal-cursor-creator .portal-cursor-label {
             color: #7da4ff;
         }
+
+        body.portal-cursor-developer.portal-cursor-pressed .portal-cursor-ring {
+            border-color: #fff;
+            box-shadow: 0 0 34px rgba(255, 31, 31, 0.38);
+        }
+
+        body.portal-cursor-creator.portal-cursor-pressed .portal-cursor-ring {
+            border-color: #fff;
+            box-shadow:
+                inset 0 0 18px rgba(31, 95, 255, 0.16),
+                0 0 34px rgba(31, 95, 255, 0.4);
+        }
     `;
     document.head.appendChild(style);
 
@@ -265,16 +287,25 @@ function initLandingCursor() {
 
     const setPressed = (value) => {
         pressed = value;
+        document.body.classList.toggle("portal-cursor-pressed", value);
+    };
+
+    const updatePointer = (x, y) => {
+        pointerX = x;
+        pointerY = y;
+
+        if (pressed) {
+            ringX = pointerX;
+            ringY = pointerY;
+        }
+
+        dot.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+        label.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
     };
 
     document.addEventListener("mousemove", (event) => {
         enableForMouse();
-
-        pointerX = event.clientX;
-        pointerY = event.clientY;
-
-        dot.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
-        label.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+        updatePointer(event.clientX, event.clientY);
         document.body.classList.add("portal-cursor-visible");
 
         const target = event.target instanceof Element ? event.target : null;
@@ -303,18 +334,37 @@ function initLandingCursor() {
         );
     });
 
-    document.addEventListener("mousedown", () => setPressed(true));
-    document.addEventListener("mouseup", () => setPressed(false));
+    document.addEventListener("mousedown", (event) => {
+        enableForMouse();
+        updatePointer(event.clientX, event.clientY);
+        ringX = pointerX;
+        ringY = pointerY;
+        setPressed(true);
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+    });
+
+    document.addEventListener("mouseup", (event) => {
+        updatePointer(event.clientX, event.clientY);
+        ringX = pointerX;
+        ringY = pointerY;
+        setPressed(false);
+    });
+
     window.addEventListener("blur", () => setPressed(false));
 
     const render = () => {
-        ringX += (pointerX - ringX) * 0.22;
-        ringY += (pointerY - ringY) * 0.22;
+        if (pressed) {
+            ringX = pointerX;
+            ringY = pointerY;
+        } else {
+            ringX += (pointerX - ringX) * 0.22;
+            ringY += (pointerY - ringY) * 0.22;
+        }
+
         auraX += (pointerX - auraX) * 0.085;
         auraY += (pointerY - auraY) * 0.085;
 
-        const pressScale = pressed ? 0.86 : 1;
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${pressScale})`;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
         aura.style.transform = `translate3d(${auraX}px, ${auraY}px, 0)`;
 
         requestAnimationFrame(render);
