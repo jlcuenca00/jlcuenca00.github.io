@@ -32,7 +32,31 @@
         });
     }
 
-    function initAnchorScroll() {
+    function initSmoothScroll() {
+        if (prefersReducedMotion || typeof window.Lenis !== "function") {
+            return null;
+        }
+
+        const config = window.PortfolioSmoothScrollConfig || {
+            lerp: 0.2,
+            wheelMultiplier: 1,
+            smoothWheel: true,
+            syncTouch: false,
+            autoRaf: true,
+            anchors: true,
+            stopInertiaOnNavigate: true,
+            respectReducedMotion: true,
+        };
+
+        const lenis = new window.Lenis(config);
+        window.PortfolioLenis = lenis;
+        return lenis;
+    }
+
+    function initAnchorScroll(lenis) {
+        // Lenis handles anchor navigation itself when `anchors: true` is enabled.
+        if (lenis) return;
+
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", (event) => {
                 const targetId = anchor.getAttribute("href");
@@ -54,7 +78,7 @@
         });
     }
 
-    function initBackToTop() {
+    function initBackToTop(lenis) {
         const backToTopBtn = document.getElementById("backToTop");
         if (!backToTopBtn) return;
 
@@ -66,6 +90,11 @@
         window.addEventListener("scroll", toggleVisibility, { passive: true });
 
         backToTopBtn.addEventListener("click", () => {
+            if (lenis) {
+                lenis.scrollTo(0);
+                return;
+            }
+
             window.scrollTo({
                 top: 0,
                 behavior: prefersReducedMotion ? "auto" : "smooth",
@@ -74,13 +103,15 @@
     }
 
     function initSiteUI() {
+        const lenis = initSmoothScroll();
         initReveal();
-        initAnchorScroll();
-        initBackToTop();
+        initAnchorScroll(lenis);
+        initBackToTop(lenis);
     }
 
     window.PortfolioUI = {
         initReveal,
+        initSmoothScroll,
         initAnchorScroll,
         initBackToTop,
         initSiteUI,
