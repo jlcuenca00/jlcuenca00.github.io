@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Developer portfolio of Jake Cuenca — systems, web applications, mobile projects, skills, education, leadership, and selected work." />
+  <meta name="description" content="Developer portfolio of Jake Cuenca — systems, web applications, mobile projects, skills, education, leadership, certificates, and selected work." />
   <meta name="theme-color" content="#050505" />
   <title>Jake Cuenca — Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,8 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/base.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="enhancements.css" />
   <script src="../assets/js/site.js" defer></script>
-  <script src="script.js?v=20260828-rubric1" defer></script>
+  <script src="script.js?v=20260829-profile-certs1" defer></script>
+  <script src="profile-cycle.js?v=20260829-1" defer></script>
 </head>
 <body class="dev-page">
   <div class="dev-grid" aria-hidden="true"></div>
@@ -25,6 +27,7 @@
       <a href="#about">PROFILE</a>
       <a href="#skills">SKILLS</a>
       <a href="#education">EDUCATION</a>
+      <a href="#certificates">CERTS</a>
       <a href="#contact">CONTACT</a>
       <a class="world-switch" href="../photography/index.html">CREATOR ↗</a>
     </div>
@@ -34,15 +37,15 @@
     <section class="dev-hero" id="top">
       <div class="hero-status reveal">
         <span>PORTFOLIO / <span data-current-year>2026</span></span>
-        <span>DUMAGUETE, PH</span>
+        <span class="hero-status__identity"><img src="assets/profile/portrait-01.jpg" alt="Portrait of Jake Cuenca" />4TH YEAR BSIT / DUMAGUETE, PH</span>
         <span class="hero-status__live">SYSTEM ONLINE</span>
       </div>
       <div class="dev-hero__title reveal">
-        <p class="eyebrow">JAKE KEVIN KLAIR L. CUENCA / BS INFORMATION TECHNOLOGY STUDENT</p>
+        <p class="eyebrow">JAKE KEVIN KLAIR L. CUENCA / 4TH YEAR BS INFORMATION TECHNOLOGY STUDENT</p>
         <h1>I BUILD<br /><span>SYSTEMS</span><br />FOR THE REAL WORLD.</h1>
       </div>
       <div class="dev-hero__foot reveal">
-        <p>BS Information Technology student focused on full-stack web applications, practical interfaces, data-driven systems, and software built around how people actually work.</p>
+        <p>4th Year BS Information Technology student focused on full-stack web applications, practical interfaces, data-driven systems, and software built around how people actually work.</p>
         <div class="hero-actions"><a href="#work">SELECTED WORK ↓</a><a href="#about">PROFILE ↓</a></div>
       </div>
     </section>
@@ -120,15 +123,24 @@
     <section class="dev-about" id="about" aria-labelledby="about-title">
       <div class="about-label reveal"><span>02 / PROFILE</span><span>BUILD → TEST → REFINE</span></div>
       <div class="profile-layout">
-        <figure class="profile-avatar reveal"><img src="assets/jc-avatar.svg" alt="JC monogram avatar for Jake Cuenca" /><figcaption>JAKE KEVIN KLAIR L. CUENCA / BSIT STUDENT / 2023–PRESENT</figcaption></figure>
+        <figure class="profile-avatar reveal">
+          <button class="profile-portrait" type="button" aria-label="Show next portrait of Jake Cuenca">
+            <img class="profile-portrait__image is-active" src="assets/profile/portrait-01.jpg" alt="Jake Cuenca smiling in an Asian College uniform" />
+            <img class="profile-portrait__image" src="assets/profile/portrait-02.jpg" alt="Jake Cuenca posing with crossed peace signs" />
+            <img class="profile-portrait__image" src="assets/profile/portrait-03.jpg" alt="Jake Cuenca giving a thumbs-up" />
+            <span class="profile-portrait__scan" aria-hidden="true"></span>
+            <span class="profile-portrait__ui"><span>PORTRAIT://LIVE</span><strong data-portrait-counter>01 / 03</strong></span>
+          </button>
+          <figcaption>JAKE KEVIN KLAIR L. CUENCA / 4TH YEAR BSIT / 2023–PRESENT</figcaption>
+        </figure>
         <div class="profile-copy reveal">
           <p class="profile-kicker">DEVELOPER / SYSTEM BUILDER / VISUAL CREATIVE</p>
           <h2 id="about-title">LESS DECORATION.<br /><span>MORE INTENT.</span></h2>
-          <p>I am currently studying Bachelor of Science in Information Technology at Asian College of Science and Technology — Dumaguete City. I enjoy building software around actual workflows: understand the problem, reduce friction, make the interface legible, and keep the system maintainable.</p>
+          <p>I am currently a 4th Year Bachelor of Science in Information Technology student at Asian College of Science and Technology — Dumaguete City. I enjoy building software around actual workflows: understand the problem, reduce friction, make the interface legible, and keep the system maintainable.</p>
           <p>Outside development, I work with photography, filmmaking, and visual communication. That creative background shapes how I approach hierarchy, interaction, pacing, and the way people experience an interface. My long-term goal is to keep building practical systems, teach what I learn, and continue advanced study in information technology.</p>
           <div class="profile-facts" aria-label="Profile details">
             <div><span>PROGRAM</span><strong>BS Information Technology</strong></div>
-            <div><span>STATUS</span><strong>Student / 2023–Present</strong></div>
+            <div><span>STATUS</span><strong>4th Year / 2023–Present</strong></div>
             <div><span>LOCATION</span><strong>Dumaguete City, Philippines</strong></div>
             <div><span>INTERESTS</span><strong>Web Systems / UI / Photography / Film / Teaching</strong></div>
           </div>
@@ -154,7 +166,7 @@
         <div class="education-history" aria-label="Education history">
           <article class="education-card reveal">
             <span class="education-year">2023<br />NOW</span>
-            <div><p>TERTIARY / BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</p><h3>ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</h3><p>BS Information Technology student, 2023–Present.</p></div>
+            <div><p>TERTIARY / BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY / 4TH YEAR</p><h3>ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</h3><p>4th Year BS Information Technology student, 2023–Present.</p></div>
           </article>
           <article class="education-card reveal">
             <span class="education-year">2021<br />2023</span>
@@ -185,13 +197,37 @@
       </div>
     </section>
 
+    <section class="dev-certificates" id="certificates" aria-labelledby="certificates-title">
+      <div class="section-meta reveal"><span>05 / CERTIFICATES</span><span>CREDENTIALS / TRAINING</span></div>
+      <header class="section-title reveal"><h2 id="certificates-title">CERTIFICATES &<br /><span>CREDENTIALS.</span></h2><p>Selected training credentials. This archive will grow as more certificates are added.</p></header>
+      <div class="certificate-grid">
+        <article class="certificate-card reveal">
+          <div class="certificate-card__visual" aria-hidden="true"><span>SQL</span><strong>01</strong></div>
+          <div class="certificate-card__meta"><span>01 / 2024</span><span>SIMPLILEARN SKILLUP</span></div>
+          <h3>INTRODUCTION TO SQL</h3>
+          <p>Certificate of completion · 29 April 2024</p>
+          <span class="certificate-card__status">VERIFIED CREDENTIAL</span>
+        </article>
+        <article class="certificate-card reveal">
+          <div class="certificate-card__visual" aria-hidden="true"><span>PHP</span><strong>02</strong></div>
+          <div class="certificate-card__meta"><span>02 / 2024</span><span>SIMPLILEARN SKILLUP</span></div>
+          <h3>INTRODUCTION TO PHP</h3>
+          <p>Certificate of completion · 30 April 2024</p>
+          <span class="certificate-card__status">VERIFIED CREDENTIAL</span>
+        </article>
+        <article class="certificate-card certificate-card--placeholder reveal" aria-label="Space reserved for future certificates">
+          <div><span>03+</span><h3>MORE CREDENTIALS</h3><p>Additional certificates and training records will be added here.</p></div>
+        </article>
+      </div>
+    </section>
+
     <section class="dev-cv" id="cv" aria-labelledby="cv-title">
-      <div class="cv-copy reveal"><span>05 / RESUME</span><h2 id="cv-title">THE SHORT<br /><em>VERSION.</em></h2><p>Education, selected projects, skills, leadership, and contact information in a one-page PDF.</p></div>
+      <div class="cv-copy reveal"><span>06 / RESUME</span><h2 id="cv-title">THE SHORT<br /><em>VERSION.</em></h2><p>Education, selected projects, skills, leadership, certifications, and contact information in a one-page PDF.</p></div>
       <a class="cv-download reveal" href="resume.pdf" download><span>DOWNLOAD CV</span><strong>PDF ↘</strong></a>
     </section>
 
     <section class="dev-contact" id="contact" aria-labelledby="contact-title">
-      <div class="contact-meta reveal"><span>06 / CONTACT</span><span>OPEN CHANNEL</span></div>
+      <div class="contact-meta reveal"><span>07 / CONTACT</span><span>OPEN CHANNEL</span></div>
       <div class="contact-main reveal">
         <h2 id="contact-title">LET'S BUILD<br /><span>SOMETHING USEFUL.</span></h2>
         <div class="contact-links">
