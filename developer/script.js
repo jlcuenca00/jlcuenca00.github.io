@@ -169,6 +169,7 @@ function initDeveloperCursor() {
     let frameY = pointerY;
     let glowX = pointerX;
     let glowY = pointerY;
+    let pressed = false;
 
     const interactiveSelector = "a, button, [role='button']";
 
@@ -184,11 +185,14 @@ function initDeveloperCursor() {
     }, { passive: true });
 
     document.documentElement.addEventListener("mouseleave", () => {
+        pressed = false;
         document.body.classList.remove("dev-cursor-visible", "dev-cursor-active", "dev-cursor-project");
     });
 
-    document.addEventListener("pointerdown", () => frame.style.scale = "0.86");
-    document.addEventListener("pointerup", () => frame.style.scale = "1");
+    document.addEventListener("pointerdown", () => { pressed = true; });
+    document.addEventListener("pointerup", () => { pressed = false; });
+    document.addEventListener("pointercancel", () => { pressed = false; });
+    window.addEventListener("blur", () => { pressed = false; });
 
     const render = () => {
         frameX += (pointerX - frameX) * 0.24;
@@ -196,7 +200,8 @@ function initDeveloperCursor() {
         glowX += (pointerX - glowX) * 0.095;
         glowY += (pointerY - glowY) * 0.095;
 
-        frame.style.transform = `translate3d(${frameX}px, ${frameY}px, 0)`;
+        const pressScale = pressed ? 0.86 : 1;
+        frame.style.transform = `translate3d(${frameX}px, ${frameY}px, 0) scale(${pressScale})`;
         glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0)`;
         requestAnimationFrame(render);
     };
