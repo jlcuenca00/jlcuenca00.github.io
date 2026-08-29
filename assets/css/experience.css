@@ -1,0 +1,342 @@
+/* Shared experience layer: Dual Signal, project scene, Creator view modes, and world transitions. */
+
+.dual-signal-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0.9;
+    mix-blend-mode: screen;
+}
+
+.dev-page main,
+.dev-page .dev-nav,
+.dev-page .dev-footer,
+.photography-page main,
+.photography-page .creator-nav,
+.photography-page .creator-footer {
+    position: relative;
+    z-index: 2;
+}
+
+.dev-page .dev-grid,
+.dev-page .dev-scan {
+    opacity: 0.16;
+}
+
+/* Let the signature engine breathe through the black sections without hurting legibility. */
+.dev-page .dev-hero,
+.dev-page .project-index,
+.dev-page .dev-about,
+.dev-page .dev-skills,
+.dev-page .dev-education,
+.dev-page .dev-certificates,
+.dev-page .dev-cv,
+.dev-page .dev-contact {
+    background-color: rgba(5, 5, 5, 0.9);
+}
+
+.photography-page .creator-hero,
+.photography-page .creator-intro,
+.photography-page .selected-work,
+.photography-page .motion-section,
+.photography-page .creator-about,
+.photography-page .creator-contact {
+    background-color: rgba(5, 5, 5, 0.9);
+}
+
+/* -----------------------------------------------------------------------
+   Developer / Project Index as a scroll scene
+   ----------------------------------------------------------------------- */
+
+.dev-page .project-index.project-scene-enabled {
+    position: relative;
+    overflow: clip;
+}
+
+.dev-page .project-index.project-scene-enabled::before {
+    content: attr(data-active-project);
+    position: absolute;
+    right: -0.04em;
+    top: 6rem;
+    z-index: 0;
+    color: rgba(255, 42, 42, 0.035);
+    font-family: var(--font-head);
+    font-size: clamp(18rem, 38vw, 46rem);
+    line-height: 0.72;
+    letter-spacing: -0.1em;
+    pointer-events: none;
+}
+
+.dev-page .project-scene-enabled .project-layout {
+    position: relative;
+    z-index: 1;
+    grid-template-columns: minmax(0, 1.12fr) minmax(26rem, 0.88fr);
+    gap: clamp(2rem, 5vw, 7rem);
+}
+
+.dev-page .project-scene-enabled .project-list {
+    border-top: 0;
+}
+
+.dev-page .project-scene-enabled .project-row {
+    min-height: clamp(23rem, 48svh, 37rem);
+    grid-template-columns: 3rem minmax(0, 1fr) 4.5rem 2rem;
+    align-content: center;
+    padding: clamp(2rem, 5vh, 4rem) 0;
+    opacity: calc(1 - min(var(--project-distance, 0), 1) * 0.5);
+    transition:
+        opacity 320ms ease,
+        padding 460ms cubic-bezier(0.16, 1, 0.3, 1),
+        background 320ms ease;
+}
+
+.dev-page .project-scene-enabled .project-row .project-role {
+    display: none;
+}
+
+.dev-page .project-scene-enabled .project-name {
+    max-width: 9ch;
+    font-size: clamp(3.2rem, 7.3vw, 8.7rem);
+    line-height: 0.74;
+}
+
+.dev-page .project-scene-enabled .project-year {
+    align-self: end;
+}
+
+.dev-page .project-scene-enabled .project-row::after {
+    content: attr(data-stack);
+    grid-column: 2 / 4;
+    margin-top: 1.25rem;
+    color: rgba(255,255,255,0.42);
+    font-family: var(--font-mono);
+    font-size: clamp(0.58rem, 0.9vw, 0.72rem);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 320ms ease, transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dev-page .project-scene-enabled .project-row.is-scroll-active,
+.dev-page .project-scene-enabled .project-row.is-active {
+    opacity: 1;
+    background: linear-gradient(90deg, rgba(255,42,42,0.075), transparent 72%);
+}
+
+.dev-page .project-scene-enabled .project-row.is-scroll-active::after,
+.dev-page .project-scene-enabled .project-row.is-active::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dev-page .project-scene-enabled .project-preview {
+    position: sticky;
+    top: 6.4rem;
+    height: calc(100svh - 8rem);
+    display: flex;
+    align-items: center;
+}
+
+.dev-page .project-scene-enabled .preview-window {
+    width: 100%;
+    min-height: min(72svh, 48rem);
+    border-color: rgba(255,42,42,0.2);
+    background: rgba(5,5,5,0.82);
+    backdrop-filter: blur(10px);
+}
+
+.dev-page .project-scene-enabled .preview-visual--image {
+    height: min(42svh, 29rem);
+}
+
+.dev-page .project-scene-enabled .preview-copy h3 {
+    font-size: clamp(2.3rem, 4.8vw, 4.8rem);
+}
+
+/* -----------------------------------------------------------------------
+   Creator / two gallery modes
+   ----------------------------------------------------------------------- */
+
+.creator-view-modes {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: clamp(2rem, 5vh, 4rem);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+}
+
+.creator-view-modes button {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: rgba(255,255,255,0.38);
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    transition: color 180ms ease;
+}
+
+.creator-view-modes button.is-active,
+.creator-view-modes button:hover,
+.creator-view-modes button:focus-visible {
+    color: #2f67ff;
+}
+
+.creator-view-modes span {
+    color: rgba(255,255,255,0.18);
+}
+
+.photography-page.creator-index-mode .selected-work {
+    background:
+        linear-gradient(rgba(47,103,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47,103,255,0.025) 1px, transparent 1px),
+        rgba(5,5,5,0.93);
+    background-size: 48px 48px;
+}
+
+.photography-page.creator-index-mode .editorial-gallery {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: clamp(0.55rem, 0.9vw, 0.9rem) !important;
+}
+
+.photography-page.creator-index-mode .gallery-frame,
+.photography-page.creator-index-mode .gallery-frame:nth-child(n),
+.photography-page.creator-index-mode .gallery-frame--landscape,
+.photography-page.creator-index-mode .gallery-frame--portrait,
+.photography-page.creator-index-mode .gallery-frame--wide,
+.photography-page.creator-index-mode .gallery-frame--full,
+.photography-page.creator-index-mode .gallery-frame--tall {
+    grid-column: span 1 !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.photography-page.creator-index-mode .gallery-frame {
+    position: relative;
+    padding-bottom: 1.5rem;
+    overflow: visible;
+}
+
+.photography-page.creator-index-mode .gallery-frame img {
+    width: 100% !important;
+    height: 10rem !important;
+    object-fit: cover !important;
+    filter: saturate(0.82) contrast(1.02);
+}
+
+.photography-page.creator-index-mode .gallery-frame::after {
+    content: attr(data-index);
+    position: absolute;
+    left: 0;
+    bottom: 0.25rem;
+    color: rgba(255,255,255,0.45);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
+}
+
+.photography-page:not(.creator-index-mode) .gallery-frame {
+    transition: filter 220ms ease, opacity 220ms ease;
+}
+
+/* -----------------------------------------------------------------------
+   World transition
+   ----------------------------------------------------------------------- */
+
+.world-transition-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    place-items: center;
+    pointer-events: none;
+    clip-path: circle(0 at var(--origin-x, 50%) var(--origin-y, 50%));
+}
+
+.world-transition-layer.is-running,
+.world-transition-layer.is-entry {
+    display: grid;
+}
+
+.world-transition-layer.is-creator {
+    background:
+        radial-gradient(circle at var(--origin-x, 50%) var(--origin-y, 50%), rgba(90,140,255,0.9), transparent 22%),
+        #071233;
+}
+
+.world-transition-layer.is-dev {
+    background:
+        linear-gradient(rgba(255,42,42,0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,42,42,0.18) 1px, transparent 1px),
+        #160303;
+    background-size: 38px 38px;
+}
+
+.world-transition-label {
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1080px) {
+    .dev-page .project-scene-enabled .project-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .dev-page .project-scene-enabled .project-preview {
+        position: relative;
+        top: auto;
+        height: auto;
+        order: -1;
+    }
+
+    .dev-page .project-scene-enabled .project-row {
+        min-height: 18rem;
+    }
+
+    .photography-page.creator-index-mode .editorial-gallery {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .dual-signal-canvas {
+        opacity: 0.55;
+    }
+
+    .dev-page .project-scene-enabled .project-row {
+        min-height: 12rem;
+        grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+    }
+
+    .dev-page .project-scene-enabled .project-year {
+        display: none;
+    }
+
+    .dev-page .project-scene-enabled .project-row::after {
+        grid-column: 2 / -1;
+    }
+
+    .photography-page.creator-index-mode .editorial-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .photography-page.creator-index-mode .gallery-frame img {
+        height: 9rem !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dual-signal-canvas {
+        display: none;
+    }
+}
