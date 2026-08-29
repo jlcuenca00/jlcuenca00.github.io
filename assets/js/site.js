@@ -9,13 +9,15 @@
         document.head.appendChild(link);
     }
 
-    // Layer structural overrides: v2 contains the broad redesign, v3 contains chapter behavior.
+    // Layer structural overrides progressively: broad redesign -> chapter system -> targeted refinements.
     if (document.body?.classList.contains("dev-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
         loadStylesheet("layout-v3.css?v=20260830-1");
+        loadStylesheet("layout-v4.css?v=20260830-1");
     } else if (document.body?.classList.contains("photography-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
         loadStylesheet("layout-v3.css?v=20260830-1");
+        loadStylesheet("layout-v4.css?v=20260830-1");
     }
 
     function initReveal(root = document) {
@@ -127,7 +129,13 @@
         }
     }
 
+    function initDeveloperProjectCleanup() {
+        if (!document.body.classList.contains("dev-page")) return;
+        document.querySelector(".case-grid")?.remove();
+    }
+
     function initSiteUI() {
+        initDeveloperProjectCleanup();
         initReveal();
         initAnchorScroll();
         initBackToTop();
@@ -141,6 +149,7 @@
         initBackToTop,
         initGalleryOrientation,
         initScrollMotion,
+        initDeveloperProjectCleanup,
         initSiteUI,
     };
 
