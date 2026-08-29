@@ -14,6 +14,7 @@
         loadStylesheet("layout-v2.css?v=20260830-2");
         loadStylesheet("layout-v3.css?v=20260830-1");
         loadStylesheet("layout-v4.css?v=20260830-1");
+        loadStylesheet("layout-v6.css?v=20260830-1");
         loadStylesheet("../assets/css/experience.css?v=20260830-1");
     } else if (document.body?.classList.contains("photography-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
