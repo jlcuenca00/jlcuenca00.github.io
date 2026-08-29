@@ -9,8 +9,10 @@
 
     const activate = (row, index) => {
         rows.forEach((item) => {
-            item.classList.toggle('is-scroll-active', item === row);
-            item.setAttribute('aria-current', item === row ? 'true' : 'false');
+            const active = item === row;
+            item.classList.toggle('is-scroll-active', active);
+            item.setAttribute('aria-current', active ? 'true' : 'false');
+            item.style.opacity = active ? '1' : '0.46';
         });
 
         row.dispatchEvent(new Event('mouseenter'));
