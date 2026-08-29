@@ -1,0 +1,320 @@
+/* Developer layout v6 — Education as an academic record / timeline experience. */
+
+.dev-education .education-layout {
+    display: block;
+    position: relative;
+}
+
+/* Current tertiary record ------------------------------------------------ */
+.dev-education .education-history {
+    position: relative;
+    width: min(100%, 92rem);
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+}
+
+.dev-education .education-card {
+    min-height: 0;
+    border: 0;
+}
+
+.dev-education .education-card:first-child {
+    position: relative;
+    display: grid;
+    grid-template-columns: clamp(9rem, 15vw, 14rem) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+    min-height: clamp(24rem, 52vh, 38rem);
+    margin-bottom: clamp(7rem, 12vw, 12rem);
+    padding: clamp(2rem, 5vw, 4rem);
+    border: 1px solid rgba(255, 42, 42, 0.3);
+    background:
+        linear-gradient(115deg, rgba(255, 42, 42, 0.09), transparent 38%),
+        rgba(7, 7, 7, 0.82);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.dev-education .education-card:first-child::before {
+    content: "CURRENT RECORD";
+    position: absolute;
+    top: 1.25rem;
+    right: 1.4rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+}
+
+.dev-education .education-card:first-child::after {
+    content: "04";
+    position: absolute;
+    z-index: -1;
+    right: -0.05em;
+    bottom: -0.34em;
+    color: rgba(255, 42, 42, 0.035);
+    font-family: var(--font-head);
+    font-size: clamp(16rem, 31vw, 34rem);
+    line-height: 1;
+    letter-spacing: -0.09em;
+}
+
+.dev-education .education-card:first-child .education-year {
+    align-self: center;
+    color: var(--accent);
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    line-height: 0.78;
+    letter-spacing: -0.07em;
+}
+
+.dev-education .education-card:first-child h3 {
+    max-width: 17ch;
+    margin: 0;
+    font-size: clamp(2.7rem, 5.7vw, 6rem);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+}
+
+.dev-education .education-card:first-child div > p:first-child {
+    margin-bottom: 1rem;
+}
+
+.dev-education .education-card:first-child div > p:last-child {
+    max-width: 42rem;
+    margin-top: 1.6rem;
+}
+
+/* Previous schools — alternating timeline ------------------------------- */
+.dev-education .education-card:not(:first-child) {
+    position: relative;
+    width: calc(50% - clamp(2.5rem, 5vw, 5rem));
+    display: block;
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    border: 1px solid var(--dev-line);
+    background: rgba(6, 6, 6, 0.76);
+    backdrop-filter: blur(8px);
+}
+
+.dev-education .education-card:nth-child(2n) {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.dev-education .education-card:nth-child(2n + 1):not(:first-child) {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.dev-education .education-card:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    top: 2.35rem;
+    width: clamp(2.5rem, 5vw, 5rem);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,42,42,0.65), rgba(255,42,42,0.06));
+}
+
+.dev-education .education-card:nth-child(2n)::before {
+    left: 100%;
+}
+
+.dev-education .education-card:nth-child(2n + 1):not(:first-child)::before {
+    right: 100%;
+    transform: scaleX(-1);
+}
+
+.dev-education .education-card:not(:first-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(2.35rem - 4px);
+    width: 9px;
+    height: 9px;
+    border: 1px solid var(--accent);
+    background: #050505;
+    transform: rotate(45deg);
+}
+
+.dev-education .education-card:nth-child(2n)::after {
+    left: calc(100% + clamp(2.5rem, 5vw, 5rem) - 5px);
+}
+
+.dev-education .education-card:nth-child(2n + 1):not(:first-child)::after {
+    right: calc(100% + clamp(2.5rem, 5vw, 5rem) - 5px);
+}
+
+.dev-education .education-history::after {
+    content: "";
+    position: absolute;
+    top: calc(clamp(24rem, 52vh, 38rem) + clamp(7rem, 12vw, 12rem));
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,42,42,0.52),
+        rgba(255,42,42,0.18) 72%,
+        transparent
+    );
+    pointer-events: none;
+}
+
+.dev-education .education-card:not(:first-child) .education-year {
+    display: inline-block;
+    margin: 0 0 2rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(255,42,42,0.35);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.72rem, 1vw, 0.82rem);
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+}
+
+.dev-education .education-card:not(:first-child) h3 {
+    max-width: 20ch;
+    margin: 0;
+    font-size: clamp(1.8rem, 3.3vw, 3.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+.dev-education .education-card:not(:first-child) div > p:first-child {
+    margin: 0 0 0.8rem;
+    font-size: 0.61rem;
+    line-height: 1.55;
+}
+
+.dev-education .education-card:not(:first-child) div > p:last-child {
+    max-width: 38rem;
+    margin-top: 1.3rem;
+    font-size: 0.76rem;
+    line-height: 1.75;
+}
+
+/* Leadership / Media archive -------------------------------------------- */
+.dev-education .achievement-list {
+    width: min(100%, 92rem);
+    margin: clamp(8rem, 14vw, 14rem) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(255,42,42,0.36);
+    border-left: 1px solid var(--dev-line);
+}
+
+.dev-education .achievement-list > h3 {
+    grid-column: 1 / -1;
+    padding: 1.2rem 1.4rem;
+    border-right: 1px solid var(--dev-line);
+    border-bottom: 1px solid var(--dev-line);
+    color: var(--accent);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+}
+
+.dev-education .achievement-list > div {
+    min-height: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+    padding: 1.35rem;
+    border-right: 1px solid var(--dev-line);
+    border-bottom: 1px solid var(--dev-line);
+}
+
+.dev-education .achievement-list span {
+    color: var(--accent);
+    font-size: 0.58rem;
+    letter-spacing: 0.09em;
+}
+
+.dev-education .achievement-list p {
+    max-width: 24rem;
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: clamp(1rem, 1.55vw, 1.45rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+}
+
+@media (max-width: 980px) {
+    .dev-education .education-card:first-child {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding-top: 5rem;
+    }
+
+    .dev-education .education-card:first-child .education-year {
+        font-size: clamp(3.2rem, 12vw, 6rem);
+    }
+
+    .dev-education .education-history::after {
+        left: 1rem;
+        top: auto;
+        bottom: 0;
+        height: calc(100% - 34rem);
+    }
+
+    .dev-education .education-card:not(:first-child),
+    .dev-education .education-card:nth-child(n) {
+        width: calc(100% - 3rem);
+        margin-left: 3rem;
+        margin-right: 0;
+    }
+
+    .dev-education .education-card:not(:first-child)::before,
+    .dev-education .education-card:nth-child(n)::before {
+        right: 100%;
+        left: auto;
+        width: 2rem;
+        transform: none;
+    }
+
+    .dev-education .education-card:not(:first-child)::after,
+    .dev-education .education-card:nth-child(n)::after {
+        left: -2.3rem;
+        right: auto;
+    }
+
+    .dev-education .achievement-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .dev-education .education-card:first-child {
+        margin-bottom: 5rem;
+        padding: 4.5rem 1.25rem 2rem;
+    }
+
+    .dev-education .education-card:first-child h3 {
+        font-size: clamp(2.3rem, 11vw, 4.2rem);
+    }
+
+    .dev-education .education-history::after {
+        display: none;
+    }
+
+    .dev-education .education-card:not(:first-child),
+    .dev-education .education-card:nth-child(n) {
+        width: 100%;
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    .dev-education .education-card:not(:first-child)::before,
+    .dev-education .education-card:not(:first-child)::after {
+        display: none;
+    }
+
+    .dev-education .achievement-list {
+        grid-template-columns: 1fr;
+        margin-top: 6rem;
+    }
+
+    .dev-education .achievement-list > div {
+        min-height: 7rem;
+    }
+}
