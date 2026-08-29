@@ -1,0 +1,314 @@
+/* Developer layout v2 — structural redesign inspired by editorial/experimental project indexes. */
+
+.dev-page {
+    overflow-x: clip;
+}
+
+/* Make the opening screen feel more like a cover/index than a centered hero. */
+.dev-hero {
+    min-height: 100svh;
+    grid-template-rows: auto 1fr auto;
+    padding-inline: clamp(1rem, 3.4vw, 4rem);
+}
+
+.dev-hero__title {
+    width: 100%;
+    max-width: none;
+    padding-block: clamp(3rem, 9vh, 8rem);
+}
+
+.dev-hero h1 {
+    max-width: 11ch;
+    font-size: clamp(4rem, 10.8vw, 11.5rem);
+    line-height: 0.76;
+}
+
+.dev-hero__foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3rem;
+    align-items: end;
+}
+
+/* Project index: oversized rows + a quieter sticky inspection panel. */
+.project-index {
+    padding-inline: clamp(1rem, 3.4vw, 4rem);
+}
+
+.project-layout {
+    grid-template-columns: minmax(0, 1.55fr) minmax(20rem, 0.45fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.project-row {
+    grid-template-columns: 3.5rem minmax(0, 1fr) minmax(10rem, 0.55fr) 4rem 2rem;
+    min-height: clamp(9rem, 12vw, 13rem);
+    padding-block: 1.6rem;
+}
+
+.project-name {
+    font-size: clamp(2.4rem, 5.2vw, 5.8rem);
+    line-height: 0.78;
+}
+
+.project-preview {
+    top: 6rem;
+}
+
+.preview-window {
+    min-height: min(76svh, 52rem);
+}
+
+.preview-visual--image {
+    height: min(42svh, 26rem);
+}
+
+/* Detailed projects become staggered case-study plates instead of three equal cards. */
+.case-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(4rem, 9vw, 9rem) clamp(1rem, 2vw, 2rem);
+    margin-top: clamp(7rem, 13vw, 13rem);
+    border: 0;
+    background: transparent;
+}
+
+.case-card {
+    grid-column: 1 / span 8;
+    padding: 0;
+    border-top: 1px solid var(--dev-line);
+    background: transparent;
+}
+
+.case-card:nth-child(2) {
+    grid-column: 5 / -1;
+}
+
+.case-card:nth-child(3) {
+    grid-column: 2 / span 8;
+}
+
+.case-card img {
+    aspect-ratio: 16 / 9;
+    margin: 0 0 1.5rem;
+}
+
+.case-card__meta,
+.case-card h3,
+.case-card > p,
+.case-card dl,
+.case-card > a {
+    margin-left: clamp(0rem, 4vw, 5rem);
+    margin-right: clamp(0rem, 6vw, 7rem);
+}
+
+.case-card h3 {
+    margin-top: 1.25rem;
+    font-size: clamp(2.2rem, 5vw, 5rem);
+}
+
+.case-card > p {
+    max-width: 47rem;
+    min-height: 0;
+}
+
+/* Skills / education / certificates now use a sticky editorial rail. */
+.dev-skills,
+.dev-education,
+.dev-certificates {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 1.58fr);
+    column-gap: clamp(3rem, 7vw, 9rem);
+    align-items: start;
+}
+
+.dev-skills > .section-meta,
+.dev-education > .section-meta,
+.dev-certificates > .section-meta {
+    grid-column: 1 / -1;
+}
+
+.dev-skills > .section-title,
+.dev-education > .section-title,
+.dev-certificates > .section-title {
+    position: sticky;
+    top: 7rem;
+    display: block;
+    align-self: start;
+    margin: 0;
+}
+
+.dev-skills > .section-title h2,
+.dev-education > .section-title h2,
+.dev-certificates > .section-title h2 {
+    font-size: clamp(3.2rem, 6.7vw, 7.2rem);
+}
+
+.dev-skills > .section-title > p,
+.dev-education > .section-title > p,
+.dev-certificates > .section-title > p {
+    margin-top: 1.6rem;
+}
+
+.skill-grid {
+    grid-template-columns: 1fr;
+    border-left: 0;
+}
+
+.skill-grid article {
+    min-height: 11rem;
+    display: grid;
+    grid-template-columns: 3.5rem minmax(11rem, 0.6fr) minmax(0, 1.4fr);
+    gap: clamp(1rem, 3vw, 3rem);
+    align-items: center;
+    padding: 1.4rem 0;
+    border-left: 0;
+}
+
+.skill-grid h3 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+.skill-grid p {
+    max-width: 42rem;
+    font-size: 0.8rem;
+}
+
+.education-layout {
+    grid-template-columns: 1fr;
+    gap: clamp(4rem, 8vw, 8rem);
+}
+
+.education-history {
+    border-top: 1px solid var(--dev-line);
+}
+
+.education-card {
+    border-top: 0;
+}
+
+.achievement-list {
+    margin-left: clamp(0rem, 8vw, 8rem);
+}
+
+.dev-certificates .certificate-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dev-certificates .certificate-card--future {
+    grid-column: 1 / -1;
+    min-height: 14rem;
+}
+
+/* Resume stays a pause between the dense archive and the final contact index. */
+.dev-cv {
+    min-height: 78svh;
+    grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.5fr);
+}
+
+/* Final screen: headline first, links as a separate index beneath it. */
+.dev-contact {
+    min-height: 100svh;
+    padding-inline: clamp(1rem, 3.4vw, 4rem);
+}
+
+.contact-main {
+    grid-template-columns: 1fr;
+    gap: clamp(4rem, 10vh, 8rem);
+    align-items: start;
+}
+
+.dev-contact h2 {
+    max-width: 10ch;
+    font-size: clamp(4.4rem, 10vw, 11rem);
+    line-height: 0.78;
+}
+
+.contact-links {
+    width: min(100%, 62rem);
+    margin-left: auto;
+}
+
+.contact-links a {
+    min-height: 5.6rem;
+    align-items: center;
+    font-size: clamp(1.35rem, 3vw, 2.7rem);
+}
+
+@media (max-width: 1120px) {
+    .project-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .project-preview {
+        order: -1;
+    }
+
+    .case-card,
+    .case-card:nth-child(2),
+    .case-card:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+
+    .dev-skills,
+    .dev-education,
+    .dev-certificates {
+        grid-template-columns: 1fr;
+    }
+
+    .dev-skills > .section-title,
+    .dev-education > .section-title,
+    .dev-certificates > .section-title {
+        position: relative;
+        top: auto;
+        margin-bottom: clamp(3rem, 7vw, 5rem);
+    }
+
+    .dev-certificates .certificate-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 820px) {
+    .dev-hero__foot {
+        display: flex;
+    }
+
+    .project-row {
+        min-height: 7.5rem;
+    }
+
+    .case-card__meta,
+    .case-card h3,
+    .case-card > p,
+    .case-card dl,
+    .case-card > a {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .skill-grid article {
+        grid-template-columns: 2.5rem 1fr;
+    }
+
+    .skill-grid p {
+        grid-column: 2;
+    }
+
+    .achievement-list {
+        margin-left: 0;
+    }
+
+    .dev-certificates .certificate-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dev-contact h2 {
+        max-width: 100%;
+        font-size: clamp(3.5rem, 15vw, 6rem);
+    }
+
+    .contact-links {
+        width: 100%;
+    }
+}
