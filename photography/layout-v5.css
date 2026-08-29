@@ -1,0 +1,126 @@
+/* Creator layout v5 — denser editorial gallery.
+   Preserve each image's natural ratio while allowing 2–3 photos to share a row. */
+
+.editorial-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    align-items: start;
+    gap: clamp(1rem, 1.7vw, 1.7rem) clamp(1rem, 1.4vw, 1.5rem) !important;
+    width: 100%;
+}
+
+.gallery-frame,
+.gallery-frame--wide,
+.gallery-frame--full,
+.gallery-frame--tall,
+.gallery-frame--landscape,
+.gallery-frame--portrait,
+.gallery-frame:nth-child(n) {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    align-self: start !important;
+    justify-self: stretch;
+    aspect-ratio: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Two landscape images can sit together. */
+.gallery-frame--landscape {
+    grid-column: span 6 !important;
+}
+
+/* Wide landscapes pair naturally with a portrait or narrow landscape. */
+.gallery-frame--landscape.gallery-frame--wide {
+    grid-column: span 8 !important;
+}
+
+/* Full images are now rare visual resets instead of the default rhythm. */
+.gallery-frame--landscape.gallery-frame--full {
+    grid-column: span 8 !important;
+}
+
+.gallery-frame--landscape.gallery-frame--full:nth-child(9n + 1) {
+    grid-column: 1 / -1 !important;
+}
+
+/* Portraits are large enough to matter and up to three can share a row. */
+.gallery-frame--portrait,
+.gallery-frame--portrait.gallery-frame--tall,
+.gallery-frame--portrait.gallery-frame--wide,
+.gallery-frame--portrait.gallery-frame--full {
+    grid-column: span 4 !important;
+}
+
+/* Create a little editorial asymmetry without shrinking the photographs. */
+.gallery-frame--portrait:nth-child(5n + 2) {
+    grid-column: span 5 !important;
+}
+
+.gallery-frame--landscape:nth-child(7n + 3) {
+    grid-column: span 7 !important;
+}
+
+.gallery-frame img {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    transform: none !important;
+}
+
+/* Keep the gallery relatively compact vertically. */
+.selected-work {
+    padding-bottom: clamp(6rem, 10vw, 10rem) !important;
+}
+
+@media (max-width: 980px) {
+    .editorial-gallery {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    .gallery-frame--landscape,
+    .gallery-frame--landscape.gallery-frame--wide,
+    .gallery-frame--landscape.gallery-frame--full,
+    .gallery-frame--landscape:nth-child(n) {
+        grid-column: span 4 !important;
+    }
+
+    .gallery-frame--portrait,
+    .gallery-frame--portrait.gallery-frame--tall,
+    .gallery-frame--portrait.gallery-frame--wide,
+    .gallery-frame--portrait.gallery-frame--full,
+    .gallery-frame--portrait:nth-child(n) {
+        grid-column: span 4 !important;
+    }
+
+    .gallery-frame--landscape.gallery-frame--full:nth-child(9n + 1) {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .editorial-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+    }
+
+    .gallery-frame--landscape,
+    .gallery-frame--landscape.gallery-frame--wide,
+    .gallery-frame--landscape.gallery-frame--full,
+    .gallery-frame--landscape:nth-child(n) {
+        grid-column: 1 / -1 !important;
+    }
+
+    .gallery-frame--portrait,
+    .gallery-frame--portrait.gallery-frame--tall,
+    .gallery-frame--portrait.gallery-frame--wide,
+    .gallery-frame--portrait.gallery-frame--full,
+    .gallery-frame--portrait:nth-child(n) {
+        grid-column: span 1 !important;
+    }
+}
