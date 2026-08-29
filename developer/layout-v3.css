@@ -1,0 +1,329 @@
+/* Developer layout v3 — chapter-based experiences.
+   Each major section gets a dedicated opener, then releases into its own content system. */
+
+.dev-page {
+    overflow-x: clip;
+}
+
+/* Shared chapter opener ---------------------------------------------------- */
+.dev-skills,
+.dev-education,
+.dev-certificates {
+    display: block;
+    position: relative;
+    padding-inline: clamp(1rem, 3.4vw, 4rem);
+}
+
+.dev-skills > .section-meta,
+.dev-education > .section-meta,
+.dev-certificates > .section-meta {
+    margin-bottom: 0;
+    padding-top: 0.4rem;
+}
+
+.dev-skills > .section-title,
+.dev-education > .section-title,
+.dev-certificates > .section-title {
+    position: relative !important;
+    top: auto !important;
+    min-height: clamp(30rem, 72svh, 52rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 0.5fr);
+    gap: clamp(2rem, 6vw, 8rem);
+    align-content: center;
+    align-items: end;
+    margin: 0 0 clamp(5rem, 10vw, 10rem) !important;
+    padding: clamp(4rem, 10vh, 8rem) 0 clamp(3rem, 7vh, 6rem);
+    border-bottom: 1px solid var(--dev-line);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.dev-skills > .section-title::after,
+.dev-education > .section-title::after,
+.dev-certificates > .section-title::after {
+    position: absolute;
+    z-index: -1;
+    right: -0.04em;
+    bottom: -0.31em;
+    color: rgba(255, 42, 42, 0.055);
+    font-family: var(--font-head);
+    font-size: clamp(16rem, 34vw, 38rem);
+    line-height: 1;
+    letter-spacing: -0.09em;
+    pointer-events: none;
+}
+
+.dev-skills > .section-title::after { content: "03"; }
+.dev-education > .section-title::after { content: "04"; }
+.dev-certificates > .section-title::after { content: "05"; }
+
+.dev-skills > .section-title h2,
+.dev-education > .section-title h2,
+.dev-certificates > .section-title h2 {
+    max-width: 9ch;
+    margin: 0;
+    font-size: clamp(4.2rem, 10.2vw, 11rem);
+    line-height: 0.76;
+    letter-spacing: -0.075em;
+}
+
+.dev-skills > .section-title > p,
+.dev-education > .section-title > p,
+.dev-certificates > .section-title > p {
+    max-width: 26rem;
+    margin: 0 0 0.5rem;
+    justify-self: end;
+    color: var(--dev-muted);
+    font-size: 0.78rem;
+    line-height: 1.75;
+}
+
+/* Skills: technical index, not four equal cards -------------------------- */
+.dev-skills {
+    background:
+        linear-gradient(90deg, rgba(255,42,42,0.035), transparent 32%),
+        var(--dev-bg);
+}
+
+.skill-grid {
+    display: block;
+    border: 0;
+}
+
+.skill-grid article {
+    min-height: clamp(12rem, 21vh, 18rem);
+    display: grid;
+    grid-template-columns: 4.5rem minmax(13rem, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(1rem, 4vw, 5rem);
+    align-items: center;
+    padding: clamp(1.5rem, 4vw, 3.2rem) 0;
+    border: 0;
+    border-top: 1px solid var(--dev-line);
+}
+
+.skill-grid article:last-child {
+    border-bottom: 1px solid var(--dev-line);
+}
+
+.skill-grid article:nth-child(even) {
+    padding-left: clamp(0rem, 7vw, 8rem);
+}
+
+.skill-grid article > span {
+    align-self: start;
+    padding-top: 0.4rem;
+    font-size: 0.68rem;
+}
+
+.skill-grid h3 {
+    margin: 0;
+    font-size: clamp(1.9rem, 4.1vw, 4.6rem);
+    line-height: 0.9;
+}
+
+.skill-grid p {
+    max-width: 44rem;
+    margin: 0;
+    font-size: clamp(0.76rem, 1vw, 0.86rem);
+    line-height: 1.8;
+}
+
+/* Education: the chapter opens first; timeline owns the next screen ------- */
+.dev-education {
+    background:
+        radial-gradient(circle at 82% 18%, rgba(255,42,42,0.075), transparent 28%),
+        var(--dev-bg);
+}
+
+.education-layout {
+    display: block;
+}
+
+.education-history {
+    width: min(100%, 82rem);
+    margin-left: auto;
+    border-top: 1px solid var(--dev-line);
+}
+
+.education-card {
+    min-height: clamp(17rem, 31vh, 25rem);
+    grid-template-columns: clamp(8rem, 14vw, 13rem) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+    padding: clamp(2.5rem, 6vw, 5rem) 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--dev-line);
+}
+
+.education-card:nth-child(even) > div {
+    padding-left: clamp(0rem, 4vw, 5rem);
+}
+
+.education-year {
+    align-self: start;
+    padding-top: 0.15rem;
+    font-size: clamp(3.2rem, 7vw, 7.5rem);
+    line-height: 0.82;
+}
+
+.education-card h3 {
+    max-width: 22ch;
+    font-size: clamp(2rem, 4.6vw, 4.8rem);
+    line-height: 0.91;
+}
+
+.education-card div > p:last-child {
+    max-width: 58rem;
+    font-size: 0.82rem;
+}
+
+.achievement-list {
+    width: min(100%, 62rem);
+    margin: clamp(7rem, 12vw, 12rem) 0 0 auto;
+    border-top-color: rgba(255,42,42,0.36);
+}
+
+.achievement-list > h3 {
+    padding-block: 1.25rem;
+    font-size: 0.72rem;
+}
+
+.achievement-list > div {
+    min-height: 5rem;
+    align-items: center;
+    grid-template-columns: 8rem 1fr;
+    padding-block: 1.25rem;
+}
+
+/* Certificates: a credential wall after a dedicated chapter opener ------- */
+.dev-certificates {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.018), transparent 24%),
+        var(--dev-bg);
+}
+
+.dev-certificates .certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(4rem, 8vw, 8rem) clamp(1rem, 2vw, 2rem);
+    border: 0;
+    background: transparent;
+}
+
+.dev-certificates .certificate-card {
+    grid-column: 1 / span 7;
+    border: 1px solid var(--dev-line);
+    background: #050505;
+}
+
+.dev-certificates .certificate-card:nth-child(2) {
+    grid-column: 6 / -1;
+}
+
+.dev-certificates .certificate-card--future {
+    grid-column: 3 / span 8;
+    min-height: clamp(15rem, 28vh, 22rem);
+    margin-top: clamp(1rem, 4vw, 4rem);
+}
+
+.certificate-preview {
+    aspect-ratio: 16 / 10;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.certificate-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #f4f4f2;
+}
+
+/* Contact: let the final chapter breathe --------------------------------- */
+.dev-contact {
+    min-height: 110svh;
+    padding-top: clamp(6rem, 13vh, 10rem);
+}
+
+.dev-contact h2 {
+    max-width: 9ch;
+}
+
+.contact-links {
+    margin-top: clamp(3rem, 8vh, 7rem);
+}
+
+/* Responsive -------------------------------------------------------------- */
+@media (max-width: 980px) {
+    .dev-skills > .section-title,
+    .dev-education > .section-title,
+    .dev-certificates > .section-title {
+        min-height: 56svh;
+        grid-template-columns: 1fr;
+        align-content: end;
+        gap: 2rem;
+    }
+
+    .dev-skills > .section-title > p,
+    .dev-education > .section-title > p,
+    .dev-certificates > .section-title > p {
+        justify-self: start;
+    }
+
+    .skill-grid article,
+    .skill-grid article:nth-child(even) {
+        padding-left: 0;
+    }
+
+    .dev-certificates .certificate-card,
+    .dev-certificates .certificate-card:nth-child(2),
+    .dev-certificates .certificate-card--future {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .dev-skills > .section-title,
+    .dev-education > .section-title,
+    .dev-certificates > .section-title {
+        min-height: 48svh;
+        padding-top: 3rem;
+        margin-bottom: 4rem !important;
+    }
+
+    .dev-skills > .section-title h2,
+    .dev-education > .section-title h2,
+    .dev-certificates > .section-title h2 {
+        font-size: clamp(3.5rem, 15vw, 6.2rem);
+    }
+
+    .skill-grid article {
+        grid-template-columns: 2.5rem 1fr;
+        min-height: 0;
+    }
+
+    .skill-grid p {
+        grid-column: 2;
+    }
+
+    .education-card {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .education-card:nth-child(even) > div {
+        padding-left: 0;
+    }
+
+    .education-year {
+        font-size: clamp(3rem, 14vw, 5.5rem);
+    }
+
+    .achievement-list {
+        margin-top: 5rem;
+    }
+}
