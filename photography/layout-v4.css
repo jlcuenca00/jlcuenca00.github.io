@@ -1,0 +1,156 @@
+/* Creator layout v4 — natural-ratio editorial stream.
+   The photograph defines the frame. No tile math, no forced crop. */
+
+/* Keep the chapter opener readable and fully on-screen. */
+.selected-work .creator-section-head {
+    position: relative !important;
+    top: auto !important;
+    overflow: visible !important;
+}
+
+.selected-work .creator-section-head h2 {
+    max-width: none !important;
+    font-size: clamp(3.8rem, 7.4vw, 8rem) !important;
+    line-height: 0.82 !important;
+    white-space: nowrap;
+}
+
+/* The gallery is now an editorial sequence rather than a mosaic. */
+.editorial-gallery {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(3.5rem, 8vw, 9rem);
+    width: 100%;
+}
+
+.gallery-frame,
+.gallery-frame--wide,
+.gallery-frame--full,
+.gallery-frame--tall,
+.gallery-frame--landscape,
+.gallery-frame--portrait {
+    display: block;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    aspect-ratio: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* Landscapes remain the dominant visual scale. */
+.gallery-frame--landscape {
+    width: min(84%, 82rem);
+}
+
+.gallery-frame--landscape.gallery-frame--wide {
+    width: min(94%, 92rem);
+}
+
+.gallery-frame--landscape.gallery-frame--full {
+    width: 100%;
+    max-width: none;
+}
+
+/* Portraits keep their real tall shape but are no longer tiny thumbnails. */
+.gallery-frame--portrait {
+    width: clamp(24rem, 48vw, 46rem);
+    max-width: 72%;
+}
+
+/* Stagger the sequence like an exhibition wall. */
+.gallery-frame:nth-child(4n + 1) {
+    align-self: flex-start;
+}
+
+.gallery-frame:nth-child(4n + 2) {
+    align-self: flex-end;
+}
+
+.gallery-frame:nth-child(4n + 3) {
+    align-self: center;
+}
+
+.gallery-frame:nth-child(4n) {
+    align-self: flex-start;
+    margin-left: clamp(0rem, 8vw, 9rem);
+}
+
+/* Natural dimensions always win. */
+.gallery-frame img {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: none !important;
+}
+
+/* Keep hover feedback outside the photo itself so the image remains complete. */
+.gallery-frame:hover img,
+.gallery-frame:focus-visible img {
+    transform: none !important;
+    filter: brightness(0.82);
+}
+
+.gallery-frame {
+    transition: opacity 220ms ease, filter 220ms ease;
+}
+
+.gallery-frame:hover,
+.gallery-frame:focus-visible {
+    filter: contrast(1.025);
+}
+
+/* Give the exhibition a clean entrance and exit. */
+.selected-work {
+    padding-bottom: clamp(7rem, 14vw, 14rem) !important;
+}
+
+.motion-section {
+    padding-top: clamp(7rem, 14vw, 14rem) !important;
+}
+
+@media (max-width: 980px) {
+    .selected-work .creator-section-head h2 {
+        white-space: normal;
+        font-size: clamp(3.5rem, 12vw, 7rem) !important;
+    }
+
+    .gallery-frame--landscape,
+    .gallery-frame--landscape.gallery-frame--wide,
+    .gallery-frame--landscape.gallery-frame--full {
+        width: 100%;
+    }
+
+    .gallery-frame--portrait {
+        width: min(72vw, 38rem);
+        max-width: 82%;
+    }
+}
+
+@media (max-width: 620px) {
+    .editorial-gallery {
+        gap: 2.2rem;
+    }
+
+    .gallery-frame,
+    .gallery-frame:nth-child(n) {
+        align-self: auto;
+        margin-left: 0;
+    }
+
+    .gallery-frame--landscape,
+    .gallery-frame--portrait,
+    .gallery-frame--wide,
+    .gallery-frame--full,
+    .gallery-frame--tall {
+        width: 100% !important;
+        max-width: none !important;
+    }
+}
