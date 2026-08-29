@@ -8,14 +8,14 @@
     section.classList.add('project-scene-enabled');
 
     const activate = (row, index) => {
-        rows.forEach((item, itemIndex) => {
+        rows.forEach((item) => {
             item.classList.toggle('is-scroll-active', item === row);
             item.setAttribute('aria-current', item === row ? 'true' : 'false');
-            item.style.setProperty('--project-distance', Math.abs(itemIndex - index));
         });
 
         row.dispatchEvent(new Event('mouseenter'));
         document.body.dataset.activeProject = row.dataset.project || String(index + 1);
+        section.dataset.activeProject = String(index + 1).padStart(2, '0');
         document.dispatchEvent(new CustomEvent('portfolio:projectchange', {
             detail: {
                 index,
