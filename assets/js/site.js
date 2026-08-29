@@ -9,16 +9,18 @@
         document.head.appendChild(link);
     }
 
-    // Layer structural overrides progressively: broad redesign -> chapter system -> targeted refinements.
+    // Structural layers: broad redesign -> chapter system -> refinements -> shared experience engine.
     if (document.body?.classList.contains("dev-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
         loadStylesheet("layout-v3.css?v=20260830-1");
         loadStylesheet("layout-v4.css?v=20260830-1");
+        loadStylesheet("../assets/css/experience.css?v=20260830-1");
     } else if (document.body?.classList.contains("photography-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
         loadStylesheet("layout-v3.css?v=20260830-1");
         loadStylesheet("layout-v4.css?v=20260830-1");
         loadStylesheet("layout-v5.css?v=20260830-1");
+        loadStylesheet("../assets/css/experience.css?v=20260830-1");
     }
 
     function initReveal(root = document) {
@@ -130,6 +132,32 @@
         }
     }
 
+    async function initSignatureExperience() {
+        if (!document.body.matches(".dev-page, .photography-page")) return;
+
+        const tasks = [
+            loadScript("../assets/js/world-transition.js?v=20260830-1"),
+        ];
+
+        if (!prefersReducedMotion) {
+            tasks.push(loadScript("../assets/js/dual-signal.js?v=20260830-2"));
+        }
+
+        if (document.body.classList.contains("dev-page")) {
+            tasks.push(loadScript("../assets/js/project-scene.js?v=20260830-2"));
+        }
+
+        if (document.body.classList.contains("photography-page")) {
+            tasks.push(loadScript("../assets/js/creator-modes.js?v=20260830-1"));
+        }
+
+        try {
+            await Promise.all(tasks);
+        } catch (error) {
+            console.warn("Signature portfolio enhancement unavailable; core experience remains active.", error);
+        }
+    }
+
     function initDeveloperProjectCleanup() {
         if (!document.body.classList.contains("dev-page")) return;
         document.querySelector(".case-grid")?.remove();
@@ -140,8 +168,13 @@
         initReveal();
         initAnchorScroll();
         initBackToTop();
-        initGalleryOrientation();
-        initScrollMotion();
+
+        // Defer dynamic enhancements until the page's own DOMContentLoaded handlers have rendered galleries/previews.
+        setTimeout(() => {
+            initGalleryOrientation();
+            initSignatureExperience();
+            initScrollMotion();
+        }, 0);
     }
 
     window.PortfolioUI = {
@@ -150,6 +183,7 @@
         initBackToTop,
         initGalleryOrientation,
         initScrollMotion,
+        initSignatureExperience,
         initDeveloperProjectCleanup,
         initSiteUI,
     };
