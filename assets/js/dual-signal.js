@@ -46,8 +46,10 @@
         }
 
         float gridLine(vec2 p, float scale) {
-            vec2 g = abs(fract(p * scale - 0.5) - 0.5) / fwidth(p * scale);
-            return 1.0 - min(min(g.x, g.y), 1.0);
+            vec2 g = abs(fract(p * scale) - 0.5);
+            float gx = smoothstep(0.455, 0.495, g.x);
+            float gy = smoothstep(0.455, 0.495, g.y);
+            return max(gx, gy);
         }
 
         void main() {
