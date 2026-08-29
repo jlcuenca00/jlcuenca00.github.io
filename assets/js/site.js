@@ -18,6 +18,7 @@
         loadStylesheet("layout-v2.css?v=20260830-2");
         loadStylesheet("layout-v3.css?v=20260830-1");
         loadStylesheet("layout-v4.css?v=20260830-1");
+        loadStylesheet("layout-v5.css?v=20260830-1");
     }
 
     function initReveal(root = document) {
