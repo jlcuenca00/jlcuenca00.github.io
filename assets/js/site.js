@@ -1,6 +1,21 @@
 (() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    function loadStylesheet(href) {
+        if (!href || document.querySelector(`link[href="${href}"]`)) return;
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = href;
+        document.head.appendChild(link);
+    }
+
+    // Defer scripts execute before DOMContentLoaded, so load structural overrides immediately.
+    if (document.body?.classList.contains("dev-page")) {
+        loadStylesheet("layout-v2.css?v=20260830-2");
+    } else if (document.body?.classList.contains("photography-page")) {
+        loadStylesheet("layout-v2.css?v=20260830-2");
+    }
+
     function initReveal(root = document) {
         const elements = root.querySelectorAll(".reveal, .hidden");
         if (!elements.length) return;
@@ -88,6 +103,15 @@
         });
     }
 
+    async function initGalleryOrientation() {
+        if (!document.body.classList.contains("photography-page")) return;
+        try {
+            await loadScript("../assets/js/gallery-orientation.js?v=20260830-2");
+        } catch (error) {
+            console.warn("Gallery orientation enhancement unavailable.", error);
+        }
+    }
+
     async function initScrollMotion() {
         if (prefersReducedMotion) return;
         if (!document.body.matches(".dev-page, .photography-page")) return;
@@ -95,7 +119,7 @@
         try {
             await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js");
             await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js");
-            await loadScript("../assets/js/scroll-motion.js?v=20260830-1");
+            await loadScript("../assets/js/scroll-motion.js?v=20260830-2");
         } catch (error) {
             console.warn("Scroll motion enhancement unavailable; native scrolling remains active.", error);
         }
@@ -105,6 +129,7 @@
         initReveal();
         initAnchorScroll();
         initBackToTop();
+        initGalleryOrientation();
         initScrollMotion();
     }
 
@@ -112,6 +137,7 @@
         initReveal,
         initAnchorScroll,
         initBackToTop,
+        initGalleryOrientation,
         initScrollMotion,
         initSiteUI,
     };
