@@ -9,11 +9,13 @@
         document.head.appendChild(link);
     }
 
-    // Defer scripts execute before DOMContentLoaded, so load structural overrides immediately.
+    // Layer structural overrides: v2 contains the broad redesign, v3 contains chapter behavior.
     if (document.body?.classList.contains("dev-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
+        loadStylesheet("layout-v3.css?v=20260830-1");
     } else if (document.body?.classList.contains("photography-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
+        loadStylesheet("layout-v3.css?v=20260830-1");
     }
 
     function initReveal(root = document) {
@@ -119,7 +121,7 @@
         try {
             await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js");
             await loadScript("https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js");
-            await loadScript("../assets/js/scroll-motion.js?v=20260830-2");
+            await loadScript("../assets/js/scroll-motion.js?v=20260830-3");
         } catch (error) {
             console.warn("Scroll motion enhancement unavailable; native scrolling remains active.", error);
         }
