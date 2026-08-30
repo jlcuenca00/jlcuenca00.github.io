@@ -43,9 +43,7 @@
             category: "SCHOOL PAPER / VISUAL JOURNALISM",
             period: "2024 → PRESENT",
             description: "School publication work focused on visual documentation and photojournalism.",
-            roles: [
-                ["PHOTOJOURNALIST", "2024–PRESENT"],
-            ],
+            roles: [["PHOTOJOURNALIST", "2024–PRESENT"]],
         },
         {
             id: "twg",
@@ -79,53 +77,52 @@
     ];
 
     root.dataset.archiveBuilt = "true";
-    root.className = "achievement-list affiliation-scene";
+    root.className = "achievement-list affiliation-showcase";
     root.innerHTML = `
-        <header class="affiliation-scene__intro">
+        <header class="affiliation-showcase__intro">
             <div>
                 <span>LEADERSHIP / MEDIA</span>
-                <h3>AFFILIATION INDEX.</h3>
+                <h3>SELECTED AFFILIATIONS.</h3>
             </div>
-            <p>Five organizations. Move through the index to inspect the role history attached to each one.</p>
+            <p>Organizations, publications, and creative teams that shaped how I lead, document, and build with others.</p>
         </header>
 
-        <div class="affiliation-experience" data-active="01">
-            <nav class="affiliation-index" aria-label="Leadership and media affiliations">
-                ${affiliations.map((item, index) => `
-                    <button class="affiliation-index__item${index === 0 ? " is-active" : ""}" type="button" data-affiliation="${item.id}" aria-pressed="${index === 0 ? "true" : "false"}">
-                        <span>${item.number}</span>
-                        <strong>${item.short}</strong>
-                        <i>↗</i>
-                    </button>
-                `).join("")}
-            </nav>
+        <div class="affiliation-showcase__selector" role="tablist" aria-label="Affiliations">
+            ${affiliations.map((item, index) => `
+                <button class="affiliation-tab${index === 0 ? " is-active" : ""}" type="button" role="tab" aria-selected="${index === 0 ? "true" : "false"}" data-affiliation="${item.id}">
+                    <span>${item.number}</span>
+                    <strong>${item.short}</strong>
+                </button>
+            `).join("")}
+        </div>
 
-            <article class="affiliation-stage" aria-live="polite">
-                <div class="affiliation-stage__scan" aria-hidden="true"></div>
-                <div class="affiliation-stage__topline">
-                    <span data-affiliation-category>${affiliations[0].category}</span>
-                    <span data-affiliation-period>${affiliations[0].period}</span>
-                </div>
-                <div class="affiliation-stage__identity">
-                    <span class="affiliation-stage__number" data-affiliation-number>${affiliations[0].number}</span>
+        <article class="affiliation-panel" data-active="01" aria-live="polite">
+            <div class="affiliation-panel__meta">
+                <span data-affiliation-category>${affiliations[0].category}</span>
+                <span data-affiliation-period>${affiliations[0].period}</span>
+            </div>
+
+            <div class="affiliation-panel__main">
+                <div class="affiliation-panel__identity">
+                    <span class="affiliation-panel__number" data-affiliation-number>${affiliations[0].number}</span>
                     <h4 data-affiliation-title>${affiliations[0].title}</h4>
                 </div>
-                <div class="affiliation-stage__context">
-                    <p data-affiliation-institution>${affiliations[0].institution}</p>
+                <div class="affiliation-panel__copy">
+                    <p class="affiliation-panel__institution" data-affiliation-institution>${affiliations[0].institution}</p>
                     <p data-affiliation-description>${affiliations[0].description}</p>
                 </div>
-                <div class="affiliation-stage__roles" data-affiliation-roles>
-                    ${affiliations[0].roles.map(([role, date]) => `
-                        <div><strong>${role}</strong><span>${date}</span></div>
-                    `).join("")}
-                </div>
-            </article>
-        </div>
+            </div>
+
+            <div class="affiliation-panel__roles" data-affiliation-roles>
+                ${affiliations[0].roles.map(([role, date]) => `
+                    <div><span>${date}</span><strong>${role}</strong></div>
+                `).join("")}
+            </div>
+        </article>
     `;
 
-    const experience = root.querySelector(".affiliation-experience");
-    const stage = root.querySelector(".affiliation-stage");
-    const buttons = [...root.querySelectorAll(".affiliation-index__item")];
+    const panel = root.querySelector(".affiliation-panel");
+    const tabs = [...root.querySelectorAll(".affiliation-tab")];
     const title = root.querySelector("[data-affiliation-title]");
     const number = root.querySelector("[data-affiliation-number]");
     const category = root.querySelector("[data-affiliation-category]");
@@ -135,26 +132,24 @@
     const roles = root.querySelector("[data-affiliation-roles]");
 
     let activeId = affiliations[0].id;
-    let transitionTimer = null;
+    let timer = null;
 
-    const render = (id, focus = false) => {
-        if (id === activeId && !focus) return;
+    const render = (id) => {
+        if (id === activeId) return;
         const item = affiliations.find((entry) => entry.id === id);
         if (!item) return;
 
         activeId = id;
-        buttons.forEach((button) => {
-            const active = button.dataset.affiliation === id;
-            button.classList.toggle("is-active", active);
-            button.setAttribute("aria-pressed", active ? "true" : "false");
+        tabs.forEach((tab) => {
+            const active = tab.dataset.affiliation === id;
+            tab.classList.toggle("is-active", active);
+            tab.setAttribute("aria-selected", active ? "true" : "false");
         });
 
-        stage.classList.remove("is-resolving");
-        stage.classList.add("is-changing");
-        clearTimeout(transitionTimer);
-
-        window.setTimeout(() => {
-            experience.dataset.active = item.number;
+        panel.classList.add("is-switching");
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+            panel.dataset.active = item.number;
             title.textContent = item.title;
             number.textContent = item.number;
             category.textContent = item.category;
@@ -162,30 +157,28 @@
             institution.textContent = item.institution;
             description.textContent = item.description;
             roles.innerHTML = item.roles.map(([role, date]) => `
-                <div><strong>${role}</strong><span>${date}</span></div>
+                <div><span>${date}</span><strong>${role}</strong></div>
             `).join("");
-
-            stage.classList.remove("is-changing");
-            stage.classList.add("is-resolving");
-            transitionTimer = window.setTimeout(() => stage.classList.remove("is-resolving"), 480);
-        }, 150);
+            panel.classList.remove("is-switching");
+            panel.classList.add("is-entering");
+            window.setTimeout(() => panel.classList.remove("is-entering"), 420);
+        }, 120);
     };
 
-    buttons.forEach((button) => {
-        const activate = () => render(button.dataset.affiliation);
-        button.addEventListener("mouseenter", activate);
-        button.addEventListener("focus", activate);
-        button.addEventListener("click", activate);
+    tabs.forEach((tab) => {
+        tab.addEventListener("mouseenter", () => render(tab.dataset.affiliation));
+        tab.addEventListener("focus", () => render(tab.dataset.affiliation));
+        tab.addEventListener("click", () => render(tab.dataset.affiliation));
     });
 
     root.addEventListener("keydown", (event) => {
-        if (!["ArrowDown", "ArrowUp"].includes(event.key)) return;
-        const current = buttons.findIndex((button) => button.dataset.affiliation === activeId);
-        const direction = event.key === "ArrowDown" ? 1 : -1;
-        const next = (current + direction + buttons.length) % buttons.length;
+        if (!["ArrowRight", "ArrowLeft"].includes(event.key)) return;
+        const current = tabs.findIndex((tab) => tab.dataset.affiliation === activeId);
+        const step = event.key === "ArrowRight" ? 1 : -1;
+        const next = (current + step + tabs.length) % tabs.length;
         event.preventDefault();
-        buttons[next].focus();
-        render(buttons[next].dataset.affiliation, true);
+        tabs[next].focus();
+        render(tabs[next].dataset.affiliation);
     });
 
     if (window.PortfolioUI?.initReveal) window.PortfolioUI.initReveal(root);
