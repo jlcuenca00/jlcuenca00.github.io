@@ -1,0 +1,369 @@
+/* Final override: affiliations as expanding record strips, contact as a compact signal switchboard. */
+
+/* --------------------------------------------------------------------------
+   AFFILIATIONS — EXPANDING RECORD STACK
+   -------------------------------------------------------------------------- */
+.affiliation-v2 {
+  margin-top: clamp(6rem, 10vw, 10rem) !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+}
+.affiliation-v2::before { display: none !important; }
+.affiliation-v2__head {
+  width: 100% !important;
+  margin: 0 0 1.2rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.affiliation-v2__head::after {
+  content: "05 RECORDS / EXPAND TO READ";
+  color: rgba(255,255,255,.24);
+  font-size: .48rem;
+  letter-spacing: .12em;
+}
+.affiliation-v2__head strong { display: none !important; }
+
+.affiliation-constellation.affiliation-stack {
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: .55rem !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: none !important;
+}
+.affiliation-stack::after,
+.affiliation-stack .affiliation-core,
+.affiliation-stack .aff-readout { display: none !important; }
+
+.affiliation-stack .aff-strip {
+  --shift: 0rem;
+  position: relative !important;
+  inset: auto !important;
+  width: calc(100% - var(--shift)) !important;
+  min-width: 0 !important;
+  margin-left: var(--shift) !important;
+  min-height: 6.5rem !important;
+  display: grid !important;
+  grid-template-columns: 4rem minmax(13rem,.82fr) minmax(13rem,.72fr) auto !important;
+  grid-template-rows: auto auto !important;
+  align-items: center !important;
+  gap: .35rem 1.2rem !important;
+  padding: 1rem 1.2rem !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background:
+    linear-gradient(90deg, rgba(255,41,41,.035), transparent 24%),
+    #070707 !important;
+  clip-path: none !important;
+  color: rgba(255,255,255,.48) !important;
+  text-align: left !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  transform: none !important;
+  transition:
+    width 520ms cubic-bezier(.16,1,.3,1),
+    margin-left 520ms cubic-bezier(.16,1,.3,1),
+    min-height 520ms cubic-bezier(.16,1,.3,1),
+    color 220ms ease,
+    border-color 220ms ease,
+    background 260ms ease !important;
+}
+.affiliation-stack .aff-strip:nth-of-type(1) { --shift: 0rem; }
+.affiliation-stack .aff-strip:nth-of-type(2) { --shift: clamp(1rem,3vw,3.5rem); }
+.affiliation-stack .aff-strip:nth-of-type(3) { --shift: clamp(.25rem,1vw,1.25rem); }
+.affiliation-stack .aff-strip:nth-of-type(4) { --shift: clamp(2rem,5vw,6rem); }
+.affiliation-stack .aff-strip:nth-of-type(5) { --shift: clamp(.75rem,2vw,2.5rem); }
+.affiliation-stack .aff-strip:hover,
+.affiliation-stack .aff-strip:focus-visible,
+.affiliation-stack .aff-strip.is-open {
+  --shift: 0rem;
+  width: 100% !important;
+  color: #fff !important;
+  border-color: rgba(255,41,41,.42) !important;
+  background:
+    linear-gradient(90deg, rgba(255,41,41,.12), rgba(255,41,41,.025) 42%, transparent 72%),
+    #080808 !important;
+  outline: 0 !important;
+}
+.affiliation-stack .aff-strip.is-open { min-height: clamp(12.5rem, 21vh, 15rem) !important; }
+.aff-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 360ms cubic-bezier(.16,1,.3,1);
+}
+.aff-strip.is-open::before { transform: scaleY(1); }
+.aff-strip::after {
+  content: attr(data-index);
+  position: absolute;
+  right: .2rem;
+  bottom: -.36em;
+  color: rgba(255,255,255,.022);
+  font-family: var(--head);
+  font-size: clamp(6rem, 11vw, 11rem);
+  line-height: .78;
+  pointer-events: none;
+}
+.aff-strip__index {
+  grid-row: 1 / span 2;
+  color: var(--red) !important;
+  font-size: .5rem !important;
+  letter-spacing: .12em;
+}
+.aff-strip__name {
+  grid-row: 1 / span 2;
+  font-family: var(--head) !important;
+  font-size: clamp(1.45rem, 2.5vw, 2.7rem) !important;
+  line-height: .9 !important;
+  letter-spacing: -.045em !important;
+}
+.aff-strip__category {
+  color: rgba(255,255,255,.32);
+  font-size: .5rem;
+  letter-spacing: .11em;
+}
+.aff-strip__period {
+  justify-self: end;
+  color: rgba(255,255,255,.34);
+  font-style: normal;
+  font-size: .5rem;
+  letter-spacing: .09em;
+}
+.aff-strip__drawer {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: minmax(15rem,.72fr) minmax(0,1fr);
+  gap: 1.5rem 3rem;
+  align-items: end;
+  max-height: 0;
+  padding-top: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(10px);
+  transition:
+    max-height 520ms cubic-bezier(.16,1,.3,1),
+    padding-top 520ms cubic-bezier(.16,1,.3,1),
+    opacity 260ms ease,
+    transform 420ms cubic-bezier(.16,1,.3,1);
+}
+.aff-strip.is-open .aff-strip__drawer {
+  max-height: 10rem;
+  padding-top: 1rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+.aff-strip__drawer p {
+  margin: 0;
+  max-width: 33rem;
+  color: rgba(255,255,255,.55);
+  font-family: "Manrope", sans-serif;
+  font-size: .72rem;
+  line-height: 1.55;
+}
+.aff-strip__roles {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.aff-strip__roles span {
+  padding: .56rem .68rem;
+  border: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.72);
+  font-size: .5rem;
+  letter-spacing: .06em;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — SIGNAL SWITCHBOARD
+   -------------------------------------------------------------------------- */
+.contact-v2 {
+  padding-top: clamp(6rem,9vw,9rem) !important;
+  padding-bottom: clamp(4rem,7vw,6rem) !important;
+}
+.contact-glow {
+  --gx: 72%;
+  --gy: 35%;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(18rem,.7fr) minmax(0,1.3fr) !important;
+  grid-template-rows: auto auto !important;
+  gap: 0 clamp(2.5rem,6vw,7rem) !important;
+  padding: clamp(1.5rem,3vw,2.5rem) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255,255,255,.13) !important;
+  background:
+    linear-gradient(100deg, rgba(255,41,41,.07), transparent 30%),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    #060606 !important;
+  background-size: auto, 76px 76px, auto !important;
+}
+.contact-glow::before {
+  content: "OPEN CHANNEL" !important;
+  position: absolute !important;
+  left: auto !important;
+  right: -1.5rem !important;
+  bottom: -1.4rem !important;
+  color: rgba(255,255,255,.018) !important;
+  font-family: var(--head) !important;
+  font-size: clamp(5rem,10vw,10rem) !important;
+  line-height: .8 !important;
+  letter-spacing: -.06em !important;
+  pointer-events: none !important;
+}
+.contact-glow::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 50% !important;
+  width: auto !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,41,41,.35), transparent) !important;
+  transform: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+.contact-v2__meta {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid rgba(255,255,255,.11) !important;
+}
+.contact-v2__hero {
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: clamp(25rem, 47vh, 34rem) !important;
+  padding: clamp(2.2rem,4vw,4rem) 0 !important;
+}
+.contact-kicker {
+  color: rgba(255,255,255,.38) !important;
+  font-size: .5rem !important;
+  letter-spacing: .11em !important;
+}
+.contact-kicker::before { width: 1.8rem !important; }
+.contact-v2__hero h2 {
+  margin: auto 0 0 !important;
+  max-width: 7ch !important;
+  font-size: clamp(3.4rem, 6vw, 6.8rem) !important;
+  line-height: .79 !important;
+  letter-spacing: -.065em !important;
+}
+.contact-v2__hero h2 i {
+  color: var(--red) !important;
+  -webkit-text-stroke: 0 !important;
+}
+.contact-target { display: none !important; }
+.contact-v2__actions {
+  align-self: stretch !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  border: 0 !important;
+  border-left: 1px solid rgba(255,255,255,.11) !important;
+  background: transparent !important;
+}
+.contact-v2__actions a {
+  position: relative !important;
+  min-height: 7.4rem !important;
+  display: grid !important;
+  grid-template-columns: 7.5rem minmax(0,1fr) auto !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding: 1rem 0 1rem 1.4rem !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.11) !important;
+  background: transparent !important;
+  color: #fff !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+.contact-v2__actions a:last-child { border-bottom: 0 !important; }
+.contact-v2__actions a::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 auto 0 0 !important;
+  width: 0 !important;
+  height: auto !important;
+  background: var(--red) !important;
+  transition: width 420ms cubic-bezier(.16,1,.3,1) !important;
+  z-index: -1 !important;
+}
+.contact-v2__actions a:hover::before,
+.contact-v2__actions a:focus-visible::before { width: 100% !important; }
+.contact-v2__actions a > span {
+  grid-column: auto !important;
+  color: var(--red) !important;
+  font-size: .48rem !important;
+  letter-spacing: .1em !important;
+  transition: color 180ms ease !important;
+}
+.contact-v2__actions a strong {
+  max-width: none !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: clamp(1.15rem,2vw,2rem) !important;
+  line-height: 1 !important;
+}
+.contact-v2__actions a i {
+  position: static !important;
+  padding-right: 1.2rem !important;
+  font-size: 1rem !important;
+}
+.contact-v2__actions a:hover,
+.contact-v2__actions a:focus-visible { color: #050505 !important; outline: 0 !important; }
+.contact-v2__actions a:hover > span,
+.contact-v2__actions a:focus-visible > span { color: #050505 !important; }
+.contact-v2__actions .contact-v2__creator::before { background: var(--blue) !important; }
+.contact-v2__actions .contact-v2__creator > span { color: var(--blue) !important; }
+
+@media (max-width: 900px) {
+  .affiliation-stack .aff-strip {
+    --shift: 0rem !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    grid-template-columns: 3rem minmax(10rem,1fr) auto !important;
+  }
+  .aff-strip__category { display: none; }
+  .aff-strip__drawer { grid-column: 2 / -1; grid-template-columns: 1fr; }
+  .aff-strip__roles { justify-content: flex-start; }
+
+  .contact-glow { grid-template-columns: 1fr !important; }
+  .contact-v2__hero { min-height: 24rem !important; }
+  .contact-v2__actions { border-left: 0 !important; border-top: 1px solid rgba(255,255,255,.11) !important; }
+}
+
+@media (max-width: 620px) {
+  .affiliation-v2__head::after { display: none; }
+  .affiliation-stack .aff-strip {
+    min-height: 5.6rem !important;
+    grid-template-columns: 2.2rem 1fr auto !important;
+    padding: .85rem !important;
+  }
+  .affiliation-stack .aff-strip.is-open { min-height: 13.5rem !important; }
+  .aff-strip__name { font-size: 1.35rem !important; }
+  .aff-strip__drawer { grid-column: 1 / -1; }
+
+  .contact-v2__hero h2 { font-size: clamp(3rem,14vw,5rem) !important; }
+  .contact-v2__actions a {
+    min-height: 6.5rem !important;
+    grid-template-columns: 1fr auto !important;
+    padding-left: 1rem !important;
+  }
+  .contact-v2__actions a > span { grid-column: 1 / -1 !important; }
+  .contact-v2__actions a strong { font-size: 1.15rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .affiliation-stack .aff-strip,
+  .aff-strip__drawer,
+  .contact-v2__actions a::before { transition: none !important; }
+}
