@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector('link[data-director-mosaic]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "director-mosaic.css?v=20260831-1";
+      link.href = "director-mosaic.css?v=20260831-2";
       link.dataset.directorMosaic = "true";
       document.head.appendChild(link);
     }
     if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
-      script.src = "director-mosaic.js?v=20260831-1";
+      script.src = "director-mosaic.js?v=20260831-2";
       script.dataset.directorMosaic = "true";
       document.head.appendChild(script);
     }
@@ -50,14 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const reel = document.getElementById("projectReel");
     const panels = Array.from(document.querySelectorAll("[data-project-panel]"));
     if (!reel || !panels.length) return;
-
     const activate = (panel) => panels.forEach((item) => item.classList.toggle("is-active", item === panel));
-
     panels.forEach((panel) => {
       panel.addEventListener("mouseenter", () => activate(panel));
       panel.addEventListener("focus", () => activate(panel));
       panel.addEventListener("pointerdown", () => activate(panel));
-
       if (finePointer && !reducedMotion) {
         panel.addEventListener("pointermove", (event) => {
           const rect = panel.getBoundingClientRect();
@@ -78,21 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const collage = document.getElementById("profileCollage");
     const frames = collage ? Array.from(collage.querySelectorAll(".profile-frame")) : [];
     if (!collage || !frames.length) return;
-
     let active = 0;
     let visible = true;
     let timer = 0;
-
     const show = (index) => {
       active = (index + frames.length) % frames.length;
       frames.forEach((frame, i) => frame.classList.toggle("is-active", i === active));
     };
-
     frames.forEach((frame, i) => {
       frame.addEventListener("mouseenter", () => show(i));
       frame.addEventListener("click", () => show(i));
     });
-
     if (finePointer && !reducedMotion) {
       collage.addEventListener("pointermove", (event) => {
         const rect = collage.getBoundingClientRect();
@@ -104,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
         collage.style.setProperty("--py", "0");
       });
     }
-
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: .25 }).observe(collage);
     }
@@ -119,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = root ? Array.from(root.querySelectorAll("[data-edu-level]")) : [];
     const panels = root ? Array.from(root.querySelectorAll("[data-edu-panel]")) : [];
     if (!root || !buttons.length || !panels.length) return;
-
     const activate = (key) => {
       root.dataset.active = key;
       buttons.forEach((button) => {
@@ -129,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.eduPanel === key));
     };
-
     buttons.forEach((button) => {
       button.addEventListener("click", () => activate(button.dataset.eduLevel));
       button.addEventListener("focus", () => activate(button.dataset.eduLevel));
@@ -137,78 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initAffiliationSwitchboard() {
-    const root = document.getElementById("affiliationConstellation");
-    const buttons = root ? Array.from(root.querySelectorAll("[data-aff-v2]")) : [];
-    const readout = root ? root.querySelector(".aff-readout") : null;
-    if (!root || !buttons.length || !readout) return;
-
-    const data = {
-      acclaimed: { index:"01", category:"CAMPUS CREATIVE ORGANIZATION", period:"FOUNDING → 2026", title:"ACCLAIMED", institution:"Asian College of Science and Technology — Dumaguete City", roles:["PIO / 2025—2026","PRESIDENT / 2024—2025","FOUNDING MEMBER"] },
-      ccse: { index:"02", category:"COLLEGE LEADERSHIP", period:"2024 → PRESENT", title:"CCSE", institution:"College of Computer Studies and Engineering / Asian College", roles:["VICE PRESIDENT / 2024—PRESENT","IT TREASURER / 2024—2025"] },
-      acer: { index:"03", category:"SCHOOL PAPER / VISUAL JOURNALISM", period:"2024 → PRESENT", title:"ACER CHRONICLES", institution:"Asian College school paper team", roles:["PHOTOJOURNALIST / 2024—PRESENT"] },
-      twg: { index:"04", category:"SECONDARY CREATIVE TEAM", period:"2021 → 2023", title:"TWG / BCSTEC", institution:"Bayawan City Science and Technology Education Center", roles:["CREATIVE HEAD / 2021—2023","FOUNDING MEMBER","VIDEO / PHOTO / GRAPHICS"] },
-      aemt: { index:"05", category:"EVENT / CREATIVE TEAM", period:"SECONDARY SCHOOL", title:"AEMT", institution:"Saint Augustine Academy of Bayawan, Inc.", roles:["PIONEER MEMBER","VIDEO / PHOTO / GRAPHICS"] }
-    };
-
-    const category = document.getElementById("affV2Category");
-    const period = document.getElementById("affV2Period");
-    const title = document.getElementById("affV2Title");
-    const institution = document.getElementById("affV2Institution");
-    const roles = document.getElementById("affV2Roles");
-
-    const writeRoles = (items) => {
-      roles.replaceChildren(...items.map((label) => {
-        const span = document.createElement("span");
-        span.textContent = label;
-        return span;
-      }));
-    };
-
-    const write = (item) => {
-      readout.dataset.index = item.index;
-      category.textContent = item.category;
-      period.textContent = item.period;
-      title.textContent = item.title;
-      institution.textContent = item.institution;
-      writeRoles(item.roles);
-    };
-
-    const activate = (button) => {
-      const item = data[button.dataset.affV2];
-      if (!item) return;
-      buttons.forEach((node) => node.classList.toggle("is-active", node === button));
-
-      if (reducedMotion || typeof readout.animate !== "function") {
-        write(item);
-        return;
-      }
-
-      const out = readout.animate([
-        { opacity:1, transform:"translateY(0)" },
-        { opacity:.18, transform:"translateY(8px)" }
-      ], { duration:120, easing:"ease-in", fill:"forwards" });
-      out.onfinish = () => {
-        write(item);
-        readout.animate([
-          { opacity:.18, transform:"translateY(10px)" },
-          { opacity:1, transform:"translateY(0)" }
-        ], { duration:360, easing:"cubic-bezier(.16,1,.3,1)", fill:"forwards" });
-      };
-    };
-
-    buttons.forEach((button) => {
-      button.addEventListener("mouseenter", () => activate(button));
-      button.addEventListener("focus", () => activate(button));
-      button.addEventListener("click", () => activate(button));
-    });
-
-    write(data.acclaimed);
+    // Affiliation markup is rebuilt by director-mosaic.js into the final static poster.
   }
 
   function initContactGlow() {
     const section = document.getElementById("contactGlow");
     if (!section || !finePointer || reducedMotion) return;
-
     let raf = 0;
     section.addEventListener("pointermove", (event) => {
       if (raf) cancelAnimationFrame(raf);
@@ -218,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
         section.style.setProperty("--gy", `${(((event.clientY - rect.top) / rect.height) * 100).toFixed(1)}%`);
       });
     }, { passive: true });
-
     section.addEventListener("pointerleave", () => {
       section.style.setProperty("--gx", "68%");
       section.style.setProperty("--gy", "30%");
