@@ -31,10 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
       link.dataset.directorTune = "true";
       document.head.appendChild(link);
     }
-    if (!document.querySelector('script[data-director-final]')) {
+    if (!document.querySelector('link[data-director-mosaic]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "director-mosaic.css?v=20260831-1";
+      link.dataset.directorMosaic = "true";
+      document.head.appendChild(link);
+    }
+    if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
-      script.src = "director-final.js?v=20260831-3";
-      script.dataset.directorFinal = "true";
+      script.src = "director-mosaic.js?v=20260831-1";
+      script.dataset.directorMosaic = "true";
       document.head.appendChild(script);
     }
   }
