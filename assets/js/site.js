@@ -18,7 +18,7 @@
         loadStylesheet("layout-v7.css?v=20260830-5");
         loadStylesheet("../assets/css/experience.css?v=20260830-1");
         loadStylesheet("layout-v8.css?v=20260830-1");
-        loadStylesheet("layout-v9.css?v=20260831-1");
+        loadStylesheet("layout-v9.css?v=20260831-2");
         loadStylesheet("layout-v10.css?v=20260831-1");
     } else if (document.body?.classList.contains("photography-page")) {
         loadStylesheet("layout-v2.css?v=20260830-2");
@@ -151,7 +151,7 @@
         if (document.body.classList.contains("dev-page")) {
             tasks.push(loadScript("../assets/js/project-scene.js?v=20260830-3"));
             tasks.push(loadScript("../assets/js/leadership-archive.js?v=20260831-1"));
-            tasks.push(loadScript("../assets/js/certificate-register.js?v=20260831-2"));
+            tasks.push(loadScript("../assets/js/certificate-register.js?v=20260831-3"));
         }
 
         if (document.body.classList.contains("photography-page")) {
