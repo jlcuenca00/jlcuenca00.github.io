@@ -1,274 +1,305 @@
-/* Developer layout v7 — Leadership / Media as a compact aligned index. */
+/* Developer layout v7 — Leadership / Media as institution archive cards. */
 
-.dev-education .leadership-index {
+.dev-education .leadership-cards {
     width: min(100%, 92rem);
-    margin: clamp(7rem, 12vw, 12rem) auto 0;
+    margin: clamp(7rem, 11vw, 11rem) auto 0;
     display: block;
     border: 0;
     background: transparent;
 }
 
-.leadership-index__intro {
+.leadership-cards__intro {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
     gap: clamp(2rem, 6vw, 7rem);
     align-items: end;
-    padding-bottom: clamp(2.2rem, 4vw, 3.6rem);
+    padding-bottom: clamp(2rem, 4vw, 3.2rem);
     border-bottom: 1px solid rgba(255, 42, 42, 0.34);
 }
 
-.leadership-index__intro > div > span {
+.leadership-cards__intro > div > span {
     display: block;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
     color: var(--accent);
     font-family: var(--font-mono);
-    font-size: 0.61rem;
+    font-size: 0.6rem;
     letter-spacing: 0.16em;
 }
 
-.leadership-index__intro h3 {
-    max-width: 16ch;
+.leadership-cards__intro h3 {
     margin: 0;
     color: #fff;
     font-family: var(--font-head);
-    font-size: clamp(2.8rem, 5.2vw, 5.6rem);
-    line-height: 0.88;
-    letter-spacing: -0.055em;
+    font-size: clamp(2.4rem, 4.4vw, 4.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
 }
 
-.leadership-index__intro > p {
+.leadership-cards__intro > p {
     max-width: 29rem;
     margin: 0;
     color: var(--dev-muted);
     font-family: var(--font-mono);
-    font-size: 0.71rem;
+    font-size: 0.7rem;
     line-height: 1.8;
 }
 
-.leadership-index__groups {
+.leadership-cards__stack {
     display: grid;
-    gap: clamp(4.5rem, 8vw, 8rem);
-    padding-top: clamp(3.5rem, 6vw, 6rem);
+    gap: clamp(3rem, 5vw, 5rem);
+    padding-top: clamp(3rem, 5vw, 4.5rem);
 }
 
-.leadership-index__group {
+.institution-card {
     position: relative;
+    border: 1px solid rgba(255,255,255,0.13);
+    background: linear-gradient(145deg, rgba(255,42,42,0.025), rgba(6,6,6,0.82) 34%, rgba(4,4,4,0.94));
+    overflow: hidden;
 }
 
-.leadership-index__group-head {
-    display: grid;
-    grid-template-columns: minmax(8rem, 0.22fr) minmax(0, 1fr) minmax(8rem, auto);
-    gap: clamp(1.2rem, 3vw, 3rem);
-    align-items: end;
-    padding: 0 0 1.1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.16);
-}
-
-.leadership-index__group-head > span {
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.12em;
-}
-
-.leadership-index__group-head > span:last-child {
-    justify-self: end;
-    color: rgba(255,255,255,0.42);
-}
-
-.leadership-index__group-head h4 {
-    margin: 0;
-    color: rgba(255,255,255,0.82);
-    font-family: var(--font-mono);
-    font-size: clamp(0.84rem, 1.3vw, 1.05rem);
-    line-height: 1.4;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.leadership-index__rows {
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-
-.leadership-index__row {
-    position: relative;
-    display: grid;
-    grid-template-columns: 4.5rem minmax(14rem, 0.34fr) minmax(0, 1fr) minmax(8rem, auto);
-    gap: clamp(1rem, 2.5vw, 2.5rem);
-    align-items: center;
-    min-height: 6.7rem;
-    padding: 1.15rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.095);
-    transition: padding 260ms cubic-bezier(0.16,1,0.3,1), background 220ms ease;
-}
-
-.leadership-index__row:last-child {
-    border-bottom: 0;
-}
-
-.leadership-index__row::before {
+.institution-card::after {
     content: "";
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--accent);
-    transform: scaleY(0);
-    transition: transform 220ms ease;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255,42,42,0.04), transparent 26%);
+    opacity: 0.6;
 }
 
-.leadership-index__row:hover,
-.leadership-index__row:focus-within {
-    padding-left: 1rem;
-    background: linear-gradient(90deg, rgba(255,42,42,0.05), transparent 60%);
+.institution-card__head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-end;
+    padding: clamp(1.6rem, 3vw, 2.5rem);
+    border-bottom: 1px solid rgba(255,255,255,0.11);
 }
 
-.leadership-index__row:hover::before,
-.leadership-index__row:focus-within::before {
-    transform: scaleY(1);
-}
-
-.leadership-index__no,
-.leadership-index__org,
-.leadership-index__date {
+.institution-card__head > div > span,
+.institution-card__range {
+    color: var(--accent);
     font-family: var(--font-mono);
     font-size: 0.58rem;
-    line-height: 1.55;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.13em;
 }
 
-.leadership-index__no,
-.leadership-index__org {
-    color: var(--accent);
-}
-
-.leadership-index__date {
-    justify-self: end;
-    color: rgba(255,255,255,0.44);
-    white-space: nowrap;
-}
-
-.leadership-index__row strong {
+.institution-card__head h4 {
+    margin: 0.75rem 0 0.5rem;
     color: #fff;
     font-family: var(--font-head);
-    font-size: clamp(1.45rem, 2.3vw, 2.45rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    font-size: clamp(2rem, 3.4vw, 3.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
 }
 
-.leadership-index__row small {
-    grid-column: 3 / 5;
-    margin-top: -0.5rem;
-    color: rgba(255,255,255,0.36);
+.institution-card__head p {
+    max-width: 40rem;
+    margin: 0;
+    color: rgba(255,255,255,0.45);
     font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-size: 0.66rem;
     line-height: 1.6;
 }
 
-.leadership-index__group::after {
-    position: absolute;
-    z-index: -1;
-    right: 0;
-    top: -0.32em;
-    color: rgba(255,42,42,0.018);
+.institution-card__range {
+    color: rgba(255,255,255,0.42);
+    white-space: nowrap;
+}
+
+.organization-cards {
+    position: relative;
+    z-index: 1;
+    display: grid;
+}
+
+.organization-cards--three {
+    grid-template-columns: 1.08fr 1fr 0.92fr;
+}
+
+.organization-cards--two {
+    grid-template-columns: 1.1fr 0.9fr;
+}
+
+.organization-card {
+    min-width: 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    background: rgba(2,2,2,0.12);
+    transition: background 220ms ease;
+}
+
+.organization-card:last-child {
+    border-right: 0;
+}
+
+.organization-card:hover,
+.organization-card:focus-within {
+    background: rgba(255,42,42,0.035);
+}
+
+.organization-card--accent {
+    background: linear-gradient(155deg, rgba(255,42,42,0.045), rgba(2,2,2,0.12) 55%);
+}
+
+.organization-card > header {
+    min-height: clamp(9rem, 15vw, 12rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(1.4rem, 2.5vw, 2rem);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.organization-card > header > span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+}
+
+.organization-card > header h5 {
+    max-width: 16ch;
+    margin: 0.65rem 0 0;
+    color: #fff;
     font-family: var(--font-head);
-    font-size: clamp(9rem, 18vw, 20rem);
+    font-size: clamp(1.65rem, 2.8vw, 3rem);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+}
+
+.organization-card--accent > header h5 {
+    font-size: clamp(2rem, 3.3vw, 3.6rem);
+}
+
+.organization-card > header p {
+    max-width: 27rem;
+    margin: 0.7rem 0 0;
+    color: rgba(255,255,255,0.38);
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    line-height: 1.55;
+}
+
+.organization-card__roles {
+    display: block;
+}
+
+.organization-role {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    min-height: 5.8rem;
+    padding: 1.2rem clamp(1.4rem, 2.5vw, 2rem);
+    border-bottom: 1px solid rgba(255,255,255,0.085);
+}
+
+.organization-role:last-child {
+    border-bottom: 0;
+}
+
+.organization-role strong {
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(1.15rem, 1.9vw, 1.9rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+}
+
+.organization-role > span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.09em;
+    white-space: nowrap;
+}
+
+.organization-role small {
+    grid-column: 1 / -1;
+    margin-top: -0.25rem;
+    color: rgba(255,255,255,0.34);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    line-height: 1.55;
+}
+
+/* Quiet identity marks, kept behind the archive rather than competing with it. */
+.institution-card--college::before,
+.institution-card--secondary::before {
+    position: absolute;
+    right: 0.02em;
+    bottom: -0.34em;
+    z-index: 0;
+    color: rgba(255,42,42,0.022);
+    font-family: var(--font-head);
+    font-size: clamp(12rem, 22vw, 24rem);
     line-height: 1;
     pointer-events: none;
 }
 
-.leadership-index__group:first-child::after { content: "01"; }
-.leadership-index__group:last-child::after { content: "02"; }
+.institution-card--college::before { content: "01"; }
+.institution-card--secondary::before { content: "02"; }
 
-@media (max-width: 980px) {
-    .leadership-index__intro {
+@media (max-width: 1050px) {
+    .leadership-cards__intro {
         grid-template-columns: 1fr;
     }
 
-    .leadership-index__group-head {
-        grid-template-columns: 1fr auto;
+    .organization-cards--three {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .leadership-index__group-head > span:first-child {
-        grid-column: 1;
-    }
-
-    .leadership-index__group-head h4 {
+    .organization-cards--three .organization-card:last-child {
         grid-column: 1 / -1;
-        grid-row: 2;
-    }
-
-    .leadership-index__group-head > span:last-child {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    .leadership-index__row {
-        grid-template-columns: 3.5rem minmax(11rem, 0.36fr) minmax(0, 1fr) auto;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        border-right: 0;
     }
 }
 
-@media (max-width: 720px) {
-    .leadership-index__row {
-        grid-template-columns: 3rem minmax(0, 1fr) auto;
-        gap: 0.6rem 1rem;
-        min-height: 6.2rem;
+@media (max-width: 760px) {
+    .institution-card__head {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
-    .leadership-index__no {
-        grid-column: 1;
-        grid-row: 1 / span 2;
-        align-self: start;
-        padding-top: 0.2rem;
+    .organization-cards--three,
+    .organization-cards--two {
+        grid-template-columns: 1fr;
     }
 
-    .leadership-index__org {
-        grid-column: 2 / 4;
-        grid-row: 1;
+    .organization-card,
+    .organization-cards--three .organization-card:last-child {
+        grid-column: auto;
+        border-right: 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    .leadership-index__row strong {
-        grid-column: 2;
-        grid-row: 2;
+    .organization-card:first-child {
+        border-top: 0;
     }
 
-    .leadership-index__date {
-        grid-column: 3;
-        grid-row: 2;
-        align-self: end;
-    }
-
-    .leadership-index__row small {
-        grid-column: 2 / 4;
-        margin-top: 0.1rem;
+    .organization-card > header {
+        min-height: 0;
     }
 }
 
 @media (max-width: 520px) {
-    .leadership-index__intro h3 {
-        font-size: clamp(2.6rem, 12vw, 4.4rem);
+    .leadership-cards__intro h3 {
+        font-size: clamp(2.4rem, 12vw, 4rem);
     }
 
-    .leadership-index__row {
-        grid-template-columns: 2.6rem minmax(0, 1fr);
+    .institution-card__head h4 {
+        font-size: clamp(2rem, 10vw, 3.1rem);
     }
 
-    .leadership-index__no {
-        grid-column: 1;
-        grid-row: 1 / span 4;
+    .organization-role {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
     }
 
-    .leadership-index__org,
-    .leadership-index__row strong,
-    .leadership-index__date,
-    .leadership-index__row small {
-        grid-column: 2;
+    .organization-role > span {
         justify-self: start;
-    }
-
-    .leadership-index__date {
-        grid-row: auto;
-        margin-top: 0.15rem;
     }
 }
