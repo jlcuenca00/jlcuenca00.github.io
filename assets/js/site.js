@@ -150,7 +150,7 @@
         if (document.body.classList.contains("dev-page")) {
             tasks.push(loadScript("../assets/js/project-scene.js?v=20260830-3"));
             tasks.push(loadScript("../assets/js/leadership-archive.js?v=20260830-5"));
-            tasks.push(loadScript("../assets/js/certificate-register.js?v=20260831-1"));
+            tasks.push(loadScript("../assets/js/certificate-register.js?v=20260831-2"));
         }
 
         if (document.body.classList.contains("photography-page")) {
