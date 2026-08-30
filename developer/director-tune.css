@@ -1,0 +1,206 @@
+/* Final scale and spacing correction for affiliations + contact. */
+
+/* --------------------------------------------------------------------------
+   AFFILIATIONS — BIGGER, CLEARER, MORE EDITORIAL
+   -------------------------------------------------------------------------- */
+.affiliation-stack {
+  gap: .8rem !important;
+}
+
+.affiliation-stack .aff-strip {
+  min-height: 7.6rem !important;
+  grid-template-columns: 4.5rem minmax(18rem, .95fr) minmax(15rem, .65fr) auto !important;
+  gap: .5rem 1.6rem !important;
+  padding: 1.2rem 1.5rem !important;
+}
+
+.affiliation-stack .aff-strip.is-open {
+  min-height: clamp(15rem, 25vh, 18rem) !important;
+}
+
+.aff-strip__index {
+  font-size: .62rem !important;
+}
+
+.aff-strip__name {
+  font-size: clamp(2.15rem, 3.35vw, 4rem) !important;
+  line-height: .86 !important;
+  letter-spacing: -.055em !important;
+}
+
+.aff-strip__category,
+.aff-strip__period {
+  font-size: .62rem !important;
+  line-height: 1.35 !important;
+}
+
+.aff-strip__category {
+  color: rgba(255,255,255,.48) !important;
+}
+
+.aff-strip__period {
+  color: rgba(255,255,255,.5) !important;
+}
+
+.aff-strip__drawer {
+  grid-column: 2 / -1 !important;
+  grid-template-columns: minmax(18rem, .72fr) minmax(0, 1.28fr) !important;
+  gap: 1.8rem 3rem !important;
+}
+
+.aff-strip.is-open .aff-strip__drawer {
+  max-height: 12rem !important;
+  padding-top: 1.35rem !important;
+}
+
+.aff-strip__drawer p {
+  max-width: 36rem !important;
+  color: rgba(255,255,255,.68) !important;
+  font-size: clamp(.82rem, .92vw, .96rem) !important;
+  line-height: 1.55 !important;
+}
+
+.aff-strip__roles {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+}
+
+.aff-strip__roles span {
+  min-height: 4.8rem !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  padding: 1rem .9rem .95rem !important;
+  border: 0 !important;
+  border-right: 1px solid rgba(255,255,255,.12) !important;
+  color: #fff !important;
+  font-family: var(--head) !important;
+  font-size: clamp(.82rem, 1.05vw, 1.1rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -.025em !important;
+}
+
+.aff-strip__roles span:last-child {
+  border-right: 0 !important;
+}
+
+.aff-strip::after {
+  font-size: clamp(7.5rem, 13vw, 13rem) !important;
+  opacity: .8;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — MORE LEFT-SIDE BREATHING ROOM, NO ELLIPSIS
+   -------------------------------------------------------------------------- */
+@media (min-width: 1101px) {
+  .contact-glow {
+    grid-template-columns: minmax(31rem, 1.16fr) minmax(32rem, .84fr) !important;
+    column-gap: clamp(5rem, 8vw, 10rem) !important;
+  }
+
+  .contact-v2__hero {
+    min-height: clamp(27rem, 49vh, 35rem) !important;
+    padding-right: 1rem !important;
+  }
+
+  .contact-v2__hero h2 {
+    max-width: 11.5ch !important;
+    font-size: clamp(3.6rem, 5.35vw, 6.45rem) !important;
+    line-height: .8 !important;
+  }
+
+  .contact-v2__actions {
+    margin-left: auto !important;
+    width: 100% !important;
+  }
+}
+
+.contact-v2__actions a {
+  grid-template-columns: 6.25rem minmax(0, 1fr) auto !important;
+  gap: 1.25rem !important;
+  padding-left: 1.6rem !important;
+  padding-right: .2rem !important;
+}
+
+.contact-v2__actions a > span {
+  font-size: .54rem !important;
+}
+
+.contact-v2__actions a strong {
+  max-width: none !important;
+  width: auto !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  font-size: clamp(1.08rem, 1.45vw, 1.62rem) !important;
+  line-height: 1.02 !important;
+}
+
+.contact-v2__actions a i {
+  padding-right: 1.35rem !important;
+}
+
+@media (max-width: 1100px) {
+  .affiliation-stack .aff-strip {
+    grid-template-columns: 3.6rem minmax(14rem, 1fr) auto !important;
+  }
+
+  .aff-strip__category {
+    display: none !important;
+  }
+
+  .aff-strip__drawer {
+    grid-column: 2 / -1 !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .aff-strip__roles {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+
+  .contact-v2__actions a strong {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .affiliation-stack .aff-strip {
+    min-height: 6rem !important;
+    grid-template-columns: 2.4rem minmax(0,1fr) auto !important;
+  }
+
+  .aff-strip__name {
+    font-size: clamp(1.6rem, 8vw, 2.25rem) !important;
+  }
+
+  .aff-strip__roles {
+    grid-template-columns: 1fr !important;
+  }
+
+  .aff-strip__roles span {
+    min-height: 3.8rem !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  }
+
+  .aff-strip__roles span:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .contact-v2__actions a {
+    grid-template-columns: 1fr auto !important;
+    padding-left: 1rem !important;
+  }
+
+  .contact-v2__actions a > span {
+    grid-column: 1 / -1 !important;
+  }
+
+  .contact-v2__actions a strong {
+    font-size: 1.15rem !important;
+  }
+}
