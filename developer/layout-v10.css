@@ -1,0 +1,420 @@
+/* Developer layout v10 — Leadership / Media as a single interactive affiliation scene.
+   Inspired by experimental project indexes: one state at a time, strong typography, quiet metadata. */
+
+.dev-education .affiliation-scene {
+    width: min(100%, 94rem);
+    margin: clamp(8rem, 12vw, 12rem) auto 0;
+    border: 0;
+    background: transparent;
+}
+
+.affiliation-scene__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.45fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: end;
+    padding-bottom: clamp(2rem, 4vw, 3.4rem);
+    border-bottom: 1px solid rgba(255, 42, 42, 0.34);
+}
+
+.affiliation-scene__intro > div > span {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    letter-spacing: 0.16em;
+}
+
+.affiliation-scene__intro h3 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 5.2vw, 5.8rem);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+}
+
+.affiliation-scene__intro > p {
+    max-width: 27rem;
+    margin: 0;
+    color: rgba(255,255,255,0.42);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.75;
+}
+
+.affiliation-experience {
+    --active-index: "01";
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.38fr) minmax(0, 1.62fr);
+    min-height: clamp(38rem, 78svh, 54rem);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    isolation: isolate;
+}
+
+.affiliation-experience::before {
+    content: attr(data-active);
+    position: absolute;
+    right: 0.01em;
+    bottom: -0.25em;
+    z-index: -1;
+    color: rgba(255,42,42,0.035);
+    font-family: var(--font-head);
+    font-size: clamp(18rem, 36vw, 42rem);
+    line-height: 0.74;
+    letter-spacing: -0.11em;
+    pointer-events: none;
+}
+
+.affiliation-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid rgba(255,255,255,0.11);
+}
+
+.affiliation-index__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    align-items: center;
+    min-height: 5.25rem;
+    padding: 1rem clamp(1rem, 2.2vw, 1.8rem) 1rem 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.085);
+    background: transparent;
+    color: rgba(255,255,255,0.35);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        color 220ms ease,
+        padding-left 360ms cubic-bezier(0.16, 1, 0.3, 1),
+        background 220ms ease;
+}
+
+.affiliation-index__item:first-child {
+    border-top: 1px solid rgba(255,255,255,0.085);
+}
+
+.affiliation-index__item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: translateY(-50%);
+    transition: width 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.affiliation-index__item span,
+.affiliation-index__item i {
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+}
+
+.affiliation-index__item strong {
+    font-family: var(--font-head);
+    font-size: clamp(1rem, 1.45vw, 1.35rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+}
+
+.affiliation-index__item i {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 220ms ease, transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.affiliation-index__item:hover,
+.affiliation-index__item:focus-visible,
+.affiliation-index__item.is-active {
+    color: #fff;
+    padding-left: 1.4rem;
+    outline: 0;
+    background: linear-gradient(90deg, rgba(255,42,42,0.05), transparent 75%);
+}
+
+.affiliation-index__item:hover::before,
+.affiliation-index__item:focus-visible::before,
+.affiliation-index__item.is-active::before {
+    width: 1rem;
+}
+
+.affiliation-index__item:hover i,
+.affiliation-index__item:focus-visible i,
+.affiliation-index__item.is-active i {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--accent);
+}
+
+.affiliation-index__item.is-active span {
+    color: var(--accent);
+}
+
+.affiliation-stage {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    min-width: 0;
+    padding: clamp(2rem, 4.5vw, 4.5rem) clamp(1.5rem, 5vw, 5rem);
+    overflow: hidden;
+}
+
+.affiliation-stage__scan {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,42,42,0.12) 45%, rgba(255,255,255,0.08) 50%, transparent 56%);
+    transform: translateX(-100%);
+}
+
+.affiliation-stage.is-changing .affiliation-stage__scan,
+.affiliation-stage.is-resolving .affiliation-stage__scan {
+    animation: affiliation-wipe 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes affiliation-wipe {
+    0% { opacity: 0; transform: translateX(-100%); }
+    22% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(115%); }
+}
+
+.affiliation-stage__topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.5;
+    letter-spacing: 0.13em;
+}
+
+.affiliation-stage__topline span:last-child {
+    color: rgba(255,255,255,0.42);
+    text-align: right;
+}
+
+.affiliation-stage__identity {
+    align-self: center;
+    position: relative;
+    padding: clamp(2rem, 5vh, 4rem) 0;
+}
+
+.affiliation-stage__number {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+}
+
+.affiliation-stage__identity h4 {
+    max-width: 13ch;
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(3.4rem, 7.2vw, 8rem);
+    line-height: 0.79;
+    letter-spacing: -0.07em;
+    text-wrap: balance;
+    transition: opacity 160ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.affiliation-stage__context {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    padding: 1.4rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: opacity 160ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.affiliation-stage__context p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(0.62rem, 0.8vw, 0.72rem);
+    line-height: 1.7;
+}
+
+.affiliation-stage__context p:first-child {
+    color: rgba(255,255,255,0.62);
+}
+
+.affiliation-stage__context p:last-child {
+    color: rgba(255,255,255,0.38);
+}
+
+.affiliation-stage__roles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 8rem;
+    transition: opacity 160ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.affiliation-stage__roles > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.4rem 1.4rem 0 0;
+    border-right: 1px solid rgba(255,255,255,0.085);
+}
+
+.affiliation-stage__roles > div + div {
+    padding-left: 1.4rem;
+}
+
+.affiliation-stage__roles > div:last-child {
+    border-right: 0;
+}
+
+.affiliation-stage__roles strong {
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(1rem, 1.75vw, 1.65rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+}
+
+.affiliation-stage__roles span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.09em;
+}
+
+.affiliation-stage.is-changing .affiliation-stage__identity h4,
+.affiliation-stage.is-changing .affiliation-stage__context,
+.affiliation-stage.is-changing .affiliation-stage__roles {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.affiliation-stage.is-resolving .affiliation-stage__identity h4,
+.affiliation-stage.is-resolving .affiliation-stage__context,
+.affiliation-stage.is-resolving .affiliation-stage__roles {
+    animation: affiliation-resolve 440ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes affiliation-resolve {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1040px) {
+    .affiliation-scene__intro {
+        grid-template-columns: 1fr;
+    }
+
+    .affiliation-experience {
+        grid-template-columns: 14rem minmax(0, 1fr);
+    }
+
+    .affiliation-stage__identity h4 {
+        font-size: clamp(3rem, 8vw, 6rem);
+    }
+}
+
+@media (max-width: 780px) {
+    .affiliation-experience {
+        display: block;
+        min-height: 0;
+    }
+
+    .affiliation-index {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .affiliation-index__item {
+        min-height: 4.5rem;
+        border-right: 1px solid rgba(255,255,255,0.085);
+    }
+
+    .affiliation-index__item:nth-child(even),
+    .affiliation-index__item:last-child {
+        border-right: 0;
+    }
+
+    .affiliation-index__item:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .affiliation-stage {
+        min-height: 34rem;
+    }
+
+    .affiliation-stage__context {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .affiliation-scene__intro h3 {
+        font-size: clamp(2.7rem, 13vw, 4.8rem);
+    }
+
+    .affiliation-index {
+        grid-template-columns: 1fr;
+    }
+
+    .affiliation-index__item,
+    .affiliation-index__item:nth-child(even) {
+        border-right: 0;
+    }
+
+    .affiliation-index__item:last-child {
+        grid-column: auto;
+    }
+
+    .affiliation-stage {
+        padding-inline: 1rem;
+    }
+
+    .affiliation-stage__topline {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .affiliation-stage__topline span:last-child {
+        text-align: left;
+    }
+
+    .affiliation-stage__identity h4 {
+        font-size: clamp(2.6rem, 13.5vw, 4.6rem);
+    }
+
+    .affiliation-stage__roles {
+        grid-template-columns: 1fr;
+    }
+
+    .affiliation-stage__roles > div,
+    .affiliation-stage__roles > div + div {
+        min-height: 5rem;
+        padding: 1.2rem 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.085);
+    }
+
+    .affiliation-stage__roles > div:last-child {
+        border-bottom: 0;
+    }
+}
