@@ -1,7 +1,7 @@
 (() => {
   const start = () => {
     const root = document.getElementById("affiliationConstellation");
-    if (!root || root.dataset.mosaicReady === "true") return;
+    if (!root || root.dataset.creditsReady === "true") return;
 
     const records = {
       acclaimed: {
@@ -49,79 +49,76 @@
     const oldButtons = Array.from(root.querySelectorAll("[data-aff-v2]"));
     if (!oldButtons.length) return;
 
-    root.dataset.mosaicReady = "true";
-    root.className = "affiliation-constellation affiliation-mosaic";
+    root.dataset.creditsReady = "true";
+    root.className = "affiliation-constellation affiliation-credits";
     root.replaceChildren();
 
     oldButtons.forEach((oldButton, idx) => {
       const item = records[oldButton.dataset.affV2];
       if (!item) return;
 
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = `aff-card${idx === 0 ? " is-open" : ""}`;
-      card.dataset.index = item.index;
-      card.dataset.affiliation = oldButton.dataset.affV2;
-      card.setAttribute("aria-pressed", idx === 0 ? "true" : "false");
+      const band = document.createElement("button");
+      band.type = "button";
+      band.className = `credit-band${idx === 0 ? " is-active" : ""}`;
+      band.dataset.index = item.index;
+      band.setAttribute("aria-label", `${item.title}. ${item.institution}. ${item.roles.join(", ")}`);
 
       const meta = document.createElement("div");
-      meta.className = "aff-card__meta";
-      const index = document.createElement("span");
-      index.textContent = `${item.index} / ${item.category}`;
+      meta.className = "credit-band__meta";
+      const label = document.createElement("span");
+      label.textContent = `${item.index} / ${item.category}`;
       const period = document.createElement("span");
       period.textContent = item.period;
-      meta.append(index, period);
+      meta.append(label, period);
 
-      const body = document.createElement("div");
-      body.className = "aff-card__body";
-      const title = document.createElement("h3");
-      title.textContent = item.title;
-      const institution = document.createElement("p");
-      institution.className = "aff-card__institution";
-      institution.textContent = item.institution;
-      body.append(title, institution);
+      const trackWrap = document.createElement("div");
+      trackWrap.className = "credit-band__track-wrap";
+      const track = document.createElement("div");
+      track.className = "credit-band__track";
+
+      for (let i = 0; i < 3; i += 1) {
+        const title = document.createElement("strong");
+        title.className = i % 2 === 0 ? "credit-band__title" : "credit-band__echo";
+        title.textContent = item.title;
+        const slash = document.createElement("span");
+        slash.className = "credit-band__slash";
+        slash.textContent = "/";
+        track.append(title, slash);
+      }
+      trackWrap.appendChild(track);
 
       const foot = document.createElement("div");
-      foot.className = "aff-card__foot";
-      const signal = document.createElement("span");
-      signal.className = "aff-card__signal";
-      signal.textContent = "ROLE RECORD";
+      foot.className = "credit-band__foot";
+      const institution = document.createElement("p");
+      institution.className = "credit-band__institution";
+      institution.textContent = item.institution;
       const roles = document.createElement("div");
-      roles.className = "aff-card__roles";
+      roles.className = "credit-band__roles";
       item.roles.forEach((role) => {
-        const chip = document.createElement("span");
-        chip.textContent = role;
-        roles.appendChild(chip);
+        const roleItem = document.createElement("span");
+        roleItem.textContent = role;
+        roles.appendChild(roleItem);
       });
-      foot.append(signal, roles);
+      foot.append(institution, roles);
 
-      card.append(meta, body, foot);
-      root.appendChild(card);
+      band.append(meta, trackWrap, foot);
+      root.appendChild(band);
 
       const activate = () => {
-        Array.from(root.querySelectorAll(".aff-card")).forEach((node) => {
-          const active = node === card;
-          node.classList.toggle("is-open", active);
-          node.setAttribute("aria-pressed", active ? "true" : "false");
-        });
+        Array.from(root.querySelectorAll(".credit-band")).forEach((node) => node.classList.toggle("is-active", node === band));
       };
 
-      card.addEventListener("mouseenter", activate);
-      card.addEventListener("focus", activate);
-      card.addEventListener("click", activate);
+      band.addEventListener("mouseenter", activate);
+      band.addEventListener("focus", activate);
+      band.addEventListener("click", activate);
 
-      card.addEventListener("pointermove", (event) => {
-        const rect = card.getBoundingClientRect();
+      band.addEventListener("pointermove", (event) => {
+        const rect = band.getBoundingClientRect();
         const x = ((event.clientX - rect.left) / rect.width) * 100;
         const y = ((event.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty("--mx", `${x.toFixed(1)}%`);
-        card.style.setProperty("--my", `${y.toFixed(1)}%`);
+        band.style.setProperty("--mx", `${x.toFixed(1)}%`);
+        band.style.setProperty("--my", `${y.toFixed(1)}%`);
       }, { passive: true });
-
-      card.addEventListener("pointerleave", () => {
-        card.style.setProperty("--mx", "50%");
-        card.style.setProperty("--my", "50%");
-      });
     });
   };
 
