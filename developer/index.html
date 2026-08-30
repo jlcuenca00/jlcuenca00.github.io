@@ -3,300 +3,282 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jake Cuenca — front-end designer and full-stack system developer. Experimental interaction design, web systems, mobile interfaces, and selected work." />
+  <meta name="description" content="Jake Cuenca — front-end designer and full-stack system developer. Experimental interfaces, practical systems, and selected work." />
   <meta name="theme-color" content="#050505" />
   <title>Jake Cuenca — Front-End Designer / System Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/base.css" />
-  <link rel="stylesheet" href="style.css?v=20260831-redesign1" />
-  <script src="script.js?v=20260831-redesign1" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=20260831-polish2" />
+  <script src="script.js?v=20260831-polish2" defer></script>
 </head>
 <body class="dev-page">
-  <canvas id="signalCanvas" class="signal-canvas" aria-hidden="true"></canvas>
-  <div class="dev-noise" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+  <div class="intro-loader" id="introLoader" aria-hidden="true">
+    <span>J/C</span><i></i><strong>FRONTEND / SYSTEMS</strong>
+  </div>
 
-  <nav class="dev-nav" aria-label="Developer portfolio navigation">
-    <a class="dev-brand" href="../index.html" aria-label="Return to portfolio landing page">
-      <strong>J/C</strong><span>FRONTEND / SYSTEMS</span>
-    </a>
-    <div class="dev-nav__links">
+  <canvas class="signal-canvas" id="signalCanvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="page-progress" aria-hidden="true"><i id="pageProgress"></i></div>
+
+  <nav class="site-nav" id="siteNav" aria-label="Developer portfolio navigation">
+    <a class="brand" href="../index.html" aria-label="Portfolio landing page"><strong>J/C</strong><span>F/E + SYSTEMS</span></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
       <a href="#work">WORK</a>
       <a href="#profile">PROFILE</a>
-      <a href="#capabilities">CAPABILITIES</a>
+      <a href="#capabilities">TOOLS</a>
       <a href="#history">HISTORY</a>
       <a href="#credentials">CERTS</a>
       <a href="#contact">CONTACT</a>
-      <a class="world-switch" href="../photography/index.html" data-world="creator">CREATOR ↗</a>
+      <a class="creator-link" href="../photography/index.html" data-world-link data-cursor="ENTER">CREATOR ↗</a>
     </div>
   </nav>
 
   <main>
-    <section class="hero scene" id="top" data-signal="type">
-      <div class="hero__meta">
+    <section class="hero scene" id="top" data-signal="hero">
+      <div class="scene-meta hero-meta" data-reveal>
         <span>JAKE KEVIN KLAIR L. CUENCA</span>
         <span>4TH YEAR BSIT / DUMAGUETE, PH</span>
-        <span class="signal-live">SIGNAL / ONLINE</span>
+        <span class="online">AVAILABLE / 2026</span>
       </div>
 
-      <div class="hero__stage">
-        <div class="hero__aside hero__aside--left" aria-hidden="true">
-          <span>INTERACTION</span><span>TYPOGRAPHY</span><span>MOTION</span><span>UI SYSTEMS</span>
+      <div class="hero-poster" id="heroPoster" data-reveal>
+        <div class="hero-face hero-face--front">
+          <div class="poster-code"><span>JC.01</span><span>INTERACTION / UI / MOTION</span></div>
+          <h1 aria-label="Front-end designer"><span>FRONT</span><span>END</span><em>DESIGNER</em></h1>
+          <p class="poster-note">DESIGN THE SURFACE.</p>
         </div>
 
-        <div class="hero__title" aria-label="Front-end designer, system builder">
-          <p class="hero__eyebrow">DESIGNING THE SURFACE / BUILDING WHAT RUNS UNDER IT</p>
-          <h1>
-            <span class="kinetic-line" data-kinetic="FRONT—END">FRONT—END</span>
-            <span class="kinetic-line kinetic-line--outline" data-kinetic="DESIGNER">DESIGNER</span>
-          </h1>
-          <div class="hero__subline">
-            <span>+</span>
-            <strong>SYSTEM BUILDER</strong>
-            <span class="hero__rotator" aria-live="polite"><i id="heroRotator">INTERACTION</i></span>
-          </div>
+        <div class="hero-face hero-face--system" id="systemReveal" aria-hidden="true">
+          <div class="poster-code"><span>JC.02</span><span>LARAVEL / DATA / WORKFLOWS</span></div>
+          <h2><span>SYSTEM</span><span>BUILDER</span><em>FULL STACK</em></h2>
+          <p class="poster-note">BUILD WHAT RUNS UNDER IT.</p>
         </div>
 
-        <div class="hero__aside hero__aside--right" aria-hidden="true">
-          <span>LARAVEL</span><span>POSTGRESQL</span><span>WORKFLOWS</span><span>INTEGRATION</span>
-        </div>
+        <figure class="hero-portrait" aria-hidden="true">
+          <img src="assets/profile/portrait-03.jpg" alt="" />
+          <span>MOVE / REVEAL</span>
+        </figure>
+
+        <div class="hero-cross" aria-hidden="true"><i></i><i></i></div>
       </div>
 
-      <div class="hero__footer">
-        <p>I design expressive interfaces, then build the systems behind them. Front-end experimentation, full-stack development, and practical software for real workflows.</p>
-        <div class="hero__actions">
-          <a href="#work" data-cursor="EXPLORE">SELECTED WORK ↓</a>
+      <div class="hero-foot" data-reveal>
+        <p>Front-end design is the first impression. Systems engineering makes it real.</p>
+        <div>
+          <a href="#work" data-cursor="VIEW">SELECTED WORK ↓</a>
           <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF">RESUME ↗</a>
         </div>
       </div>
     </section>
 
-    <section class="work scene" id="work" data-signal="network" aria-labelledby="work-title">
-      <header class="scene-head">
-        <div><span>01 / SELECTED WORK</span><h2 id="work-title">SYSTEMS<br /><i>WITH A FACE.</i></h2></div>
-        <p>Three builds. One stage. Move through the index and the entire scene changes state.</p>
+    <section class="work scene" id="work" data-signal="network" aria-labelledby="workTitle">
+      <header class="section-head" data-reveal>
+        <div><span>01 / SELECTED WORK</span><h2 id="workTitle">BUILT TO<br /><i>BE USED.</i></h2></div>
+        <p>Interfaces are the entry point. The system still has to survive real workflows.</p>
       </header>
 
-      <div class="work-shell" id="workShell" data-active="dar">
-        <div class="work-selector" role="tablist" aria-label="Selected projects">
-          <button class="work-tab is-active" type="button" role="tab" aria-selected="true" data-project="dar">
-            <span>01</span><strong>DAR-LTCMS</strong><small>FULL-STACK SYSTEM / 2026</small>
+      <div class="project-showcase" id="projectShowcase" data-project="dar" data-reveal>
+        <article class="project-stage" id="projectStage">
+          <a class="project-media" id="projectLink" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer" data-cursor="OPEN">
+            <img id="projectImage" src="assets/dar-ltcms.svg" alt="DAR-LTCMS interface preview" />
+            <div class="project-media__shade"></div>
+            <span class="project-no" id="projectNo">01</span>
+            <div class="project-title">
+              <span id="projectType">GOVERNMENT WORKFLOW SYSTEM</span>
+              <h3 id="projectName">DAR-LTCMS</h3>
+            </div>
+            <span class="project-open">OPEN ↗</span>
+          </a>
+          <aside class="project-info">
+            <div><span>ROLE</span><strong id="projectRole">LEAD / INTEGRATOR / FULL-STACK</strong></div>
+            <div><span>STACK</span><strong id="projectStack">LARAVEL 12 / PHP / POSTGRESQL / BLADE / JS</strong></div>
+            <div><span>YEAR</span><strong id="projectYear">2026</strong></div>
+            <p id="projectDescription">Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.</p>
+          </aside>
+        </article>
+
+        <div class="project-index" role="tablist" aria-label="Selected projects">
+          <button class="project-index__item is-active" type="button" data-project="dar" aria-selected="true">
+            <span>01</span><strong>DAR-LTCMS</strong><small>FULL-STACK / 2026</small><i></i>
           </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false" data-project="periphora">
-            <span>02</span><strong>PERIPHORA</strong><small>FLUTTER COMMERCE UI / 2025</small>
+          <button class="project-index__item" type="button" data-project="periphora" aria-selected="false">
+            <span>02</span><strong>PERIPHORA</strong><small>FLUTTER UI / 2025</small><i></i>
           </button>
-          <button class="work-tab" type="button" role="tab" aria-selected="false" data-project="todo">
-            <span>03</span><strong>FLUTTER TO-DO</strong><small>MOBILE INTERACTION / 2025</small>
+          <button class="project-index__item" type="button" data-project="todo" aria-selected="false">
+            <span>03</span><strong>FLUTTER TO-DO</strong><small>MOBILE / 2025</small><i></i>
           </button>
         </div>
-
-        <article class="work-stage" aria-live="polite">
-          <div class="work-stage__top">
-            <span id="workType">GOVERNMENT WORKFLOW SYSTEM</span>
-            <span id="workYear">2026</span>
-          </div>
-          <div class="work-stage__visual">
-            <img id="workImage" src="assets/dar-ltcms.svg" alt="Stylized interface preview of DAR-LTCMS" />
-            <span class="work-stage__number" id="workNumber">01</span>
-            <div class="work-stage__scan" aria-hidden="true"></div>
-          </div>
-          <div class="work-stage__copy">
-            <div>
-              <span id="workRole">LEAD / INTEGRATOR / FULL-STACK</span>
-              <h3 id="workName">DAR-LTCMS</h3>
-            </div>
-            <div class="work-stage__details">
-              <p id="workDescription">Land Transfer Clearance & Monitoring System for DAR Negros Oriental — administrative processing, records, mapping, monitoring, reporting, and auditable clearance workflows.</p>
-              <p id="workStack">LARAVEL 12 / PHP / POSTGRESQL / BLADE / JAVASCRIPT</p>
-              <a id="workLink" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer" data-cursor="OPEN">OPEN PROJECT ↗</a>
-            </div>
-          </div>
-          <div class="work-stage__progress" aria-hidden="true"><span id="workProgress"></span></div>
-        </article>
       </div>
     </section>
 
-    <section class="identity scene" id="profile" data-signal="dual" aria-labelledby="profile-title">
-      <header class="scene-head scene-head--compact">
-        <div><span>02 / PROFILE</span><h2 id="profile-title">TWO SIDES.<br /><i>ONE BUILD.</i></h2></div>
-        <p>Move across the scene. The balance changes between visual design and systems engineering.</p>
+    <section class="profile scene" id="profile" data-signal="dual" aria-labelledby="profileTitle">
+      <header class="section-head section-head--tight" data-reveal>
+        <div><span>02 / PROFILE</span><h2 id="profileTitle">DESIGN IN FRONT.<br /><i>LOGIC UNDERNEATH.</i></h2></div>
       </header>
 
-      <div class="duality" id="duality">
-        <div class="duality__panel duality__panel--design">
-          <span>DESIGNER / 01</span>
-          <h3>MAKE IT<br />FEEL <i>ALIVE.</i></h3>
-          <ul><li>INTERACTION DESIGN</li><li>MOTION & TYPOGRAPHY</li><li>RESPONSIVE UI</li><li>VISUAL SYSTEMS</li><li>PHOTOGRAPHY / FILM</li></ul>
+      <div class="profile-stage" data-reveal>
+        <div class="profile-side profile-side--design">
+          <span>DESIGN / 01</span>
+          <h3>MAKE IT<br />FEEL RIGHT.</h3>
+          <div class="profile-tags"><i>INTERACTION</i><i>TYPOGRAPHY</i><i>MOTION</i><i>RESPONSIVE UI</i></div>
         </div>
 
-        <figure class="duality__portrait" id="portraitCycle">
+        <figure class="portrait-stack" id="portraitStack">
           <img class="is-active" src="assets/profile/portrait-01.jpg" alt="Jake Cuenca smiling in an Asian College uniform" />
           <img src="assets/profile/portrait-02.jpg" alt="Jake Cuenca posing with crossed peace signs" />
           <img src="assets/profile/portrait-03.jpg" alt="Jake Cuenca giving a thumbs-up" />
-          <figcaption><span>JAKE CUENCA</span><strong>04 / 03</strong></figcaption>
+          <figcaption><span>JAKE CUENCA</span><strong id="portraitCounter">01 / 03</strong></figcaption>
         </figure>
 
-        <div class="duality__panel duality__panel--systems">
-          <span>DEVELOPER / 02</span>
-          <h3>MAKE IT<br /><i>WORK.</i></h3>
-          <ul><li>LARAVEL / PHP</li><li>POSTGRESQL</li><li>WORKFLOW DESIGN</li><li>AUTH / VALIDATION</li><li>INTEGRATION / DEPLOYMENT</li></ul>
+        <div class="profile-side profile-side--systems">
+          <span>SYSTEMS / 02</span>
+          <h3>MAKE IT<br />WORK RIGHT.</h3>
+          <div class="profile-tags"><i>LARAVEL</i><i>POSTGRESQL</i><i>WORKFLOWS</i><i>INTEGRATION</i></div>
         </div>
-
-        <div class="duality__meter" aria-hidden="true"><span></span><i>DESIGN</i><i>SYSTEMS</i></div>
       </div>
 
-      <div class="identity-copy">
-        <p>I’m a 4th Year BS Information Technology student at Asian College of Science and Technology — Dumaguete City. I like interfaces that communicate through hierarchy, movement, and restraint, but I also care about data integrity, maintainable workflows, and what happens after the button is clicked.</p>
-        <p>My goal is to keep growing toward front-end design and creative development without giving up the full-stack systems experience that lets me build complete products.</p>
+      <div class="profile-summary" data-reveal>
+        <p>4th Year BS Information Technology student at Asian College of Science and Technology — Dumaguete City.</p>
+        <p>I’m moving toward front-end design and creative development while keeping the full-stack experience needed to ship complete systems.</p>
       </div>
     </section>
 
-    <section class="capabilities scene" id="capabilities" data-signal="nodes" aria-labelledby="capabilities-title">
-      <header class="scene-head">
-        <div><span>03 / CAPABILITIES</span><h2 id="capabilities-title">TOOLS BECOME<br /><i>LANGUAGE.</i></h2></div>
-        <p>Choose a mode. Relevant capabilities resolve; everything else becomes structure.</p>
+    <section class="capabilities scene" id="capabilities" data-signal="grid" aria-labelledby="capabilitiesTitle">
+      <header class="section-head" data-reveal>
+        <div><span>03 / CAPABILITIES</span><h2 id="capabilitiesTitle">FOUR MODES.<br /><i>ONE TOOLKIT.</i></h2></div>
+        <p>Hover, focus, or tap a mode. The stack opens without turning into a résumé wall.</p>
       </header>
 
-      <div class="capability-modes" role="tablist" aria-label="Capability categories">
-        <button class="capability-mode is-active" type="button" data-mode="frontend">FRONTEND</button>
-        <button class="capability-mode" type="button" data-mode="design">DESIGN</button>
-        <button class="capability-mode" type="button" data-mode="systems">SYSTEMS</button>
-        <button class="capability-mode" type="button" data-mode="creative">CREATIVE</button>
-      </div>
-
-      <div class="capability-field" id="capabilityField" data-mode="frontend">
-        <span data-groups="frontend systems">JAVASCRIPT</span>
-        <span data-groups="frontend design">HTML / CSS</span>
-        <span data-groups="frontend design">RESPONSIVE UI</span>
-        <span data-groups="frontend">REACT + VITE</span>
-        <span data-groups="frontend design">INTERACTION</span>
-        <span data-groups="design frontend">TYPOGRAPHY</span>
-        <span data-groups="design creative">MOTION</span>
-        <span data-groups="design creative">VISUAL SYSTEMS</span>
-        <span data-groups="systems frontend">LARAVEL</span>
-        <span data-groups="systems">PHP</span>
-        <span data-groups="systems">POSTGRESQL</span>
-        <span data-groups="systems">REST APIs</span>
-        <span data-groups="systems">AUTH / VALIDATION</span>
-        <span data-groups="systems">WORKFLOW DESIGN</span>
-        <span data-groups="systems">GIT / GITHUB</span>
-        <span data-groups="frontend">FLUTTER / DART</span>
-        <span data-groups="creative design">PHOTOGRAPHY</span>
-        <span data-groups="creative design">FILMMAKING</span>
-        <span data-groups="creative">LIGHTROOM</span>
-        <span data-groups="creative">PREMIERE PRO</span>
-        <span data-groups="creative">DAVINCI RESOLVE</span>
-      </div>
-    </section>
-
-    <section class="history scene" id="history" data-signal="timeline" aria-labelledby="history-title">
-      <header class="scene-head">
-        <div><span>04 / HISTORY</span><h2 id="history-title">A LINE THROUGH<br /><i>THE WORK.</i></h2></div>
-        <p>Education, leadership, and creative work arranged as states in one timeline instead of stacked résumé cards.</p>
-      </header>
-
-      <div class="timeline" id="timeline">
-        <div class="timeline__rail" aria-hidden="true"><span id="timelineRail"></span></div>
-        <div class="timeline__points" role="tablist" aria-label="Education timeline">
-          <button type="button" class="timeline-point" data-history="primary"><span>2011</span><i></i><strong>PRIMARY</strong><small>2017</small></button>
-          <button type="button" class="timeline-point" data-history="high"><span>2017</span><i></i><strong>HIGH SCHOOL</strong><small>2021</small></button>
-          <button type="button" class="timeline-point" data-history="senior"><span>2021</span><i></i><strong>SENIOR HIGH</strong><small>2023</small></button>
-          <button type="button" class="timeline-point is-active" data-history="college"><span>2023</span><i></i><strong>BSIT</strong><small>NOW</small></button>
-        </div>
-
-        <article class="timeline-detail" aria-live="polite">
-          <div><span id="historyPeriod">2023 — PRESENT</span><strong id="historyLevel">TERTIARY / 4TH YEAR</strong></div>
-          <h3 id="historySchool">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</h3>
-          <p id="historyCopy">Bachelor of Science in Information Technology student. Current academic chapter focused on systems development, interaction design, and integrating practical software for real workflows.</p>
+      <div class="capability-deck" id="capabilityDeck" data-reveal>
+        <article class="cap-card is-active" tabindex="0" data-capability="frontend">
+          <div class="cap-card__top"><span>01</span><small>PRIMARY</small></div>
+          <h3>FRONT<br />END</h3>
+          <div class="cap-card__details"><span>JAVASCRIPT</span><span>HTML / CSS</span><span>RESPONSIVE UI</span><span>REACT + VITE</span><span>FLUTTER / DART</span></div>
+        </article>
+        <article class="cap-card" tabindex="0" data-capability="design">
+          <div class="cap-card__top"><span>02</span><small>VISUAL</small></div>
+          <h3>DESIGN</h3>
+          <div class="cap-card__details"><span>INTERACTION</span><span>TYPOGRAPHY</span><span>MOTION</span><span>UI SYSTEMS</span><span>ACCESSIBILITY</span></div>
+        </article>
+        <article class="cap-card" tabindex="0" data-capability="systems">
+          <div class="cap-card__top"><span>03</span><small>BACKEND</small></div>
+          <h3>SYSTEMS</h3>
+          <div class="cap-card__details"><span>LARAVEL / PHP</span><span>POSTGRESQL</span><span>REST APIs</span><span>AUTH / VALIDATION</span><span>WORKFLOW DESIGN</span></div>
+        </article>
+        <article class="cap-card" tabindex="0" data-capability="creative">
+          <div class="cap-card__top"><span>04</span><small>MEDIA</small></div>
+          <h3>CREATIVE</h3>
+          <div class="cap-card__details"><span>PHOTOGRAPHY</span><span>FILMMAKING</span><span>LIGHTROOM</span><span>PREMIERE PRO</span><span>DAVINCI RESOLVE</span></div>
         </article>
       </div>
+    </section>
 
-      <div class="affiliations" id="affiliations">
-        <div class="affiliations__head"><span>LEADERSHIP / MEDIA</span><strong>SELECT AN AFFILIATION</strong></div>
-        <div class="affiliations__tabs" role="tablist" aria-label="Affiliations">
-          <button class="aff-tab is-active" type="button" data-aff="acclaimed"><span>01</span>ACCLAIMED</button>
-          <button class="aff-tab" type="button" data-aff="ccse"><span>02</span>CCSE</button>
-          <button class="aff-tab" type="button" data-aff="acer"><span>03</span>ACER CHRONICLES</button>
-          <button class="aff-tab" type="button" data-aff="twg"><span>04</span>TWG / BCSTEC</button>
-          <button class="aff-tab" type="button" data-aff="aemt"><span>05</span>AEMT</button>
+    <section class="history scene" id="history" data-signal="timeline" aria-labelledby="historyTitle">
+      <header class="section-head section-head--with-switch" data-reveal>
+        <div><span>04 / HISTORY</span><h2 id="historyTitle">TRACE THE<br /><i>BUILD.</i></h2></div>
+        <div class="history-switch" role="tablist" aria-label="History view">
+          <button class="is-active" type="button" data-history-view="education">EDUCATION</button>
+          <button type="button" data-history-view="affiliations">AFFILIATIONS</button>
         </div>
-        <article class="aff-detail" aria-live="polite">
-          <div class="aff-detail__meta"><span id="affCategory">CAMPUS CREATIVE ORGANIZATION</span><span id="affPeriod">FOUNDING → 2026</span></div>
-          <div class="aff-detail__main">
-            <div><span id="affNumber">01</span><h3 id="affTitle">ACCLAIMED</h3></div>
-            <div><p id="affInstitution">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</p><p id="affDescription">Campus creative organization for photography, video, design, event coverage, and visual communication.</p></div>
+      </header>
+
+      <div class="history-stage" id="historyStage" data-view="education" data-reveal>
+        <section class="history-panel history-panel--education is-active" data-history-panel="education">
+          <div class="edu-rail" role="tablist" aria-label="Education timeline">
+            <button type="button" data-edu="primary"><span>2011</span><i></i><strong>PRIMARY</strong><small>2017</small></button>
+            <button type="button" data-edu="high"><span>2017</span><i></i><strong>HIGH SCHOOL</strong><small>2021</small></button>
+            <button type="button" data-edu="senior"><span>2021</span><i></i><strong>SENIOR HIGH</strong><small>2023</small></button>
+            <button class="is-active" type="button" data-edu="college"><span>2023</span><i></i><strong>BSIT</strong><small>NOW</small></button>
           </div>
-          <div class="aff-detail__roles" id="affRoles"><div><span>2025–2026</span><strong>PUBLIC INFORMATION OFFICER</strong></div><div><span>2024–2025</span><strong>PRESIDENT</strong></div><div><span>FOUNDING</span><strong>FOUNDING MEMBER</strong></div></div>
-        </article>
+          <article class="edu-detail" aria-live="polite">
+            <div class="edu-detail__meta"><span id="eduPeriod">2023 — PRESENT</span><span id="eduLevel">TERTIARY / 4TH YEAR</span></div>
+            <h3 id="eduSchool">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY</h3>
+            <p id="eduLocation">DUMAGUETE CITY</p>
+            <p id="eduNote">Bachelor of Science in Information Technology.</p>
+            <strong id="eduAward">CURRENT</strong>
+          </article>
+        </section>
+
+        <section class="history-panel history-panel--affiliations" data-history-panel="affiliations">
+          <div class="aff-index" role="tablist" aria-label="Affiliations">
+            <button class="is-active" type="button" data-aff="acclaimed"><span>01</span><strong>ACCLAIMED</strong></button>
+            <button type="button" data-aff="ccse"><span>02</span><strong>CCSE</strong></button>
+            <button type="button" data-aff="acer"><span>03</span><strong>ACER CHRONICLES</strong></button>
+            <button type="button" data-aff="twg"><span>04</span><strong>TWG / BCSTEC</strong></button>
+            <button type="button" data-aff="aemt"><span>05</span><strong>AEMT</strong></button>
+          </div>
+          <article class="aff-card" aria-live="polite">
+            <div class="aff-card__meta"><span id="affCategory">CAMPUS CREATIVE ORGANIZATION</span><span id="affPeriod">FOUNDING → 2026</span></div>
+            <h3 id="affTitle">ACCLAIMED</h3>
+            <p id="affInstitution">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</p>
+            <div class="aff-roles" id="affRoles"><div><span>2025–2026</span><strong>PUBLIC INFORMATION OFFICER</strong></div><div><span>2024–2025</span><strong>PRESIDENT</strong></div><div><span>FOUNDING</span><strong>FOUNDING MEMBER</strong></div></div>
+          </article>
+        </section>
       </div>
     </section>
 
-    <section class="credentials scene" id="credentials" data-signal="quiet" aria-labelledby="credentials-title">
-      <header class="scene-head">
-        <div><span>05 / CREDENTIALS</span><h2 id="credentials-title">PROOF,<br /><i>ON PAPER.</i></h2></div>
-        <p>Original issued PDFs. Click a credential to open the certificate in a new tab.</p>
+    <section class="credentials scene" id="credentials" data-signal="quiet" aria-labelledby="credentialsTitle">
+      <header class="section-head" data-reveal>
+        <div><span>05 / CREDENTIALS</span><h2 id="credentialsTitle">PROOF.<br /><i>NOT BADGES.</i></h2></div>
+        <p>Original issued PDFs. Open any certificate directly; freeCodeCamp credentials also include issuer verification.</p>
       </header>
 
-      <div class="credential-folio">
-        <article class="credential-card">
-          <a class="credential-paper" href="assets/certificates/intro-sql.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
-            <header><span>01 / CERTIFICATE</span><strong>SIMPLILEARN SKILLUP</strong></header>
-            <div class="credential-paper__body"><span>CERTIFICATE OF COMPLETION</span><h3>INTRODUCTION TO SQL</h3><p>ISSUED TO / JAKE KEVIN KLAIR L. CUENCA</p></div>
-            <footer><div><span>DATE</span><strong>29 APR 2024</strong></div><div><span>CODE</span><strong>5095970</strong></div><div class="credential-seal">SQL</div></footer>
+      <div class="certificate-folio" data-reveal>
+        <article class="certificate-card" data-cursor="PDF">
+          <a class="certificate-paper" href="assets/certificates/intro-sql.pdf" target="_blank" rel="noopener noreferrer">
+            <header><span>01 / CERTIFICATE OF COMPLETION</span><strong>SIMPLILEARN SKILLUP</strong></header>
+            <div class="certificate-body"><small>THIS CERTIFIES</small><p>JAKE KEVIN L. CUENCA</p><h3>INTRODUCTION<br />TO SQL</h3></div>
+            <footer><div><span>ISSUED</span><strong>29 APR 2024</strong></div><div><span>CODE</span><strong>5095970</strong></div><i>SQL</i></footer>
           </a>
-          <div class="credential-actions"><a href="assets/certificates/intro-sql.pdf" target="_blank" rel="noopener">OPEN ORIGINAL PDF ↗</a></div>
         </article>
 
-        <article class="credential-card">
-          <a class="credential-paper" href="assets/certificates/intro-php.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
-            <header><span>02 / CERTIFICATE</span><strong>SIMPLILEARN SKILLUP</strong></header>
-            <div class="credential-paper__body"><span>CERTIFICATE OF COMPLETION</span><h3>INTRODUCTION TO PHP</h3><p>ISSUED TO / JAKE KEVIN KLAIR L. CUENCA</p></div>
-            <footer><div><span>DATE</span><strong>30 APR 2024</strong></div><div><span>CODE</span><strong>5100892</strong></div><div class="credential-seal">PHP</div></footer>
+        <article class="certificate-card" data-cursor="PDF">
+          <a class="certificate-paper" href="assets/certificates/intro-php.pdf" target="_blank" rel="noopener noreferrer">
+            <header><span>02 / CERTIFICATE OF COMPLETION</span><strong>SIMPLILEARN SKILLUP</strong></header>
+            <div class="certificate-body"><small>THIS CERTIFIES</small><p>JAKE KEVIN L. CUENCA</p><h3>INTRODUCTION<br />TO PHP</h3></div>
+            <footer><div><span>ISSUED</span><strong>30 APR 2024</strong></div><div><span>CODE</span><strong>5100892</strong></div><i>PHP</i></footer>
           </a>
-          <div class="credential-actions"><a href="assets/certificates/intro-php.pdf" target="_blank" rel="noopener">OPEN ORIGINAL PDF ↗</a></div>
         </article>
 
-        <article class="credential-card credential-card--featured">
-          <a class="credential-paper" href="assets/certificates/freecodecamp-front-end-libraries.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
+        <article class="certificate-card certificate-card--fcc">
+          <a class="certificate-paper" href="assets/certificates/freecodecamp-front-end-libraries.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
             <header><span>03 / DEVELOPER CERTIFICATION</span><strong>FREECODECAMP</strong></header>
-            <div class="credential-paper__body"><span>APPROX. 300 HOURS OF WORK</span><h3>FRONT-END DEVELOPMENT LIBRARIES V8</h3><p>ISSUED TO / JAKE KEVIN KLAIR L. CUENCA</p></div>
-            <footer><div><span>DATE</span><strong>18 MAY 2025</strong></div><div><span>TYPE</span><strong>DEVELOPER CERTIFICATION</strong></div><div class="credential-seal">FCC</div></footer>
+            <div class="certificate-body"><small>~300 HOURS</small><p>JAKE KEVIN KLAIR L. CUENCA</p><h3>FRONT-END DEVELOPMENT<br />LIBRARIES V8</h3></div>
+            <footer><div><span>ISSUED</span><strong>18 MAY 2025</strong></div><div><span>TYPE</span><strong>DEVELOPER CERTIFICATION</strong></div><i>FCC</i></footer>
           </a>
-          <div class="credential-actions"><a href="assets/certificates/freecodecamp-front-end-libraries.pdf" target="_blank" rel="noopener">OPEN ORIGINAL PDF ↗</a><a href="https://freecodecamp.org/certification/gojooo/front-end-development-libraries" target="_blank" rel="noopener noreferrer">VERIFY ↗</a></div>
+          <a class="certificate-verify" href="https://freecodecamp.org/certification/gojooo/front-end-development-libraries" target="_blank" rel="noopener noreferrer">VERIFY ↗</a>
         </article>
 
-        <article class="credential-card credential-card--featured">
-          <a class="credential-paper" href="assets/certificates/freecodecamp-responsive-web-design.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
+        <article class="certificate-card certificate-card--fcc">
+          <a class="certificate-paper" href="assets/certificates/freecodecamp-responsive-web-design.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
             <header><span>04 / DEVELOPER CERTIFICATION</span><strong>FREECODECAMP</strong></header>
-            <div class="credential-paper__body"><span>APPROX. 300 HOURS OF WORK</span><h3>LEGACY RESPONSIVE WEB DESIGN V8</h3><p>ISSUED TO / JAKE KEVIN KLAIR L. CUENCA</p></div>
-            <footer><div><span>DATE</span><strong>11 FEB 2025</strong></div><div><span>TYPE</span><strong>DEVELOPER CERTIFICATION</strong></div><div class="credential-seal">FCC</div></footer>
+            <div class="certificate-body"><small>~300 HOURS</small><p>JAKE KEVIN KLAIR L. CUENCA</p><h3>LEGACY RESPONSIVE<br />WEB DESIGN V8</h3></div>
+            <footer><div><span>ISSUED</span><strong>11 FEB 2025</strong></div><div><span>TYPE</span><strong>DEVELOPER CERTIFICATION</strong></div><i>FCC</i></footer>
           </a>
-          <div class="credential-actions"><a href="assets/certificates/freecodecamp-responsive-web-design.pdf" target="_blank" rel="noopener">OPEN ORIGINAL PDF ↗</a><a href="https://freecodecamp.org/certification/gojooo/responsive-web-design" target="_blank" rel="noopener noreferrer">VERIFY ↗</a></div>
+          <a class="certificate-verify" href="https://freecodecamp.org/certification/gojooo/responsive-web-design" target="_blank" rel="noopener noreferrer">VERIFY ↗</a>
         </article>
       </div>
-      <div class="credential-future"><span>05+</span><strong>ARCHIVE READY FOR MORE CREDENTIALS</strong></div>
     </section>
 
-    <section class="contact scene" id="contact" data-signal="signal" aria-labelledby="contact-title">
-      <div class="contact__meta"><span>06 / CONTACT</span><span>OPEN CHANNEL</span></div>
-      <div class="contact__poster">
-        <h2 id="contact-title">MAKE IT<br /><i>INTERESTING.</i></h2>
-        <p>Front-end design, system development, photography, or something that needs both sides of the brain.</p>
-      </div>
-      <div class="contact__links">
-        <a href="mailto:deklaired@gmail.com" data-cursor="MAIL"><span>EMAIL</span><strong>DEKLAIRED@GMAIL.COM</strong><i>↗</i></a>
-        <a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer" data-cursor="OPEN"><span>GITHUB</span><strong>JLCUENCA00</strong><i>↗</i></a>
-        <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF"><span>RESUME</span><strong>OPEN CV</strong><i>↗</i></a>
-        <a class="world-switch" href="../photography/index.html" data-world="creator" data-cursor="CREATOR"><span>NEXT WORLD</span><strong>ENTER CREATOR</strong><i>↗</i></a>
+    <section class="contact scene" id="contact" data-signal="contact" aria-labelledby="contactTitle">
+      <div class="contact-poster" data-reveal>
+        <div class="contact-label"><span>06 / CONTACT</span><span>DUMAGUETE / PH</span></div>
+        <h2 id="contactTitle">MAKE<br />SOMETHING<br /><i>USEFUL.</i></h2>
+        <div class="contact-links">
+          <a href="mailto:deklaired@gmail.com" data-cursor="MAIL"><span>EMAIL</span><strong>DEKLAIRED@GMAIL.COM</strong><i>↗</i></a>
+          <a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer" data-cursor="OPEN"><span>GITHUB</span><strong>JLCUENCA00</strong><i>↗</i></a>
+          <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF"><span>RESUME</span><strong>OPEN CV</strong><i>↗</i></a>
+          <a class="creator-contact" href="../photography/index.html" data-world-link data-cursor="ENTER"><span>OTHER WORLD</span><strong>ENTER CREATOR</strong><i>↗</i></a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="dev-footer"><span>JAKE CUENCA © <span data-current-year>2026</span></span><span>DESIGN / FRONTEND / SYSTEMS</span><a href="#top">BACK TO TOP ↑</a></footer>
+  <footer class="site-footer"><span>JAKE CUENCA © <span data-current-year>2026</span></span><span>DESIGN / DEVELOPMENT / SYSTEMS</span><a href="#top">BACK TO TOP ↑</a></footer>
 
-  <div class="dev-cursor" id="devCursor" aria-hidden="true"><span></span><i id="cursorLabel"></i></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span><i id="cursorLabel">VIEW</i></div>
   <div class="world-transition" id="worldTransition" aria-hidden="true"></div>
 </body>
 </html>
