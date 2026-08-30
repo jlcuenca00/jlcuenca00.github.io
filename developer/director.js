@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
       link.dataset.directorFinal = "true";
       document.head.appendChild(link);
     }
+    if (!document.querySelector('link[data-director-tune]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "director-tune.css?v=20260831-1";
+      link.dataset.directorTune = "true";
+      document.head.appendChild(link);
+    }
     if (!document.querySelector('script[data-director-final]')) {
       const script = document.createElement("script");
       script.src = "director-final.js?v=20260831-3";
