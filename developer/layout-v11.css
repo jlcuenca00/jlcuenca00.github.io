@@ -1,0 +1,613 @@
+/* Developer layout v11 — clean affiliation showcase + certificate folio.
+   One affiliation state at a time; credentials read visually as certificates, not rows. */
+
+/* --------------------------------------------------------------------------
+   AFFILIATIONS — horizontal selector, contained active stage
+   -------------------------------------------------------------------------- */
+.dev-education .affiliation-showcase {
+    width: min(100%, 92rem);
+    margin: clamp(7rem, 11vw, 11rem) auto 0;
+    border: 0;
+    background: transparent;
+}
+
+.affiliation-showcase__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: end;
+    padding-bottom: clamp(1.7rem, 3vw, 2.6rem);
+    border-bottom: 1px solid rgba(255, 42, 42, 0.34);
+}
+
+.affiliation-showcase__intro > div > span {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+}
+
+.affiliation-showcase__intro h3 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(2.5rem, 4.5vw, 4.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+}
+
+.affiliation-showcase__intro > p {
+    max-width: 29rem;
+    margin: 0;
+    color: rgba(255,255,255,0.42);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1.7;
+}
+
+.affiliation-showcase__selector {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.affiliation-tab {
+    position: relative;
+    min-width: 0;
+    min-height: 6.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    padding: 1.15rem clamp(0.8rem, 1.6vw, 1.25rem);
+    border: 0;
+    border-right: 1px solid rgba(255,255,255,0.09);
+    background: transparent;
+    color: rgba(255,255,255,0.36);
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 220ms ease, background 260ms ease;
+}
+
+.affiliation-tab:last-child { border-right: 0; }
+
+.affiliation-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.affiliation-tab span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+}
+
+.affiliation-tab strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-head);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.affiliation-tab:hover,
+.affiliation-tab:focus-visible,
+.affiliation-tab.is-active {
+    color: #fff;
+    outline: 0;
+    background: linear-gradient(180deg, transparent, rgba(255,42,42,0.045));
+}
+
+.affiliation-tab:hover::after,
+.affiliation-tab:focus-visible::after,
+.affiliation-tab.is-active::after { transform: scaleX(1); }
+
+.affiliation-panel {
+    position: relative;
+    min-height: clamp(31rem, 64svh, 44rem);
+    padding: clamp(1.6rem, 3.3vw, 3rem);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        linear-gradient(135deg, rgba(255,42,42,0.035), transparent 34%),
+        rgba(4,4,4,0.46);
+}
+
+.affiliation-panel::before {
+    content: attr(data-active);
+    position: absolute;
+    z-index: -1;
+    right: -0.02em;
+    bottom: -0.3em;
+    color: rgba(255,42,42,0.032);
+    font-family: var(--font-head);
+    font-size: clamp(17rem, 31vw, 34rem);
+    line-height: 0.8;
+    letter-spacing: -0.1em;
+    pointer-events: none;
+}
+
+.affiliation-panel__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
+}
+
+.affiliation-panel__meta span:last-child {
+    color: rgba(255,255,255,0.42);
+    text-align: right;
+}
+
+.affiliation-panel__main {
+    min-height: clamp(18rem, 37vh, 26rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+    gap: clamp(2rem, 6vw, 7rem);
+    align-items: end;
+    padding: clamp(2.2rem, 6vh, 4.8rem) 0 clamp(2rem, 5vh, 3.6rem);
+}
+
+.affiliation-panel__number {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+}
+
+.affiliation-panel__identity h4 {
+    max-width: 15ch;
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(3.2rem, 6.6vw, 7.2rem);
+    line-height: 0.82;
+    letter-spacing: -0.065em;
+    text-wrap: balance;
+}
+
+.affiliation-panel__copy {
+    padding-bottom: 0.25rem;
+}
+
+.affiliation-panel__copy p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1.72;
+}
+
+.affiliation-panel__institution {
+    margin-bottom: 1.4rem !important;
+    color: rgba(255,255,255,0.72);
+    text-transform: uppercase;
+}
+
+.affiliation-panel__copy p:last-child { color: rgba(255,255,255,0.4); }
+
+.affiliation-panel__roles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.affiliation-panel__roles > div {
+    min-width: 0;
+    min-height: 7.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.7rem;
+    padding: 1.25rem 1.25rem 0 0;
+    border-right: 1px solid rgba(255,255,255,0.09);
+}
+
+.affiliation-panel__roles > div + div { padding-left: 1.25rem; }
+.affiliation-panel__roles > div:last-child { border-right: 0; }
+
+.affiliation-panel__roles span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    letter-spacing: 0.1em;
+}
+
+.affiliation-panel__roles strong {
+    max-width: 18ch;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(1rem, 1.7vw, 1.55rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+}
+
+.affiliation-panel.is-switching .affiliation-panel__main,
+.affiliation-panel.is-switching .affiliation-panel__roles {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.affiliation-panel.is-entering .affiliation-panel__main,
+.affiliation-panel.is-entering .affiliation-panel__roles {
+    animation: affiliation-v11-enter 400ms cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes affiliation-v11-enter {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Neutralize obsolete affiliation layouts from previous experiments. */
+.dev-education .affiliation-scene,
+.dev-education .leadership-cards,
+.dev-education .leadership-ledger,
+.dev-education .leadership-archive {
+    border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CERTIFICATES — a 2x2 visual folio, not a list
+   -------------------------------------------------------------------------- */
+.dev-certificates .credential-folio {
+    width: min(100%, 92rem);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.2rem, 2.2vw, 2.2rem);
+    border: 0;
+    background: transparent;
+}
+
+.credential-card {
+    min-width: 0;
+}
+
+.credential-card__paper {
+    position: relative;
+    min-height: clamp(23rem, 38vw, 31rem);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(1.3rem, 2.4vw, 2rem);
+    border: 1px solid rgba(255,255,255,0.22);
+    outline: 1px solid rgba(255,42,42,0.16);
+    outline-offset: -0.55rem;
+    color: #fff;
+    text-decoration: none;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        linear-gradient(145deg, rgba(255,42,42,0.04), transparent 28%),
+        linear-gradient(180deg, #0a0a0a, #050505);
+    transition: transform 380ms cubic-bezier(0.16,1,0.3,1), border-color 220ms ease, background 300ms ease;
+}
+
+.credential-card__paper::before {
+    content: "CERTIFIED";
+    position: absolute;
+    z-index: -1;
+    right: -0.04em;
+    bottom: -0.2em;
+    color: rgba(255,255,255,0.022);
+    font-family: var(--font-head);
+    font-size: clamp(5rem, 12vw, 11rem);
+    line-height: 0.8;
+    letter-spacing: -0.07em;
+    transform: rotate(-7deg);
+}
+
+.credential-card__paper:hover,
+.credential-card__paper:focus-visible {
+    transform: translateY(-0.45rem) rotate(-0.25deg);
+    border-color: rgba(255,42,42,0.55);
+    background:
+        linear-gradient(145deg, rgba(255,42,42,0.085), transparent 34%),
+        linear-gradient(180deg, #0c0c0c, #050505);
+    outline: 0;
+}
+
+.credential-card:nth-child(even) .credential-card__paper:hover,
+.credential-card:nth-child(even) .credential-card__paper:focus-visible {
+    transform: translateY(-0.45rem) rotate(0.25deg);
+}
+
+.credential-card__paper header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+.credential-card__paper header span,
+.credential-card__paper header strong,
+.credential-card__body > span,
+.credential-card__body > p,
+.credential-card__paper footer span,
+.credential-card__paper footer strong,
+.credential-card__actions a {
+    font-family: var(--font-mono);
+}
+
+.credential-card__paper header span,
+.credential-card__body > span,
+.credential-card__paper footer span {
+    color: var(--accent);
+    font-size: 0.54rem;
+    letter-spacing: 0.11em;
+}
+
+.credential-card__paper header strong {
+    color: rgba(255,255,255,0.62);
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    text-align: right;
+}
+
+.credential-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 3.6rem) 0;
+}
+
+.credential-card__body h3 {
+    max-width: 15ch;
+    margin: 0.75rem 0 1.5rem;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 4.3rem);
+    line-height: 0.87;
+    letter-spacing: -0.055em;
+}
+
+.credential-card__body > p {
+    margin: 0;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+}
+
+.credential-card__paper footer {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr auto;
+    gap: 1rem;
+    align-items: end;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.14);
+}
+
+.credential-card__paper footer > div:not(.credential-card__seal) {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.credential-card__paper footer strong {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.56rem;
+    line-height: 1.45;
+    letter-spacing: 0.06em;
+}
+
+.credential-card__seal {
+    width: 3.8rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 0.35rem #050505, inset 0 0 0 0.4rem rgba(255,42,42,0.5);
+}
+
+.credential-card__seal span {
+    color: #fff !important;
+    font-family: var(--font-head) !important;
+    font-size: 1rem !important;
+    letter-spacing: 0 !important;
+}
+
+.credential-card__corner {
+    position: absolute;
+    width: 2.1rem;
+    height: 2.1rem;
+    pointer-events: none;
+}
+
+.credential-card__corner--tl {
+    top: 0.55rem;
+    left: 0.55rem;
+    border-top: 1px solid var(--accent);
+    border-left: 1px solid var(--accent);
+}
+
+.credential-card__corner--br {
+    right: 0.55rem;
+    bottom: 0.55rem;
+    border-right: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+}
+
+.credential-card--featured .credential-card__paper {
+    background:
+        linear-gradient(145deg, rgba(255,42,42,0.07), transparent 32%),
+        radial-gradient(circle at 80% 18%, rgba(255,255,255,0.03), transparent 24%),
+        linear-gradient(180deg, #0b0b0b, #050505);
+}
+
+.credential-card--featured .credential-card__paper header strong {
+    color: #fff;
+}
+
+.credential-card__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.2rem 0;
+}
+
+.credential-card__actions a {
+    color: rgba(255,255,255,0.62);
+    font-size: 0.57rem;
+    letter-spacing: 0.09em;
+    text-decoration: none;
+}
+
+.credential-card__actions a:hover,
+.credential-card__actions a:focus-visible {
+    color: var(--accent);
+    outline: 0;
+}
+
+.credential-card--future {
+    grid-column: 1 / -1;
+    width: min(100%, 42rem);
+    justify-self: center;
+    opacity: 0.34;
+}
+
+.credential-card--future .credential-card__paper {
+    min-height: 15rem;
+    cursor: default;
+    border-style: dashed;
+}
+
+.credential-card--future .credential-card__paper:hover {
+    transform: none;
+    border-color: rgba(255,255,255,0.22);
+}
+
+/* Kill the previous long-list certificate register. */
+.dev-certificates .credential-register,
+.dev-certificates .certificate-card,
+.dev-certificates .certificate-preview,
+.dev-certificates .certificate-card--future {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .affiliation-showcase__intro {
+        grid-template-columns: 1fr;
+    }
+
+    .affiliation-showcase__selector {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .affiliation-tab:nth-child(3) { border-right: 0; }
+    .affiliation-tab:nth-child(n+4) { border-top: 1px solid rgba(255,255,255,0.09); }
+
+    .affiliation-panel__main {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        align-items: end;
+    }
+
+    .affiliation-panel__copy {
+        max-width: 38rem;
+    }
+
+    .credential-folio,
+    .dev-certificates .credential-folio {
+        grid-template-columns: 1fr;
+    }
+
+    .credential-card--future {
+        grid-column: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 620px) {
+    .affiliation-showcase__selector {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .affiliation-tab,
+    .affiliation-tab:nth-child(3) {
+        border-right: 1px solid rgba(255,255,255,0.09);
+        border-top: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .affiliation-tab:nth-child(even) { border-right: 0; }
+    .affiliation-tab:first-child,
+    .affiliation-tab:nth-child(2) { border-top: 0; }
+    .affiliation-tab:last-child { grid-column: 1 / -1; border-right: 0; }
+
+    .affiliation-panel {
+        min-height: 0;
+        padding-inline: 1rem;
+    }
+
+    .affiliation-panel__meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .affiliation-panel__meta span:last-child { text-align: left; }
+
+    .affiliation-panel__identity h4 {
+        font-size: clamp(2.8rem, 14vw, 4.6rem);
+    }
+
+    .affiliation-panel__roles {
+        grid-template-columns: 1fr;
+    }
+
+    .affiliation-panel__roles > div,
+    .affiliation-panel__roles > div + div {
+        min-height: 5.4rem;
+        padding: 1rem 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .affiliation-panel__roles > div:last-child { border-bottom: 0; }
+
+    .credential-card__paper {
+        min-height: 24rem;
+    }
+
+    .credential-card__paper header,
+    .credential-card__paper footer {
+        grid-template-columns: 1fr;
+    }
+
+    .credential-card__paper header {
+        flex-direction: column;
+        gap: 0.45rem;
+    }
+
+    .credential-card__paper header strong { text-align: left; }
+
+    .credential-card__paper footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .credential-card__seal {
+        grid-column: 1 / -1;
+        margin-top: 0.5rem;
+    }
+}
