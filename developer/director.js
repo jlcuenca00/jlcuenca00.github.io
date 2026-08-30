@@ -10,12 +10,26 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactGlow();
 
   function loadPolish() {
-    if (document.querySelector('link[data-director-polish]')) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "director-polish.css?v=20260831-2";
-    link.dataset.directorPolish = "true";
-    document.head.appendChild(link);
+    if (!document.querySelector('link[data-director-polish]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "director-polish.css?v=20260831-2";
+      link.dataset.directorPolish = "true";
+      document.head.appendChild(link);
+    }
+    if (!document.querySelector('link[data-director-final]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "director-final.css?v=20260831-3";
+      link.dataset.directorFinal = "true";
+      document.head.appendChild(link);
+    }
+    if (!document.querySelector('script[data-director-final]')) {
+      const script = document.createElement("script");
+      script.src = "director-final.js?v=20260831-3";
+      script.dataset.directorFinal = "true";
+      document.head.appendChild(script);
+    }
   }
 
   function initProjectReel() {
