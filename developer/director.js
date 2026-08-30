@@ -2,20 +2,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
 
+  loadPolish();
   initProjectReel();
   initProfileSpread();
   initEducationLevels();
-  initAffiliationConstellation();
+  initAffiliationSwitchboard();
   initContactGlow();
+
+  function loadPolish() {
+    if (document.querySelector('link[data-director-polish]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "director-polish.css?v=20260831-2";
+    link.dataset.directorPolish = "true";
+    document.head.appendChild(link);
+  }
 
   function initProjectReel() {
     const reel = document.getElementById("projectReel");
     const panels = Array.from(document.querySelectorAll("[data-project-panel]"));
     if (!reel || !panels.length) return;
 
-    const activate = (panel) => {
-      panels.forEach((item) => item.classList.toggle("is-active", item === panel));
-    };
+    const activate = (panel) => panels.forEach((item) => item.classList.toggle("is-active", item === panel));
 
     panels.forEach((panel) => {
       panel.addEventListener("mouseenter", () => activate(panel));
@@ -25,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (finePointer && !reducedMotion) {
         panel.addEventListener("pointermove", (event) => {
           const rect = panel.getBoundingClientRect();
-          const nx = (event.clientX - rect.left) / rect.width - 0.5;
-          const ny = (event.clientY - rect.top) / rect.height - 0.5;
+          const nx = (event.clientX - rect.left) / rect.width - .5;
+          const ny = (event.clientY - rect.top) / rect.height - .5;
           panel.style.setProperty("--panel-x", `${nx * -10}px`);
           panel.style.setProperty("--panel-y", `${ny * -8}px`);
         }, { passive: true });
@@ -60,10 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (finePointer && !reducedMotion) {
       collage.addEventListener("pointermove", (event) => {
         const rect = collage.getBoundingClientRect();
-        const px = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-        const py = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-        collage.style.setProperty("--px", px.toFixed(3));
-        collage.style.setProperty("--py", py.toFixed(3));
+        collage.style.setProperty("--px", ((((event.clientX - rect.left) / rect.width) - .5) * 2).toFixed(3));
+        collage.style.setProperty("--py", ((((event.clientY - rect.top) / rect.height) - .5) * 2).toFixed(3));
       }, { passive: true });
       collage.addEventListener("pointerleave", () => {
         collage.style.setProperty("--px", "0");
@@ -72,9 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.25 }).observe(collage);
+      new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: .25 }).observe(collage);
     }
-
     if (!reducedMotion) {
       timer = window.setInterval(() => { if (visible) show(active + 1); }, 3600);
       window.addEventListener("beforeunload", () => clearInterval(timer), { once: true });
@@ -103,18 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function initAffiliationConstellation() {
+  function initAffiliationSwitchboard() {
     const root = document.getElementById("affiliationConstellation");
     const buttons = root ? Array.from(root.querySelectorAll("[data-aff-v2]")) : [];
     const readout = root ? root.querySelector(".aff-readout") : null;
     if (!root || !buttons.length || !readout) return;
 
     const data = {
-      acclaimed: { category: "CAMPUS CREATIVE ORGANIZATION", period: "FOUNDING → 2026", title: "ACCLAIMED", institution: "ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY", roles: ["PIO / 2025—2026", "PRESIDENT / 2024—2025", "FOUNDING MEMBER"] },
-      ccse: { category: "COLLEGE LEADERSHIP", period: "2024 → PRESENT", title: "CCSE", institution: "COLLEGE OF COMPUTER STUDIES AND ENGINEERING / ASIAN COLLEGE", roles: ["VICE PRESIDENT / 2024—PRESENT", "IT TREASURER / 2024—2025"] },
-      acer: { category: "SCHOOL PAPER / VISUAL JOURNALISM", period: "2024 → PRESENT", title: "ACER CHRONICLES", institution: "ASIAN COLLEGE SCHOOL PAPER TEAM", roles: ["PHOTOJOURNALIST / 2024—PRESENT"] },
-      twg: { category: "SECONDARY CREATIVE TEAM", period: "2021 → 2023", title: "TWG / BCSTEC", institution: "BAYAWAN CITY SCIENCE AND TECHNOLOGY EDUCATION CENTER", roles: ["CREATIVE HEAD / 2021—2023", "FOUNDING MEMBER", "VIDEO / PHOTO / GRAPHICS"] },
-      aemt: { category: "EVENT / CREATIVE TEAM", period: "SECONDARY SCHOOL", title: "AEMT", institution: "SAINT AUGUSTINE ACADEMY OF BAYAWAN, INC.", roles: ["PIONEER MEMBER", "VIDEO / PHOTO / GRAPHICS"] }
+      acclaimed: { index:"01", category:"CAMPUS CREATIVE ORGANIZATION", period:"FOUNDING → 2026", title:"ACCLAIMED", institution:"Asian College of Science and Technology — Dumaguete City", roles:["PIO / 2025—2026","PRESIDENT / 2024—2025","FOUNDING MEMBER"] },
+      ccse: { index:"02", category:"COLLEGE LEADERSHIP", period:"2024 → PRESENT", title:"CCSE", institution:"College of Computer Studies and Engineering / Asian College", roles:["VICE PRESIDENT / 2024—PRESENT","IT TREASURER / 2024—2025"] },
+      acer: { index:"03", category:"SCHOOL PAPER / VISUAL JOURNALISM", period:"2024 → PRESENT", title:"ACER CHRONICLES", institution:"Asian College school paper team", roles:["PHOTOJOURNALIST / 2024—PRESENT"] },
+      twg: { index:"04", category:"SECONDARY CREATIVE TEAM", period:"2021 → 2023", title:"TWG / BCSTEC", institution:"Bayawan City Science and Technology Education Center", roles:["CREATIVE HEAD / 2021—2023","FOUNDING MEMBER","VIDEO / PHOTO / GRAPHICS"] },
+      aemt: { index:"05", category:"EVENT / CREATIVE TEAM", period:"SECONDARY SCHOOL", title:"AEMT", institution:"Saint Augustine Academy of Bayawan, Inc.", roles:["PIONEER MEMBER","VIDEO / PHOTO / GRAPHICS"] }
     };
 
     const category = document.getElementById("affV2Category");
@@ -124,12 +129,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const roles = document.getElementById("affV2Roles");
 
     const writeRoles = (items) => {
-      while (roles.firstChild) roles.removeChild(roles.firstChild);
-      items.forEach((label) => {
+      roles.replaceChildren(...items.map((label) => {
         const span = document.createElement("span");
         span.textContent = label;
-        roles.appendChild(span);
-      });
+        return span;
+      }));
+    };
+
+    const write = (item) => {
+      readout.dataset.index = item.index;
+      category.textContent = item.category;
+      period.textContent = item.period;
+      title.textContent = item.title;
+      institution.textContent = item.institution;
+      writeRoles(item.roles);
     };
 
     const activate = (button) => {
@@ -137,30 +150,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!item) return;
       buttons.forEach((node) => node.classList.toggle("is-active", node === button));
 
-      const write = () => {
-        category.textContent = item.category;
-        period.textContent = item.period;
-        title.textContent = item.title;
-        institution.textContent = item.institution;
-        writeRoles(item.roles);
-      };
-
       if (reducedMotion || typeof readout.animate !== "function") {
-        write();
+        write(item);
         return;
       }
 
       const out = readout.animate([
-        { opacity: 1, transform: "translateX(0)" },
-        { opacity: 0.2, transform: "translateX(12px)" }
-      ], { duration: 120, easing: "ease-in", fill: "forwards" });
-
+        { opacity:1, transform:"translateY(0)" },
+        { opacity:.18, transform:"translateY(8px)" }
+      ], { duration:120, easing:"ease-in", fill:"forwards" });
       out.onfinish = () => {
-        write();
+        write(item);
         readout.animate([
-          { opacity: 0.2, transform: "translateX(-10px)" },
-          { opacity: 1, transform: "translateX(0)" }
-        ], { duration: 330, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards" });
+          { opacity:.18, transform:"translateY(10px)" },
+          { opacity:1, transform:"translateY(0)" }
+        ], { duration:360, easing:"cubic-bezier(.16,1,.3,1)", fill:"forwards" });
       };
     };
 
@@ -169,23 +173,27 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("focus", () => activate(button));
       button.addEventListener("click", () => activate(button));
     });
+
+    write(data.acclaimed);
   }
 
   function initContactGlow() {
     const section = document.getElementById("contactGlow");
     if (!section || !finePointer || reducedMotion) return;
 
+    let raf = 0;
     section.addEventListener("pointermove", (event) => {
-      const rect = section.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      section.style.setProperty("--gx", `${x.toFixed(1)}%`);
-      section.style.setProperty("--gy", `${y.toFixed(1)}%`);
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect();
+        section.style.setProperty("--gx", `${(((event.clientX - rect.left) / rect.width) * 100).toFixed(1)}%`);
+        section.style.setProperty("--gy", `${(((event.clientY - rect.top) / rect.height) * 100).toFixed(1)}%`);
+      });
     }, { passive: true });
 
     section.addEventListener("pointerleave", () => {
-      section.style.setProperty("--gx", "72%");
-      section.style.setProperty("--gy", "32%");
+      section.style.setProperty("--gx", "68%");
+      section.style.setProperty("--gy", "30%");
     });
   }
 });
