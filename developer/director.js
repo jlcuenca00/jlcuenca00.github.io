@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector('link[data-director-mosaic]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "director-mosaic.css?v=20260831-3";
+      link.href = "director-mosaic.css?v=20260831-4";
       link.dataset.directorMosaic = "true";
       document.head.appendChild(link);
     }
     if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
-      script.src = "director-mosaic.js?v=20260831-3";
+      script.src = "director-mosaic.js?v=20260831-4";
       script.dataset.directorMosaic = "true";
       document.head.appendChild(script);
     }
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initAffiliationSwitchboard() {
-    // Affiliation markup is rebuilt by director-mosaic.js into the controlled expanding wall.
+    // Affiliation markup is rebuilt by director-mosaic.js into the two-chapter editorial spread.
   }
 
   function initContactGlow() {
