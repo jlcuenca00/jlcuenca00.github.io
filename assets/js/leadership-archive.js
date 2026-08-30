@@ -5,109 +5,86 @@
     if (!root || root.dataset.archiveBuilt === 'true') return;
 
     root.dataset.archiveBuilt = 'true';
-    root.classList.add('leadership-archive', 'leadership-archive--institutional');
+    root.className = 'achievement-list leadership-ledger';
     root.innerHTML = `
-        <header class="leadership-archive__head leadership-archive__head--compact">
+        <header class="leadership-ledger__intro">
             <div>
                 <span>LEADERSHIP / MEDIA</span>
-                <h3>ORGANIZATIONS<br /><em>&amp; ROLES.</em></h3>
+                <h3>ROLES OUTSIDE<br /><em>THE CLASSROOM.</em></h3>
             </div>
-            <p>Leadership, publication, and creative-team work grouped by the schools where each role belonged.</p>
+            <p>Campus leadership, publication work, and creative-team experience — organized as a record instead of a wall of cards.</p>
         </header>
 
-        <div class="institution-stack">
-            <section class="institution-record institution-record--college" aria-labelledby="institution-college-title">
-                <header class="institution-record__head">
-                    <div class="institution-record__meta">
-                        <span>01 / TERTIARY</span>
-                        <span>2023–PRESENT</span>
+        <div class="leadership-ledger__chapters">
+            <section class="leadership-chapter" aria-labelledby="leadership-college-title">
+                <aside class="leadership-chapter__rail">
+                    <span class="leadership-chapter__index">01 / TERTIARY</span>
+                    <h4 id="leadership-college-title">ASIAN COLLEGE</h4>
+                    <p>Asian College of Science and Technology — Dumaguete City.</p>
+                    <span class="leadership-chapter__range">2023–PRESENT</span>
+                </aside>
+
+                <div class="leadership-records" role="list">
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">ACCLAIMED</span>
+                        <strong>Public Information Officer</strong>
+                        <span class="leadership-record__date">2025–2026</span>
                     </div>
-                    <h4 id="institution-college-title">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY</h4>
-                    <p>Dumaguete City — campus leadership, creative organization work, and student publication.</p>
-                </header>
-
-                <div class="organization-records organization-records--college">
-                    <article class="organization-record organization-record--primary">
-                        <header>
-                            <span>01A</span>
-                            <div>
-                                <p>CAMPUS CREATIVE ORGANIZATION</p>
-                                <h5>ACCLAIMED</h5>
-                            </div>
-                        </header>
-                        <div class="role-list">
-                            <div class="role-line"><span>2025–2026</span><strong>Public Information Officer</strong></div>
-                            <div class="role-line"><span>2024–2025</span><strong>President</strong></div>
-                            <div class="role-line"><span>FOUNDING</span><strong>Founding Member</strong></div>
-                        </div>
-                    </article>
-
-                    <article class="organization-record">
-                        <header>
-                            <span>01B</span>
-                            <div>
-                                <p>COLLEGE LEADERSHIP</p>
-                                <h5>COLLEGE OF COMPUTER STUDIES AND ENGINEERING</h5>
-                            </div>
-                        </header>
-                        <div class="role-list">
-                            <div class="role-line"><span>2024–PRESENT</span><strong>Vice President</strong></div>
-                            <div class="role-line"><span>2024–2025</span><strong>IT Treasurer</strong></div>
-                        </div>
-                    </article>
-
-                    <article class="organization-record">
-                        <header>
-                            <span>01C</span>
-                            <div>
-                                <p>SCHOOL PAPER / VISUAL JOURNALISM</p>
-                                <h5>ACER CHRONICLES</h5>
-                            </div>
-                        </header>
-                        <div class="role-list">
-                            <div class="role-line"><span>2024–PRESENT</span><strong>Photojournalist</strong></div>
-                        </div>
-                    </article>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">ACCLAIMED</span>
+                        <strong>President</strong>
+                        <span class="leadership-record__date">2024–2025</span>
+                    </div>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">ACCLAIMED</span>
+                        <strong>Founding Member</strong>
+                        <span class="leadership-record__date">FOUNDING</span>
+                    </div>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">COLLEGE OF COMPUTER STUDIES &amp; ENGINEERING</span>
+                        <strong>Vice President</strong>
+                        <span class="leadership-record__date">2024–PRESENT</span>
+                    </div>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">COLLEGE OF COMPUTER STUDIES &amp; ENGINEERING</span>
+                        <strong>IT Treasurer</strong>
+                        <span class="leadership-record__date">2024–2025</span>
+                    </div>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">ACER CHRONICLES / SCHOOL PAPER</span>
+                        <strong>Photojournalist</strong>
+                        <span class="leadership-record__date">2024–PRESENT</span>
+                    </div>
                 </div>
             </section>
 
-            <section class="institution-record institution-record--secondary" aria-labelledby="institution-secondary-title">
-                <header class="institution-record__head">
-                    <div class="institution-record__meta">
-                        <span>02 / SECONDARY</span>
-                        <span>CREATIVE TEAMS</span>
+            <section class="leadership-chapter" aria-labelledby="leadership-secondary-title">
+                <aside class="leadership-chapter__rail">
+                    <span class="leadership-chapter__index">02 / SECONDARY</span>
+                    <h4 id="leadership-secondary-title">CREATIVE TEAMS</h4>
+                    <p>BCSTEC Technical Working Group and Augustinian Events Management Team.</p>
+                    <span class="leadership-chapter__range">2017–2023</span>
+                </aside>
+
+                <div class="leadership-records" role="list">
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">BCSTEC / TWG</span>
+                        <strong>Creative Head</strong>
+                        <span class="leadership-record__date">2021–2023</span>
+                        <small>Video Editor / Photographer / Graphics Designer</small>
                     </div>
-                    <h4 id="institution-secondary-title">BCSTEC / SAINT AUGUSTINE</h4>
-                    <p>Earlier creative-team work in video, photography, graphics, and event production.</p>
-                </header>
-
-                <div class="organization-records organization-records--secondary">
-                    <article class="organization-record">
-                        <header>
-                            <span>02A</span>
-                            <div>
-                                <p>BCSTEC TECHNICAL WORKING GROUP</p>
-                                <h5>TWG</h5>
-                            </div>
-                        </header>
-                        <div class="role-list">
-                            <div class="role-line"><span>2021–2023</span><strong>Creative Head</strong></div>
-                            <div class="role-line"><span>FOUNDING</span><strong>Founding Member</strong><small>Video Editor / Photographer / Graphics Designer</small></div>
-                        </div>
-                    </article>
-
-                    <article class="organization-record">
-                        <header>
-                            <span>02B</span>
-                            <div>
-                                <p>AUGUSTINIAN EVENTS MANAGEMENT TEAM</p>
-                                <h5>AEMT</h5>
-                            </div>
-                        </header>
-                        <div class="role-list">
-                            <div class="role-line"><span>PIONEER</span><strong>Pioneer Member</strong><small>Video Editor / Photographer / Graphics Designer</small></div>
-                        </div>
-                    </article>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">BCSTEC / TWG</span>
+                        <strong>Founding Member</strong>
+                        <span class="leadership-record__date">FOUNDING</span>
+                        <small>Video Editor / Photographer / Graphics Designer</small>
+                    </div>
+                    <div class="leadership-record" role="listitem">
+                        <span class="leadership-record__org">SAINT AUGUSTINE / AEMT</span>
+                        <strong>Pioneer Member</strong>
+                        <span class="leadership-record__date">PIONEER</span>
+                        <small>Video Editor / Photographer / Graphics Designer</small>
+                    </div>
                 </div>
             </section>
         </div>
