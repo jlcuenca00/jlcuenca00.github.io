@@ -1,271 +1,314 @@
-/* Developer layout v7 — Leadership / Media grouped by organization. */
+/* Developer layout v7 — institutional leadership archive.
+   Calm editorial hierarchy: institution first, organizations second, roles third. */
 
-.dev-education .achievement-list.leadership-archive {
+.dev-education .achievement-list.leadership-archive--institutional {
     width: min(100%, 92rem);
-    margin: clamp(8rem, 14vw, 14rem) auto 0;
+    margin: clamp(8rem, 13vw, 13rem) auto 0;
     display: block;
     border: 0;
     background: transparent;
 }
 
-.leadership-archive__head {
+.leadership-archive__head--compact {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
-    gap: clamp(2rem, 7vw, 8rem);
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+    gap: clamp(2rem, 6vw, 7rem);
     align-items: end;
-    padding: 0 0 clamp(2.5rem, 5vw, 4.5rem);
-    border-bottom: 1px solid rgba(255, 42, 42, 0.42);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+    border-bottom: 1px solid rgba(255, 42, 42, 0.34);
 }
 
-.leadership-archive__head > div > span {
+.leadership-archive__head--compact > div > span {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.9rem;
     color: var(--accent);
     font-family: var(--font-mono);
-    font-size: 0.64rem;
+    font-size: 0.62rem;
     letter-spacing: 0.16em;
 }
 
-.leadership-archive__head h3 {
+.leadership-archive__head--compact h3 {
     margin: 0;
-    padding: 0;
-    border: 0;
     color: #fff;
     font-family: var(--font-head);
-    font-size: clamp(3.8rem, 8vw, 8.8rem);
-    line-height: 0.78;
-    letter-spacing: -0.07em;
+    font-size: clamp(3.4rem, 6.5vw, 7rem);
+    line-height: 0.82;
+    letter-spacing: -0.065em;
 }
 
-.leadership-archive__head h3 em {
+.leadership-archive__head--compact h3 em {
     color: transparent;
     font-style: normal;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.32);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
 }
 
-.leadership-archive__head > p {
-    max-width: 30rem;
+.leadership-archive__head--compact > p {
+    max-width: 28rem;
     margin: 0;
     color: var(--dev-muted);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+    line-height: 1.8;
+}
+
+.institution-stack {
+    display: grid;
+    gap: clamp(5rem, 9vw, 9rem);
+    padding-top: clamp(4rem, 7vw, 7rem);
+}
+
+.institution-record {
+    position: relative;
+}
+
+.institution-record__head {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr) minmax(17rem, 0.42fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: end;
+    padding: 0 0 clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--dev-line);
+}
+
+.institution-record__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.13em;
+}
+
+.institution-record__head h4 {
+    max-width: 17ch;
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(2.4rem, 4.7vw, 5.1rem);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+}
+
+.institution-record__head > p {
+    max-width: 28rem;
+    margin: 0;
+    color: rgba(255,255,255,0.46);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
     line-height: 1.75;
 }
 
-.leadership-archive__grid {
+.organization-records {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 0;
-}
-
-.leadership-group {
-    position: relative;
-    overflow: hidden;
     border-bottom: 1px solid var(--dev-line);
-    background: rgba(5, 5, 5, 0.48);
-    transition: background 260ms ease;
 }
 
-.leadership-group:hover,
-.leadership-group:focus-within {
-    background: linear-gradient(115deg, rgba(255, 42, 42, 0.06), rgba(5, 5, 5, 0.72) 48%);
+.organization-records--college {
+    grid-template-columns: 1.15fr 1fr 0.78fr;
 }
 
-.leadership-group--feature {
-    grid-column: 1 / -1;
-    min-height: clamp(28rem, 58vh, 42rem);
-    border-bottom-color: rgba(255, 42, 42, 0.36);
+.organization-records--secondary {
+    grid-template-columns: 1.15fr 0.85fr;
 }
 
-.leadership-group--feature::after {
-    content: "A";
-    position: absolute;
-    right: -0.04em;
-    bottom: -0.24em;
-    color: rgba(255, 42, 42, 0.035);
+.organization-record {
+    min-width: 0;
+    border-right: 1px solid var(--dev-line);
+    background: rgba(5,5,5,0.38);
+    transition: background 240ms ease, border-color 240ms ease;
+}
+
+.organization-record:last-child {
+    border-right: 0;
+}
+
+.organization-record:hover,
+.organization-record:focus-within {
+    background: linear-gradient(145deg, rgba(255,42,42,0.05), rgba(5,5,5,0.62) 50%);
+}
+
+.organization-record--primary {
+    background: linear-gradient(145deg, rgba(255,42,42,0.055), rgba(5,5,5,0.42) 52%);
+}
+
+.organization-record > header {
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: 1rem;
+    min-height: clamp(11rem, 20vh, 15rem);
+    align-content: end;
+    padding: clamp(1.5rem, 3vw, 2.6rem);
+    border-bottom: 1px solid var(--dev-line);
+}
+
+.organization-record > header > span {
+    align-self: start;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+}
+
+.organization-record > header p {
+    margin: 0 0 0.65rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+}
+
+.organization-record > header h5 {
+    max-width: 18ch;
+    margin: 0;
+    color: #fff;
     font-family: var(--font-head);
-    font-size: clamp(18rem, 35vw, 40rem);
+    font-size: clamp(1.8rem, 3vw, 3.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+}
+
+.organization-record--primary > header h5 {
+    font-size: clamp(2.4rem, 4vw, 4.8rem);
+}
+
+.role-list {
+    display: block;
+}
+
+.role-line {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.3fr) minmax(0, 1fr);
+    gap: clamp(1rem, 2.5vw, 2rem);
+    align-items: center;
+    min-height: 6.6rem;
+    padding: 1.25rem clamp(1.4rem, 3vw, 2.4rem);
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+
+.role-line:last-child {
+    border-bottom: 0;
+}
+
+.role-line > span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+}
+
+.role-line strong {
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+}
+
+.role-line small {
+    grid-column: 2;
+    margin-top: -0.45rem;
+    color: rgba(255,255,255,0.4);
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    line-height: 1.55;
+}
+
+/* Give the Asian College chapter a quiet identity cue rather than a giant poster letter. */
+.institution-record--college::before {
+    content: "AC";
+    position: absolute;
+    right: 0;
+    top: -0.24em;
+    z-index: -1;
+    color: rgba(255,42,42,0.025);
+    font-family: var(--font-head);
+    font-size: clamp(12rem, 24vw, 27rem);
+    line-height: 1;
+    letter-spacing: -0.08em;
+    pointer-events: none;
+}
+
+.institution-record--secondary::before {
+    content: "02";
+    position: absolute;
+    left: -0.05em;
+    top: -0.32em;
+    z-index: -1;
+    color: rgba(255,42,42,0.022);
+    font-family: var(--font-head);
+    font-size: clamp(10rem, 20vw, 22rem);
     line-height: 1;
     pointer-events: none;
 }
 
-.leadership-group--college {
-    grid-column: 1 / span 7;
-    border-right: 1px solid var(--dev-line);
-}
-
-.leadership-group--publication {
-    grid-column: 8 / -1;
-}
-
-.leadership-group--creative {
-    grid-column: 1 / -1;
-    border-bottom-color: rgba(255, 42, 42, 0.3);
-}
-
-.leadership-group__head {
-    display: grid;
-    grid-template-columns: 3.2rem minmax(0, 1fr) auto;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: start;
-    padding: clamp(1.5rem, 3vw, 2.6rem) clamp(1.25rem, 3vw, 2.8rem);
-    border-bottom: 1px solid var(--dev-line);
-}
-
-.leadership-group__index {
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-}
-
-.leadership-group__head p {
-    margin: 0 0 0.8rem;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.59rem;
-    line-height: 1.5;
-    letter-spacing: 0.14em;
-}
-
-.leadership-group__head h4 {
-    max-width: 20ch;
-    margin: 0;
-    color: #fff;
-    font-family: var(--font-head);
-    font-size: clamp(2rem, 4vw, 4.6rem);
-    line-height: 0.88;
-    letter-spacing: -0.05em;
-}
-
-.leadership-group--feature .leadership-group__head h4 {
-    font-size: clamp(4.5rem, 10vw, 11rem);
-    letter-spacing: -0.075em;
-}
-
-.leadership-group__range {
-    color: rgba(255, 255, 255, 0.4);
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.13em;
-    white-space: nowrap;
-}
-
-.leadership-roles {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.leadership-group--feature .leadership-roles {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.leadership-roles--three {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.leadership-role {
-    min-height: clamp(10rem, 19vh, 14rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: clamp(1.5rem, 3vw, 2.8rem);
-    border-right: 1px solid var(--dev-line);
-}
-
-.leadership-role:last-child {
-    border-right: 0;
-}
-
-.leadership-group--publication .leadership-role {
-    min-height: 100%;
-}
-
-.leadership-role > span {
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.61rem;
-    letter-spacing: 0.12em;
-}
-
-.leadership-role strong {
-    max-width: 15ch;
-    color: #fff;
-    font-family: var(--font-head);
-    font-size: clamp(1.7rem, 3vw, 3.5rem);
-    line-height: 0.9;
-    letter-spacing: -0.045em;
-}
-
-.leadership-group--feature .leadership-role strong {
-    font-size: clamp(2.2rem, 4.2vw, 5.2rem);
-}
-
-.leadership-role small {
-    max-width: 24rem;
-    color: rgba(255, 255, 255, 0.46);
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    line-height: 1.6;
-}
-
-@media (max-width: 980px) {
-    .leadership-archive__head {
+@media (max-width: 1100px) {
+    .leadership-archive__head--compact,
+    .institution-record__head {
         grid-template-columns: 1fr;
     }
 
-    .leadership-group--college,
-    .leadership-group--publication {
+    .institution-record__head h4 {
+        max-width: 22ch;
+    }
+
+    .organization-records--college {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .organization-records--college .organization-record:last-child {
         grid-column: 1 / -1;
+        border-top: 1px solid var(--dev-line);
         border-right: 0;
-    }
-
-    .leadership-group--feature .leadership-roles,
-    .leadership-roles--three {
-        grid-template-columns: 1fr;
-    }
-
-    .leadership-group--feature {
-        min-height: 0;
-    }
-
-    .leadership-role {
-        min-height: 8rem;
-        border-right: 0;
-        border-bottom: 1px solid var(--dev-line);
-    }
-
-    .leadership-role:last-child {
-        border-bottom: 0;
     }
 }
 
-@media (max-width: 620px) {
-    .leadership-archive__head h3 {
-        font-size: clamp(3.2rem, 15vw, 5.5rem);
-    }
-
-    .leadership-group__head {
-        grid-template-columns: 2rem 1fr;
-    }
-
-    .leadership-group__range {
-        grid-column: 2;
-    }
-
-    .leadership-group--feature .leadership-group__head h4,
-    .leadership-group__head h4 {
-        font-size: clamp(2.5rem, 12vw, 4.5rem);
-    }
-
-    .leadership-roles {
+@media (max-width: 760px) {
+    .organization-records--college,
+    .organization-records--secondary {
         grid-template-columns: 1fr;
     }
 
-    .leadership-role {
-        min-height: 7.5rem;
+    .organization-record,
+    .organization-records--college .organization-record:last-child {
+        grid-column: auto;
+        border-right: 0;
+        border-top: 1px solid var(--dev-line);
+    }
+
+    .organization-record:first-child {
+        border-top: 0;
+    }
+
+    .organization-record > header {
+        min-height: 0;
+        padding-top: 2rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .leadership-archive__head--compact h3 {
+        font-size: clamp(3rem, 14vw, 5rem);
+    }
+
+    .institution-record__head h4 {
+        font-size: clamp(2.2rem, 10vw, 3.7rem);
+    }
+
+    .organization-record > header h5,
+    .organization-record--primary > header h5 {
+        font-size: clamp(2rem, 9vw, 3rem);
+    }
+
+    .role-line {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .role-line small {
+        grid-column: 1;
+        margin-top: 0;
     }
 }
