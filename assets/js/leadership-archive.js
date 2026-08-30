@@ -77,7 +77,10 @@
     ];
 
     root.dataset.archiveBuilt = "true";
-    root.className = "achievement-list affiliation-showcase";
+    // Important: drop the legacy `achievement-list` class completely.
+    // Older education CSS and ScrollTrigger selectors target that class and would
+    // otherwise force this component back into the previous three-column layout.
+    root.className = "affiliation-showcase";
     root.innerHTML = `
         <header class="affiliation-showcase__intro">
             <div>
