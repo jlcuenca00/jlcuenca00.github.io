@@ -10,7 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=20260831-polish2" />
+  <link rel="stylesheet" href="director.css?v=20260831-1" />
   <script src="script.js?v=20260831-polish2" defer></script>
+  <script src="director.js?v=20260831-1" defer></script>
 </head>
 <body class="dev-page">
   <div class="intro-loader" id="introLoader" aria-hidden="true">
@@ -73,76 +75,84 @@
       </div>
     </section>
 
-    <section class="work scene" id="work" data-signal="network" aria-labelledby="workTitle">
-      <header class="section-head" data-reveal>
-        <div><span>01 / SELECTED WORK</span><h2 id="workTitle">BUILT TO<br /><i>BE USED.</i></h2></div>
-        <p>Interfaces are the entry point. The system still has to survive real workflows.</p>
+    <section class="work-v2 scene" id="work" data-signal="network" aria-labelledby="workTitle">
+      <header class="direction-head" data-reveal>
+        <div><span>01 / SELECTED WORK</span><h2 id="workTitle">THREE BUILDS.<br /><i>THREE WORLDS.</i></h2></div>
+        <p>Move across the reel. Each project takes the stage instead of sitting in another portfolio card.</p>
       </header>
 
-      <div class="project-showcase" id="projectShowcase" data-project="dar" data-reveal>
-        <article class="project-stage" id="projectStage">
-          <a class="project-media" id="projectLink" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer" data-cursor="OPEN">
-            <img id="projectImage" src="assets/dar-ltcms.svg" alt="DAR-LTCMS interface preview" />
-            <div class="project-media__shade"></div>
-            <span class="project-no" id="projectNo">01</span>
-            <div class="project-title">
-              <span id="projectType">GOVERNMENT WORKFLOW SYSTEM</span>
-              <h3 id="projectName">DAR-LTCMS</h3>
-            </div>
-            <span class="project-open">OPEN ↗</span>
-          </a>
-          <aside class="project-info">
-            <div><span>ROLE</span><strong id="projectRole">LEAD / INTEGRATOR / FULL-STACK</strong></div>
-            <div><span>STACK</span><strong id="projectStack">LARAVEL 12 / PHP / POSTGRESQL / BLADE / JS</strong></div>
-            <div><span>YEAR</span><strong id="projectYear">2026</strong></div>
-            <p id="projectDescription">Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.</p>
-          </aside>
-        </article>
+      <div class="project-reel" id="projectReel" data-reveal aria-label="Selected projects">
+        <a class="project-panel is-active" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer" data-project-panel="dar" data-cursor="OPEN">
+          <img src="assets/dar-ltcms.svg" alt="DAR-LTCMS interface preview" />
+          <div class="project-panel__wash"></div>
+          <div class="project-panel__top"><span>01</span><small>2026 / FULL-STACK SYSTEM</small></div>
+          <div class="project-panel__copy">
+            <span>LEAD / INTEGRATOR</span>
+            <h3>DAR-LTCMS</h3>
+            <p>Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.</p>
+            <div class="project-panel__stack"><i>LARAVEL 12</i><i>PHP</i><i>POSTGRESQL</i><i>BLADE</i></div>
+          </div>
+          <strong class="project-panel__open">OPEN ↗</strong>
+        </a>
 
-        <div class="project-index" role="tablist" aria-label="Selected projects">
-          <button class="project-index__item is-active" type="button" data-project="dar" aria-selected="true">
-            <span>01</span><strong>DAR-LTCMS</strong><small>FULL-STACK / 2026</small><i></i>
-          </button>
-          <button class="project-index__item" type="button" data-project="periphora" aria-selected="false">
-            <span>02</span><strong>PERIPHORA</strong><small>FLUTTER UI / 2025</small><i></i>
-          </button>
-          <button class="project-index__item" type="button" data-project="todo" aria-selected="false">
-            <span>03</span><strong>FLUTTER TO-DO</strong><small>MOBILE / 2025</small><i></i>
-          </button>
-        </div>
+        <a class="project-panel" href="https://github.com/jlcuenca00/periphora" target="_blank" rel="noopener noreferrer" data-project-panel="periphora" data-cursor="OPEN">
+          <img src="assets/periphora.svg" alt="Periphora mobile interface preview" />
+          <div class="project-panel__wash"></div>
+          <div class="project-panel__top"><span>02</span><small>2025 / MOBILE COMMERCE</small></div>
+          <div class="project-panel__copy">
+            <span>INDIVIDUAL / FRONT-END</span>
+            <h3>PERIPHORA</h3>
+            <p>Dark e-commerce interface for tech peripherals with product browsing, cart, checkout, motion, and reusable mobile components.</p>
+            <div class="project-panel__stack"><i>FLUTTER</i><i>DART</i><i>MOBILE UI</i><i>MOTION</i></div>
+          </div>
+          <strong class="project-panel__open">SOURCE ↗</strong>
+        </a>
+
+        <a class="project-panel" href="https://github.com/jlcuenca00/to_do_app" target="_blank" rel="noopener noreferrer" data-project-panel="todo" data-cursor="OPEN">
+          <img src="assets/flutter-todo.svg" alt="Flutter To-Do interface preview" />
+          <div class="project-panel__wash"></div>
+          <div class="project-panel__top"><span>03</span><small>2025 / MOBILE INTERACTION</small></div>
+          <div class="project-panel__copy">
+            <span>INDIVIDUAL / MOBILE APP</span>
+            <h3>TO-DO</h3>
+            <p>Focused task management with add/manage flows, slide-to-delete interaction, and a clean everyday interface.</p>
+            <div class="project-panel__stack"><i>FLUTTER</i><i>DART</i><i>INTERACTION</i></div>
+          </div>
+          <strong class="project-panel__open">SOURCE ↗</strong>
+        </a>
       </div>
+      <div class="reel-caption" data-reveal><span>HOVER / FOCUS TO EXPAND</span><i></i><span>CLICK TO OPEN PROJECT</span></div>
     </section>
 
-    <section class="profile scene" id="profile" data-signal="dual" aria-labelledby="profileTitle">
-      <header class="section-head section-head--tight" data-reveal>
-        <div><span>02 / PROFILE</span><h2 id="profileTitle">DESIGN IN FRONT.<br /><i>LOGIC UNDERNEATH.</i></h2></div>
+    <section class="profile-v2 scene" id="profile" data-signal="dual" aria-labelledby="profileTitle">
+      <header class="direction-head direction-head--profile" data-reveal>
+        <div><span>02 / PROFILE</span><h2 id="profileTitle">DESIGN WHAT<br /><i>PEOPLE TOUCH.</i></h2></div>
+        <p>Front-end is the direction. Full-stack experience is the advantage underneath it.</p>
       </header>
 
-      <div class="profile-stage" data-reveal>
-        <div class="profile-side profile-side--design">
-          <span>DESIGN / 01</span>
-          <h3>MAKE IT<br />FEEL RIGHT.</h3>
-          <div class="profile-tags"><i>INTERACTION</i><i>TYPOGRAPHY</i><i>MOTION</i><i>RESPONSIVE UI</i></div>
+      <div class="profile-spread" data-reveal>
+        <div class="profile-collage" id="profileCollage" aria-label="Portraits of Jake Cuenca">
+          <figure class="profile-frame profile-frame--one is-active"><img src="assets/profile/portrait-01.jpg" alt="Jake Cuenca smiling in an Asian College uniform" /><figcaption>01 / CURRENT</figcaption></figure>
+          <figure class="profile-frame profile-frame--two"><img src="assets/profile/portrait-02.jpg" alt="Jake Cuenca posing with crossed peace signs" /><figcaption>02 / CREATIVE</figcaption></figure>
+          <figure class="profile-frame profile-frame--three"><img src="assets/profile/portrait-03.jpg" alt="Jake Cuenca giving a thumbs-up" /><figcaption>03 / BUILDER</figcaption></figure>
+          <div class="profile-collage__stamp" aria-hidden="true"><span>J/C</span><i>04</i></div>
         </div>
 
-        <figure class="portrait-stack" id="portraitStack">
-          <img class="is-active" src="assets/profile/portrait-01.jpg" alt="Jake Cuenca smiling in an Asian College uniform" />
-          <img src="assets/profile/portrait-02.jpg" alt="Jake Cuenca posing with crossed peace signs" />
-          <img src="assets/profile/portrait-03.jpg" alt="Jake Cuenca giving a thumbs-up" />
-          <figcaption><span>JAKE CUENCA</span><strong id="portraitCounter">01 / 03</strong></figcaption>
-        </figure>
+        <article class="profile-manifesto">
+          <span class="profile-manifesto__label">CURRENT DIRECTION / FRONT-END DESIGN</span>
+          <h3>I WANT THE<br />INTERFACE TO<br /><i>DO THE TALKING.</i></h3>
+          <p>4th Year BS Information Technology student in Dumaguete City. I build expressive interfaces, but I also understand the workflows, data, and backend decisions that make them useful.</p>
 
-        <div class="profile-side profile-side--systems">
-          <span>SYSTEMS / 02</span>
-          <h3>MAKE IT<br />WORK RIGHT.</h3>
-          <div class="profile-tags"><i>LARAVEL</i><i>POSTGRESQL</i><i>WORKFLOWS</i><i>INTEGRATION</i></div>
-        </div>
+          <div class="profile-facts-v2">
+            <div><span>FOCUS</span><strong>FRONT-END / CREATIVE DEV</strong></div>
+            <div><span>BACKEND</span><strong>LARAVEL / PHP / POSTGRESQL</strong></div>
+            <div><span>PROGRAM</span><strong>BS INFORMATION TECHNOLOGY</strong></div>
+            <div><span>STATUS</span><strong>4TH YEAR / 2023—PRESENT</strong></div>
+          </div>
+        </article>
       </div>
 
-      <div class="profile-summary" data-reveal>
-        <p>4th Year BS Information Technology student at Asian College of Science and Technology — Dumaguete City.</p>
-        <p>I’m moving toward front-end design and creative development while keeping the full-stack experience needed to ship complete systems.</p>
-      </div>
+      <div class="profile-ticker" aria-hidden="true"><div>INTERACTION — TYPOGRAPHY — MOTION — SYSTEMS — PHOTOGRAPHY — FRONT-END — INTERACTION — TYPOGRAPHY — MOTION — SYSTEMS — PHOTOGRAPHY — FRONT-END —</div></div>
     </section>
 
     <section class="capabilities scene" id="capabilities" data-signal="grid" aria-labelledby="capabilitiesTitle">
@@ -175,47 +185,75 @@
       </div>
     </section>
 
-    <section class="history scene" id="history" data-signal="timeline" aria-labelledby="historyTitle">
-      <header class="section-head section-head--with-switch" data-reveal>
-        <div><span>04 / HISTORY</span><h2 id="historyTitle">TRACE THE<br /><i>BUILD.</i></h2></div>
-        <div class="history-switch" role="tablist" aria-label="History view">
-          <button class="is-active" type="button" data-history-view="education">EDUCATION</button>
-          <button type="button" data-history-view="affiliations">AFFILIATIONS</button>
-        </div>
+    <section class="journey scene" id="history" data-signal="timeline" aria-labelledby="historyTitle">
+      <header class="direction-head" data-reveal>
+        <div><span>04 / HISTORY</span><h2 id="historyTitle">THREE LEVELS.<br /><i>ONE PATH.</i></h2></div>
+        <p>Primary. Secondary — high school and senior high together. Tertiary — the current BSIT chapter.</p>
       </header>
 
-      <div class="history-stage" id="historyStage" data-view="education" data-reveal>
-        <section class="history-panel history-panel--education is-active" data-history-panel="education">
-          <div class="edu-rail" role="tablist" aria-label="Education timeline">
-            <button type="button" data-edu="primary"><span>2011</span><i></i><strong>PRIMARY</strong><small>2017</small></button>
-            <button type="button" data-edu="high"><span>2017</span><i></i><strong>HIGH SCHOOL</strong><small>2021</small></button>
-            <button type="button" data-edu="senior"><span>2021</span><i></i><strong>SENIOR HIGH</strong><small>2023</small></button>
-            <button class="is-active" type="button" data-edu="college"><span>2023</span><i></i><strong>BSIT</strong><small>NOW</small></button>
-          </div>
-          <article class="edu-detail" aria-live="polite">
-            <div class="edu-detail__meta"><span id="eduPeriod">2023 — PRESENT</span><span id="eduLevel">TERTIARY / 4TH YEAR</span></div>
-            <h3 id="eduSchool">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY</h3>
-            <p id="eduLocation">DUMAGUETE CITY</p>
-            <p id="eduNote">Bachelor of Science in Information Technology.</p>
-            <strong id="eduAward">CURRENT</strong>
-          </article>
-        </section>
+      <div class="education-v2" id="educationV2" data-active="tertiary" data-reveal>
+        <div class="education-levels" role="tablist" aria-label="Education levels">
+          <button type="button" data-edu-level="primary" aria-selected="false"><span>01</span><strong>PRIMARY</strong><small>2011—2017</small><i></i></button>
+          <button type="button" data-edu-level="secondary" aria-selected="false"><span>02</span><strong>SECONDARY</strong><small>2017—2023</small><i></i></button>
+          <button class="is-active" type="button" data-edu-level="tertiary" aria-selected="true"><span>03</span><strong>TERTIARY</strong><small>2023—NOW</small><i></i></button>
+        </div>
 
-        <section class="history-panel history-panel--affiliations" data-history-panel="affiliations">
-          <div class="aff-index" role="tablist" aria-label="Affiliations">
-            <button class="is-active" type="button" data-aff="acclaimed"><span>01</span><strong>ACCLAIMED</strong></button>
-            <button type="button" data-aff="ccse"><span>02</span><strong>CCSE</strong></button>
-            <button type="button" data-aff="acer"><span>03</span><strong>ACER CHRONICLES</strong></button>
-            <button type="button" data-aff="twg"><span>04</span><strong>TWG / BCSTEC</strong></button>
-            <button type="button" data-aff="aemt"><span>05</span><strong>AEMT</strong></button>
-          </div>
-          <article class="aff-card" aria-live="polite">
-            <div class="aff-card__meta"><span id="affCategory">CAMPUS CREATIVE ORGANIZATION</span><span id="affPeriod">FOUNDING → 2026</span></div>
-            <h3 id="affTitle">ACCLAIMED</h3>
-            <p id="affInstitution">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</p>
-            <div class="aff-roles" id="affRoles"><div><span>2025–2026</span><strong>PUBLIC INFORMATION OFFICER</strong></div><div><span>2024–2025</span><strong>PRESIDENT</strong></div><div><span>FOUNDING</span><strong>FOUNDING MEMBER</strong></div></div>
+        <div class="education-stage">
+          <article class="education-panel" data-edu-panel="primary">
+            <div class="education-panel__index">01</div>
+            <div class="education-panel__meta"><span>PRIMARY EDUCATION</span><strong>2011 — 2017</strong></div>
+            <h3>SANTA CATALINA CENTRAL ELEMENTARY SCHOOL</h3>
+            <div class="education-panel__footer"><span>SANTA CATALINA</span><strong>GRADUATED WITH HIGH HONORS</strong></div>
           </article>
-        </section>
+
+          <article class="education-panel education-panel--secondary" data-edu-panel="secondary">
+            <div class="education-panel__index">02</div>
+            <div class="education-panel__meta"><span>SECONDARY EDUCATION</span><strong>2017 — 2023</strong></div>
+            <div class="secondary-track">
+              <article>
+                <span>HIGH SCHOOL / 2017—2021</span>
+                <h3>SAINT AUGUSTINE ACADEMY OF BAYAWAN, INC.</h3>
+                <p>Graduated with Honors.</p>
+                <small>PIONEER MEMBER / AEMT — VIDEO / PHOTO / GRAPHICS</small>
+              </article>
+              <i aria-hidden="true"></i>
+              <article>
+                <span>SENIOR HIGH / 2021—2023</span>
+                <h3>BAYAWAN CITY SCIENCE AND TECHNOLOGY EDUCATION CENTER</h3>
+                <p>Graduated with High Honors.</p>
+                <small>FOUNDING MEMBER / TWG — CREATIVE HEAD 2021—2023</small>
+              </article>
+            </div>
+          </article>
+
+          <article class="education-panel is-active" data-edu-panel="tertiary">
+            <div class="education-panel__index">03</div>
+            <div class="education-panel__meta"><span>TERTIARY / CURRENT</span><strong>2023 — PRESENT</strong></div>
+            <h3>ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY</h3>
+            <p class="education-degree">BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY / 4TH YEAR</p>
+            <div class="education-panel__footer"><span>DUMAGUETE CITY</span><strong>CURRENT CHAPTER</strong></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="affiliation-v2" data-reveal>
+        <div class="affiliation-v2__head"><span>LEADERSHIP / MEDIA</span><strong>SELECT A NODE</strong></div>
+        <div class="affiliation-constellation" id="affiliationConstellation">
+          <div class="affiliation-core" aria-hidden="true"><span>LEAD</span><i>+</i><span>CREATE</span><i>+</i><span>DOCUMENT</span></div>
+
+          <button class="aff-node aff-node--1 is-active" type="button" data-aff-v2="acclaimed"><span>01</span><strong>ACCLAIMED</strong></button>
+          <button class="aff-node aff-node--2" type="button" data-aff-v2="ccse"><span>02</span><strong>CCSE</strong></button>
+          <button class="aff-node aff-node--3" type="button" data-aff-v2="acer"><span>03</span><strong>ACER CHRONICLES</strong></button>
+          <button class="aff-node aff-node--4" type="button" data-aff-v2="twg"><span>04</span><strong>TWG / BCSTEC</strong></button>
+          <button class="aff-node aff-node--5" type="button" data-aff-v2="aemt"><span>05</span><strong>AEMT</strong></button>
+
+          <article class="aff-readout" aria-live="polite">
+            <div class="aff-readout__meta"><span id="affV2Category">CAMPUS CREATIVE ORGANIZATION</span><strong id="affV2Period">FOUNDING → 2026</strong></div>
+            <h3 id="affV2Title">ACCLAIMED</h3>
+            <p id="affV2Institution">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</p>
+            <div id="affV2Roles" class="aff-readout__roles"><span>PIO / 2025—2026</span><span>PRESIDENT / 2024—2025</span><span>FOUNDING MEMBER</span></div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -262,15 +300,20 @@
       </div>
     </section>
 
-    <section class="contact scene" id="contact" data-signal="contact" aria-labelledby="contactTitle">
-      <div class="contact-poster" data-reveal>
-        <div class="contact-label"><span>06 / CONTACT</span><span>DUMAGUETE / PH</span></div>
-        <h2 id="contactTitle">MAKE<br />SOMETHING<br /><i>USEFUL.</i></h2>
-        <div class="contact-links">
-          <a href="mailto:deklaired@gmail.com" data-cursor="MAIL"><span>EMAIL</span><strong>DEKLAIRED@GMAIL.COM</strong><i>↗</i></a>
-          <a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer" data-cursor="OPEN"><span>GITHUB</span><strong>JLCUENCA00</strong><i>↗</i></a>
-          <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF"><span>RESUME</span><strong>OPEN CV</strong><i>↗</i></a>
-          <a class="creator-contact" href="../photography/index.html" data-world-link data-cursor="ENTER"><span>OTHER WORLD</span><strong>ENTER CREATOR</strong><i>↗</i></a>
+    <section class="contact-v2 scene" id="contact" data-signal="contact" aria-labelledby="contactTitle">
+      <div class="contact-glow" id="contactGlow" data-reveal>
+        <div class="contact-v2__meta"><span>06 / OPEN CHANNEL</span><strong>DUMAGUETE / PH</strong></div>
+        <div class="contact-v2__hero">
+          <span class="contact-kicker">HAVE A SYSTEM / IDEA / INTERFACE?</span>
+          <h2 id="contactTitle">LET'S MAKE<br />THE WEB FEEL<br /><i>ALIVE.</i></h2>
+          <div class="contact-target" aria-hidden="true"><span></span><i></i></div>
+        </div>
+
+        <div class="contact-v2__actions">
+          <a href="mailto:deklaired@gmail.com" data-cursor="MAIL"><span>01 / EMAIL</span><strong>DEKLAIRED@GMAIL.COM</strong><i>↗</i></a>
+          <a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer" data-cursor="OPEN"><span>02 / GITHUB</span><strong>JLCUENCA00</strong><i>↗</i></a>
+          <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF"><span>03 / RESUME</span><strong>OPEN CV</strong><i>↗</i></a>
+          <a class="contact-v2__creator" href="../photography/index.html" data-world-link data-cursor="ENTER"><span>04 / OTHER WORLD</span><strong>ENTER CREATOR</strong><i>↗</i></a>
         </div>
       </div>
     </section>
