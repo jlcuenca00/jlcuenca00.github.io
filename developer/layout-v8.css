@@ -1,0 +1,435 @@
+/* Developer layout v8 — Project Index as a compact selector + active showcase stage. */
+
+.dev-page .project-index.project-scene-enabled {
+    min-height: 100svh;
+    padding-top: clamp(5.5rem, 9vw, 9rem) !important;
+    padding-bottom: clamp(7rem, 11vw, 11rem) !important;
+    overflow: visible;
+}
+
+/* Kill the old giant section number. The active project number now belongs to the stage. */
+.dev-page .project-index.project-scene-enabled::before {
+    display: none !important;
+}
+
+.dev-page .project-index .index-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: clamp(3rem, 6vw, 5.5rem);
+    padding-bottom: 1.35rem;
+    border-bottom: 1px solid rgba(255,255,255,0.13);
+}
+
+.dev-page .project-index .index-kicker {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    letter-spacing: 0.14em;
+}
+
+.dev-page .project-index .index-heading h2 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 5.4vw, 5.8rem);
+    line-height: 0.84;
+    letter-spacing: -0.06em;
+}
+
+.dev-page .project-index .index-heading h2 span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.35);
+}
+
+.dev-page .project-index .index-heading > p {
+    max-width: 29rem;
+    margin: 0;
+    color: rgba(255,255,255,0.43);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.75;
+    text-align: right;
+}
+
+.dev-page .project-scene-enabled .project-layout {
+    display: grid;
+    grid-template-columns: minmax(19rem, 0.36fr) minmax(0, 0.64fr) !important;
+    gap: clamp(2rem, 5vw, 6rem) !important;
+    align-items: start;
+}
+
+/* ------------------------------------------------------------------
+   Selector
+   ------------------------------------------------------------------ */
+
+.dev-page .project-scene-enabled .project-list {
+    position: sticky;
+    top: 7.2rem;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+.dev-page .project-scene-enabled .project-list::before {
+    content: "SELECT PROJECT";
+    display: block;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.34);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+}
+
+.dev-page .project-scene-enabled .project-row {
+    min-height: 0 !important;
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto;
+    gap: 0.55rem 1rem;
+    align-items: center;
+    align-content: center;
+    padding: clamp(1.3rem, 2.3vw, 2rem) 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+    background: transparent !important;
+    opacity: 0.42 !important;
+    transition:
+        opacity 240ms ease,
+        padding 320ms cubic-bezier(0.16,1,0.3,1),
+        transform 320ms cubic-bezier(0.16,1,0.3,1) !important;
+}
+
+.dev-page .project-scene-enabled .project-row:last-child {
+    border-bottom: 0;
+}
+
+.dev-page .project-scene-enabled .project-row::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 20%;
+    bottom: 20%;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 260ms cubic-bezier(0.16,1,0.3,1);
+}
+
+.dev-page .project-scene-enabled .project-row::after {
+    content: attr(data-role) !important;
+    grid-column: 2 / 4 !important;
+    grid-row: 2;
+    margin: 0 !important;
+    color: rgba(255,255,255,0.36) !important;
+    font-family: var(--font-mono);
+    font-size: 0.58rem !important;
+    line-height: 1.45;
+    letter-spacing: 0.07em;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.dev-page .project-scene-enabled .project-no {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    padding-top: 0.2rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+}
+
+.dev-page .project-scene-enabled .project-name {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: none !important;
+    color: #fff;
+    font-size: clamp(1.65rem, 2.7vw, 3rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.045em;
+}
+
+.dev-page .project-scene-enabled .project-year {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center !important;
+    color: rgba(255,255,255,0.42);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+}
+
+.dev-page .project-scene-enabled .project-role,
+.dev-page .project-scene-enabled .project-arrow {
+    display: none !important;
+}
+
+.dev-page .project-scene-enabled .project-row.is-scroll-active,
+.dev-page .project-scene-enabled .project-row.is-active,
+.dev-page .project-scene-enabled .project-row:hover,
+.dev-page .project-scene-enabled .project-row:focus-visible {
+    opacity: 1 !important;
+    transform: translateX(0.8rem);
+}
+
+.dev-page .project-scene-enabled .project-row.is-scroll-active::before,
+.dev-page .project-scene-enabled .project-row.is-active::before,
+.dev-page .project-scene-enabled .project-row:hover::before,
+.dev-page .project-scene-enabled .project-row:focus-visible::before {
+    transform: scaleY(1);
+}
+
+/* ------------------------------------------------------------------
+   Active project stage
+   ------------------------------------------------------------------ */
+
+.dev-page .project-scene-enabled .project-preview {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    display: block !important;
+    align-self: start;
+}
+
+.dev-page .project-scene-enabled .preview-window {
+    position: sticky;
+    top: 6.8rem;
+    width: 100%;
+    min-height: min(76svh, 49rem) !important;
+    display: grid;
+    grid-template-rows: auto minmax(22rem, 1fr) auto;
+    overflow: hidden;
+    border: 1px solid rgba(255,42,42,0.28) !important;
+    background:
+        linear-gradient(rgba(255,42,42,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,42,42,0.035) 1px, transparent 1px),
+        rgba(5,5,5,0.86) !important;
+    background-size: 34px 34px, 34px 34px, auto !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 32px 90px rgba(0,0,0,0.3);
+}
+
+.dev-page .project-scene-enabled .preview-window::after {
+    content: attr(data-stage-number);
+    position: absolute;
+    right: -0.02em;
+    bottom: -0.17em;
+    z-index: 0;
+    color: rgba(255,42,42,0.07);
+    font-family: var(--font-head);
+    font-size: clamp(12rem, 25vw, 27rem);
+    line-height: 0.75;
+    letter-spacing: -0.08em;
+    pointer-events: none;
+}
+
+.dev-page .project-scene-enabled .preview-window__bar {
+    position: relative;
+    z-index: 2;
+    min-height: 2.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.38);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.11em;
+}
+
+.dev-page .project-scene-enabled .preview-window__bar span:last-child {
+    color: var(--accent);
+}
+
+.dev-page .project-scene-enabled .preview-visual--image {
+    position: relative;
+    z-index: 1;
+    height: auto !important;
+    min-height: clamp(22rem, 43vw, 35rem);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: #050505;
+}
+
+.dev-page .project-scene-enabled .preview-visual--image::after {
+    content: "ACTIVE PROJECT";
+    position: absolute;
+    left: 1.1rem;
+    bottom: 1rem;
+    z-index: 3;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.13em;
+}
+
+.dev-page .project-scene-enabled .preview-visual--image img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.82;
+    filter: contrast(1.05) saturate(0.82);
+    transform: scale(1.015);
+}
+
+.dev-page .project-scene-enabled #preview-number {
+    display: none;
+}
+
+.dev-page .project-scene-enabled .preview-copy {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(13rem, 0.6fr);
+    gap: 1rem clamp(1.4rem, 3vw, 3rem);
+    padding: clamp(1.5rem, 3vw, 2.7rem);
+    background: linear-gradient(180deg, rgba(5,5,5,0.74), rgba(5,5,5,0.96));
+}
+
+.dev-page .project-scene-enabled #preview-year {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    margin: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+}
+
+.dev-page .project-scene-enabled .preview-copy h3 {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: end;
+    margin: 0;
+    max-width: 11ch;
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: clamp(2.6rem, 5vw, 5.4rem) !important;
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+}
+
+.dev-page .project-scene-enabled #preview-subtitle {
+    grid-column: 1;
+    margin: 0.7rem 0 0;
+    max-width: 45rem;
+    color: rgba(255,255,255,0.57);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.7;
+}
+
+.dev-page .project-scene-enabled #preview-role,
+.dev-page .project-scene-enabled #preview-stack {
+    grid-column: 2;
+    display: block;
+    align-self: end;
+    color: rgba(255,255,255,0.44);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    line-height: 1.6;
+}
+
+.dev-page .project-scene-enabled #preview-role::before {
+    content: "ROLE / ";
+    color: var(--accent);
+}
+
+.dev-page .project-scene-enabled #preview-stack::before {
+    content: "STACK / ";
+    color: var(--accent);
+}
+
+.dev-page .project-scene-enabled #preview-link {
+    grid-column: 2;
+    justify-self: end;
+    margin-top: 0.5rem;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.11em;
+}
+
+.dev-page .project-scene-enabled #preview-link:hover,
+.dev-page .project-scene-enabled #preview-link:focus-visible {
+    color: var(--accent);
+}
+
+@media (max-width: 1100px) {
+    .dev-page .project-scene-enabled .project-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dev-page .project-scene-enabled .project-list,
+    .dev-page .project-scene-enabled .preview-window {
+        position: relative;
+        top: auto;
+    }
+
+    .dev-page .project-scene-enabled .project-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .dev-page .project-scene-enabled .project-list::before {
+        grid-column: 1 / -1;
+    }
+
+    .dev-page .project-scene-enabled .project-row {
+        border-right: 1px solid rgba(255,255,255,0.09);
+        border-bottom: 0;
+    }
+
+    .dev-page .project-scene-enabled .project-row:last-child {
+        border-right: 0;
+    }
+}
+
+@media (max-width: 760px) {
+    .dev-page .project-index .index-heading {
+        grid-template-columns: 1fr;
+    }
+
+    .dev-page .project-index .index-heading > p {
+        text-align: left;
+    }
+
+    .dev-page .project-scene-enabled .project-list {
+        grid-template-columns: 1fr;
+    }
+
+    .dev-page .project-scene-enabled .project-row {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .dev-page .project-scene-enabled .preview-window {
+        min-height: 0 !important;
+    }
+
+    .dev-page .project-scene-enabled .preview-visual--image {
+        min-height: 17rem;
+    }
+
+    .dev-page .project-scene-enabled .preview-copy {
+        grid-template-columns: 1fr;
+    }
+
+    .dev-page .project-scene-enabled .preview-copy h3,
+    .dev-page .project-scene-enabled #preview-year,
+    .dev-page .project-scene-enabled #preview-subtitle,
+    .dev-page .project-scene-enabled #preview-role,
+    .dev-page .project-scene-enabled #preview-stack,
+    .dev-page .project-scene-enabled #preview-link {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+    }
+}
