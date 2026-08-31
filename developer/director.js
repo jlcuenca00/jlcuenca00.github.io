@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector('link[data-director-mosaic]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "director-mosaic.css?v=20260831-6";
+      link.href = "director-mosaic.css?v=20260831-7";
       link.dataset.directorMosaic = "true";
       document.head.appendChild(link);
     }
