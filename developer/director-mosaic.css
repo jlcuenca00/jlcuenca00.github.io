@@ -201,6 +201,19 @@
   transition:color 220ms ease, transform 420ms cubic-bezier(.16,1,.3,1);
 }
 
+/* Acer Chronicles has the longest primary role. Keep it on one line without clipping. */
+.aff-position__row:nth-child(3) .aff-position__primary {
+  grid-template-columns:minmax(0,1fr) 6.8rem;
+  gap:1.35rem;
+}
+
+.aff-position__row:nth-child(3) .aff-position__primary strong {
+  max-width:none;
+  white-space:nowrap;
+  font-size:clamp(2.9rem,4.35vw,5.25rem);
+  letter-spacing:-.055em;
+}
+
 .aff-position__primary > span {
   padding-top:.45rem;
   color:var(--red);
@@ -284,6 +297,14 @@
     grid-template-columns:3.5rem minmax(11rem,.7fr) minmax(0,1.3fr);
   }
   .aff-position__primary strong { font-size:clamp(2.9rem,6vw,5.6rem); }
+  .aff-position__row:nth-child(3) .aff-position__primary {
+    grid-template-columns:1fr;
+    gap:.45rem;
+  }
+  .aff-position__row:nth-child(3) .aff-position__primary strong {
+    white-space:normal;
+    font-size:clamp(2.7rem,5.6vw,4.8rem);
+  }
 }
 
 @media (max-width:760px) {
