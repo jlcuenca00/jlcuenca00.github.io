@@ -8,6 +8,15 @@
     document.head.appendChild(link);
   };
 
+  const ensureCapabilityStyles = () => {
+    if (document.querySelector('link[data-capabilities-polish]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'capabilities-polish.css?v=20260901-1';
+    link.dataset.capabilitiesPolish = 'true';
+    document.head.appendChild(link);
+  };
+
   const buildProfile = () => {
     const root = document.getElementById('profile');
     if (!root || root.dataset.identityReady === 'manifesto') return;
@@ -236,6 +245,7 @@
 
   const start = () => {
     ensureProfileStyles();
+    ensureCapabilityStyles();
     buildProfile();
     buildAffiliations();
   };
