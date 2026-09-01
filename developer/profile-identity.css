@@ -1,27 +1,27 @@
-/* Profile — restrained editorial About composition. Hero owns the portrait; this section owns the point of view. */
+/* Profile — layered art-board composition. The hero owns the portrait; Profile shows the visual point of view. */
 
 .profile-v2 {
   position: relative;
   overflow: hidden;
-  padding-block: clamp(5rem, 8vw, 8.5rem);
+  padding-block: clamp(5rem, 8vw, 9rem);
 }
 
 .profile-v2::before {
-  content: "PROFILE";
+  content: "02";
   position: absolute;
-  right: -.03em;
-  bottom: .04em;
+  right: -.04em;
+  bottom: -.08em;
   color: transparent;
   -webkit-text-stroke: 1px rgba(255,255,255,.025);
-  font: 400 clamp(13rem, 27vw, 30rem)/.72 var(--head);
-  letter-spacing: -.085em;
+  font: 400 clamp(18rem, 34vw, 38rem)/.72 var(--head);
+  letter-spacing: -.1em;
   pointer-events: none;
   user-select: none;
 }
 
 .profile-map-head {
   position: relative;
-  z-index: 4;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,211 +38,326 @@
 .profile-map {
   position: relative;
   z-index: 3;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: clamp(1.5rem, 3vw, 3.5rem);
-  row-gap: clamp(3rem, 6vw, 6rem);
-  padding: clamp(4rem, 7vw, 7rem) 0 clamp(4rem, 6vw, 6rem);
+  min-height: clamp(43rem, 62vw, 58rem);
+  margin-top: clamp(2rem, 4vw, 4rem);
   isolation: isolate;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
+/* Red backing sheet */
 .profile-map::before {
   content: "";
   position: absolute;
-  z-index: -1;
-  top: 8%;
-  bottom: 7%;
-  left: 68.5%;
-  width: 1px;
-  background: linear-gradient(transparent, rgba(255,45,45,.52) 22%, rgba(255,45,45,.18) 72%, transparent);
-  box-shadow: 0 0 32px rgba(255,45,45,.08);
-  pointer-events: none;
+  z-index: 0;
+  left: 29%;
+  top: 12%;
+  width: 47%;
+  height: 64%;
+  background: #ff2d2d;
+  transform: rotate(3.2deg);
+  box-shadow: 0 2.4rem 6rem rgba(0,0,0,.32);
+  opacity: .9;
 }
 
+/* Registration mark / print note */
 .profile-map::after {
-  content: "02";
+  content: "JC / PROFILE / 02 / 2026";
   position: absolute;
-  z-index: -2;
-  right: 2%;
-  top: 4%;
-  color: rgba(255,255,255,.018);
-  font: 400 clamp(13rem, 23vw, 26rem)/.72 var(--head);
-  letter-spacing: -.08em;
-  pointer-events: none;
+  z-index: 12;
+  right: 1.5%;
+  top: 5%;
+  padding-top: .7rem;
+  border-top: 1px solid rgba(255,45,45,.8);
+  color: rgba(255,255,255,.42);
+  font: 600 .5rem/1 var(--mono);
+  letter-spacing: .15em;
 }
 
 .profile-route-line,
 .profile-node,
 .profile-readout { display: none !important; }
 
+/* Front / white poster */
 .profile-manifesto {
-  position: relative;
-  inset: auto;
-  grid-column: 1 / 9;
-  width: auto;
-  min-width: 0;
-  z-index: 2;
+  position: absolute;
+  z-index: 5;
+  left: 4.5%;
+  top: 5%;
+  width: min(57%, 58rem);
+  min-height: 66%;
+  padding: clamp(2rem, 3.4vw, 3.8rem);
+  background: #f2f0e9;
+  color: #060606;
+  box-shadow: 0 2.2rem 6rem rgba(0,0,0,.38);
+  transform: rotate(-1.25deg);
+  transform-origin: 40% 45%;
+  transition: transform .65s cubic-bezier(.2,.8,.2,1), box-shadow .65s ease;
+  overflow: hidden;
+}
+
+.profile-manifesto::before {
+  content: "+";
+  position: absolute;
+  right: clamp(1rem, 2vw, 1.8rem);
+  top: clamp(1rem, 2vw, 1.8rem);
+  color: #ff2d2d;
+  font: 500 clamp(2rem, 3vw, 3.5rem)/1 var(--mono);
+}
+
+.profile-manifesto::after {
+  content: "SURFACE / EXPERIENCE / DIRECTION";
+  position: absolute;
+  right: clamp(1.2rem,2.4vw,2.2rem);
+  bottom: clamp(1.2rem,2.4vw,2.2rem);
+  writing-mode: vertical-rl;
+  color: rgba(0,0,0,.38);
+  font: 700 .48rem/1 var(--mono);
+  letter-spacing: .16em;
+}
+
+.profile-manifesto:hover {
+  transform: rotate(-.35deg) translateY(-.6rem);
+  box-shadow: 0 3rem 7rem rgba(0,0,0,.48);
 }
 
 .profile-manifesto__eyebrow {
-  color: var(--red);
-  font: 600 .55rem/1 var(--mono);
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: #ff2d2d;
+  font: 700 .55rem/1 var(--mono);
   letter-spacing: .15em;
   text-transform: uppercase;
 }
 
+.profile-manifesto__eyebrow::before {
+  content: "";
+  width: 2.2rem;
+  height: 1px;
+  background: #ff2d2d;
+}
+
 .profile-manifesto h2 {
-  margin: clamp(1rem, 2vw, 1.8rem) 0 0;
+  margin: clamp(2rem, 3.5vw, 3.6rem) 0 0;
   font-size: 0;
   line-height: 0;
 }
 
 .profile-manifesto h2::before {
-  content: "I DESIGN\A INTERFACES\A THAT FEEL\A INTENTIONAL.";
+  content: "I DESIGN\A THE SURFACE.\A I SHAPE\A THE FEEL.";
   display: block;
   white-space: pre;
-  color: #f4f3ef;
-  font: 400 clamp(4.2rem, 7.8vw, 9rem)/.78 var(--head);
-  letter-spacing: -.075em;
+  color: #080808;
+  font: 400 clamp(4.2rem, 7.4vw, 8.5rem)/.76 var(--head);
+  letter-spacing: -.08em;
   text-transform: uppercase;
 }
 
 .profile-manifesto h2::after {
-  content: "FRONT-END FIRST";
+  content: "FRONT-END / DESIGN";
   display: inline-block;
-  margin-top: 1.45rem;
+  margin-top: 1.7rem;
   padding: .5rem .65rem .44rem;
-  border: 1px solid rgba(255,45,45,.5);
-  color: var(--red);
-  font: 600 .58rem/1 var(--mono);
+  border: 1px solid #ff2d2d;
+  color: #ff2d2d;
+  font: 700 .55rem/1 var(--mono);
   letter-spacing: .15em;
 }
 
 .profile-manifesto__note {
-  max-width: 36rem;
-  margin-top: clamp(1.5rem, 2.5vw, 2.6rem);
-  color: rgba(255,255,255,.54);
-  font: 500 clamp(.9rem, 1.05vw, 1.05rem)/1.8 var(--body);
+  max-width: 31rem;
+  margin-top: clamp(1.4rem,2vw,2rem);
+  color: rgba(0,0,0,.62);
+  font: 600 clamp(.84rem,1vw,.98rem)/1.72 var(--body);
 }
 
+/* Rear / black poster */
 .profile-foundation {
-  position: relative;
-  inset: auto;
-  grid-column: 10 / -1;
-  align-self: center;
-  width: auto;
-  min-width: 0;
-  padding: 0;
-  border: 0;
+  position: absolute;
+  z-index: 8;
+  right: 3.5%;
+  top: 26%;
+  width: min(40%, 37rem);
+  min-height: 49%;
+  padding: clamp(2rem, 3vw, 3.2rem);
+  border: 1px solid rgba(255,255,255,.2);
+  background: #080808;
+  color: #f4f3ef;
+  box-shadow: 0 2.2rem 6rem rgba(0,0,0,.42);
+  transform: rotate(1.35deg);
+  transform-origin: center;
+  transition: transform .65s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .65s ease;
+  overflow: hidden;
 }
 
 .profile-foundation::before {
-  content: "";
-  display: block;
-  width: 2.8rem;
-  height: 2px;
-  margin-bottom: 1.4rem;
-  background: var(--red);
+  content: "B / 02";
+  position: absolute;
+  right: 1.4rem;
+  top: 1.2rem;
+  color: #ff2d2d;
+  font: 700 .52rem/1 var(--mono);
+  letter-spacing: .14em;
+}
+
+.profile-foundation::after {
+  content: "</>";
+  position: absolute;
+  right: -.04em;
+  bottom: -.16em;
+  color: rgba(255,255,255,.025);
+  font: 700 clamp(9rem, 18vw, 20rem)/.72 var(--head);
+  letter-spacing: -.08em;
+  pointer-events: none;
+}
+
+.profile-foundation:hover {
+  transform: rotate(.25deg) translateY(-.55rem);
+  border-color: rgba(255,45,45,.62);
+  box-shadow: 0 3rem 7rem rgba(0,0,0,.5);
 }
 
 .profile-foundation > span {
-  font-size: 0;
-}
-.profile-foundation > span::before {
-  content: "ABOUT / WORKING DIRECTION";
-  color: var(--red);
-  font: 600 .55rem/1 var(--mono);
+  color: #ff2d2d;
+  font: 700 .55rem/1 var(--mono);
   letter-spacing: .15em;
+  text-transform: uppercase;
 }
 
 .profile-foundation strong {
   display: block;
-  margin-top: 1.15rem;
-  max-width: 14ch;
-  color: rgba(255,255,255,.92);
+  margin-top: clamp(2rem, 3vw, 3.1rem);
+  max-width: 9ch;
+  color: #f4f3ef;
   font-size: 0;
   line-height: 0;
 }
 .profile-foundation strong::before {
-  content: "FRONT-END IS THE DIRECTION. FULL-STACK IS THE FOUNDATION.";
+  content: "I BUILD\A WHAT'S\A UNDER IT.";
   display: block;
-  color: rgba(255,255,255,.92);
-  font: 700 clamp(1.45rem, 2.15vw, 2.45rem)/1.02 var(--body);
-  letter-spacing: -.045em;
+  white-space: pre;
+  color: #f4f3ef;
+  font: 400 clamp(3.2rem, 5.3vw, 6.3rem)/.78 var(--head);
+  letter-spacing: -.075em;
   text-transform: uppercase;
 }
 
 .profile-foundation p {
-  margin-top: 1.25rem;
+  position: relative;
+  z-index: 2;
   max-width: 25rem;
-  color: rgba(255,255,255,.48);
-  font: 500 clamp(.82rem, .98vw, .98rem)/1.75 var(--body);
+  margin-top: clamp(1.6rem,2.5vw,2.5rem);
+  color: rgba(255,255,255,.5);
+  font: 500 clamp(.8rem,.98vw,.96rem)/1.7 var(--body);
 }
 
 .profile-foundation p::after {
-  content: " Photography and film also shape how I think about framing, rhythm, and visual hierarchy.";
+  content: " Photography and film sharpen the same instincts: framing, rhythm, contrast, and hierarchy.";
 }
 
+/* Tape / profile metadata */
 .profile-identity-line {
   position: relative;
-  z-index: 4;
+  z-index: 15;
   display: grid;
-  grid-template-columns: auto minmax(12rem, 1.45fr) auto minmax(10rem, 1fr) auto minmax(8rem, .8fr) auto minmax(10rem, 1fr);
-  gap: .8rem 1.25rem;
+  grid-template-columns: auto minmax(11rem,1.35fr) auto minmax(9rem,.95fr) auto minmax(7rem,.7fr) auto minmax(9rem,.9fr);
+  gap: .75rem 1.1rem;
   align-items: center;
-  padding: 1.35rem 0;
-  border-top: 1px solid rgba(255,255,255,.13);
-  border-bottom: 1px solid rgba(255,255,255,.13);
+  margin-top: clamp(-2.2rem,-2vw,-1rem);
+  padding: 1.25rem 1.45rem;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(5,5,5,.94);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.22);
+  transform: rotate(-.35deg);
+}
+
+.profile-identity-line::before {
+  content: "PROFILE DATA";
+  position: absolute;
+  right: 1rem;
+  top: -.58rem;
+  padding: .22rem .45rem;
+  background: #ff2d2d;
+  color: #050505;
+  font: 700 .45rem/1 var(--mono);
+  letter-spacing: .12em;
 }
 
 .profile-identity-line span {
-  color: var(--red);
-  font: 600 .52rem/1 var(--mono);
+  color: #ff2d2d;
+  font: 700 .5rem/1 var(--mono);
   letter-spacing: .14em;
   text-transform: uppercase;
 }
 
 .profile-identity-line strong {
   min-width: 0;
-  color: rgba(255,255,255,.8);
-  font: 700 clamp(.72rem, .88vw, .9rem)/1.2 var(--body);
+  color: rgba(255,255,255,.82);
+  font: 700 clamp(.72rem,.88vw,.9rem)/1.2 var(--body);
   text-transform: uppercase;
 }
+.profile-identity-line i { display:none; }
 
-.profile-identity-line i { display: none; }
-
-@media (max-width: 1120px) {
-  .profile-manifesto { grid-column: 1 / 9; }
-  .profile-foundation { grid-column: 9 / -1; }
-  .profile-map::before { left: 66%; }
-  .profile-manifesto h2::before { font-size: clamp(4rem, 8vw, 7.2rem); }
+@media (max-width: 1100px) {
+  .profile-map { min-height: 49rem; }
+  .profile-manifesto { width: 62%; }
+  .profile-foundation { width: 42%; right: 2%; }
+  .profile-manifesto h2::before { font-size: clamp(4rem,7vw,6.8rem); }
+  .profile-foundation strong::before { font-size: clamp(3rem,5vw,5rem); }
   .profile-identity-line { grid-template-columns: auto 1fr auto 1fr; }
 }
 
-@media (max-width: 780px) {
-  .profile-map-head { align-items: flex-start; flex-direction: column; gap: .6rem; }
+@media (max-width: 760px) {
+  .profile-map-head { flex-direction: column; align-items:flex-start; gap:.6rem; }
   .profile-map {
-    display: block;
-    padding-top: 3.5rem;
+    min-height: 0;
+    padding: 1rem 0 0;
+    background: none;
   }
-  .profile-map::before { display: none; }
-  .profile-map::after { top: 1rem; right: -1rem; }
+  .profile-map::before,
+  .profile-map::after { display:none; }
+  .profile-manifesto,
+  .profile-foundation {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 0;
+    transform: none;
+  }
+  .profile-manifesto { padding: 2rem; }
+  .profile-manifesto:hover,
+  .profile-foundation:hover { transform:none; }
   .profile-manifesto h2::before {
     white-space: normal;
-    font-size: clamp(3.5rem, 15vw, 6rem);
-    line-height: .8;
+    font-size: clamp(3.4rem,15vw,5.8rem);
+    line-height:.8;
   }
   .profile-foundation {
-    margin-top: 3.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,.13);
+    margin-top: 1rem;
+    padding: 2rem;
   }
-  .profile-foundation strong { max-width: 18ch; }
-  .profile-identity-line { grid-template-columns: auto 1fr; }
+  .profile-foundation strong::before {
+    white-space: normal;
+    font-size: clamp(3rem,13vw,5rem);
+  }
+  .profile-identity-line {
+    margin-top: 1rem;
+    transform:none;
+    grid-template-columns: auto 1fr;
+  }
 }
 
 @media (max-width: 480px) {
-  .profile-v2 { padding-block: 4rem; }
-  .profile-manifesto h2::before { font-size: clamp(3.25rem, 16vw, 4.6rem); }
-  .profile-identity-line { gap: .55rem .8rem; }
+  .profile-v2 { padding-block:4rem; }
+  .profile-manifesto,
+  .profile-foundation { padding:1.5rem; }
+  .profile-identity-line { padding:1rem; gap:.55rem .75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-manifesto,
+  .profile-foundation { transition:none !important; }
 }
