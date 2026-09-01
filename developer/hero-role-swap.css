@@ -1,29 +1,53 @@
-/* Hero role + portrait refinement. Keeps the original reveal interaction, but clarifies the identity. */
+/* Hero role + portrait refinement.
+   The normal hero stays FRONTEND + formal portrait.
+   Only the moving red reveal exposes FULL STACK + thumbs-up portrait. */
 
-/* At rest: formal smiling portrait. On hover: existing thumbs-up portrait fades in. */
+/* Base portrait: always the formal smiling image. */
 .hero-portrait {
   background:
     linear-gradient(rgba(5,5,5,.02),rgba(5,5,5,.02)),
     url("assets/profile/portrait-01.jpg") center 30% / cover no-repeat;
   filter:grayscale(1) contrast(1.12) brightness(.78);
 }
+
+/* The original img is no longer used as a whole-card hover swap. */
 .hero-portrait img {
-  opacity:0;
-  transition:opacity .38s ease,filter .45s ease,transform .7s var(--ease);
+  display:none !important;
 }
 .hero-poster:hover .hero-portrait,
 .hero-poster:focus-within .hero-portrait {
-  filter:grayscale(.82) contrast(1.1) brightness(.84);
-}
-.hero-poster:hover .hero-portrait img,
-.hero-poster:focus-within .hero-portrait img {
-  opacity:1;
+  filter:grayscale(1) contrast(1.12) brightness(.78);
 }
 .hero-portrait::before {
-  content:"FORMAL / HOVER → THUMBS UP";
+  content:"FORMAL / REVEAL → THUMBS UP";
 }
 
-/* Clearer professional identity: FRONTEND → FULL STACK. */
+/* Put the thumbs-up portrait INSIDE the already-clipped red reveal layer.
+   Because .hero-face--system itself is clip-path:circle(...), this image is
+   visible only where the red reveal circle passes over the portrait. */
+.hero-face--system::before {
+  content:"";
+  position:absolute;
+  z-index:2;
+  top:9.5%;
+  right:8.5%;
+  width:clamp(9rem,14.2vw,14.5rem);
+  aspect-ratio:4 / 5;
+  background:url("assets/profile/portrait-03.jpg") center 30% / cover no-repeat;
+  border:1px solid rgba(0,0,0,.2);
+  filter:grayscale(.08) contrast(1.08) brightness(.92);
+  transform:translate(calc(var(--hx) * 13px),calc(var(--hy) * 9px)) rotate(2.25deg);
+  pointer-events:none;
+}
+
+/* Keep reveal typography above the reveal portrait. */
+.hero-face--system h2,
+.hero-face--system .poster-code,
+.hero-face--system .poster-note {
+  z-index:4;
+}
+
+/* Clear professional identity: FRONTEND → FULL STACK. */
 .hero-face--front h1 > *,
 .hero-face--system h2 > * {
   display:none !important;
@@ -62,7 +86,6 @@
   background:rgba(0,0,0,.04);
 }
 
-/* Remove the old SYSTEM BUILDER wording from the supporting language too. */
 .hero-poster::after {
   content:"FRONTEND  /  FULL STACK  /  JC—2026";
 }
@@ -95,6 +118,10 @@
   .hero-face--system h2::before {
     font-size:clamp(4rem,13.5vw,7.8rem);
   }
+  .hero-face--system::before {
+    right:5%;
+    width:clamp(8rem,18vw,12rem);
+  }
 }
 
 @media (max-width:620px) {
@@ -106,11 +133,16 @@
   .hero-face--system h2::after {
     margin-top:.85rem;
   }
+  .hero-face--system::before {
+    top:12%;
+    right:1rem;
+    width:7.4rem;
+  }
   .hero-foot > p::after {
     font-size:.72rem;
   }
 }
 
 @media (prefers-reduced-motion:reduce) {
-  .hero-portrait img { transition:none !important; }
+  .hero-face--system::before { transform:none !important; }
 }
