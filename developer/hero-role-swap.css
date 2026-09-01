@@ -2,29 +2,44 @@
    The normal hero stays FRONTEND + formal portrait.
    Only the moving red reveal exposes FULL STACK + thumbs-up portrait. */
 
-/* Base portrait: always the formal smiling image. */
-.hero-portrait {
-  background:
-    linear-gradient(rgba(5,5,5,.02),rgba(5,5,5,.02)),
-    url("assets/profile/portrait-01.jpg") center 30% / cover no-repeat;
-  filter:grayscale(1) contrast(1.12) brightness(.78);
+/* Keep the red reveal precise instead of letting it grow large enough to swallow
+   the entire portrait. Pointer position still comes from script.js. */
+@media (hover:hover) and (pointer:fine) {
+  .hero-poster:not(:hover) { --rr:0px !important; }
+  .hero-poster:hover { --rr:clamp(118px,8.4vw,148px) !important; }
 }
 
-/* The original img is no longer used as a whole-card hover swap. */
-.hero-portrait img {
-  display:none !important;
+/* Base portrait: always the formal smiling image. Explicit aspect-ratio keeps
+   the figure from collapsing when its old <img> element is hidden. */
+.hero-portrait {
+  aspect-ratio:4 / 5;
+  min-height:0;
+  overflow:visible;
+  background:#090909 url("assets/profile/portrait-01.jpg") center 30% / cover no-repeat;
+  border:1px solid rgba(255,255,255,.14);
+  filter:grayscale(1) contrast(1.12) brightness(.78);
 }
+.hero-portrait img { display:none !important; }
+.hero-portrait span {
+  position:absolute;
+  top:calc(100% + .45rem);
+  left:0;
+  right:0;
+  padding:0;
+}
+.hero-portrait::before { content:"FORMAL / RED LENS → THUMBS UP"; }
+
+/* Do not let the general hero hover treatment move the formal portrait away
+   from the reveal portrait; both layers must stay pixel-aligned. */
 .hero-poster:hover .hero-portrait,
 .hero-poster:focus-within .hero-portrait {
   filter:grayscale(1) contrast(1.12) brightness(.78);
-}
-.hero-portrait::before {
-  content:"FORMAL / REVEAL → THUMBS UP";
+  transform:translate(calc(var(--hx) * 13px),calc(var(--hy) * 9px)) rotate(2.25deg);
 }
 
-/* Put the thumbs-up portrait INSIDE the already-clipped red reveal layer.
-   Because .hero-face--system itself is clip-path:circle(...), this image is
-   visible only where the red reveal circle passes over the portrait. */
+/* Thumbs-up portrait lives inside the red system layer. The system layer itself
+   is clipped by the same moving red circle, so only the intersection between
+   that circle and the portrait changes image. */
 .hero-face--system::before {
   content:"";
   position:absolute;
@@ -33,8 +48,8 @@
   right:8.5%;
   width:clamp(9rem,14.2vw,14.5rem);
   aspect-ratio:4 / 5;
-  background:url("assets/profile/portrait-03.jpg") center 30% / cover no-repeat;
-  border:1px solid rgba(0,0,0,.2);
+  background:#f1f1ee url("assets/profile/portrait-03.jpg") center 30% / cover no-repeat;
+  border:1px solid rgba(0,0,0,.22);
   filter:grayscale(.08) contrast(1.08) brightness(.92);
   transform:translate(calc(var(--hx) * 13px),calc(var(--hy) * 9px)) rotate(2.25deg);
   pointer-events:none;
@@ -43,15 +58,11 @@
 /* Keep reveal typography above the reveal portrait. */
 .hero-face--system h2,
 .hero-face--system .poster-code,
-.hero-face--system .poster-note {
-  z-index:4;
-}
+.hero-face--system .poster-note { z-index:4; }
 
 /* Clear professional identity: FRONTEND → FULL STACK. */
 .hero-face--front h1 > *,
-.hero-face--system h2 > * {
-  display:none !important;
-}
+.hero-face--system h2 > * { display:none !important; }
 .hero-face--front h1::before,
 .hero-face--system h2::before {
   display:block;
@@ -86,12 +97,8 @@
   background:rgba(0,0,0,.04);
 }
 
-.hero-poster::after {
-  content:"FRONTEND  /  FULL STACK  /  JC—2026";
-}
-.poster-note {
-  font-size:0;
-}
+.hero-poster::after { content:"FRONTEND  /  FULL STACK  /  JC—2026"; }
+.poster-note { font-size:0; }
 .poster-note::after {
   font:600 .55rem/1 var(--mono);
   letter-spacing:.13em;
@@ -99,9 +106,7 @@
 .hero-face--front .poster-note::after { content:"CRAFT THE INTERFACE."; }
 .hero-face--system .poster-note::after { content:"SHIP THE WHOLE STACK."; }
 
-.hero-foot > p {
-  font-size:0;
-}
+.hero-foot > p { font-size:0; }
 .hero-foot > p::after {
   content:"Front-end by direction. Full-stack when the product needs the whole system.";
   display:block;
@@ -109,38 +114,21 @@
   color:rgba(255,255,255,.48);
   font:500 .8rem/1.65 var(--body);
 }
-.hero-foot::before {
-  content:"J/C — FRONTEND / FULL STACK / 2026";
-}
+.hero-foot::before { content:"J/C — FRONTEND / FULL STACK / 2026"; }
 
 @media (max-width:900px) {
   .hero-face--front h1::before,
-  .hero-face--system h2::before {
-    font-size:clamp(4rem,13.5vw,7.8rem);
-  }
-  .hero-face--system::before {
-    right:5%;
-    width:clamp(8rem,18vw,12rem);
-  }
+  .hero-face--system h2::before { font-size:clamp(4rem,13.5vw,7.8rem); }
+  .hero-face--system::before { right:5%; width:clamp(8rem,18vw,12rem); }
 }
 
 @media (max-width:620px) {
   .hero-face--front h1::before,
-  .hero-face--system h2::before {
-    font-size:clamp(3.5rem,17.5vw,5.8rem);
-  }
+  .hero-face--system h2::before { font-size:clamp(3.5rem,17.5vw,5.8rem); }
   .hero-face--front h1::after,
-  .hero-face--system h2::after {
-    margin-top:.85rem;
-  }
-  .hero-face--system::before {
-    top:12%;
-    right:1rem;
-    width:7.4rem;
-  }
-  .hero-foot > p::after {
-    font-size:.72rem;
-  }
+  .hero-face--system h2::after { margin-top:.85rem; }
+  .hero-face--system::before { top:12%; right:1rem; width:7.4rem; }
+  .hero-foot > p::after { font-size:.72rem; }
 }
 
 @media (prefers-reduced-motion:reduce) {
