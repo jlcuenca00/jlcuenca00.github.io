@@ -19,7 +19,7 @@
           <span>02 / PROFILE</span>
           <h2 id="profileTitle">I DESIGN THE<br><em>FEEL.</em><br>I BUILD THE<br>LOGIC.</h2>
         </div>
-        <p>The hero already shows the person. This section shows the practice: visual direction on the surface, full-stack thinking underneath.</p>
+        <p>Visual direction on the surface. Full-stack thinking underneath. I work across both so the interface and the system feel like one product.</p>
       </header>
 
       <div class="profile-axis" id="profileAxis" data-active="balanced" data-reveal>
@@ -67,6 +67,15 @@
         <div class="profile-fact"><span>CAPABILITY</span><strong>FULL-STACK DEVELOPMENT</strong></div>
       </div>
     `;
+
+    /* This profile is injected after the site's original reveal observer has
+       already registered its targets. Make these new reveal nodes visible here
+       so they cannot remain stuck in the hidden pre-reveal state. */
+    requestAnimationFrame(() => {
+      root.querySelectorAll('[data-reveal]').forEach((element) => {
+        element.classList.add('is-visible');
+      });
+    });
 
     const axis = root.querySelector('#profileAxis');
     const panels = [...root.querySelectorAll('[data-profile-mode]')];
