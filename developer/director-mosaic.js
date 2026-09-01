@@ -1,5 +1,86 @@
 (() => {
-  const start = () => {
+  const ensureProfileStyles = () => {
+    if (document.querySelector('link[data-profile-identity]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'profile-identity.css?v=20260901-1';
+    link.dataset.profileIdentity = 'true';
+    document.head.appendChild(link);
+  };
+
+  const buildProfile = () => {
+    const root = document.getElementById('profile');
+    if (!root || root.dataset.identityReady === 'true') return;
+
+    root.dataset.identityReady = 'true';
+    root.innerHTML = `
+      <header class="profile-identity-head" data-reveal>
+        <div>
+          <span>02 / PROFILE</span>
+          <h2 id="profileTitle">I DESIGN THE<br><em>FEEL.</em><br>I BUILD THE<br>LOGIC.</h2>
+        </div>
+        <p>The hero already shows the person. This section shows the practice: visual direction on the surface, full-stack thinking underneath.</p>
+      </header>
+
+      <div class="profile-axis" id="profileAxis" data-active="balanced" data-reveal>
+        <article class="profile-axis__panel profile-axis__panel--surface" tabindex="0" data-profile-mode="surface">
+          <div class="profile-axis__top">
+            <span class="profile-axis__eyebrow">01 / FRONT-END DIRECTION</span>
+            <small>SURFACE / EXPERIENCE</small>
+          </div>
+
+          <div>
+            <div class="profile-axis__word">SURFACE</div>
+            <p class="profile-axis__statement">I care about how an interface reads, responds, moves, and feels before a user ever thinks about the code underneath it.</p>
+          </div>
+
+          <div class="profile-axis__bottom">
+            <div class="profile-axis__tags"><span>INTERACTION</span><span>TYPOGRAPHY</span><span>MOTION</span><span>RESPONSIVE UI</span></div>
+            <span class="profile-axis__no">A / 01</span>
+          </div>
+        </article>
+
+        <article class="profile-axis__panel profile-axis__panel--system" tabindex="0" data-profile-mode="system">
+          <div class="profile-axis__top">
+            <span class="profile-axis__eyebrow">02 / FULL-STACK CAPABILITY</span>
+            <small>SYSTEM / PRODUCT</small>
+          </div>
+
+          <div>
+            <div class="profile-axis__word">SYSTEM</div>
+            <p class="profile-axis__statement">I also build the workflows, data structures, validation, APIs, and backend decisions that let the interface become an actual product.</p>
+          </div>
+
+          <div class="profile-axis__bottom">
+            <div class="profile-axis__tags"><span>LARAVEL</span><span>PHP</span><span>POSTGRESQL</span><span>WORKFLOWS</span></div>
+            <span class="profile-axis__no">B / 02</span>
+          </div>
+        </article>
+
+        <div class="profile-axis__bridge" aria-hidden="true">↔</div>
+      </div>
+
+      <div class="profile-facts" data-reveal>
+        <div class="profile-fact"><span>PROGRAM</span><strong>BS INFORMATION TECHNOLOGY</strong></div>
+        <div class="profile-fact"><span>STATUS</span><strong>4TH YEAR / 2023—PRESENT</strong></div>
+        <div class="profile-fact"><span>DIRECTION</span><strong>FRONT-END DESIGN</strong></div>
+        <div class="profile-fact"><span>CAPABILITY</span><strong>FULL-STACK DEVELOPMENT</strong></div>
+      </div>
+    `;
+
+    const axis = root.querySelector('#profileAxis');
+    const panels = [...root.querySelectorAll('[data-profile-mode]')];
+    const setMode = (mode) => { if (axis) axis.dataset.active = mode; };
+    panels.forEach((panel) => {
+      const mode = panel.dataset.profileMode;
+      panel.addEventListener('mouseenter', () => setMode(mode));
+      panel.addEventListener('focus', () => setMode(mode));
+      panel.addEventListener('click', () => setMode(mode));
+    });
+    axis?.addEventListener('mouseleave', () => setMode('balanced'));
+  };
+
+  const buildAffiliations = () => {
     const root = document.getElementById("affiliationConstellation");
     if (!root || root.dataset.positionReady === "true") return;
 
@@ -123,6 +204,12 @@
     root.dataset.positionReady = "true";
     root.className = "affiliation-constellation affiliation-positions";
     root.replaceChildren(intro, list);
+  };
+
+  const start = () => {
+    ensureProfileStyles();
+    buildProfile();
+    buildAffiliations();
   };
 
   if (document.readyState === "loading") {
