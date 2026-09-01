@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
 
   loadPolish();
+  initHeroPolish();
   initProjectReel();
   initProfileSpread();
   initEducationLevels();
@@ -38,12 +39,47 @@ document.addEventListener("DOMContentLoaded", () => {
       link.dataset.directorMosaic = "true";
       document.head.appendChild(link);
     }
+    if (!document.querySelector('link[data-hero-polish]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "hero-polish.css?v=20260901-1";
+      link.dataset.heroPolish = "true";
+      document.head.appendChild(link);
+    }
     if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
       script.src = "director-mosaic.js?v=20260831-6";
       script.dataset.directorMosaic = "true";
       document.head.appendChild(script);
     }
+  }
+
+  function initHeroPolish() {
+    const poster = document.getElementById("heroPoster");
+    if (!poster || !finePointer || reducedMotion) return;
+    let raf = 0;
+    const update = (event) => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = poster.getBoundingClientRect();
+        const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+        const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+        poster.style.setProperty("--hx", ((x - .5) * 2).toFixed(3));
+        poster.style.setProperty("--hy", ((y - .5) * 2).toFixed(3));
+        poster.style.setProperty("--hero-glow-x", `${(x * 100).toFixed(1)}%`);
+        poster.style.setProperty("--hero-glow-y", `${(y * 100).toFixed(1)}%`);
+      });
+    };
+    poster.addEventListener("pointerenter", () => poster.classList.add("is-tracking"));
+    poster.addEventListener("pointermove", update, { passive: true });
+    poster.addEventListener("pointerleave", () => {
+      if (raf) cancelAnimationFrame(raf);
+      poster.classList.remove("is-tracking");
+      poster.style.setProperty("--hx", "0");
+      poster.style.setProperty("--hy", "0");
+      poster.style.setProperty("--hero-glow-x", "50%");
+      poster.style.setProperty("--hero-glow-y", "50%");
+    });
   }
 
   function initProjectReel() {
