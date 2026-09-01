@@ -3,90 +3,109 @@
     if (document.querySelector('link[data-profile-identity]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'profile-identity.css?v=20260901-1';
+    link.href = 'profile-identity.css?v=20260901-2';
     link.dataset.profileIdentity = 'true';
     document.head.appendChild(link);
   };
 
   const buildProfile = () => {
     const root = document.getElementById('profile');
-    if (!root || root.dataset.identityReady === 'true') return;
+    if (!root || root.dataset.identityReady === 'manifesto') return;
 
-    root.dataset.identityReady = 'true';
+    root.dataset.identityReady = 'manifesto';
     root.innerHTML = `
-      <header class="profile-identity-head" data-reveal>
-        <div>
-          <span>02 / PROFILE</span>
-          <h2 id="profileTitle">I DESIGN THE<br><em>FEEL.</em><br>I BUILD THE<br>LOGIC.</h2>
-        </div>
-        <p>Visual direction on the surface. Full-stack thinking underneath. I work across both so the interface and the system feel like one product.</p>
+      <header class="profile-map-head" data-reveal>
+        <span>02 / PROFILE</span>
+        <span>JAKE CUENCA / WORKING IDENTITY / 2026</span>
       </header>
 
-      <div class="profile-axis" id="profileAxis" data-active="balanced" data-reveal>
-        <article class="profile-axis__panel profile-axis__panel--surface" tabindex="0" data-profile-mode="surface">
-          <div class="profile-axis__top">
-            <span class="profile-axis__eyebrow">01 / FRONT-END DIRECTION</span>
-            <small>SURFACE / EXPERIENCE</small>
-          </div>
+      <div class="profile-map" id="profileMap" data-reveal>
+        <svg class="profile-route-line" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M120 500 C190 330 280 210 470 190 C690 165 760 90 875 105 C930 120 945 235 890 300 C835 362 720 380 640 480 C555 586 370 590 225 525" />
+          <path d="M120 500 C190 330 280 210 470 190 C690 165 760 90 875 105 C930 120 945 235 890 300 C835 362 720 380 640 480 C555 586 370 590 225 525" />
+        </svg>
 
-          <div>
-            <div class="profile-axis__word">SURFACE</div>
-            <p class="profile-axis__statement">I care about how an interface reads, responds, moves, and feels before a user ever thinks about the code underneath it.</p>
-          </div>
+        <div class="profile-manifesto">
+          <span class="profile-manifesto__eyebrow">FRONT-END DIRECTION / FULL-STACK FOUNDATION</span>
+          <h2>I WANT<br>THE WEB<br>TO <em>FEEL</em><br><i>DESIGNED.</i></h2>
+          <p class="profile-manifesto__note">I am most interested in the point where clarity, visual personality, and interaction meet. The interface should make sense first — then leave an impression.</p>
+        </div>
 
-          <div class="profile-axis__bottom">
-            <div class="profile-axis__tags"><span>INTERACTION</span><span>TYPOGRAPHY</span><span>MOTION</span><span>RESPONSIVE UI</span></div>
-            <span class="profile-axis__no">A / 01</span>
-          </div>
-        </article>
+        <button class="profile-node profile-node--01 is-active" type="button" data-profile-principle="read" data-label="01 / READ CLEARLY" data-copy="Hierarchy comes first. A user should know where to look, what matters, and what happens next without fighting the interface.">
+          <span>01</span><strong>READ CLEARLY</strong>
+        </button>
+        <button class="profile-node profile-node--02" type="button" data-profile-principle="respond" data-label="02 / RESPOND NATURALLY" data-copy="Motion and feedback should explain state and intention — not exist just because animation is possible.">
+          <span>02</span><strong>RESPOND NATURALLY</strong>
+        </button>
+        <button class="profile-node profile-node--03" type="button" data-profile-principle="distinct" data-label="03 / FEEL DISTINCT" data-copy="A useful product can still have a point of view. Typography, rhythm, and composition are part of how a digital product is remembered.">
+          <span>03</span><strong>FEEL DISTINCT</strong>
+        </button>
+        <button class="profile-node profile-node--04" type="button" data-profile-principle="real" data-label="04 / WORK FOR REAL" data-copy="The design has to survive real content, real devices, real workflows, and real users. That is where full-stack experience becomes useful.">
+          <span>04</span><strong>WORK FOR REAL</strong>
+        </button>
 
-        <article class="profile-axis__panel profile-axis__panel--system" tabindex="0" data-profile-mode="system">
-          <div class="profile-axis__top">
-            <span class="profile-axis__eyebrow">02 / FULL-STACK CAPABILITY</span>
-            <small>SYSTEM / PRODUCT</small>
-          </div>
+        <div class="profile-readout" id="profileReadout" aria-live="polite">
+          <span>01 / READ CLEARLY</span>
+          <p>Hierarchy comes first. A user should know where to look, what matters, and what happens next without fighting the interface.</p>
+        </div>
 
-          <div>
-            <div class="profile-axis__word">SYSTEM</div>
-            <p class="profile-axis__statement">I also build the workflows, data structures, validation, APIs, and backend decisions that let the interface become an actual product.</p>
-          </div>
-
-          <div class="profile-axis__bottom">
-            <div class="profile-axis__tags"><span>LARAVEL</span><span>PHP</span><span>POSTGRESQL</span><span>WORKFLOWS</span></div>
-            <span class="profile-axis__no">B / 02</span>
-          </div>
-        </article>
-
-        <div class="profile-axis__bridge" aria-hidden="true">↔</div>
+        <aside class="profile-foundation">
+          <span>UNDER THE SURFACE</span>
+          <strong>FULL-STACK WHEN THE PRODUCT NEEDS IT.</strong>
+          <p>Backend experience helps me design around actual data, validation, workflows, permissions, and product constraints instead of treating UI as a detached layer.</p>
+        </aside>
       </div>
 
-      <div class="profile-facts" data-reveal>
-        <div class="profile-fact"><span>PROGRAM</span><strong>BS INFORMATION TECHNOLOGY</strong></div>
-        <div class="profile-fact"><span>STATUS</span><strong>4TH YEAR / 2023—PRESENT</strong></div>
-        <div class="profile-fact"><span>DIRECTION</span><strong>FRONT-END DESIGN</strong></div>
-        <div class="profile-fact"><span>CAPABILITY</span><strong>FULL-STACK DEVELOPMENT</strong></div>
+      <div class="profile-identity-line" data-reveal>
+        <span>PROGRAM</span><strong>BS INFORMATION TECHNOLOGY</strong><i></i>
+        <span>STATUS</span><strong>4TH YEAR / 2023—PRESENT</strong><i></i>
+        <span>BASED</span><strong>DUMAGUETE CITY</strong><i></i>
+        <span>DIRECTION</span><strong>FRONT-END DESIGN</strong>
       </div>
     `;
 
-    /* This profile is injected after the site's original reveal observer has
-       already registered its targets. Make these new reveal nodes visible here
-       so they cannot remain stuck in the hidden pre-reveal state. */
     requestAnimationFrame(() => {
-      root.querySelectorAll('[data-reveal]').forEach((element) => {
-        element.classList.add('is-visible');
-      });
+      root.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('is-visible'));
     });
 
-    const axis = root.querySelector('#profileAxis');
-    const panels = [...root.querySelectorAll('[data-profile-mode]')];
-    const setMode = (mode) => { if (axis) axis.dataset.active = mode; };
-    panels.forEach((panel) => {
-      const mode = panel.dataset.profileMode;
-      panel.addEventListener('mouseenter', () => setMode(mode));
-      panel.addEventListener('focus', () => setMode(mode));
-      panel.addEventListener('click', () => setMode(mode));
+    const map = root.querySelector('#profileMap');
+    const readout = root.querySelector('#profileReadout');
+    const nodes = [...root.querySelectorAll('[data-profile-principle]')];
+
+    const activate = (node) => {
+      if (!node || !readout) return;
+      nodes.forEach((item) => item.classList.toggle('is-active', item === node));
+      readout.classList.add('is-changing');
+      window.setTimeout(() => {
+        const label = readout.querySelector('span');
+        const copy = readout.querySelector('p');
+        if (label) label.textContent = node.dataset.label || '';
+        if (copy) copy.textContent = node.dataset.copy || '';
+        readout.classList.remove('is-changing');
+      }, 120);
+    };
+
+    nodes.forEach((node) => {
+      node.addEventListener('mouseenter', () => activate(node));
+      node.addEventListener('focus', () => activate(node));
+      node.addEventListener('click', () => activate(node));
     });
-    axis?.addEventListener('mouseleave', () => setMode('balanced'));
+
+    if (map && window.matchMedia('(hover:hover) and (pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let raf = 0;
+      map.addEventListener('pointermove', (event) => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const rect = map.getBoundingClientRect();
+          map.style.setProperty('--mx', `${(((event.clientX - rect.left) / rect.width) * 100).toFixed(1)}%`);
+          map.style.setProperty('--my', `${(((event.clientY - rect.top) / rect.height) * 100).toFixed(1)}%`);
+        });
+      }, { passive: true });
+      map.addEventListener('pointerleave', () => {
+        map.style.setProperty('--mx', '50%');
+        map.style.setProperty('--my', '50%');
+      });
+    }
   };
 
   const buildAffiliations = () => {
