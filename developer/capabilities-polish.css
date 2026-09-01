@@ -1,0 +1,306 @@
+/* Capabilities — polished four-mode deck.
+   Keeps the existing interaction model, but removes the awkward vertical type and gives the active mode a stronger hierarchy. */
+
+.capabilities {
+  position: relative;
+  overflow: hidden;
+}
+
+.capabilities::before {
+  content: "TOOLS / 04";
+  position: absolute;
+  right: -0.03em;
+  bottom: 0.02em;
+  z-index: -1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.018);
+  font: 400 clamp(14rem, 28vw, 31rem)/.72 var(--head);
+  letter-spacing: -.09em;
+  pointer-events: none;
+}
+
+.capabilities .section-head {
+  position: relative;
+  align-items: end;
+  margin-bottom: clamp(3rem, 5vw, 4.6rem);
+}
+
+.capabilities .section-head::after {
+  content: "SELECT A MODE";
+  position: absolute;
+  right: 0;
+  bottom: -1.35rem;
+  color: rgba(255,255,255,.22);
+  font: 600 .48rem/1 var(--mono);
+  letter-spacing: .16em;
+}
+
+.capabilities .section-head > p {
+  max-width: 25rem;
+  padding-left: 1.1rem;
+  border-left: 1px solid rgba(255,45,45,.55);
+}
+
+.capability-deck {
+  position: relative;
+  display: flex;
+  min-height: clamp(31rem, 55vw, 39rem);
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.16);
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    #050505;
+  background-size: 54px 54px;
+}
+
+.capability-deck::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,45,45,.035), transparent 32%, transparent 72%, rgba(255,45,45,.025));
+}
+
+.cap-card {
+  position: relative;
+  z-index: 1;
+  flex: .78;
+  min-width: 0;
+  min-height: inherit;
+  padding: clamp(1.35rem, 2vw, 2rem);
+  border: 0;
+  border-right: 1px solid rgba(255,255,255,.12);
+  background: rgba(5,5,5,.62);
+  cursor: pointer;
+  outline: 0;
+  overflow: hidden;
+  transition:
+    flex .68s var(--ease),
+    background .42s ease,
+    border-color .42s ease,
+    box-shadow .42s ease;
+}
+
+.cap-card:last-child { border-right: 0; }
+
+.cap-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  opacity: 0;
+  transition: transform .5s var(--ease), opacity .3s ease;
+}
+
+.cap-card::after {
+  position: absolute;
+  right: -.06em;
+  bottom: -.17em;
+  color: rgba(255,255,255,.022);
+  font: 400 clamp(9rem, 15vw, 17rem)/.72 var(--head);
+  letter-spacing: -.09em;
+  pointer-events: none;
+  transition: color .4s ease, transform .6s var(--ease);
+}
+.cap-card:nth-child(1)::after { content: "01"; }
+.cap-card:nth-child(2)::after { content: "02"; }
+.cap-card:nth-child(3)::after { content: "03"; }
+.cap-card:nth-child(4)::after { content: "04"; }
+
+.cap-card.is-active,
+.cap-card:hover,
+.cap-card:focus-visible {
+  flex: 2.05;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(255,45,45,.11), transparent 35%),
+    linear-gradient(145deg, rgba(255,45,45,.075), rgba(5,5,5,.88) 52%);
+  box-shadow: inset 0 0 0 1px rgba(255,45,45,.18);
+}
+
+.cap-card.is-active::before,
+.cap-card:hover::before,
+.cap-card:focus-visible::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.cap-card.is-active::after,
+.cap-card:hover::after,
+.cap-card:focus-visible::after {
+  color: rgba(255,45,45,.055);
+  transform: translateX(-.04em);
+}
+
+.cap-card__top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  color: var(--red);
+  font: 600 .52rem/1 var(--mono);
+  letter-spacing: .13em;
+}
+
+.cap-card__top small {
+  color: rgba(255,255,255,.3);
+  font: inherit;
+}
+
+/* Horizontal at every state. Narrow modes wrap instead of rotating sideways. */
+.cap-card h3,
+.cap-card.is-active h3,
+.cap-card:hover h3,
+.cap-card:focus-visible h3 {
+  position: relative;
+  z-index: 3;
+  margin: auto 0 clamp(1.4rem, 2.4vw, 2.3rem);
+  max-width: 8ch;
+  color: rgba(255,255,255,.62);
+  font-family: var(--head);
+  font-size: clamp(2.05rem, 3.15vw, 4rem);
+  line-height: .82;
+  letter-spacing: -.065em;
+  writing-mode: horizontal-tb;
+  transform: none;
+  text-transform: uppercase;
+  transition: color .4s ease, font-size .58s var(--ease), transform .58s var(--ease);
+}
+
+.cap-card.is-active h3,
+.cap-card:hover h3,
+.cap-card:focus-visible h3 {
+  max-width: 10ch;
+  color: #f4f3ef;
+  font-size: clamp(3.7rem, 6.5vw, 7.4rem);
+  transform: translateY(-.15rem);
+}
+
+.cap-card__details {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(.8rem);
+  transition: max-height .62s var(--ease), opacity .35s ease, transform .5s var(--ease);
+}
+
+.cap-card.is-active .cap-card__details,
+.cap-card:hover .cap-card__details,
+.cap-card:focus-visible .cap-card__details {
+  max-height: 13rem;
+  opacity: 1;
+  transform: none;
+}
+
+.cap-card__details span {
+  min-width: 0;
+  padding: .8rem .55rem .72rem 0;
+  border-top: 1px solid rgba(255,255,255,.11);
+  color: rgba(255,255,255,.58);
+  font: 600 clamp(.56rem, .7vw, .68rem)/1.35 var(--mono);
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+.cap-card__details span:nth-child(even) {
+  padding-left: .8rem;
+  border-left: 1px solid rgba(255,255,255,.08);
+}
+
+.cap-card.is-active .cap-card__details span:first-child,
+.cap-card:hover .cap-card__details span:first-child,
+.cap-card:focus-visible .cap-card__details span:first-child {
+  color: var(--red);
+}
+
+@media (max-width: 980px) {
+  .capability-deck { min-height: 32rem; }
+  .cap-card { flex: .9; padding: 1.25rem; }
+  .cap-card.is-active,
+  .cap-card:hover,
+  .cap-card:focus-visible { flex: 1.75; }
+  .cap-card h3,
+  .cap-card.is-active h3,
+  .cap-card:hover h3,
+  .cap-card:focus-visible h3 { font-size: clamp(2rem, 4.2vw, 4.5rem); }
+}
+
+@media (max-width: 760px) {
+  .capabilities .section-head::after { display: none; }
+  .capabilities .section-head > p { padding-left: 0; border-left: 0; }
+  .capability-deck {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 0;
+    overflow: visible;
+    border: 1px solid rgba(255,255,255,.13);
+  }
+  .cap-card,
+  .cap-card.is-active,
+  .cap-card:hover,
+  .cap-card:focus-visible {
+    min-height: 21rem;
+    border-right: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    box-shadow: none;
+  }
+  .cap-card:nth-child(even) { border-right: 0; }
+  .cap-card:nth-child(n+3) { border-bottom: 0; }
+  .cap-card h3,
+  .cap-card.is-active h3,
+  .cap-card:hover h3,
+  .cap-card:focus-visible h3 {
+    margin-top: 5rem;
+    font-size: clamp(2.8rem, 9vw, 4.6rem);
+  }
+  .cap-card__details,
+  .cap-card.is-active .cap-card__details,
+  .cap-card:hover .cap-card__details,
+  .cap-card:focus-visible .cap-card__details {
+    max-height: 12rem;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .capability-deck { grid-template-columns: 1fr; }
+  .cap-card,
+  .cap-card.is-active,
+  .cap-card:hover,
+  .cap-card:focus-visible {
+    min-height: 18rem;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .cap-card:last-child { border-bottom: 0; }
+  .cap-card h3,
+  .cap-card.is-active h3,
+  .cap-card:hover h3,
+  .cap-card:focus-visible h3 {
+    margin-top: 3rem;
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cap-card,
+  .cap-card h3,
+  .cap-card__details,
+  .cap-card::before,
+  .cap-card::after { transition: none !important; }
+}
