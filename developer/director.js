@@ -46,6 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
       link.dataset.heroPolish = "true";
       document.head.appendChild(link);
     }
+    if (!document.querySelector('link[data-hero-role-swap]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "hero-role-swap.css?v=20260901-1";
+      link.dataset.heroRoleSwap = "true";
+      document.head.appendChild(link);
+    }
     if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
       script.src = "director-mosaic.js?v=20260831-6";
