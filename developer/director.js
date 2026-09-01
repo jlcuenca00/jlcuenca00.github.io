@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.querySelector('link[data-hero-role-swap]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = "hero-role-swap.css?v=20260901-1";
+      link.href = "hero-role-swap.css?v=20260901-2";
       link.dataset.heroRoleSwap = "true";
       document.head.appendChild(link);
     }
