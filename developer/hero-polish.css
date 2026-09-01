@@ -1,0 +1,295 @@
+/* Hero polish — art-directed, lightweight, pointer-responsive. */
+
+.hero {
+  min-height:100svh;
+  padding-top:clamp(5.7rem,8vw,7rem);
+  padding-bottom:clamp(2.8rem,4vw,4rem);
+}
+
+.hero-meta {
+  position:relative;
+  z-index:8;
+  padding:0 0 .9rem;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.hero-meta::before {
+  content:"00 / ENTRY";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.2);
+  font:500 .5rem/1 var(--mono);
+  letter-spacing:.14em;
+}
+.hero-meta .online::before {
+  content:"";
+  display:inline-block;
+  width:.42rem;
+  height:.42rem;
+  margin-right:.48rem;
+  border-radius:50%;
+  background:currentColor;
+  box-shadow:0 0 12px currentColor;
+  vertical-align:.02rem;
+}
+
+.hero-poster {
+  --hx:0;
+  --hy:0;
+  --hero-glow-x:50%;
+  --hero-glow-y:50%;
+  min-height:clamp(38rem,72vh,52rem);
+  margin:clamp(1.2rem,2vw,2rem) 0 1.25rem;
+  border-color:rgba(255,255,255,.16);
+  background:
+    radial-gradient(circle at var(--hero-glow-x) var(--hero-glow-y),rgba(255,45,45,.09),transparent 28%),
+    linear-gradient(135deg,#090909 0%,#050505 64%,#090707 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,45,45,.025),0 28px 90px rgba(0,0,0,.22);
+}
+.hero-poster::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.027) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.027) 1px,transparent 1px),
+    linear-gradient(115deg,transparent 49.9%,rgba(255,45,45,.09) 50%,transparent 50.12%);
+  background-size:48px 48px,48px 48px,100% 100%;
+  mask-image:linear-gradient(90deg,#000 0 72%,transparent 96%);
+}
+.hero-poster::after {
+  content:"FRONTEND FIRST  /  SYSTEMS UNDERNEATH  /  JC—2026";
+  position:absolute;
+  z-index:6;
+  right:1rem;
+  top:50%;
+  transform:translateY(-50%) rotate(90deg) translateX(50%);
+  transform-origin:right center;
+  color:rgba(255,255,255,.2);
+  font:500 .48rem/1 var(--mono);
+  letter-spacing:.17em;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+.hero-face {
+  padding:clamp(1.25rem,2.5vw,2.5rem);
+}
+.hero-face::after {
+  content:"";
+  position:absolute;
+  inset:clamp(.75rem,1.3vw,1.2rem);
+  pointer-events:none;
+  border:1px solid transparent;
+  border-top-color:rgba(255,255,255,.04);
+  border-left-color:rgba(255,255,255,.04);
+}
+.hero-face--front {
+  background:
+    linear-gradient(120deg,rgba(255,45,45,.07),transparent 34%),
+    linear-gradient(0deg,rgba(0,0,0,.12),transparent 36%);
+}
+.hero-face--system {
+  background:linear-gradient(135deg,#ff3535,#ed1f1f 74%);
+}
+
+.poster-code {
+  position:relative;
+  z-index:4;
+  padding-right:clamp(1.7rem,3vw,3rem);
+}
+.poster-code span:last-child::before {
+  content:"[ ";
+  opacity:.5;
+}
+.poster-code span:last-child::after {
+  content:" ]";
+  opacity:.5;
+}
+
+.hero-face h1,.hero-face h2 {
+  left:clamp(1.25rem,2.7vw,2.7rem);
+  bottom:clamp(3rem,5vw,4.7rem);
+  max-width:78%;
+  font-size:clamp(4.35rem,11.25vw,12.5rem);
+  line-height:.665;
+  letter-spacing:-.092em;
+  transform:translate(calc(var(--hx) * -7px),calc(var(--hy) * -4px));
+  transition:transform .7s var(--ease);
+}
+.hero-face h1 span,.hero-face h2 span {
+  width:max-content;
+  max-width:100%;
+}
+.hero-face h1 span:first-child::after {
+  content:"/";
+  margin-left:.07em;
+  color:var(--red);
+  font-size:.45em;
+  vertical-align:.55em;
+}
+.hero-face--system h2 span:first-child::after {
+  color:rgba(0,0,0,.4);
+}
+.hero-face h1 em,.hero-face h2 em {
+  width:max-content;
+  margin-top:1.1rem;
+  padding:.46rem .62rem .42rem;
+  border:1px solid currentColor;
+  font:600 clamp(.64rem,.86vw,.83rem)/1 var(--mono);
+  letter-spacing:.2em;
+}
+.hero-face--front h1 em {
+  color:#ff3838;
+  background:rgba(255,45,45,.035);
+}
+.hero-face--system h2 em {
+  color:rgba(0,0,0,.68);
+  background:rgba(0,0,0,.04);
+}
+
+.poster-note {
+  right:clamp(2rem,4.2vw,4.6rem);
+  bottom:clamp(1.25rem,2vw,1.8rem);
+}
+.poster-note::before {
+  content:"";
+  display:inline-block;
+  width:2.5rem;
+  height:1px;
+  margin-right:.7rem;
+  background:currentColor;
+  vertical-align:.18rem;
+  opacity:.55;
+}
+
+.hero-portrait {
+  top:9.5%;
+  right:8.5%;
+  width:clamp(9rem,14.2vw,14.5rem);
+  transform:translate(calc(var(--hx) * 13px),calc(var(--hy) * 9px)) rotate(2.25deg);
+  transition:transform .75s var(--ease),filter .35s ease;
+}
+.hero-portrait::before {
+  content:"PORTRAIT / 03";
+  position:absolute;
+  z-index:2;
+  left:-.7rem;
+  top:-.7rem;
+  padding:.36rem .45rem;
+  background:#050505;
+  border:1px solid rgba(255,45,45,.4);
+  color:var(--red);
+  font:500 .43rem/1 var(--mono);
+  letter-spacing:.13em;
+}
+.hero-portrait::after {
+  content:"";
+  position:absolute;
+  inset:.7rem -.7rem -.7rem .7rem;
+  z-index:-1;
+  border:1px solid rgba(255,45,45,.24);
+}
+.hero-portrait img {
+  filter:grayscale(1) contrast(1.14) brightness(.72);
+  transition:filter .45s ease,transform .7s var(--ease);
+}
+.hero-poster:hover .hero-portrait {
+  transform:translate(calc(var(--hx) * 13px),calc(var(--hy) * 9px - 4px)) rotate(-.5deg);
+}
+.hero-poster:hover .hero-portrait img {
+  filter:grayscale(.86) contrast(1.12) brightness(.8);
+}
+.hero-portrait span {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.hero-portrait span::after {
+  content:"↘";
+  color:var(--red);
+}
+
+.hero-cross {
+  width:42px;
+  height:42px;
+  opacity:.82;
+  mix-blend-mode:difference;
+  transition:width .25s ease,height .25s ease,opacity .25s ease;
+}
+.hero-cross::before {
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+}
+.hero-poster.is-tracking .hero-cross {
+  width:48px;
+  height:48px;
+  opacity:1;
+}
+
+.hero-foot {
+  position:relative;
+  padding-top:1rem;
+  border-top:1px solid rgba(255,255,255,.09);
+}
+.hero-foot::before {
+  content:"J/C — INTERFACE / SYSTEMS / 2026";
+  position:absolute;
+  left:50%;
+  top:1rem;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.2);
+  font:500 .46rem/1 var(--mono);
+  letter-spacing:.14em;
+  white-space:nowrap;
+}
+.hero-foot p {
+  max-width:31rem;
+  color:rgba(255,255,255,.48);
+}
+.hero-foot a {
+  position:relative;
+  padding-bottom:.25rem;
+}
+.hero-foot a::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:0;
+  height:1px;
+  background:var(--red);
+  transition:right .35s var(--ease);
+}
+.hero-foot a:hover::after,.hero-foot a:focus-visible::after { right:0; }
+
+@media (max-width:900px) {
+  .hero-meta::before,.hero-foot::before { display:none; }
+  .hero-face h1,.hero-face h2 { max-width:88%; font-size:clamp(4.2rem,14vw,8rem); }
+  .hero-portrait { right:5%; width:clamp(8rem,18vw,12rem); opacity:.76; }
+  .hero-poster::after { display:none; }
+}
+
+@media (max-width:620px) {
+  .hero { min-height:100svh; }
+  .hero-meta { flex-wrap:wrap; gap:.4rem 1rem; }
+  .hero-meta span:first-child { width:100%; }
+  .hero-poster { min-height:34rem; }
+  .hero-face h1,.hero-face h2 {
+    left:1rem;
+    bottom:4.2rem;
+    max-width:calc(100% - 2rem);
+    font-size:clamp(3.9rem,19vw,6.3rem);
+    line-height:.69;
+  }
+  .hero-face h1 em,.hero-face h2 em { margin-top:.85rem; }
+  .hero-portrait { top:12%; right:1rem; width:7.4rem; opacity:.58; }
+  .hero-portrait span { display:none; }
+  .poster-note { right:1rem; bottom:1rem; font-size:.48rem; }
+  .hero-foot { gap:1.25rem; }
+  .hero-foot > div { width:100%; justify-content:space-between; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .hero-face h1,.hero-face h2,.hero-portrait,.hero-portrait img,.hero-cross { transition:none !important; transform:none !important; }
+}
