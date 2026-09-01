@@ -12,7 +12,7 @@
     if (document.querySelector('link[data-capabilities-polish]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'capabilities-polish.css?v=20260901-1';
+    link.href = 'capabilities-polish.css?v=20260901-2';
     link.dataset.capabilitiesPolish = 'true';
     document.head.appendChild(link);
   };
