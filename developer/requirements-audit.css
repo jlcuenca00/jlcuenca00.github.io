@@ -1,0 +1,207 @@
+/* Requirements audit layer — keeps the art direction while making the academic portfolio flow explicit. */
+
+/* Hero introduction must stay visibly readable instead of being replaced by generated copy. */
+.hero-foot > p {
+  display:block !important;
+  max-width:42rem !important;
+  color:rgba(255,255,255,.52) !important;
+  font:500 clamp(.76rem,.9vw,.9rem)/1.7 var(--body) !important;
+}
+.hero-foot > p::after { content:none !important; display:none !important; }
+
+/* The About copy is now complete in the DOM; do not append the old photography sentence twice. */
+.profile-foundation p::after { content:none !important; }
+
+/* Keep each audited scene addressable beneath the sticky navigation. */
+#profile,
+#capabilities,
+#work,
+#history,
+#credentials,
+#resume,
+#contact { scroll-margin-top:clamp(4.5rem,7vw,6rem); }
+
+/* Resume / CV — a distinct section, not just another button hidden in Contact. */
+.resume-audit {
+  position:relative;
+  overflow:hidden;
+  padding-block:clamp(5rem,8vw,9rem);
+}
+.resume-audit::before {
+  content:"07";
+  position:absolute;
+  right:-.035em;
+  bottom:-.12em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.022);
+  font:400 clamp(17rem,32vw,35rem)/.72 var(--head);
+  letter-spacing:-.1em;
+  pointer-events:none;
+}
+.resume-audit .section-head {
+  position:relative;
+  z-index:3;
+  margin-bottom:clamp(2.5rem,5vw,4.5rem);
+}
+.resume-audit .section-head > p {
+  max-width:30rem;
+}
+
+.resume-audit__board {
+  position:relative;
+  z-index:3;
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(18rem,.8fr);
+  grid-template-rows:auto auto;
+  min-height:clamp(34rem,50vw,44rem);
+  border:1px solid rgba(255,255,255,.15);
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    radial-gradient(circle at 18% 18%, rgba(255,45,45,.08), transparent 34%),
+    #050505;
+  background-size:54px 54px,54px 54px,auto,auto;
+  overflow:hidden;
+}
+.resume-audit__board::before {
+  content:"PDF";
+  position:absolute;
+  right:-.04em;
+  bottom:-.18em;
+  color:rgba(255,45,45,.035);
+  font:400 clamp(12rem,24vw,27rem)/.72 var(--head);
+  letter-spacing:-.08em;
+  pointer-events:none;
+}
+.resume-audit__board::after {
+  content:"CURRENT / RESUME / 2026";
+  position:absolute;
+  right:1.5rem;
+  top:1.35rem;
+  color:rgba(255,255,255,.28);
+  font:700 .48rem/1 var(--mono);
+  letter-spacing:.16em;
+}
+
+.resume-audit__statement {
+  position:relative;
+  z-index:2;
+  grid-row:1 / 3;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:clamp(2rem,4vw,4rem);
+  border-right:1px solid rgba(255,255,255,.12);
+}
+.resume-audit__statement > span {
+  position:absolute;
+  left:clamp(2rem,4vw,4rem);
+  top:clamp(2rem,3.5vw,3.2rem);
+  color:var(--red);
+  font:700 .54rem/1 var(--mono);
+  letter-spacing:.16em;
+}
+.resume-audit__statement h3 {
+  max-width:8ch;
+  margin:0;
+  color:#f4f3ef;
+  font:400 clamp(4.2rem,8vw,9rem)/.74 var(--head);
+  letter-spacing:-.085em;
+  text-transform:uppercase;
+}
+.resume-audit__statement h3 i {
+  color:var(--red);
+  font-style:normal;
+}
+.resume-audit__statement p {
+  max-width:36rem;
+  margin:1.5rem 0 0;
+  color:rgba(255,255,255,.48);
+  font:500 clamp(.76rem,.9vw,.92rem)/1.7 var(--body);
+}
+
+.resume-audit__index {
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-content:start;
+  padding:clamp(4.7rem,7vw,6.5rem) clamp(1.5rem,2.5vw,2.5rem) clamp(1.5rem,2.5vw,2.5rem);
+}
+.resume-audit__index div {
+  min-height:7.5rem;
+  padding:1rem;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.resume-audit__index div:nth-child(even) { border-left:1px solid rgba(255,255,255,.09); }
+.resume-audit__index span {
+  display:block;
+  color:var(--red);
+  font:700 .48rem/1 var(--mono);
+  letter-spacing:.12em;
+}
+.resume-audit__index strong {
+  display:block;
+  margin-top:1.25rem;
+  color:rgba(255,255,255,.72);
+  font:700 clamp(.8rem,1.05vw,1.05rem)/1.2 var(--body);
+}
+
+.resume-audit__actions {
+  position:relative;
+  z-index:3;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-self:end;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.resume-audit__actions a {
+  position:relative;
+  min-height:8rem;
+  padding:1.2rem 1.35rem;
+  color:#f4f3ef;
+  text-decoration:none;
+  overflow:hidden;
+  transition:background .35s ease,color .35s ease;
+}
+.resume-audit__actions a + a { border-left:1px solid rgba(255,255,255,.12); }
+.resume-audit__actions a span {
+  display:block;
+  color:var(--red);
+  font:700 .47rem/1 var(--mono);
+  letter-spacing:.13em;
+}
+.resume-audit__actions a strong {
+  display:block;
+  margin-top:2.25rem;
+  font:400 clamp(1.6rem,2.4vw,2.8rem)/.9 var(--head);
+  letter-spacing:-.05em;
+  white-space:nowrap;
+}
+.resume-audit__actions a:hover,
+.resume-audit__actions a:focus-visible {
+  background:var(--red);
+  color:#050505;
+}
+.resume-audit__actions a:hover span,
+.resume-audit__actions a:focus-visible span { color:#050505; }
+
+@media (max-width:900px) {
+  .resume-audit__board { grid-template-columns:1fr; grid-template-rows:auto; min-height:0; }
+  .resume-audit__statement { grid-row:auto; min-height:30rem; border-right:0; border-bottom:1px solid rgba(255,255,255,.12); }
+  .resume-audit__index { padding-top:2rem; }
+}
+
+@media (max-width:620px) {
+  .resume-audit__statement { min-height:26rem; padding:1.5rem; }
+  .resume-audit__statement > span { left:1.5rem; top:1.5rem; }
+  .resume-audit__statement h3 { font-size:clamp(3.5rem,16vw,5.8rem); }
+  .resume-audit__index { grid-template-columns:1fr; padding:1.5rem; }
+  .resume-audit__index div:nth-child(even) { border-left:0; }
+  .resume-audit__actions { grid-template-columns:1fr; }
+  .resume-audit__actions a + a { border-left:0; border-top:1px solid rgba(255,255,255,.12); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .resume-audit__actions a { transition:none !important; }
+}
