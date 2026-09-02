@@ -1,6 +1,9 @@
 (() => {
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const setText = (element, value) => {
+    if (element && element.textContent !== value) element.textContent = value;
+  };
 
   function updateNavigation() {
     const nav = $('#navLinks');
@@ -22,28 +25,35 @@
         link = document.createElement('a');
         link.href = href;
       }
-      link.textContent = label;
-      nav.appendChild(link);
+      setText(link, label);
+      if (link !== nav.lastElementChild) nav.appendChild(link);
     });
 
     const creator = nav.querySelector('[data-world-link]');
-    if (creator) nav.appendChild(creator);
+    if (creator && creator !== nav.lastElementChild) nav.appendChild(creator);
   }
 
   function updateHero() {
     const meta = $$('.hero-meta > span');
-    if (meta[0]) meta[0].textContent = 'JAKE KEVIN KLAIR L. CUENCA';
-    if (meta[1]) meta[1].textContent = '4TH YEAR / BS INFORMATION TECHNOLOGY / DUMAGUETE, PH';
+    setText(meta[0], 'JAKE KEVIN KLAIR L. CUENCA');
+    setText(meta[1], '4TH YEAR / BS INFORMATION TECHNOLOGY / DUMAGUETE, PH');
 
-    const intro = $('.hero-foot > p');
-    if (intro) {
-      intro.textContent = 'Hello! I’m Jake Kevin Klair L. Cuenca, a 4th Year BS Information Technology student focused on expressive front-end design and practical full-stack development.';
+    const portrait = $('.hero-portrait');
+    if (portrait) {
+      portrait.removeAttribute('aria-hidden');
+      portrait.setAttribute('role', 'img');
+      portrait.setAttribute('aria-label', 'Jake Kevin Klair L. Cuenca in an Asian College uniform');
     }
+
+    setText(
+      $('.hero-foot > p'),
+      'Hello! I’m Jake Kevin Klair L. Cuenca, a 4th Year BS Information Technology student focused on expressive front-end design and practical full-stack development.'
+    );
 
     const workLink = $('.hero-foot a[href="#work"]');
     if (workLink) {
       workLink.href = '#profile';
-      workLink.textContent = 'ABOUT ME ↓';
+      setText(workLink, 'ABOUT ME ↓');
     }
   }
 
@@ -51,44 +61,29 @@
     const profile = $('#profile');
     if (!profile) return;
 
-    const oldHeadLabel = $('.direction-head span', profile);
-    if (oldHeadLabel) oldHeadLabel.textContent = '02 / ABOUT ME';
-
-    const mapHead = $('.profile-map-head span:first-child', profile);
-    if (mapHead) mapHead.textContent = '02 / ABOUT ME';
-
-    const eyebrow = $('.profile-manifesto__eyebrow', profile);
-    if (eyebrow) eyebrow.textContent = 'ABOUT / FRONT-END DIRECTION';
-
-    const bio = $('.profile-manifesto__note', profile);
-    if (bio) {
-      bio.textContent = 'I’m a 4th Year BS Information Technology student in Dumaguete City who enjoys turning ideas into interfaces with clear hierarchy, strong visual personality, and thoughtful interaction. My academic work spans front-end design, full-stack systems, and mobile applications.';
-    }
-
-    const foundation = $('.profile-foundation p', profile);
-    if (foundation) {
-      foundation.textContent = 'My goal is to grow as a front-end / creative developer who can also ship complete full-stack products. Outside development, photography and filmmaking keep me thinking about framing, rhythm, contrast, and visual storytelling.';
-    }
+    setText($('.direction-head span', profile), '02 / ABOUT ME');
+    setText($('.profile-map-head span:first-child', profile), '02 / ABOUT ME');
+    setText($('.profile-manifesto__eyebrow', profile), 'ABOUT / FRONT-END DIRECTION');
+    setText(
+      $('.profile-manifesto__note', profile),
+      'I’m a 4th Year BS Information Technology student in Dumaguete City who enjoys turning ideas into interfaces with clear hierarchy, strong visual personality, and thoughtful interaction. My academic work spans front-end design, full-stack systems, and mobile applications.'
+    );
+    setText(
+      $('.profile-foundation p', profile),
+      'My goal is to grow as a front-end / creative developer who can also ship complete full-stack products. Outside development, photography and filmmaking keep me thinking about framing, rhythm, contrast, and visual storytelling.'
+    );
   }
 
   function updateSectionLabels() {
-    const skills = $('#capabilities .section-head > div > span');
-    if (skills) skills.textContent = '03 / SKILLS';
-
-    const projects = $('#work .direction-head > div > span');
-    if (projects) projects.textContent = '04 / PROJECTS';
-
-    const education = $('#history .direction-head > div > span');
-    if (education) education.textContent = '05 / EDUCATION';
-
-    const credentials = $('#credentials .section-head > div > span');
-    if (credentials) credentials.textContent = '06 / CERTIFICATES + ACHIEVEMENTS';
-
-    const credentialsCopy = $('#credentials .section-head > p');
-    if (credentialsCopy) credentialsCopy.textContent = 'Training and developer certifications with title, issuing organization, and issue date. Open the original PDF or verify the issuer credential where available.';
-
-    const contact = $('.contact-v2__meta > span', $('#contact'));
-    if (contact) contact.textContent = '08 / CONTACT';
+    setText($('#capabilities .section-head > div > span'), '03 / SKILLS');
+    setText($('#work .direction-head > div > span'), '04 / PROJECTS');
+    setText($('#history .direction-head > div > span'), '05 / EDUCATION');
+    setText($('#credentials .section-head > div > span'), '06 / CERTIFICATES + ACHIEVEMENTS');
+    setText(
+      $('#credentials .section-head > p'),
+      'Training and developer certifications with title, issuing organization, and issue date. Open the original PDF or verify the issuer credential where available.'
+    );
+    setText($('.contact-v2__meta > span', $('#contact')), '08 / CONTACT');
   }
 
   function createResumeSection() {
@@ -134,20 +129,19 @@
   function reorderSections() {
     const main = $('main');
     if (!main) return;
-
-    const order = ['top', 'profile', 'capabilities', 'work', 'history', 'credentials', 'resume', 'contact'];
-    order.forEach((id) => {
+    ['top', 'profile', 'capabilities', 'work', 'history', 'credentials', 'resume', 'contact'].forEach((id) => {
       const section = document.getElementById(id);
-      if (section) main.appendChild(section);
+      if (section && section !== main.lastElementChild) main.appendChild(section);
     });
   }
 
   function updateDocumentMeta() {
-    document.title = 'Jake Cuenca — Front-End Designer / Full-Stack Developer';
-    const description = $('meta[name="description"]');
-    if (description) {
-      description.content = 'Jake Kevin Klair L. Cuenca — 4th Year BS Information Technology student, front-end designer, and full-stack developer. Portfolio of projects, skills, education, certifications, résumé, and contact information.';
+    if (document.title !== 'Jake Cuenca — Front-End Designer / Full-Stack Developer') {
+      document.title = 'Jake Cuenca — Front-End Designer / Full-Stack Developer';
     }
+    const description = $('meta[name="description"]');
+    const content = 'Jake Kevin Klair L. Cuenca — 4th Year BS Information Technology student, front-end designer, and full-stack developer. Portfolio of projects, skills, education, certifications, résumé, and contact information.';
+    if (description && description.content !== content) description.content = content;
   }
 
   function applyAudit() {
