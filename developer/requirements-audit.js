@@ -6,16 +6,28 @@
     const nav = $('#navLinks');
     if (!nav) return;
 
-    nav.innerHTML = `
-      <a href="#profile">ABOUT</a>
-      <a href="#capabilities">SKILLS</a>
-      <a href="#work">PROJECTS</a>
-      <a href="#history">EDUCATION</a>
-      <a href="#credentials">CERTS</a>
-      <a href="#resume">RESUME</a>
-      <a href="#contact">CONTACT</a>
-      <a class="creator-link" href="../photography/index.html" data-world-link data-cursor="ENTER">CREATOR ↗</a>
-    `;
+    const specs = [
+      ['#profile', 'ABOUT'],
+      ['#capabilities', 'SKILLS'],
+      ['#work', 'PROJECTS'],
+      ['#history', 'EDUCATION'],
+      ['#credentials', 'CERTS'],
+      ['#resume', 'RESUME'],
+      ['#contact', 'CONTACT']
+    ];
+
+    specs.forEach(([href, label]) => {
+      let link = nav.querySelector(`a[href="${href}"]`);
+      if (!link) {
+        link = document.createElement('a');
+        link.href = href;
+      }
+      link.textContent = label;
+      nav.appendChild(link);
+    });
+
+    const creator = nav.querySelector('[data-world-link]');
+    if (creator) nav.appendChild(creator);
   }
 
   function updateHero() {
