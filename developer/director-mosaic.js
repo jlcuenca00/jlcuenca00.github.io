@@ -128,9 +128,9 @@
         category: "CAMPUS CREATIVE ORGANIZATION",
         institution: "Asian College of Science and Technology — Dumaguete City",
         period: "FOUNDING → 2026",
-        primary: "PUBLIC INFORMATION OFFICER",
-        primaryDate: "2025—2026",
-        secondary: ["PRESIDENT / 2024—2025", "FOUNDING MEMBER"],
+        primary: "FOUNDING MEMBER",
+        primaryDate: "",
+        secondary: ["PRESIDENT / 2024—2025", "PUBLIC INFORMATION OFFICER / 2025—2026"],
         craft: []
       },
       {
