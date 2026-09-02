@@ -53,10 +53,23 @@ document.addEventListener("DOMContentLoaded", () => {
       link.dataset.heroRoleSwap = "true";
       document.head.appendChild(link);
     }
+    if (!document.querySelector('link[data-requirements-audit]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "requirements-audit.css?v=20260902-1";
+      link.dataset.requirementsAudit = "true";
+      document.head.appendChild(link);
+    }
     if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
       script.src = "director-mosaic.js?v=20260831-6";
       script.dataset.directorMosaic = "true";
+      document.head.appendChild(script);
+    }
+    if (!document.querySelector('script[data-requirements-audit]')) {
+      const script = document.createElement("script");
+      script.src = "requirements-audit.js?v=20260902-1";
+      script.dataset.requirementsAudit = "true";
       document.head.appendChild(script);
     }
   }
