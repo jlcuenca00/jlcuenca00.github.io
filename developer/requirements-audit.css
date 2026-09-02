@@ -17,18 +17,13 @@
 #resume,
 #contact { scroll-margin-top:clamp(4.5rem,7vw,6rem); }
 
-/* The reveal endpoint only exists while the hero card is being interacted with. */
-.hero-cross {
-  opacity:0 !important;
-  transition:opacity .14s ease !important;
-}
+/* The reveal endpoint exists only while the pointer is actually inside the hero card. */
+.hero-cross { opacity:0 !important; }
 .hero-poster:hover .hero-cross,
 .hero-poster:focus-within .hero-cross,
-.hero-poster.is-tracking .hero-cross {
-  opacity:.62 !important;
-}
+.hero-poster.is-tracking .hero-cross { opacity:.62 !important; }
 
-/* Resume / CV — compact document record rather than another full showcase scene. */
+/* Resume / CV — restrained document record rather than another showcase scene. */
 .resume-audit {
   position:relative;
   overflow:hidden;
@@ -45,17 +40,19 @@
 .resume-audit .section-head > div { min-width:0; }
 .resume-audit .section-head h2 {
   max-width:none !important;
-  font-size:clamp(3.4rem,6.2vw,6.7rem) !important;
-  line-height:.84 !important;
-  letter-spacing:-.07em !important;
+  margin-top:1rem !important;
+  font-size:0 !important;
+  line-height:0 !important;
 }
-.resume-audit .section-head h2 br { display:none; }
-.resume-audit .section-head h2 i {
-  margin-left:.16em;
-  color:rgba(255,255,255,.26) !important;
-  -webkit-text-stroke:0 !important;
-  font-style:normal !important;
+.resume-audit .section-head h2::before {
+  content:"RESUME / CV";
+  display:block;
+  color:#f4f3ef;
+  font:400 clamp(2.8rem,4.8vw,5.2rem)/.9 var(--head);
+  letter-spacing:-.065em;
 }
+.resume-audit .section-head h2 br,
+.resume-audit .section-head h2 i { display:none !important; }
 .resume-audit .section-head > p {
   max-width:27rem !important;
   color:rgba(255,255,255,.43) !important;
@@ -84,7 +81,7 @@
   display:flex !important;
   flex-direction:column;
   justify-content:flex-end !important;
-  min-height:18rem !important;
+  min-height:17rem !important;
   padding:2rem 2.25rem !important;
   border-right:1px solid rgba(255,255,255,.11) !important;
 }
@@ -96,7 +93,7 @@
 }
 .resume-audit__statement h3 {
   max-width:none !important;
-  margin:3.2rem 0 0 !important;
+  margin:3rem 0 0 !important;
   font-size:0 !important;
   line-height:0 !important;
 }
@@ -104,8 +101,8 @@
   content:"JAKE CUENCA / RESUME";
   display:block;
   color:#f4f3ef;
-  font:400 clamp(2.35rem,3.7vw,4.35rem)/.88 var(--head);
-  letter-spacing:-.065em;
+  font:400 clamp(2.2rem,3.4vw,3.9rem)/.9 var(--head);
+  letter-spacing:-.06em;
   text-transform:uppercase;
 }
 .resume-audit__statement h3 i { display:none !important; }
@@ -194,20 +191,16 @@
 .resume-audit__actions a:focus-visible span { color:var(--red) !important; }
 
 @media (max-width:900px) {
-  .resume-audit__board {
-    grid-template-columns:1fr 1fr !important;
-  }
+  .resume-audit__board { grid-template-columns:1fr 1fr !important; }
   .resume-audit__statement {
     grid-column:1/-1;
-    min-height:14rem !important;
+    min-height:13rem !important;
     border-right:0 !important;
     border-bottom:1px solid rgba(255,255,255,.11) !important;
   }
 }
 
 @media (max-width:620px) {
-  .resume-audit .section-head h2 br { display:block; }
-  .resume-audit .section-head h2 i { margin-left:0; }
   .resume-audit__board { grid-template-columns:1fr !important; }
   .resume-audit__statement,
   .resume-audit__index {
@@ -220,6 +213,5 @@
 }
 
 @media (prefers-reduced-motion:reduce) {
-  .hero-cross,
   .resume-audit__actions a { transition:none !important; }
 }
