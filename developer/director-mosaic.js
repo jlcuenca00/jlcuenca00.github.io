@@ -161,9 +161,9 @@
         category: "TECHNICAL WORKING GROUP",
         institution: "Bayawan City Science and Technology Education Center",
         period: "2021 → 2023",
-        primary: "CREATIVE HEAD",
-        primaryDate: "2021—2023",
-        secondary: ["FOUNDING MEMBER"],
+        primary: "FOUNDING MEMBER",
+        primaryDate: "",
+        secondary: ["CREATIVE HEAD / 2021—2023"],
         craft: ["VIDEO", "PHOTOGRAPHY", "GRAPHICS"]
       },
       {
