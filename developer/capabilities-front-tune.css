@@ -1,0 +1,27 @@
+/* Quadrant 01 composition tune — FRONT END belongs in the lower-right, with its stack counterbalanced upper-left. */
+@media (min-width: 761px) {
+  .cap-card:nth-child(1) h3,
+  .cap-card:nth-child(1).is-active h3,
+  .cap-card:nth-child(1):hover h3,
+  .cap-card:nth-child(1):focus-visible h3 {
+    left: auto;
+    right: clamp(5.4rem, 7vw, 7.6rem);
+    bottom: clamp(1.25rem, 1.9vw, 1.8rem);
+    max-width: 5ch;
+    text-align: right;
+    line-height: .73;
+  }
+
+  .cap-card:nth-child(1) .cap-card__details {
+    left: clamp(1.35rem, 2.25vw, 2.25rem);
+    right: auto;
+    top: 25%;
+    width: min(52%, 20rem);
+  }
+
+  .cap-card:nth-child(1).is-active h3,
+  .cap-card:nth-child(1):hover h3,
+  .cap-card:nth-child(1):focus-visible h3 {
+    transform: translateX(-.22rem);
+  }
+}
