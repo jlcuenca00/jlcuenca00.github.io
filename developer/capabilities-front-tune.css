@@ -1,29 +1,138 @@
-/* Quadrant 01 composition tune — FRONT END upper-left; skill stack lower-right. */
+/* Capabilities quadrant composition.
+   All four cards use one mirrored spacing system:
+   01 title upper-left / details lower-right
+   02 title upper-right / details lower-left
+   03 title lower-left / details upper-right
+   04 title lower-right / details upper-left
+*/
+
 @media (min-width: 761px) {
+  .capability-deck {
+    --quad-inset: clamp(1.35rem, 2.25vw, 2.25rem);
+    --quad-title-y: clamp(5.15rem, 7.4vw, 6.8rem);
+    --quad-bottom: clamp(1.55rem, 2.45vw, 2.3rem);
+    --quad-detail-width: min(47%, 19.5rem);
+  }
+
+  /* One title system for all four cards. */
+  .cap-card:nth-child(1) h3,
+  .cap-card:nth-child(2) h3,
+  .cap-card:nth-child(3) h3,
+  .cap-card:nth-child(4) h3,
+  .cap-card:nth-child(1).is-active h3,
+  .cap-card:nth-child(2).is-active h3,
+  .cap-card:nth-child(3).is-active h3,
+  .cap-card:nth-child(4).is-active h3,
+  .cap-card:nth-child(1):hover h3,
+  .cap-card:nth-child(2):hover h3,
+  .cap-card:nth-child(3):hover h3,
+  .cap-card:nth-child(4):hover h3,
+  .cap-card:nth-child(1):focus-visible h3,
+  .cap-card:nth-child(2):focus-visible h3,
+  .cap-card:nth-child(3):focus-visible h3,
+  .cap-card:nth-child(4):focus-visible h3 {
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 0 !important;
+    line-height: .76 !important;
+    transform: none !important;
+  }
+
+  /* 01 / FRONT END — upper-left. */
   .cap-card:nth-child(1) h3,
   .cap-card:nth-child(1).is-active h3,
   .cap-card:nth-child(1):hover h3,
   .cap-card:nth-child(1):focus-visible h3 {
-    left: clamp(1.35rem, 2.25vw, 2.25rem) !important;
-    right: auto !important;
-    top: clamp(5.2rem, 8.2vw, 7.2rem) !important;
-    bottom: auto !important;
+    left: var(--quad-inset) !important;
+    top: var(--quad-title-y) !important;
     max-width: 5ch !important;
     text-align: left !important;
-    line-height: .73 !important;
   }
 
-  .cap-card:nth-child(1) .cap-card__details {
-    left: auto !important;
-    right: clamp(1.35rem, 2.25vw, 2.25rem) !important;
+  /* 02 / DESIGN — upper-right. */
+  .cap-card:nth-child(2) h3,
+  .cap-card:nth-child(2).is-active h3,
+  .cap-card:nth-child(2):hover h3,
+  .cap-card:nth-child(2):focus-visible h3 {
+    right: var(--quad-inset) !important;
+    top: var(--quad-title-y) !important;
+    max-width: none !important;
+    white-space: nowrap;
+    text-align: right !important;
+  }
+
+  /* 03 / SYSTEMS — lower-left. */
+  .cap-card:nth-child(3) h3,
+  .cap-card:nth-child(3).is-active h3,
+  .cap-card:nth-child(3):hover h3,
+  .cap-card:nth-child(3):focus-visible h3 {
+    left: var(--quad-inset) !important;
+    bottom: var(--quad-bottom) !important;
+    max-width: none !important;
+    white-space: nowrap;
+    text-align: left !important;
+  }
+
+  /* 04 / CREATIVE — lower-right. */
+  .cap-card:nth-child(4) h3,
+  .cap-card:nth-child(4).is-active h3,
+  .cap-card:nth-child(4):hover h3,
+  .cap-card:nth-child(4):focus-visible h3 {
+    right: var(--quad-inset) !important;
+    bottom: var(--quad-bottom) !important;
+    max-width: none !important;
+    white-space: nowrap;
+    text-align: right !important;
+  }
+
+  /* All detail clusters share exactly the same width and edge inset. */
+  .cap-card:nth-child(1) .cap-card__details,
+  .cap-card:nth-child(2) .cap-card__details,
+  .cap-card:nth-child(3) .cap-card__details,
+  .cap-card:nth-child(4) .cap-card__details {
+    width: var(--quad-detail-width) !important;
     top: auto !important;
-    bottom: clamp(1.5rem, 2.6vw, 2.4rem) !important;
-    width: min(48%, 19rem) !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
   }
 
+  /* Bottom detail row: cards 01 + 02 align perfectly across the center seam. */
+  .cap-card:nth-child(1) .cap-card__details {
+    right: var(--quad-inset) !important;
+    bottom: var(--quad-bottom) !important;
+  }
+  .cap-card:nth-child(2) .cap-card__details {
+    left: var(--quad-inset) !important;
+    bottom: var(--quad-bottom) !important;
+  }
+
+  /* Top detail row: cards 03 + 04 use the same vertical datum. */
+  .cap-card:nth-child(3) .cap-card__details {
+    right: var(--quad-inset) !important;
+    top: var(--quad-title-y) !important;
+  }
+  .cap-card:nth-child(4) .cap-card__details {
+    left: var(--quad-inset) !important;
+    top: var(--quad-title-y) !important;
+  }
+
+  /* Subtle inward response, mirrored per corner; geometry stays fixed. */
   .cap-card:nth-child(1).is-active h3,
   .cap-card:nth-child(1):hover h3,
-  .cap-card:nth-child(1):focus-visible h3 {
-    transform: translateX(.22rem) !important;
-  }
+  .cap-card:nth-child(1):focus-visible h3 { transform: translate(.18rem, .18rem) !important; }
+
+  .cap-card:nth-child(2).is-active h3,
+  .cap-card:nth-child(2):hover h3,
+  .cap-card:nth-child(2):focus-visible h3 { transform: translate(-.18rem, .18rem) !important; }
+
+  .cap-card:nth-child(3).is-active h3,
+  .cap-card:nth-child(3):hover h3,
+  .cap-card:nth-child(3):focus-visible h3 { transform: translate(.18rem, -.18rem) !important; }
+
+  .cap-card:nth-child(4).is-active h3,
+  .cap-card:nth-child(4):hover h3,
+  .cap-card:nth-child(4):focus-visible h3 { transform: translate(-.18rem, -.18rem) !important; }
 }
