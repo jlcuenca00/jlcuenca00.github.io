@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (!document.querySelector('script[data-director-mosaic]')) {
       const script = document.createElement("script");
-      script.src = "director-mosaic.js?v=20260831-6";
+      script.src = "director-mosaic.js?v=20260902-1";
       script.dataset.directorMosaic = "true";
       document.head.appendChild(script);
     }
