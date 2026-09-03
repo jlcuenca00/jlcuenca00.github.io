@@ -28,9 +28,19 @@ The Developer side uses a near-black, red-accented technical interface inspired 
 
 1. **DAR-LTCMS** — Land Transfer Clearance and Monitoring System for DAR Negros Oriental; role: Lead / Integrator; Laravel 12, PHP, PostgreSQL, Blade
 2. **Periphora** — Flutter e-commerce mobile interface for tech peripherals; individual front-end project; Flutter and Dart
-3. **Flutter To-Do** — Flutter task-management application; individual mobile app; Flutter and Dart
+3. **Wordspace** — feature-rich responsive typing experience with configurable test modes, themes, behavior settings, and live WPM/accuracy; individual front-end project; React 19, Vite 7, JavaScript
 
-Each project includes a project image, description, technologies/tools, role, and an available live/source link.
+Each project includes a description, technologies/tools, role, a working live/source link, and a slot for an actual screenshot of the system itself.
+
+### Required Project Screenshots
+
+Actual screenshots are stored in `developer/assets/project-screenshots/` with these exact filenames:
+
+- `dar-ltcms.png`
+- `periphora.png`
+- `wordspace.png`
+
+The Developer page displays a designed placeholder whenever one of these PNG files is missing. Adding the correctly named screenshot automatically replaces its placeholder without further HTML changes.
 
 ## Certificates
 
@@ -67,11 +77,12 @@ Developer work represented on the site includes experience with Laravel, PHP, Po
 The site includes:
 
 - Responsive layouts for desktop, tablet, and mobile
+- Lower-end-device performance fallbacks
 - Native smooth anchor navigation without scroll hijacking
 - Reduced-motion fallbacks
 - Keyboard-focus states
-- Custom cursor systems for the landing, Developer, and Creator pages
-- Pointer-reactive but lightweight interface effects
+- Custom cursor systems for capable desktop pointers
+- Progressive enhancement for pointer-reactive effects
 - Original certificate PDFs and issuer verification where available
 
 ## Repository Structure
@@ -89,12 +100,15 @@ The site includes:
 │   ├── director.css
 │   ├── script.js
 │   ├── director.js
+│   ├── responsive-performance.css
+│   ├── responsive-hotfix.css
 │   ├── requirements-audit.js
 │   ├── requirements-audit.css
 │   ├── resume.pdf
 │   └── assets/
 │       ├── profile/
-│       └── certificates/
+│       ├── certificates/
+│       └── project-screenshots/
 └── photography/
 ```
 
