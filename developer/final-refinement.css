@@ -14,9 +14,10 @@
 }
 #capabilities .section-head::after { display: none !important; content: none !important; }
 #capabilities .section-head > p {
-  max-width: 28rem !important;
+  max-width: 31rem !important;
   padding-left: 1rem !important;
   border-left: 1px solid rgba(255,45,45,.48) !important;
+  line-height: 1.5 !important;
 }
 
 .dev-page #capabilities .capability-deck {
@@ -159,9 +160,9 @@
 .affiliation-v2__head { display: none !important; }
 .aff-position__intro {
   display: flex !important;
-  align-items: end !important;
+  align-items: center !important;
   justify-content: space-between !important;
-  gap: 2rem !important;
+  gap: 1.5rem !important;
   margin: 0 0 clamp(2rem,3vw,3rem) !important;
   padding: 0 0 1.15rem !important;
   border-bottom: 1px solid rgba(255,255,255,.14) !important;
@@ -182,11 +183,13 @@
 .aff-position__intro h3 br,
 .aff-position__intro h3 em { display: none !important; }
 .aff-position__intro > p {
-  max-width: 32rem !important;
+  max-width: none !important;
   margin: 0 !important;
   color: rgba(255,255,255,.4) !important;
-  font-size: clamp(.68rem,.82vw,.82rem) !important;
-  line-height: 1.55 !important;
+  font-size: clamp(.68rem,.8vw,.8rem) !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
   text-align: right !important;
 }
 
@@ -286,6 +289,7 @@
   .aff-position__intro > p {
     max-width: none !important;
     margin-top: .8rem !important;
+    white-space: normal !important;
     text-align: left !important;
   }
 
