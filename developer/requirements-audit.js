@@ -9,7 +9,7 @@
     if (document.querySelector('link[data-final-refinement]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'final-refinement.css?v=20260904-1';
+    link.href = 'final-refinement.css?v=20260904-2';
     link.dataset.finalRefinement = 'true';
     document.head.appendChild(link);
   }
@@ -131,12 +131,62 @@
     );
   }
 
+  function updateSkills() {
+    const section = $('#capabilities');
+    if (!section) return;
+
+    const heading = $('#capabilitiesTitle', section);
+    if (heading && heading.dataset.literalSkills !== 'true') {
+      heading.innerHTML = 'DEVELOPER<br><i>SKILLS.</i>';
+      heading.dataset.literalSkills = 'true';
+    }
+
+    setText(
+      $('.section-head > p', section),
+      'Core technologies and development practices I use to design, build, and ship web applications.'
+    );
+
+    const specs = [
+      {
+        category: 'CLIENT',
+        title: 'FRONT-END',
+        skills: ['HTML / CSS', 'JAVASCRIPT', 'REACT + VITE', 'RESPONSIVE UI', 'FLUTTER / DART']
+      },
+      {
+        category: 'SERVER',
+        title: 'BACK-END',
+        skills: ['LARAVEL 12', 'PHP', 'BLADE', 'REST APIs', 'AUTH / VALIDATION']
+      },
+      {
+        category: 'DATA',
+        title: 'DATABASE',
+        skills: ['POSTGRESQL', 'RELATIONAL MODELING', 'WORKFLOW DESIGN', 'REPORTING', 'AUDIT LOGS']
+      },
+      {
+        category: 'WORKFLOW',
+        title: 'DEV TOOLS',
+        skills: ['GIT / GITHUB', 'VS CODE', 'COMPOSER', 'NPM / VITE', 'DEPLOYMENT']
+      }
+    ];
+
+    $$('.cap-card', section).forEach((card, index) => {
+      const spec = specs[index];
+      if (!spec) return;
+      setText($('.cap-card__top small', card), spec.category);
+      setText($('h3', card), spec.title);
+      const details = $('.cap-card__details', card);
+      if (details) details.innerHTML = spec.skills.map((skill) => `<span>${skill}</span>`).join('');
+    });
+  }
+
+  function updateAffiliationIntro() {
+    const intro = $('.aff-position__intro');
+    if (!intro) return;
+    setText($(':scope > p', intro), 'Campus leadership, publication, and creative-team experience.');
+  }
+
   function updateSectionLabels() {
     setText($('#capabilities .section-head > div > span'), '03 / SKILLS');
-    setText(
-      $('#capabilities .section-head > p'),
-      'Four working modes across interface design, visual systems, backend development, and creative production.'
-    );
     setText($('#work .direction-head > div > span'), '04 / PROJECTS');
     setText($('#history .direction-head > div > span'), '05 / EDUCATION');
     setText($('#credentials .section-head > div > span'), '06 / CERTIFICATES + ACHIEVEMENTS');
@@ -197,6 +247,8 @@
     reorderSections();
     updateSectionLabels();
     updateAbout();
+    updateSkills();
+    updateAffiliationIntro();
   }
 
   function observeProfileBuild() {
