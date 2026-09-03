@@ -1,3 +1,14 @@
+/* Developer world label remains visible even when the legacy mobile rule hides .brand span. */
+.site-nav .brand::after {
+  content: "DEVELOPER";
+  display: inline-flex;
+  align-items: center;
+  color: var(--red);
+  font: 700 .49rem/1 var(--mono);
+  letter-spacing: .18em;
+}
+.site-nav .brand span::after { content: none !important; }
+
 /* Capabilities quadrant composition.
    All four cards use one mirrored spacing system:
    01 title upper-left / details lower-right
@@ -14,7 +25,6 @@
     --quad-detail-width: min(47%, 19.5rem);
   }
 
-  /* One title system for all four cards. */
   .cap-card:nth-child(1) h3,
   .cap-card:nth-child(2) h3,
   .cap-card:nth-child(3) h3,
@@ -40,7 +50,6 @@
     transform: none !important;
   }
 
-  /* 01 / FRONT END — upper-left. */
   .cap-card:nth-child(1) h3,
   .cap-card:nth-child(1).is-active h3,
   .cap-card:nth-child(1):hover h3,
@@ -51,7 +60,6 @@
     text-align: left !important;
   }
 
-  /* 02 / DESIGN — upper-right. */
   .cap-card:nth-child(2) h3,
   .cap-card:nth-child(2).is-active h3,
   .cap-card:nth-child(2):hover h3,
@@ -63,7 +71,6 @@
     text-align: right !important;
   }
 
-  /* 03 / SYSTEMS — lower-left. */
   .cap-card:nth-child(3) h3,
   .cap-card:nth-child(3).is-active h3,
   .cap-card:nth-child(3):hover h3,
@@ -75,7 +82,6 @@
     text-align: left !important;
   }
 
-  /* 04 / CREATIVE — lower-right. */
   .cap-card:nth-child(4) h3,
   .cap-card:nth-child(4).is-active h3,
   .cap-card:nth-child(4):hover h3,
@@ -87,7 +93,6 @@
     text-align: right !important;
   }
 
-  /* All detail clusters share exactly the same width and edge inset. */
   .cap-card:nth-child(1) .cap-card__details,
   .cap-card:nth-child(2) .cap-card__details,
   .cap-card:nth-child(3) .cap-card__details,
@@ -99,7 +104,6 @@
     right: auto !important;
   }
 
-  /* Bottom detail row: cards 01 + 02 align perfectly across the center seam. */
   .cap-card:nth-child(1) .cap-card__details {
     right: var(--quad-inset) !important;
     bottom: var(--quad-bottom) !important;
@@ -109,7 +113,6 @@
     bottom: var(--quad-bottom) !important;
   }
 
-  /* Top detail row: cards 03 + 04 use the same vertical datum. */
   .cap-card:nth-child(3) .cap-card__details {
     right: var(--quad-inset) !important;
     top: var(--quad-title-y) !important;
@@ -119,7 +122,6 @@
     top: var(--quad-title-y) !important;
   }
 
-  /* Subtle inward response, mirrored per corner; geometry stays fixed. */
   .cap-card:nth-child(1).is-active h3,
   .cap-card:nth-child(1):hover h3,
   .cap-card:nth-child(1):focus-visible h3 { transform: translate(.18rem, .18rem) !important; }
