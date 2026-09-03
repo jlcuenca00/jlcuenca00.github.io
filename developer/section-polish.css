@@ -1,0 +1,47 @@
+/* Final micro-polish for section rhythm and spacing. */
+
+/* Leadership / Media: one header break, then records immediately. */
+.affiliation-v2 {
+  margin-top: clamp(3.75rem, 6vw, 6rem) !important;
+  padding-top: 0 !important;
+}
+
+.aff-position__intro {
+  margin: 0 !important;
+  padding: .65rem 0 .72rem !important;
+  border-top: 1px solid rgba(255,255,255,.14) !important;
+  border-bottom: 1px solid rgba(255,255,255,.14) !important;
+}
+
+.aff-position__list {
+  margin-top: 0 !important;
+  border-top: 0 !important;
+}
+
+.aff-position__row {
+  min-height: clamp(9rem, 13vh, 11rem) !important;
+}
+
+.aff-position__context,
+.aff-position__role {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+@media (max-width: 800px) {
+  .affiliation-v2 {
+    margin-top: 3rem !important;
+  }
+
+  .aff-position__intro {
+    padding: .7rem 0 !important;
+  }
+
+  .aff-position__intro > p {
+    margin-top: .35rem !important;
+  }
+
+  .aff-position__row {
+    min-height: 0 !important;
+  }
+}
