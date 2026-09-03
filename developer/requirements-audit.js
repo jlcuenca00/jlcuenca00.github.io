@@ -9,7 +9,7 @@
     if (document.querySelector('link[data-final-refinement]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'final-refinement.css?v=20260904-2';
+    link.href = 'final-refinement.css?v=20260904-3';
     link.dataset.finalRefinement = 'true';
     document.head.appendChild(link);
   }
@@ -143,29 +143,29 @@
 
     setText(
       $('.section-head > p', section),
-      'Core technologies and development practices I use to design, build, and ship web applications.'
+      'Languages, frameworks, database technologies, and development tooling used across my projects.'
     );
 
     const specs = [
       {
         category: 'CLIENT',
         title: 'FRONT-END',
-        skills: ['HTML / CSS', 'JAVASCRIPT', 'REACT + VITE', 'RESPONSIVE UI', 'FLUTTER / DART']
+        skills: ['HTML5 / CSS3', 'JAVASCRIPT ES6+', 'REACT 19', 'VITE 7', 'CSS MEDIA QUERIES']
       },
       {
         category: 'SERVER',
         title: 'BACK-END',
-        skills: ['LARAVEL 12', 'PHP', 'BLADE', 'REST APIs', 'AUTH / VALIDATION']
+        skills: ['LARAVEL 12', 'PHP 8.4', 'BLADE TEMPLATES', 'RESTFUL APIs', 'LARAVEL BREEZE']
       },
       {
         category: 'DATA',
         title: 'DATABASE',
-        skills: ['POSTGRESQL', 'RELATIONAL MODELING', 'WORKFLOW DESIGN', 'REPORTING', 'AUDIT LOGS']
+        skills: ['POSTGRESQL 18', 'SQL', 'RELATIONAL SCHEMA DESIGN', 'FOREIGN KEYS / CONSTRAINTS', 'DATABASE MIGRATIONS']
       },
       {
-        category: 'WORKFLOW',
+        category: 'TOOLING',
         title: 'DEV TOOLS',
-        skills: ['GIT / GITHUB', 'VS CODE', 'COMPOSER', 'NPM / VITE', 'DEPLOYMENT']
+        skills: ['GIT', 'GITHUB', 'VS CODE', 'COMPOSER 2.8', 'NPM']
       }
     ];
 
@@ -182,7 +182,7 @@
   function updateAffiliationIntro() {
     const intro = $('.aff-position__intro');
     if (!intro) return;
-    setText($(':scope > p', intro), 'Campus leadership, publication, and creative-team experience.');
+    setText($(':scope > p', intro), 'Leadership, publication, and creative teams.');
   }
 
   function updateSectionLabels() {
