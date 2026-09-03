@@ -27,7 +27,7 @@ The Developer side uses a near-black, red-accented technical interface inspired 
 ### Selected Projects
 
 1. **DAR-LTCMS** — Land Transfer Clearance and Monitoring System for DAR Negros Oriental; role: Lead / Integrator; Laravel 12, PHP, PostgreSQL, Blade
-2. **Periphora** — Flutter e-commerce mobile interface for tech peripherals; individual front-end project; Flutter and Dart
+2. **Fourfold** — focused 15-question personality test with progressive interaction, 16 original profiles, and percentage-based preference breakdowns; individual front-end project; Flask, Python, JavaScript, responsive CSS
 3. **Wordspace** — feature-rich responsive typing experience with configurable test modes, themes, behavior settings, and live WPM/accuracy; individual front-end project; React 19, Vite 7, JavaScript
 
 Each project includes a description, technologies/tools, role, a working live/source link, and a slot for an actual screenshot of the system itself.
@@ -37,7 +37,7 @@ Each project includes a description, technologies/tools, role, a working live/so
 Actual screenshots are stored in `developer/assets/project-screenshots/` with these exact filenames:
 
 - `dar-ltcms.png`
-- `periphora.png`
+- `fourfold.png`
 - `wordspace.png`
 
 The Developer page displays a designed placeholder whenever one of these PNG files is missing. Adding the correctly named screenshot automatically replaces its placeholder without further HTML changes.

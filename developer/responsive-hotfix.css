@@ -20,6 +20,7 @@
   padding: 0 !important;
 }
 .project-panel[data-project-panel="dar"] > img:not(.is-missing),
+.project-panel[data-project-panel="fourfold"] > img:not(.is-missing),
 .project-panel[data-project-panel="wordspace"] > img:not(.is-missing) {
   inset: 0 !important;
   width: 100% !important;
@@ -27,12 +28,6 @@
   object-fit: cover !important;
   object-position: center !important;
   padding: 0 !important;
-}
-/* Periphora is a portrait/mobile UI, so keep the whole device composition visible. */
-.project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
-  object-fit: contain !important;
-  padding: clamp(1rem,3vw,2.5rem) !important;
-  background: #080808;
 }
 .project-panel__wash {
   background:
@@ -247,11 +242,6 @@
     transform: none !important;
     transition: none !important;
     filter: saturate(.92) contrast(1.02) brightness(.72) !important;
-  }
-  .project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
-    object-fit: contain !important;
-    padding: 1rem !important;
-    background: #080808 !important;
   }
   .project-panel__wash {
     background:

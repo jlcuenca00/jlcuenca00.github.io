@@ -40,16 +40,16 @@
       stack: ["LARAVEL 12", "PHP", "POSTGRESQL", "BLADE"],
       action: "OPEN ↗"
     },
-    periphora: {
-      href: "https://github.com/jlcuenca00/periphora",
-      screenshot: "assets/project-screenshots/periphora.png",
-      filename: "periphora.png",
-      alt: "Screenshot of the Periphora mobile application",
-      meta: "2025 / MOBILE COMMERCE",
+    fourfold: {
+      href: "https://github.com/jlcuenca00/mbti-test",
+      screenshot: "assets/project-screenshots/fourfold.png",
+      filename: "fourfold.png",
+      alt: "Screenshot of the Fourfold personality test",
+      meta: "2026 / PERSONALITY TEST",
       role: "INDIVIDUAL / FRONT-END",
-      title: "PERIPHORA",
-      description: "Dark e-commerce interface for tech peripherals with product browsing, cart, checkout, motion, and reusable mobile components.",
-      stack: ["FLUTTER", "DART", "MOBILE UI", "MOTION"],
+      title: "FOURFOLD",
+      description: "Focused personality test with a one-question flow, keyboard controls, refresh-safe progress, 16 original profiles, and preference breakdowns.",
+      stack: ["FLASK", "PYTHON", "JAVASCRIPT", "RESPONSIVE UI"],
       action: "SOURCE ↗"
     },
     todo: {
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     appendStylesheet('link[data-responsive-performance]', "responsive-performance.css?v=20260904-1", "responsivePerformance");
     /* Final correctness layer: must remain after every art-direction stylesheet. */
-    appendStylesheet('link[data-responsive-hotfix]', "responsive-hotfix.css?v=20260904-2", "responsiveHotfix");
+    appendStylesheet('link[data-responsive-hotfix]', "responsive-hotfix.css?v=20260904-3", "responsiveHotfix");
   }
 
   function initHeroPolish() {

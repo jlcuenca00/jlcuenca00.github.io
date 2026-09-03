@@ -172,12 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
         description: "Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.",
         href: "https://darltcms.me/"
       },
-      periphora: {
-        no: "02", type: "MOBILE E-COMMERCE INTERFACE", name: "PERIPHORA",
-        role: "INDIVIDUAL / FRONT-END", stack: "FLUTTER / DART / REUSABLE WIDGETS / MOBILE UI", year: "2025",
-        image: "assets/periphora.svg", alt: "Periphora mobile interface preview",
-        description: "A dark visual shopping interface for tech peripherals with product browsing, cart, checkout, animation, and reusable mobile components.",
-        href: "https://github.com/jlcuenca00/periphora"
+      fourfold: {
+        no: "02", type: "PERSONALITY TEST EXPERIENCE", name: "FOURFOLD",
+        role: "INDIVIDUAL / FRONT-END", stack: "FLASK / PYTHON / JAVASCRIPT / RESPONSIVE UI", year: "2026",
+        image: "assets/fourfold.svg", alt: "Fourfold personality test interface preview",
+        description: "A focused 15-question personality test with keyboard controls, refresh-safe progress, 16 original profiles, and percentage-based preference breakdowns.",
+        href: "https://github.com/jlcuenca00/mbti-test"
       },
       todo: {
         no: "03", type: "MOBILE TASK INTERACTION", name: "FLUTTER TO-DO",

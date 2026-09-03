@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Fourfold project visual</title>
+  <desc id="desc">Stylized preview of the Fourfold personality test and its four preference dimensions</desc>
+  <rect width="1200" height="750" fill="#121119"/>
+  <rect x="54" y="54" width="1092" height="642" fill="#f3f0e8"/>
+  <g transform="translate(100 105)">
+    <g font-family="Arial, sans-serif" fill="#24222d">
+      <text x="0" y="20" font-size="18" font-weight="700">fourfold</text>
+      <text x="780" y="20" font-family="monospace" font-size="12" letter-spacing="2">PERSONALITY / FOUR DIRECTIONS</text>
+      <text x="0" y="130" font-family="Georgia, serif" font-size="66">Meet the way</text>
+      <text x="0" y="202" font-family="Georgia, serif" font-size="66">your mind moves.</text>
+      <text x="0" y="258" font-family="monospace" font-size="13" fill="#6f6c72">15 QUESTIONS / 4 PREFERENCE PAIRS / 1 RESULT</text>
+    </g>
+    <g transform="translate(585 92) rotate(-3)">
+      <rect width="142" height="160" fill="#a79ee8" stroke="#24222d"/>
+      <text x="71" y="111" text-anchor="middle" font-family="Georgia, serif" font-size="82" fill="#24222d">E</text>
+    </g>
+    <g transform="translate(735 80) rotate(2)">
+      <rect width="142" height="160" fill="#ee977f" stroke="#24222d"/>
+      <text x="71" y="111" text-anchor="middle" font-family="Georgia, serif" font-size="82" fill="#24222d">N</text>
+    </g>
+    <g transform="translate(594 260) rotate(2)">
+      <rect width="142" height="160" fill="#91c8ad" stroke="#24222d"/>
+      <text x="71" y="111" text-anchor="middle" font-family="Georgia, serif" font-size="82" fill="#24222d">F</text>
+    </g>
+    <g transform="translate(746 250) rotate(-2)">
+      <rect width="142" height="160" fill="#8eb8d2" stroke="#24222d"/>
+      <text x="71" y="111" text-anchor="middle" font-family="Georgia, serif" font-size="82" fill="#24222d">P</text>
+    </g>
+    <rect x="0" y="360" width="330" height="62" fill="#24222d"/>
+    <text x="30" y="400" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#f3f0e8">START THE TEST</text>
+    <circle cx="295" cy="391" r="21" fill="#a79ee8"/>
+    <text x="295" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#24222d">↗</text>
+    <line x1="0" y1="495" x2="940" y2="495" stroke="#24222d" stroke-opacity=".25"/>
+    <text x="0" y="525" font-family="monospace" font-size="12" fill="#6f6c72">FLASK / PYTHON / JAVASCRIPT / RESPONSIVE UI</text>
+  </g>
+</svg>
