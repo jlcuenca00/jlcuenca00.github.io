@@ -5,6 +5,63 @@
     if (element && element.textContent !== value) element.textContent = value;
   };
 
+  function ensureFinalRefinement() {
+    if (document.querySelector('link[data-final-refinement]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'final-refinement.css?v=20260904-1';
+    link.dataset.finalRefinement = 'true';
+    document.head.appendChild(link);
+  }
+
+  function ensureCursor() {
+    const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!finePointer || reducedMotion || document.body.classList.contains('cursor-enabled')) return;
+
+    let cursor = document.getElementById('cursor');
+    if (!cursor) {
+      cursor = document.createElement('div');
+      cursor.className = 'cursor';
+      cursor.id = 'cursor';
+      cursor.setAttribute('aria-hidden', 'true');
+      cursor.innerHTML = '<span></span><i id="cursorLabel">VIEW</i>';
+      document.body.appendChild(cursor);
+    }
+
+    const label = document.getElementById('cursorLabel');
+    if (!label) return;
+
+    document.body.classList.add('cursor-enabled');
+    let tx = innerWidth / 2;
+    let ty = innerHeight / 2;
+    let x = tx;
+    let y = ty;
+    let raf = 0;
+
+    const loop = () => {
+      x += (tx - x) * 0.36;
+      y += (ty - y) * 0.36;
+      cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+
+    addEventListener('pointermove', (event) => {
+      tx = event.clientX;
+      ty = event.clientY;
+      cursor.style.opacity = '1';
+      const target = event.target.closest('[data-cursor],a,button');
+      const text = target?.dataset.cursor || (target?.matches('a') ? 'OPEN' : target?.matches('button') ? 'SELECT' : '');
+      cursor.classList.toggle('is-active', Boolean(text));
+      cursor.classList.toggle('is-blue', Boolean(target?.closest('[data-world-link],.creator-link,.creator-contact')));
+      label.textContent = text || 'VIEW';
+    }, { passive: true });
+
+    addEventListener('pointerleave', () => { cursor.style.opacity = '0'; });
+    addEventListener('beforeunload', () => cancelAnimationFrame(raf), { once: true });
+  }
+
   function updateNavigation() {
     const nav = $('#navLinks');
     if (!nav) return;
@@ -76,6 +133,10 @@
 
   function updateSectionLabels() {
     setText($('#capabilities .section-head > div > span'), '03 / SKILLS');
+    setText(
+      $('#capabilities .section-head > p'),
+      'Four working modes across interface design, visual systems, backend development, and creative production.'
+    );
     setText($('#work .direction-head > div > span'), '04 / PROJECTS');
     setText($('#history .direction-head > div > span'), '05 / EDUCATION');
     setText($('#credentials .section-head > div > span'), '06 / CERTIFICATES + ACHIEVEMENTS');
@@ -95,30 +156,14 @@
     section.className = 'resume-audit scene';
     section.id = 'resume';
     section.dataset.signal = 'quiet';
-    section.setAttribute('aria-labelledby', 'resumeTitle');
+    section.setAttribute('aria-label', 'Resume download');
     section.innerHTML = `
-      <header class="section-head is-visible">
-        <div><span>07 / RESUME / CV</span><h2 id="resumeTitle">THE RECORD.<br><i>ONE PDF.</i></h2></div>
-        <p>Open or download the current résumé. It summarizes my academic background, technical work, selected projects, leadership/media experience, and development direction.</p>
-      </header>
-
       <div class="resume-audit__board is-visible">
-        <div class="resume-audit__statement">
-          <span>PDF / CURRENT / PORTFOLIO</span>
-          <h3>READY<br>WHEN THE<br><i>DETAILS MATTER.</i></h3>
-          <p>A concise record for applications, collaborations, academic review, and project discussions.</p>
-        </div>
-
-        <div class="resume-audit__index" aria-label="Resume content overview">
-          <div><span>01</span><strong>CAREER DIRECTION</strong></div>
-          <div><span>02</span><strong>EDUCATION</strong></div>
-          <div><span>03</span><strong>SKILLS + PROJECTS</strong></div>
-          <div><span>04</span><strong>LEADERSHIP + TRAINING</strong></div>
-        </div>
-
         <div class="resume-audit__actions">
-          <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF"><span>OPEN IN NEW TAB</span><strong>OPEN CV ↗</strong></a>
-          <a href="resume.pdf" download="Jake-Cuenca-Resume.pdf" data-cursor="PDF"><span>SAVE A COPY</span><strong>DOWNLOAD PDF ↓</strong></a>
+          <a href="resume.pdf" download="Jake-Cuenca-Resume.pdf" data-cursor="PDF">
+            <span>CURRENT / 2026</span>
+            <strong>RESUME / CV ↓</strong>
+          </a>
         </div>
       </div>
     `;
@@ -172,10 +217,15 @@
   }
 
   const start = () => {
+    ensureFinalRefinement();
     applyAudit();
     observeProfileBuild();
+    ensureCursor();
     window.setTimeout(applyAudit, 120);
-    window.setTimeout(applyAudit, 420);
+    window.setTimeout(() => {
+      applyAudit();
+      ensureCursor();
+    }, 420);
   };
 
   if (document.readyState === 'loading') {
