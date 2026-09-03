@@ -1,6 +1,44 @@
 /* Mobile correctness hotfix — loaded after every Developer design layer.
-   This is intentionally specific: no horizontal project reel on phones,
-   no hero overflow, and no metadata collisions. */
+   Final responsive authority for hero, work, education, affiliations, and mobile labels. */
+
+/* Developer brand wording: keep the compact J/C mark, clarify the world. */
+.site-nav .brand span {
+  font-size: 0 !important;
+}
+.site-nav .brand span::after {
+  content: "DEVELOPER";
+  font: 700 .49rem/1 var(--mono);
+  letter-spacing: .18em;
+  color: var(--red);
+}
+
+/* Real project screenshots always own the full media plane. */
+.project-panel > img {
+  z-index: 1;
+  object-fit: cover !important;
+  object-position: 50% 50% !important;
+  padding: 0 !important;
+}
+.project-panel[data-project-panel="dar"] > img:not(.is-missing),
+.project-panel[data-project-panel="wordspace"] > img:not(.is-missing) {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  padding: 0 !important;
+}
+/* Periphora is a portrait/mobile UI, so keep the whole device composition visible. */
+.project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
+  object-fit: contain !important;
+  padding: clamp(1rem,3vw,2.5rem) !important;
+  background: #080808;
+}
+.project-panel__wash {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.08) 52%, rgba(0,0,0,.82) 100%),
+    linear-gradient(120deg, rgba(255,41,41,.08), transparent 42%) !important;
+}
 
 .project-shot-placeholder {
   position: absolute;
@@ -32,38 +70,46 @@
 }
 .project-shot-placeholder span { color: var(--red); }
 .project-shot-placeholder small { color: rgba(255,255,255,.32); }
-.project-panel > img { z-index: 1; }
 .project-panel > img:not(.is-missing) + .project-shot-placeholder { opacity: 0; }
 .project-panel > img.is-missing { opacity: 0 !important; }
 .project-panel__wash,
 .project-panel__top,
 .project-panel__copy,
 .project-panel__open { z-index: 3; }
-.project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
-  object-fit: contain !important;
-  padding: clamp(1rem,3vw,2.5rem);
-  background: #080808;
-}
 
 @media (max-width: 800px) {
   html,
-  body.dev-page { max-width: 100%; overflow-x: clip !important; }
+  body.dev-page,
+  body.dev-page main,
+  body.dev-page .scene {
+    max-width: 100% !important;
+    overflow-x: clip !important;
+  }
 
-  /* Hero metadata: normal flow only. Nothing absolute or generated behind it. */
+  /* Hero metadata: two clean rows, with an opaque surface preventing any ghost text. */
   .hero-meta {
     position: relative !important;
+    isolation: isolate !important;
     display: grid !important;
     grid-template-columns: minmax(0,1fr) auto !important;
-    gap: .5rem .75rem !important;
+    gap: .48rem .65rem !important;
     align-items: center !important;
     width: 100% !important;
     min-width: 0 !important;
-    padding-bottom: .8rem !important;
+    padding: 0 0 .8rem !important;
+    background: #050505 !important;
   }
   .hero-meta::before,
   .hero-meta::after { display: none !important; content: none !important; }
+  .hero-meta > span,
+  .hero-meta > span::before,
+  .hero-meta > span::after {
+    text-shadow: none !important;
+    filter: none !important;
+  }
   .hero-meta > span {
     position: static !important;
+    z-index: 2 !important;
     min-width: 0 !important;
     width: auto !important;
     margin: 0 !important;
@@ -71,34 +117,42 @@
     white-space: normal !important;
     overflow: visible !important;
     text-overflow: clip !important;
-    line-height: 1.45 !important;
+    line-height: 1.35 !important;
+    background: #050505 !important;
   }
   .hero-meta > span:first-child {
     grid-column: 1 !important;
     grid-row: 1 !important;
-    font-size: clamp(.44rem,1.65vw,.54rem) !important;
+    font-size: clamp(.43rem,1.7vw,.53rem) !important;
   }
   .hero-meta > .online {
     grid-column: 2 !important;
     grid-row: 1 !important;
     justify-self: end !important;
-    font-size: clamp(.43rem,1.55vw,.52rem) !important;
+    font-size: clamp(.42rem,1.55vw,.5rem) !important;
     white-space: nowrap !important;
   }
   .hero-meta > span:nth-child(2) {
     grid-column: 1 / -1 !important;
     grid-row: 2 !important;
     order: initial !important;
-    color: rgba(255,255,255,.38) !important;
-    font-size: clamp(.44rem,1.65vw,.52rem) !important;
-    letter-spacing: .09em !important;
+    padding-top: .08rem !important;
+    color: rgba(255,255,255,.4) !important;
+    font-size: clamp(.42rem,1.62vw,.5rem) !important;
+    letter-spacing: .08em !important;
   }
 
-  /* Hero poster: FRONTEND must stay entirely inside the viewport. */
+  /* Hero: preserve the poster idea, but contain every element inside the card. */
+  .hero {
+    min-height: auto !important;
+    padding-top: 4.7rem !important;
+    padding-bottom: 3.5rem !important;
+  }
   .hero-poster {
     width: 100% !important;
     min-width: 0 !important;
-    min-height: clamp(28rem,118vw,35rem) !important;
+    min-height: clamp(27rem,108vw,33rem) !important;
+    margin: 1rem 0 1.2rem !important;
     overflow: hidden !important;
   }
   .hero-face,
@@ -106,40 +160,55 @@
   .hero-face h2 { min-width: 0 !important; }
   .hero-face h1,
   .hero-face h2 {
-    left: clamp(.9rem,4vw,1.2rem) !important;
-    right: clamp(.9rem,4vw,1.2rem) !important;
+    left: clamp(.8rem,3.5vw,1.05rem) !important;
+    right: clamp(.8rem,3.5vw,1.05rem) !important;
     width: auto !important;
     max-width: none !important;
-    bottom: clamp(2.8rem,9vw,3.8rem) !important;
+    bottom: clamp(2.8rem,8vw,3.4rem) !important;
     transform: none !important;
   }
   .hero-face--front h1::before,
   .hero-face--system h2::before {
     width: 100% !important;
     max-width: 100% !important;
-    font-size: clamp(3rem,14.4vw,5.4rem) !important;
-    line-height: .72 !important;
-    letter-spacing: -.085em !important;
+    font-size: clamp(2.85rem,14.2vw,4.4rem) !important;
+    line-height: .73 !important;
+    letter-spacing: -.082em !important;
     white-space: nowrap !important;
   }
   .hero-face--front h1::after,
   .hero-face--system h2::after {
     width: max-content !important;
     max-width: 100% !important;
-    margin-top: .75rem !important;
-    font-size: clamp(.5rem,1.9vw,.65rem) !important;
+    margin-top: .68rem !important;
+    padding: .4rem .52rem .36rem !important;
+    font-size: clamp(.48rem,1.8vw,.61rem) !important;
   }
+  .hero-face--system { display: none !important; clip-path: none !important; }
+  .hero-cross { display: none !important; }
   .hero-portrait {
-    top: 10% !important;
+    top: 8.5% !important;
     right: 5% !important;
-    width: clamp(6.5rem,30vw,8.5rem) !important;
+    width: clamp(6.4rem,29vw,8.4rem) !important;
+    max-width: 34% !important;
+    transform: rotate(1.5deg) !important;
   }
+  .hero-poster:hover .hero-portrait { transform: rotate(1.5deg) !important; }
   .poster-note {
-    right: .85rem !important;
-    bottom: .8rem !important;
+    right: .8rem !important;
+    bottom: .75rem !important;
+    max-width: 47% !important;
+    white-space: normal !important;
+    text-align: right !important;
   }
+  .poster-note::before { width: 1.6rem !important; }
+  .hero-foot {
+    grid-template-columns: 1fr !important;
+    gap: .9rem !important;
+  }
+  .hero-foot > div { flex-wrap: wrap !important; }
 
-  /* Work: a true responsive stack, not a horizontally overflowing desktop reel. */
+  /* Work: vertical full-width plates. No horizontal scroll UI on phones. */
   .work-v2 { overflow: visible !important; }
   .project-reel {
     display: grid !important;
@@ -160,7 +229,8 @@
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    min-height: clamp(29rem,120vw,36rem) !important;
+    min-height: 0 !important;
+    aspect-ratio: 4 / 5 !important;
     flex: none !important;
     border: 1px solid rgba(255,255,255,.14) !important;
     overflow: hidden !important;
@@ -171,101 +241,218 @@
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    padding: 0 !important;
     transform: none !important;
     transition: none !important;
-    filter: saturate(.84) contrast(1.04) brightness(.56) !important;
+    filter: saturate(.92) contrast(1.02) brightness(.72) !important;
   }
   .project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
     object-fit: contain !important;
-    padding: 1.25rem !important;
+    padding: 1rem !important;
+    background: #080808 !important;
+  }
+  .project-panel__wash {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.01) 0%, rgba(0,0,0,.05) 55%, rgba(0,0,0,.84) 100%),
+      linear-gradient(120deg, rgba(255,41,41,.06), transparent 40%) !important;
   }
   .project-panel__top {
-    top: .9rem !important;
-    left: .95rem !important;
-    right: .95rem !important;
-    gap: .7rem !important;
+    top: .85rem !important;
+    left: .9rem !important;
+    right: .9rem !important;
+    gap: .65rem !important;
   }
   .project-panel__top small {
     max-width: 68%;
     white-space: normal !important;
     text-align: right;
-    line-height: 1.35;
+    line-height: 1.3;
   }
   .project-panel__copy {
-    left: 1rem !important;
-    right: 1rem !important;
-    bottom: 1rem !important;
+    left: .95rem !important;
+    right: .95rem !important;
+    bottom: .95rem !important;
     min-width: 0 !important;
   }
   .project-panel__copy h3,
   .project-panel:not(.is-active) .project-panel__copy h3 {
     max-width: 100% !important;
-    margin-top: .5rem !important;
-    font-size: clamp(2.35rem,10.8vw,4rem) !important;
-    line-height: .84 !important;
+    margin-top: .42rem !important;
+    font-size: clamp(2.25rem,10.4vw,3.85rem) !important;
+    line-height: .85 !important;
     overflow-wrap: anywhere !important;
   }
   .project-panel__copy p {
-    max-width: 38rem !important;
-    margin: .8rem 0 .9rem !important;
-    font-size: clamp(.7rem,3vw,.82rem) !important;
-    line-height: 1.55 !important;
+    max-width: 100% !important;
+    margin: .65rem 0 .75rem !important;
+    font-size: clamp(.68rem,2.85vw,.8rem) !important;
+    line-height: 1.5 !important;
   }
-  .project-panel__stack { gap: .35rem !important; }
+  .project-panel__stack { gap: .3rem !important; }
   .project-panel__stack i {
-    padding: .38rem .5rem !important;
-    font-size: .43rem !important;
+    padding: .34rem .44rem !important;
+    font-size: .41rem !important;
   }
   .project-panel__open,
   .project-panel.is-active .project-panel__open {
-    top: .8rem !important;
-    right: .8rem !important;
-    padding: .6rem .72rem !important;
+    top: .72rem !important;
+    right: .72rem !important;
+    padding: .54rem .64rem !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .reel-caption {
     display: flex !important;
     justify-content: space-between;
-    gap: 1rem;
+    gap: .8rem;
   }
   .reel-caption i { flex: 1; }
-  .reel-caption span:last-child { display: inline !important; }
+  .project-shot-placeholder { padding: 1.15rem; }
+  .project-shot-placeholder strong { font-size: clamp(1.4rem,6.7vw,2.3rem); }
 
-  .project-shot-placeholder { padding: 1.25rem; }
-  .project-shot-placeholder strong { font-size: clamp(1.45rem,7vw,2.4rem); }
+  /* Education selector: all three levels fit the viewport; no "02" peeking off-screen. */
+  .education-v2,
+  .education-stage,
+  .education-panel { width: 100% !important; max-width: 100% !important; min-width: 0 !important; overflow: hidden !important; }
+  .education-levels {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    width: 100% !important;
+    overflow: visible !important;
+    gap: 0 !important;
+    scroll-snap-type: none !important;
+  }
+  .education-levels button {
+    min-width: 0 !important;
+    width: auto !important;
+    min-height: 5.4rem !important;
+    padding: .72rem .62rem !important;
+    overflow: hidden !important;
+  }
+  .education-levels button span { font-size: .43rem !important; }
+  .education-levels button strong {
+    font-size: clamp(.56rem,2.35vw,.72rem) !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+  .education-levels button small { font-size: .4rem !important; white-space: nowrap !important; }
+  .education-levels button i { display: none !important; }
+  .education-panel {
+    padding: clamp(1.1rem,4vw,1.5rem) !important;
+  }
+  .education-panel h3,
+  .education-panel--secondary h3 {
+    max-width: 100% !important;
+    font-size: clamp(2rem,9.5vw,3.15rem) !important;
+    line-height: .9 !important;
+    letter-spacing: -.055em !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  .education-panel__meta,
+  .education-panel__footer {
+    min-width: 0 !important;
+    gap: .7rem !important;
+  }
+  .education-panel__footer {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+  .education-panel__footer strong { text-align: left !important; }
+  .secondary-track { grid-template-columns: 1fr !important; gap: 1.2rem !important; }
+  .secondary-track > i { display: none !important; }
+
+  /* Affiliations: role-first records, constrained to viewport with no horizontal scrollbar. */
+  .affiliation-v2,
+  .aff-position,
+  .aff-position__list,
+  .aff-position__row,
+  .aff-position__context,
+  .aff-position__role {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .affiliation-v2,
+  .aff-position,
+  .aff-position__list,
+  .aff-position__row { overflow-x: clip !important; }
+  .aff-position__row {
+    grid-template-columns: 2rem minmax(0,1fr) !important;
+    gap: .65rem .8rem !important;
+    padding: 1.2rem 0 !important;
+  }
+  .aff-position__context,
+  .aff-position__role { padding-inline: 0 !important; }
+  .aff-position__context h4,
+  .aff-position__context p,
+  .aff-position__primary strong,
+  .aff-position__secondary span {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+  .aff-position__context h4 { font-size: clamp(1.65rem,8.5vw,2.7rem) !important; }
+  .aff-position__primary { grid-template-columns: 1fr !important; gap: .35rem !important; }
+  .aff-position__primary strong,
+  .aff-position__row:nth-child(3) .aff-position__primary strong {
+    font-size: clamp(2rem,10vw,3.35rem) !important;
+    line-height: .9 !important;
+    letter-spacing: -.05em !important;
+  }
+  .aff-position__primary > span { justify-self: start !important; }
+  .aff-position__secondary {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .45rem .7rem !important;
+  }
+  .aff-position__secondary span { font-size: clamp(.77rem,3.5vw,1rem) !important; }
+  .aff-position__row::before,
+  .aff-position__row::after { max-width: 100% !important; overflow: hidden !important; }
 }
 
 @media (max-width: 520px) {
-  .hero {
-    padding-top: 4.65rem !important;
-    padding-bottom: 3.5rem !important;
+  .site-nav .brand span::after { font-size: .46rem; }
+
+  .hero-meta {
+    grid-template-columns: minmax(0,1fr) auto !important;
   }
-  .hero-meta > span:first-child { max-width: 26ch; }
+  .hero-meta > span:first-child { max-width: 25ch; }
   .hero-meta > .online::before {
-    width: .36rem !important;
-    height: .36rem !important;
-    margin-right: .35rem !important;
+    width: .34rem !important;
+    height: .34rem !important;
+    margin-right: .32rem !important;
     box-shadow: none !important;
   }
-  .hero-poster { min-height: clamp(27rem,125vw,32rem) !important; }
   .hero-face--front h1::before,
-  .hero-face--system h2::before { font-size: clamp(2.85rem,13.8vw,4.25rem) !important; }
+  .hero-face--system h2::before {
+    font-size: clamp(2.7rem,13.8vw,3.95rem) !important;
+  }
   .poster-code span:last-child { display: none !important; }
-  .hero-portrait { width: clamp(6rem,28vw,7.4rem) !important; }
+  .hero-portrait { width: clamp(5.9rem,27vw,7.2rem) !important; }
 
   .direction-head h2,
   .section-head h2 {
-    font-size: clamp(2.85rem,13.2vw,4.65rem) !important;
+    font-size: clamp(2.75rem,12.8vw,4.25rem) !important;
     line-height: .84 !important;
   }
   .direction-head > p,
-  .section-head > p { font-size: .72rem !important; }
+  .section-head > p { font-size: .71rem !important; }
 
   .project-panel,
-  .project-panel.is-active { min-height: clamp(28rem,132vw,34rem) !important; }
-  .project-panel__copy h3,
-  .project-panel:not(.is-active) .project-panel__copy h3 {
-    font-size: clamp(2.2rem,10.5vw,3.55rem) !important;
-  }
+  .project-panel.is-active { aspect-ratio: 4 / 5.2 !important; }
+
+  .education-levels button { min-height: 5rem !important; padding-inline: .42rem !important; }
+  .education-panel h3,
+  .education-panel--secondary h3 { font-size: clamp(1.9rem,9vw,2.75rem) !important; }
+
+  .aff-position__row { grid-template-columns: 1.7rem minmax(0,1fr) !important; }
+  .aff-position__primary strong,
+  .aff-position__row:nth-child(3) .aff-position__primary strong { font-size: clamp(1.85rem,9.4vw,3rem) !important; }
 }
 
 @media (max-width: 380px) {
@@ -278,6 +465,8 @@
     justify-self: start !important;
   }
   .hero-face--front h1::before,
-  .hero-face--system h2::before { font-size: clamp(2.65rem,13.3vw,3.7rem) !important; }
-  .project-panel__top small { max-width: 60%; }
+  .hero-face--system h2::before { font-size: clamp(2.45rem,13vw,3.4rem) !important; }
+
+  .education-levels button strong { font-size: .52rem !important; }
+  .education-levels button small { font-size: .36rem !important; }
 }
