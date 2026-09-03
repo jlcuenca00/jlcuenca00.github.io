@@ -1,0 +1,306 @@
+/* Final refinement pass — deliberately loaded last by requirements-audit.js. */
+
+/* Hero: remove the decorative center label entirely. */
+.hero-meta::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   SKILLS / CAPABILITIES — capability ledger, not a four-quadrant dashboard
+   -------------------------------------------------------------------------- */
+#capabilities .section-head {
+  margin-bottom: clamp(2rem, 3.5vw, 3.2rem) !important;
+}
+#capabilities .section-head::after { display: none !important; content: none !important; }
+#capabilities .section-head > p {
+  max-width: 28rem !important;
+  padding-left: 1rem !important;
+  border-left: 1px solid rgba(255,45,45,.48) !important;
+}
+
+.dev-page #capabilities .capability-deck {
+  display: block !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(255,255,255,.16) !important;
+  border-bottom: 1px solid rgba(255,255,255,.16) !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+.dev-page #capabilities .capability-deck::before,
+.dev-page #capabilities .capability-deck::after { display: none !important; content: none !important; }
+
+.dev-page #capabilities .cap-card,
+.dev-page #capabilities .cap-card:nth-child(n) {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: clamp(4.25rem,7vw,7.5rem) minmax(13rem,.72fr) minmax(0,1.28fr) !important;
+  align-items: center !important;
+  gap: clamp(1rem,2.4vw,2.6rem) !important;
+  width: 100% !important;
+  min-height: clamp(8.5rem,10vw,11rem) !important;
+  padding: clamp(1.15rem,2vw,1.8rem) clamp(.2rem,1vw,.8rem) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.1) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transition: background .28s ease, padding-left .4s var(--ease) !important;
+}
+.dev-page #capabilities .cap-card:last-child { border-bottom: 0 !important; }
+.dev-page #capabilities .cap-card::before { display: none !important; }
+.dev-page #capabilities .cap-card::after {
+  display: block !important;
+  right: -.02em !important;
+  left: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  color: rgba(255,255,255,.018) !important;
+  font-size: clamp(7rem,12vw,13rem) !important;
+  line-height: .7 !important;
+  transform: translateY(-42%) !important;
+}
+
+.dev-page #capabilities .cap-card__top {
+  position: static !important;
+  z-index: 3 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: .65rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.dev-page #capabilities .cap-card__top > span {
+  color: var(--red) !important;
+  font-size: .5rem !important;
+}
+.dev-page #capabilities .cap-card__top > small {
+  color: rgba(255,255,255,.3) !important;
+  font-size: .44rem !important;
+  letter-spacing: .13em !important;
+}
+
+.dev-page #capabilities .cap-card h3,
+.dev-page #capabilities .cap-card:nth-child(n) h3,
+.dev-page #capabilities .cap-card.is-active h3,
+.dev-page #capabilities .cap-card:hover h3,
+.dev-page #capabilities .cap-card:focus-visible h3 {
+  position: static !important;
+  z-index: 3 !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  color: rgba(255,255,255,.7) !important;
+  font-family: var(--head) !important;
+  font-size: clamp(2.7rem,4.7vw,5.7rem) !important;
+  line-height: .76 !important;
+  letter-spacing: -.07em !important;
+  text-align: left !important;
+  white-space: normal !important;
+  transform: none !important;
+  -webkit-text-stroke: 0 transparent !important;
+}
+.dev-page #capabilities .cap-card h3 br { display: none !important; }
+
+.dev-page #capabilities .cap-card__details,
+.dev-page #capabilities .cap-card:nth-child(n) .cap-card__details {
+  position: static !important;
+  z-index: 3 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  align-self: stretch !important;
+  align-content: center !important;
+  width: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  opacity: .45 !important;
+  overflow: visible !important;
+  transform: none !important;
+  pointer-events: auto !important;
+  transition: opacity .28s ease !important;
+}
+.dev-page #capabilities .cap-card__details span {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 2.6rem !important;
+  padding: .65rem .75rem !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(255,255,255,.1) !important;
+  border-left: 1px solid rgba(255,255,255,.07) !important;
+  color: rgba(255,255,255,.58) !important;
+  font-size: clamp(.5rem,.62vw,.62rem) !important;
+  line-height: 1.35 !important;
+}
+.dev-page #capabilities .cap-card__details span:nth-child(3n+1) { border-left: 0 !important; }
+
+.dev-page #capabilities .cap-card.is-active,
+.dev-page #capabilities .cap-card:hover,
+.dev-page #capabilities .cap-card:focus-visible {
+  padding-left: clamp(.7rem,1.6vw,1.35rem) !important;
+  background: linear-gradient(90deg,rgba(255,45,45,.075),rgba(255,45,45,.015) 42%,transparent 72%) !important;
+}
+.dev-page #capabilities .cap-card.is-active h3,
+.dev-page #capabilities .cap-card:hover h3,
+.dev-page #capabilities .cap-card:focus-visible h3 { color: #f4f3ef !important; }
+.dev-page #capabilities .cap-card.is-active .cap-card__details,
+.dev-page #capabilities .cap-card:hover .cap-card__details,
+.dev-page #capabilities .cap-card:focus-visible .cap-card__details { opacity: 1 !important; }
+.dev-page #capabilities .cap-card.is-active .cap-card__details span:first-child,
+.dev-page #capabilities .cap-card:hover .cap-card__details span:first-child,
+.dev-page #capabilities .cap-card:focus-visible .cap-card__details span:first-child { color: var(--red) !important; }
+
+/* --------------------------------------------------------------------------
+   AFFILIATIONS — one heading is enough
+   -------------------------------------------------------------------------- */
+.affiliation-v2__head { display: none !important; }
+.aff-position__intro {
+  display: flex !important;
+  align-items: end !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+  margin: 0 0 clamp(2rem,3vw,3rem) !important;
+  padding: 0 0 1.15rem !important;
+  border-bottom: 1px solid rgba(255,255,255,.14) !important;
+}
+.aff-position__intro > div > span { display: none !important; }
+.aff-position__intro h3 {
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+.aff-position__intro h3::before {
+  content: "LEADERSHIP / MEDIA";
+  display: block;
+  color: var(--red);
+  font: 600 .56rem/1 var(--mono);
+  letter-spacing: .14em;
+}
+.aff-position__intro h3 br,
+.aff-position__intro h3 em { display: none !important; }
+.aff-position__intro > p {
+  max-width: 32rem !important;
+  margin: 0 !important;
+  color: rgba(255,255,255,.4) !important;
+  font-size: clamp(.68rem,.82vw,.82rem) !important;
+  line-height: 1.55 !important;
+  text-align: right !important;
+}
+
+/* --------------------------------------------------------------------------
+   RESUME — meet the requirement without turning it into another showcase
+   -------------------------------------------------------------------------- */
+.resume-audit {
+  padding-block: clamp(3.5rem,5vw,5rem) !important;
+}
+.resume-audit .section-head { display: none !important; }
+.resume-audit__board {
+  display: block !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+.resume-audit__statement,
+.resume-audit__index { display: none !important; }
+.resume-audit__actions {
+  display: block !important;
+  border-top: 1px solid rgba(255,255,255,.16) !important;
+  border-bottom: 1px solid rgba(255,255,255,.16) !important;
+}
+.resume-audit__actions a {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: auto minmax(0,1fr) auto !important;
+  align-items: center !important;
+  gap: clamp(1.2rem,3vw,3rem) !important;
+  min-height: clamp(7.5rem,10vw,10rem) !important;
+  padding: clamp(1.3rem,2.2vw,2rem) 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f4f3ef !important;
+}
+.resume-audit__actions a + a { display: none !important; }
+.resume-audit__actions a::before {
+  content: "07 / RESUME / CV";
+  color: var(--red);
+  font: 600 .5rem/1 var(--mono);
+  letter-spacing: .14em;
+}
+.resume-audit__actions a span {
+  order: 3 !important;
+  color: rgba(255,255,255,.35) !important;
+  font: 600 .48rem/1 var(--mono) !important;
+  letter-spacing: .12em !important;
+}
+.resume-audit__actions a span::after { content: " / PDF"; }
+.resume-audit__actions a strong {
+  order: 2 !important;
+  margin: 0 !important;
+  color: #f4f3ef !important;
+  font: 400 clamp(2.7rem,5vw,6rem)/.82 var(--head) !important;
+  letter-spacing: -.065em !important;
+  white-space: normal !important;
+}
+.resume-audit__actions a strong::before { content: "DOWNLOAD "; color: rgba(255,255,255,.28); }
+.resume-audit__actions a:hover,
+.resume-audit__actions a:focus-visible {
+  background: linear-gradient(90deg,rgba(255,45,45,.07),transparent 58%) !important;
+}
+
+@media (max-width: 800px) {
+  #capabilities .section-head > p { padding-left: 0 !important; border-left: 0 !important; }
+  .dev-page #capabilities .cap-card,
+  .dev-page #capabilities .cap-card:nth-child(n) {
+    grid-template-columns: 3rem minmax(0,1fr) !important;
+    gap: .8rem 1rem !important;
+    min-height: 0 !important;
+    padding: 1.25rem .2rem !important;
+  }
+  .dev-page #capabilities .cap-card h3,
+  .dev-page #capabilities .cap-card:nth-child(n) h3,
+  .dev-page #capabilities .cap-card.is-active h3,
+  .dev-page #capabilities .cap-card:hover h3,
+  .dev-page #capabilities .cap-card:focus-visible h3 {
+    grid-column: 2 !important;
+    font-size: clamp(2.5rem,10.5vw,4rem) !important;
+  }
+  .dev-page #capabilities .cap-card__details,
+  .dev-page #capabilities .cap-card:nth-child(n) .cap-card__details {
+    grid-column: 1 / -1 !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    opacity: 1 !important;
+    margin-top: .25rem !important;
+  }
+  .dev-page #capabilities .cap-card__details span:nth-child(3n+1) { border-left: 1px solid rgba(255,255,255,.07) !important; }
+  .dev-page #capabilities .cap-card__details span:nth-child(odd) { border-left: 0 !important; }
+  .dev-page #capabilities .cap-card::after { font-size: 8rem !important; }
+
+  .aff-position__intro {
+    display: block !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .aff-position__intro > p {
+    max-width: none !important;
+    margin-top: .8rem !important;
+    text-align: left !important;
+  }
+
+  .resume-audit__actions a {
+    grid-template-columns: 1fr auto !important;
+    gap: .75rem 1rem !important;
+    min-height: 7.25rem !important;
+  }
+  .resume-audit__actions a::before { grid-column: 1 !important; }
+  .resume-audit__actions a strong { grid-column: 1 / -1 !important; font-size: clamp(2.35rem,11vw,4rem) !important; }
+  .resume-audit__actions a span { grid-column: 2 !important; grid-row: 1 !important; justify-self: end !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dev-page #capabilities .cap-card,
+  .dev-page #capabilities .cap-card__details,
+  .resume-audit__actions a { transition: none !important; }
+}
