@@ -23,6 +23,109 @@
   }
 })();
 
+/* Project content is normalized here before DOMContentLoaded so the page never depends
+   on stale legacy project markup. Real PNG screenshots can be dropped into the expected
+   directory later; until then the designed placeholders remain visible. */
+(() => {
+  const configs = {
+    dar: {
+      href: "https://darltcms.me/",
+      screenshot: "assets/project-screenshots/dar-ltcms.png",
+      filename: "dar-ltcms.png",
+      alt: "Screenshot of the DAR-LTCMS system",
+      meta: "2026 / FULL-STACK SYSTEM",
+      role: "LEAD / INTEGRATOR",
+      title: "DAR-LTCMS",
+      description: "Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.",
+      stack: ["LARAVEL 12", "PHP", "POSTGRESQL", "BLADE"],
+      action: "OPEN ↗"
+    },
+    periphora: {
+      href: "https://github.com/jlcuenca00/periphora",
+      screenshot: "assets/project-screenshots/periphora.png",
+      filename: "periphora.png",
+      alt: "Screenshot of the Periphora mobile application",
+      meta: "2025 / MOBILE COMMERCE",
+      role: "INDIVIDUAL / FRONT-END",
+      title: "PERIPHORA",
+      description: "Dark e-commerce interface for tech peripherals with product browsing, cart, checkout, motion, and reusable mobile components.",
+      stack: ["FLUTTER", "DART", "MOBILE UI", "MOTION"],
+      action: "SOURCE ↗"
+    },
+    todo: {
+      nextKey: "wordspace",
+      href: "https://spiffy-scone-a17658.netlify.app/",
+      screenshot: "assets/project-screenshots/wordspace.png",
+      filename: "wordspace.png",
+      alt: "Screenshot of the Wordspace typing website",
+      meta: "2026 / TYPING EXPERIENCE",
+      role: "INDIVIDUAL / FRONT-END",
+      title: "WORDSPACE",
+      description: "Feature-rich typing experience with configurable test modes, themes, behavior settings, live WPM and accuracy, and a distraction-light responsive interface.",
+      stack: ["REACT 19", "VITE 7", "JAVASCRIPT", "RESPONSIVE UI"],
+      action: "LIVE ↗"
+    }
+  };
+
+  Object.entries(configs).forEach(([key, config]) => {
+    const panel = document.querySelector(`[data-project-panel="${key}"]`);
+    if (!panel) return;
+
+    if (config.nextKey) panel.dataset.projectPanel = config.nextKey;
+    panel.href = config.href;
+    panel.setAttribute("aria-label", `${config.title} project — open in new tab`);
+
+    const image = panel.querySelector("img");
+    if (image) {
+      const markMissing = () => image.classList.add("is-missing");
+      const markReady = () => image.classList.remove("is-missing");
+      image.addEventListener("error", markMissing, { once: false });
+      image.addEventListener("load", markReady, { once: false });
+      image.alt = config.alt;
+      image.loading = "lazy";
+      image.decoding = "async";
+      image.src = config.screenshot;
+      if (image.complete && image.naturalWidth === 0) markMissing();
+
+      if (!panel.querySelector(".project-shot-placeholder")) {
+        const placeholder = document.createElement("div");
+        placeholder.className = "project-shot-placeholder";
+        placeholder.setAttribute("aria-hidden", "true");
+        placeholder.innerHTML = `<span>SYSTEM SCREENSHOT / PLACEHOLDER</span><strong>${config.title}</strong><small>UPLOAD: assets/project-screenshots/${config.filename}</small>`;
+        image.insertAdjacentElement("afterend", placeholder);
+      }
+    }
+
+    const top = panel.querySelector(".project-panel__top small");
+    if (top) top.textContent = config.meta;
+
+    const copy = panel.querySelector(".project-panel__copy");
+    if (copy) {
+      const role = copy.querySelector(":scope > span");
+      const title = copy.querySelector("h3");
+      const description = copy.querySelector("p");
+      const stack = copy.querySelector(".project-panel__stack");
+      if (role) role.textContent = config.role;
+      if (title) title.textContent = config.title;
+      if (description) description.textContent = config.description;
+      if (stack) stack.innerHTML = config.stack.map((item) => `<i>${item}</i>`).join("");
+    }
+
+    const action = panel.querySelector(".project-panel__open");
+    if (action) action.textContent = config.action;
+  });
+
+  const workIntro = document.querySelector("#work .direction-head > p");
+  if (workIntro) workIntro.textContent = "Three real builds, presented with actual system screenshots, project context, tools, role, and a working live or source link.";
+
+  const reelCaption = document.querySelector("#work .reel-caption");
+  if (reelCaption) {
+    const spans = reelCaption.querySelectorAll("span");
+    if (spans[0]) spans[0].textContent = "VIEW SYSTEM SCREENSHOTS";
+    if (spans[1]) spans[1].textContent = "OPEN PROJECT ↗";
+  }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
@@ -66,8 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
     appendScript('script[data-director-mosaic]', "director-mosaic.js?v=20260904-1", "directorMosaic");
     appendScript('script[data-requirements-audit]', "requirements-audit.js?v=20260904-1", "requirementsAudit");
 
-    /* Must be last so responsive/performance safeguards win the cascade. */
     appendStylesheet('link[data-responsive-performance]', "responsive-performance.css?v=20260904-1", "responsivePerformance");
+    /* Final correctness layer: must remain after every art-direction stylesheet. */
+    appendStylesheet('link[data-responsive-hotfix]', "responsive-hotfix.css?v=20260904-2", "responsiveHotfix");
   }
 
   function initHeroPolish() {
@@ -177,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function initPerformancePostLoad() {
     const root = document.documentElement;
 
-    /* Browser-native image scheduling: the hero remains immediate, everything below can wait. */
     document.querySelectorAll("main img").forEach((img) => {
       img.decoding = "async";
       if (!img.closest(".hero")) {
@@ -190,7 +293,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("visibilitychange", setVisibility, { passive: true });
     setVisibility();
 
-    /* Keep compact-state CSS correct after orientation / viewport changes. */
     const compactQuery = window.matchMedia("(max-width: 900px)");
     const syncCompact = () => {
       root.classList.toggle("perf-compact", compactQuery.matches);
@@ -199,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
     compactQuery.addEventListener?.("change", syncCompact);
     syncCompact();
 
-    /* Mobile menu keyboard escape, without adding a document-wide pointer listener. */
     const nav = document.getElementById("siteNav");
     const toggle = document.getElementById("navToggle");
     document.addEventListener("keydown", (event) => {
