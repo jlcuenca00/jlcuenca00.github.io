@@ -1,0 +1,489 @@
+/* Responsive + performance guardrails.
+   Loaded last: preserve the art direction on capable desktops, progressively simplify
+   effects and recompose the same content for touch, narrow screens, and lower-end devices. */
+
+:root {
+  --tap: 44px;
+  --mobile-pad: clamp(1rem, 4.5vw, 1.5rem);
+}
+
+html { text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body.dev-page { min-width: 0; }
+img { height: auto; }
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* Let the browser skip layout/paint for far-off scenes while retaining stable scroll size. */
+@supports (content-visibility: auto) {
+  main > .scene:not(.hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+  #profile { contain-intrinsic-size: auto 960px; }
+  #history { contain-intrinsic-size: auto 900px; }
+  #credentials { contain-intrinsic-size: auto 760px; }
+}
+
+/* Long real-world labels should wrap instead of forcing horizontal overflow. */
+.project-panel__copy p,
+.project-panel__stack,
+.aff-position__context,
+.aff-position__context p,
+.aff-position__primary,
+.aff-position__secondary,
+.resume-audit__statement,
+.resume-audit__index,
+.contact-v2__actions a,
+.contact-v2__actions a strong { min-width: 0; overflow-wrap: anywhere; }
+
+/* -------------------------------------------------------------------------
+   LOWER-END / DATA-SAVER MODE
+   ------------------------------------------------------------------------- */
+html.perf-low .signal-canvas,
+html.perf-low .grain { display: none !important; }
+
+html.perf-low .site-nav,
+html.perf-low .profile-collage__stamp,
+html.perf-low .credential-register__bar,
+html.perf-low [class*="glass"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.perf-low .site-nav { background: rgba(5,5,5,.96) !important; }
+html.perf-low .project-panel img,
+html.perf-low .project-media img { transform: none !important; will-change: auto !important; }
+html.perf-low .project-panel::after { box-shadow: none !important; }
+html.perf-low .profile-map::before,
+html.perf-low .profile-manifesto,
+html.perf-low .profile-foundation,
+html.perf-low .profile-identity-line { animation: none !important; }
+html.perf-low .profile-manifesto,
+html.perf-low .profile-foundation { box-shadow: 0 1rem 2.5rem rgba(0,0,0,.34) !important; }
+html.perf-low .profile-ticker div { animation: none !important; transform: none !important; }
+html.perf-low .cap-card::before { display: none !important; }
+html.perf-low .contact-glow { background-image: none !important; background-color: #060606 !important; }
+html.perf-low [data-reveal] { transition-duration: .35s !important; transform: translateY(12px); }
+
+html.page-hidden *,
+html.page-hidden *::before,
+html.page-hidden *::after { animation-play-state: paused !important; }
+
+/* -------------------------------------------------------------------------
+   TABLET / COMPACT DESKTOP
+   ------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  :root { --page: calc(100vw - clamp(2rem, 5vw, 4rem)); }
+
+  .scene { padding-block: clamp(5.25rem, 8vw, 7rem); }
+  .section-head,
+  .direction-head {
+    grid-template-columns: minmax(0,1fr) minmax(15rem,.5fr) !important;
+    gap: clamp(1.5rem,4vw,3rem) !important;
+  }
+
+  .project-reel { min-height: clamp(31rem, 62vh, 42rem); }
+  .project-panel.is-active { flex: 2 1 0; }
+
+  .contact-v2__actions a strong { font-size: clamp(1rem,1.8vw,1.6rem) !important; }
+}
+
+/* -------------------------------------------------------------------------
+   MOBILE / TOUCH COMPOSITION
+   ------------------------------------------------------------------------- */
+@media (max-width: 800px) {
+  :root { --page: calc(100vw - (var(--mobile-pad) * 2)); }
+
+  html { scroll-padding-top: 4.35rem; }
+  body.dev-page { overflow-x: clip; }
+
+  .scene {
+    width: var(--page) !important;
+    padding-block: clamp(4.25rem, 13vw, 6rem) !important;
+  }
+
+  /* Navigation: real tap targets and a compact, scrollable sheet. */
+  .site-nav {
+    min-height: 4rem !important;
+    padding: .72rem var(--mobile-pad) !important;
+    background: rgba(5,5,5,.96) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .brand { gap: .55rem; }
+  .brand span { font-size: .46rem; }
+  .nav-toggle {
+    display: block !important;
+    position: relative;
+    z-index: 3;
+    width: var(--tap) !important;
+    height: var(--tap) !important;
+    margin: -.35rem -.55rem -.35rem 0;
+    cursor: pointer;
+  }
+  .nav-links {
+    position: fixed !important;
+    z-index: 2;
+    inset: 4rem 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 0 !important;
+    max-height: calc(100svh - 4rem);
+    padding: .45rem var(--mobile-pad) .8rem !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    background: rgba(5,5,5,.985);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-.75rem);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .28s var(--ease), visibility .2s;
+  }
+  .site-nav.is-open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+  .nav-links a {
+    min-height: var(--tap);
+    display: flex;
+    align-items: center;
+    padding: .8rem .45rem;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    font-size: .56rem !important;
+  }
+  .nav-links a::after { display: none !important; }
+
+  /* Shared headings stop fighting for the same row. */
+  .section-head,
+  .direction-head,
+  .aff-position__intro {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    gap: 1.15rem !important;
+  }
+  .section-head,
+  .direction-head { margin-bottom: clamp(2.1rem,8vw,3.2rem) !important; }
+  .section-head h2,
+  .direction-head h2 { max-width: 12ch !important; font-size: clamp(3rem,14vw,5.7rem) !important; }
+  .section-head > p,
+  .direction-head > p { max-width: 36rem !important; font-size: .76rem !important; line-height: 1.65 !important; }
+
+  /* Hero remains a designed poster, but touch does not depend on a hover lens. */
+  .hero {
+    min-height: auto !important;
+    padding-top: 5rem !important;
+  }
+  .hero-meta {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: .55rem 1rem;
+  }
+  .hero-meta span:nth-child(2) { grid-column: 1 / -1; order: 3; font-size: .5rem; }
+  .hero-poster {
+    min-height: clamp(31rem, 112vw, 40rem) !important;
+    margin: 1.2rem 0 1.5rem !important;
+  }
+  .hero-poster::before { background-size: 32px 32px !important; }
+  .hero-face { padding: 1rem !important; }
+  .hero-face h1,
+  .hero-face h2 {
+    left: 1rem !important;
+    bottom: clamp(2.2rem,8vw,3.4rem) !important;
+    max-width: calc(100% - 2rem);
+    font-size: clamp(4.1rem,18vw,7.4rem) !important;
+    line-height: .72 !important;
+  }
+  .hero-face--system { clip-path: none !important; display: none !important; }
+  .hero-cross { display: none !important; }
+  .hero-portrait {
+    top: 9% !important;
+    right: 6% !important;
+    width: clamp(7.2rem,31vw,10rem) !important;
+    transform: rotate(2deg) !important;
+  }
+  .hero-poster:hover .hero-portrait { transform: rotate(2deg) !important; }
+  .hero-foot {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    gap: 1rem !important;
+  }
+  .hero-foot > div { display: flex; flex-wrap: wrap; gap: .35rem 1rem !important; }
+  .hero-foot a { min-height: var(--tap); display: inline-flex; align-items: center; }
+
+  /* Work: swipeable cards are clearer and cheaper than a hover-expanding reel. */
+  .work-v2 { overflow: visible !important; }
+  .project-reel {
+    display: flex !important;
+    gap: .8rem !important;
+    min-height: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0 0 .65rem !important;
+    border: 0 !important;
+    background: transparent !important;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+  .project-reel::-webkit-scrollbar { display: none; }
+  .project-panel,
+  .project-panel.is-active {
+    flex: 0 0 min(88vw, 34rem) !important;
+    min-height: clamp(31rem,112vw,39rem) !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    transition: border-color .2s ease !important;
+  }
+  .project-panel img,
+  .project-panel.is-active img {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    filter: saturate(.82) contrast(1.04) brightness(.58) !important;
+    transition: none !important;
+  }
+  .project-panel__copy { left: 1.15rem !important; right: 1.15rem !important; bottom: 1.15rem !important; }
+  .project-panel__copy h3,
+  .project-panel:not(.is-active) .project-panel__copy h3 {
+    font-size: clamp(2.5rem,12vw,4.5rem) !important;
+  }
+  .project-panel__copy p,
+  .project-panel__stack {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+  .project-panel__open,
+  .project-panel.is-active .project-panel__open {
+    top: 1rem !important;
+    right: 1rem !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reel-caption { grid-template-columns: auto 1fr; }
+  .reel-caption span:last-child { display: none; }
+
+  /* Profile already has a mobile stack; remove costly paper physics on touch. */
+  .profile-v2::before { font-size: 18rem !important; }
+  .profile-map { margin-top: 1.5rem !important; }
+  .profile-manifesto,
+  .profile-foundation,
+  .profile-identity-line {
+    animation: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .profile-manifesto:hover,
+  .profile-foundation:hover { transform: none !important; }
+  .profile-manifesto { padding: clamp(1.4rem,6vw,2rem) !important; }
+  .profile-foundation { padding: clamp(1.4rem,6vw,2rem) !important; }
+  .profile-manifesto h2::before { font-size: clamp(3rem,14vw,5.4rem) !important; white-space: normal !important; }
+  .profile-foundation strong::before { font-size: clamp(2.7rem,12vw,4.7rem) !important; white-space: normal !important; }
+  .profile-identity-line { grid-template-columns: auto minmax(0,1fr) !important; }
+
+  /* Capabilities: every card is readable on touch without requiring hover discovery. */
+  .capability-deck {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  .capability-deck::before,
+  .capability-deck::after { display: none !important; }
+  .cap-card,
+  .cap-card:nth-child(n) {
+    min-height: 20rem !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    background: #060606 !important;
+  }
+  .cap-card:last-child { border-bottom: 0 !important; }
+  .cap-card h3,
+  .cap-card:nth-child(n) h3,
+  .cap-card.is-active h3,
+  .cap-card:hover h3,
+  .cap-card:focus-visible h3 {
+    left: 1.25rem !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 1.25rem !important;
+    max-width: 8ch !important;
+    text-align: left !important;
+    transform: none !important;
+    font-size: clamp(3rem,13vw,5.2rem) !important;
+  }
+  .cap-card__details,
+  .cap-card:nth-child(n) .cap-card__details {
+    left: auto !important;
+    right: 1.25rem !important;
+    top: 4.75rem !important;
+    bottom: auto !important;
+    width: min(48%,18rem) !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cap-card::before { opacity: .28 !important; transform: scale(.85) !important; }
+
+  /* Education: compact horizontal level selector + one in-flow panel. */
+  .education-v2 { overflow: visible !important; }
+  .education-levels {
+    display: flex !important;
+    overflow-x: auto !important;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .education-levels::-webkit-scrollbar { display: none; }
+  .education-levels button {
+    flex: 0 0 min(72vw,22rem);
+    min-height: 6rem !important;
+    scroll-snap-align: start;
+  }
+  .education-stage { min-height: 0 !important; overflow: visible !important; }
+  .education-panel { position: relative !important; inset: auto !important; display: none !important; min-height: 0 !important; opacity: 1 !important; transform: none !important; }
+  .education-panel.is-active { display: grid !important; }
+
+  /* Affiliations: roles remain dominant; rows become natural-height records. */
+  .affiliation-v2 { margin-top: clamp(4rem,12vw,6rem) !important; }
+  .aff-position__row {
+    grid-template-columns: 2.35rem minmax(0,1fr) !important;
+    gap: .8rem 1rem !important;
+    min-height: 0 !important;
+    padding: 1.35rem 0 !important;
+  }
+  .aff-position__rail { grid-column: 1; grid-row: 1 / 3; padding: .25rem 0 !important; }
+  .aff-position__context { grid-column: 2; padding: .2rem 0 .9rem !important; border-right: 0 !important; border-bottom: 1px solid rgba(255,255,255,.09); }
+  .aff-position__role { grid-column: 2; padding: .95rem 0 .2rem !important; }
+  .aff-position__primary { grid-template-columns: 1fr !important; gap: .45rem !important; }
+  .aff-position__primary strong,
+  .aff-position__row:nth-child(3) .aff-position__primary strong {
+    max-width: 100% !important;
+    white-space: normal !important;
+    font-size: clamp(2.45rem,12vw,4.5rem) !important;
+  }
+  .aff-position__secondary { gap: .55rem .8rem !important; }
+  .aff-position__secondary span { white-space: normal !important; font-size: clamp(.98rem,4.6vw,1.3rem) !important; }
+  .aff-position__secondary span + span::before { margin-right: .8rem !important; }
+  .aff-position__row:hover .aff-position__primary strong,
+  .aff-position__row:focus-visible .aff-position__primary strong { transform: none !important; }
+
+  /* Resume already condenses; improve tap and wrapping behavior. */
+  .resume-audit__actions a { min-height: var(--tap) !important; }
+  .resume-audit__actions a strong { white-space: normal !important; }
+
+  /* Contact: stack copy/actions and never ellipsize the actual contact destination. */
+  .contact-glow {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: clamp(1.1rem,5vw,1.6rem) !important;
+  }
+  .contact-v2__hero { min-height: 21rem !important; padding: 1.5rem 0 2rem !important; }
+  .contact-v2__hero h2 { max-width: 8ch !important; font-size: clamp(3.1rem,14vw,5.2rem) !important; }
+  .contact-v2__actions { border-left: 0 !important; border-top: 1px solid rgba(255,255,255,.11) !important; }
+  .contact-v2__actions a {
+    min-height: 5.75rem !important;
+    grid-template-columns: minmax(0,1fr) auto !important;
+    gap: .5rem !important;
+    padding: .9rem .9rem !important;
+  }
+  .contact-v2__actions a > span { grid-column: 1 / -1 !important; }
+  .contact-v2__actions a strong {
+    white-space: normal !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+    font-size: clamp(1rem,5.4vw,1.45rem) !important;
+  }
+  .contact-v2__actions a i { padding-right: 0 !important; }
+
+  .site-footer {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: .7rem 1.2rem;
+    padding-inline: var(--mobile-pad) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  :root { --mobile-pad: 1rem; }
+  .brand span { display: none; }
+  .nav-links { grid-template-columns: 1fr; }
+
+  .hero-meta { font-size: .48rem; }
+  .hero-poster { min-height: clamp(29rem,130vw,36rem) !important; }
+  .hero-face h1,
+  .hero-face h2 { font-size: clamp(3.7rem,19vw,6rem) !important; }
+  .hero-portrait { width: clamp(6.6rem,34vw,8.5rem) !important; }
+
+  .project-panel,
+  .project-panel.is-active { flex-basis: 91vw !important; min-height: 32rem !important; }
+  .project-panel__top { left: .95rem !important; right: .95rem !important; }
+  .project-panel__stack i { font-size: .44rem; }
+
+  .cap-card,
+  .cap-card:nth-child(n) { min-height: 22rem !important; }
+  .cap-card__details,
+  .cap-card:nth-child(n) .cap-card__details {
+    left: 1.1rem !important;
+    right: 1.1rem !important;
+    top: 4.6rem !important;
+    width: auto !important;
+  }
+
+  .education-levels button { flex-basis: 84vw; }
+  .education-panel.is-active { grid-template-columns: 1fr !important; }
+
+  .profile-identity-line { padding: 1rem !important; gap: .5rem .7rem !important; }
+  .profile-identity-line strong { font-size: .68rem !important; }
+
+  .aff-position__context h4 { font-size: clamp(1.8rem,9.5vw,2.8rem) !important; }
+  .aff-position__primary strong,
+  .aff-position__row:nth-child(3) .aff-position__primary strong { font-size: clamp(2.15rem,11vw,3.5rem) !important; }
+
+  .resume-audit { padding-block: 4rem !important; }
+  .resume-audit .section-head h2::before { font-size: clamp(2.5rem,12vw,4rem) !important; }
+}
+
+/* Touch-only interactions: don't advertise hover-only mechanics. */
+@media (hover: none), (pointer: coarse) {
+  .cursor,
+  .hero-cross { display: none !important; }
+  .project-panel,
+  .project-panel img,
+  .profile-manifesto,
+  .profile-foundation,
+  .aff-position__primary strong,
+  .cap-card,
+  .cap-card h3 { transition-duration: .18s !important; }
+  .project-panel:hover img,
+  .profile-manifesto:hover,
+  .profile-foundation:hover,
+  .aff-position__row:hover .aff-position__primary strong { transform: none !important; }
+}
+
+/* OS accessibility preferences are hard limits, not suggestions. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .grain { display: none !important; }
+  .site-nav,
+  .profile-collage__stamp {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #050505 !important;
+  }
+}
