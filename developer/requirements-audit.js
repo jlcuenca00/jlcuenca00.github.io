@@ -6,12 +6,21 @@
   };
 
   function ensureFinalRefinement() {
-    if (document.querySelector('link[data-final-refinement]')) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'final-refinement.css?v=20260904-3';
-    link.dataset.finalRefinement = 'true';
-    document.head.appendChild(link);
+    if (!document.querySelector('link[data-final-refinement]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'final-refinement.css?v=20260904-3';
+      link.dataset.finalRefinement = 'true';
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('link[data-section-polish]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'section-polish.css?v=20260904-1';
+      link.dataset.sectionPolish = 'true';
+      document.head.appendChild(link);
+    }
   }
 
   function ensureCursor() {
@@ -143,29 +152,29 @@
 
     setText(
       $('.section-head > p', section),
-      'Languages, frameworks, database technologies, and development tooling used across my projects.'
+      'Languages, frameworks, database operations, and development tools used across my projects.'
     );
 
     const specs = [
       {
         category: 'CLIENT',
         title: 'FRONT-END',
-        skills: ['HTML5 / CSS3', 'JAVASCRIPT ES6+', 'REACT 19', 'VITE 7', 'CSS MEDIA QUERIES']
+        skills: ['HTML5', 'CSS3', 'JAVASCRIPT ES6+', 'REACT 19', 'VITE 7']
       },
       {
         category: 'SERVER',
         title: 'BACK-END',
-        skills: ['LARAVEL 12', 'PHP 8.4', 'BLADE TEMPLATES', 'RESTFUL APIs', 'LARAVEL BREEZE']
+        skills: ['PHP 8.4', 'LARAVEL 12', 'BLADE', 'REST APIs', 'ELOQUENT ORM']
       },
       {
         category: 'DATA',
         title: 'DATABASE',
-        skills: ['POSTGRESQL 18', 'SQL', 'RELATIONAL SCHEMA DESIGN', 'FOREIGN KEYS / CONSTRAINTS', 'DATABASE MIGRATIONS']
+        skills: ['POSTGRESQL 18', 'SQL QUERIES', 'JOIN QUERIES', 'CRUD OPERATIONS', 'PGADMIN 4']
       },
       {
         category: 'TOOLING',
         title: 'DEV TOOLS',
-        skills: ['GIT', 'GITHUB', 'VS CODE', 'COMPOSER 2.8', 'NPM']
+        skills: ['GIT', 'VS CODE', 'COMPOSER 2.8', 'NPM', 'NETLIFY']
       }
     ];
 
