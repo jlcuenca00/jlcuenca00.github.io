@@ -1,0 +1,283 @@
+/* Mobile correctness hotfix — loaded after every Developer design layer.
+   This is intentionally specific: no horizontal project reel on phones,
+   no hero overflow, and no metadata collisions. */
+
+.project-shot-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-content: center;
+  gap: .7rem;
+  padding: 2rem;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+    radial-gradient(circle at 50% 45%, rgba(255,45,45,.09), transparent 34%),
+    #070707;
+  background-size: 32px 32px, 32px 32px, auto, auto;
+  color: rgba(255,255,255,.38);
+  text-align: center;
+  pointer-events: none;
+}
+.project-shot-placeholder strong {
+  color: rgba(255,255,255,.72);
+  font: 400 clamp(1.35rem,2.7vw,2.7rem)/.9 var(--head);
+  letter-spacing: -.045em;
+}
+.project-shot-placeholder span,
+.project-shot-placeholder small {
+  font: 600 .5rem/1.5 var(--mono);
+  letter-spacing: .11em;
+}
+.project-shot-placeholder span { color: var(--red); }
+.project-shot-placeholder small { color: rgba(255,255,255,.32); }
+.project-panel > img { z-index: 1; }
+.project-panel > img:not(.is-missing) + .project-shot-placeholder { opacity: 0; }
+.project-panel > img.is-missing { opacity: 0 !important; }
+.project-panel__wash,
+.project-panel__top,
+.project-panel__copy,
+.project-panel__open { z-index: 3; }
+.project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
+  object-fit: contain !important;
+  padding: clamp(1rem,3vw,2.5rem);
+  background: #080808;
+}
+
+@media (max-width: 800px) {
+  html,
+  body.dev-page { max-width: 100%; overflow-x: clip !important; }
+
+  /* Hero metadata: normal flow only. Nothing absolute or generated behind it. */
+  .hero-meta {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) auto !important;
+    gap: .5rem .75rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding-bottom: .8rem !important;
+  }
+  .hero-meta::before,
+  .hero-meta::after { display: none !important; content: none !important; }
+  .hero-meta > span {
+    position: static !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+    transform: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.45 !important;
+  }
+  .hero-meta > span:first-child {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    font-size: clamp(.44rem,1.65vw,.54rem) !important;
+  }
+  .hero-meta > .online {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    font-size: clamp(.43rem,1.55vw,.52rem) !important;
+    white-space: nowrap !important;
+  }
+  .hero-meta > span:nth-child(2) {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    order: initial !important;
+    color: rgba(255,255,255,.38) !important;
+    font-size: clamp(.44rem,1.65vw,.52rem) !important;
+    letter-spacing: .09em !important;
+  }
+
+  /* Hero poster: FRONTEND must stay entirely inside the viewport. */
+  .hero-poster {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: clamp(28rem,118vw,35rem) !important;
+    overflow: hidden !important;
+  }
+  .hero-face,
+  .hero-face h1,
+  .hero-face h2 { min-width: 0 !important; }
+  .hero-face h1,
+  .hero-face h2 {
+    left: clamp(.9rem,4vw,1.2rem) !important;
+    right: clamp(.9rem,4vw,1.2rem) !important;
+    width: auto !important;
+    max-width: none !important;
+    bottom: clamp(2.8rem,9vw,3.8rem) !important;
+    transform: none !important;
+  }
+  .hero-face--front h1::before,
+  .hero-face--system h2::before {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(3rem,14.4vw,5.4rem) !important;
+    line-height: .72 !important;
+    letter-spacing: -.085em !important;
+    white-space: nowrap !important;
+  }
+  .hero-face--front h1::after,
+  .hero-face--system h2::after {
+    width: max-content !important;
+    max-width: 100% !important;
+    margin-top: .75rem !important;
+    font-size: clamp(.5rem,1.9vw,.65rem) !important;
+  }
+  .hero-portrait {
+    top: 10% !important;
+    right: 5% !important;
+    width: clamp(6.5rem,30vw,8.5rem) !important;
+  }
+  .poster-note {
+    right: .85rem !important;
+    bottom: .8rem !important;
+  }
+
+  /* Work: a true responsive stack, not a horizontally overflowing desktop reel. */
+  .work-v2 { overflow: visible !important; }
+  .project-reel {
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    border: 0 !important;
+    background: transparent !important;
+    scroll-snap-type: none !important;
+  }
+  .project-panel,
+  .project-panel.is-active {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: clamp(29rem,120vw,36rem) !important;
+    flex: none !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    overflow: hidden !important;
+    scroll-snap-align: none !important;
+  }
+  .project-panel > img,
+  .project-panel.is-active > img {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    transition: none !important;
+    filter: saturate(.84) contrast(1.04) brightness(.56) !important;
+  }
+  .project-panel[data-project-panel="periphora"] > img:not(.is-missing) {
+    object-fit: contain !important;
+    padding: 1.25rem !important;
+  }
+  .project-panel__top {
+    top: .9rem !important;
+    left: .95rem !important;
+    right: .95rem !important;
+    gap: .7rem !important;
+  }
+  .project-panel__top small {
+    max-width: 68%;
+    white-space: normal !important;
+    text-align: right;
+    line-height: 1.35;
+  }
+  .project-panel__copy {
+    left: 1rem !important;
+    right: 1rem !important;
+    bottom: 1rem !important;
+    min-width: 0 !important;
+  }
+  .project-panel__copy h3,
+  .project-panel:not(.is-active) .project-panel__copy h3 {
+    max-width: 100% !important;
+    margin-top: .5rem !important;
+    font-size: clamp(2.35rem,10.8vw,4rem) !important;
+    line-height: .84 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .project-panel__copy p {
+    max-width: 38rem !important;
+    margin: .8rem 0 .9rem !important;
+    font-size: clamp(.7rem,3vw,.82rem) !important;
+    line-height: 1.55 !important;
+  }
+  .project-panel__stack { gap: .35rem !important; }
+  .project-panel__stack i {
+    padding: .38rem .5rem !important;
+    font-size: .43rem !important;
+  }
+  .project-panel__open,
+  .project-panel.is-active .project-panel__open {
+    top: .8rem !important;
+    right: .8rem !important;
+    padding: .6rem .72rem !important;
+  }
+  .reel-caption {
+    display: flex !important;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .reel-caption i { flex: 1; }
+  .reel-caption span:last-child { display: inline !important; }
+
+  .project-shot-placeholder { padding: 1.25rem; }
+  .project-shot-placeholder strong { font-size: clamp(1.45rem,7vw,2.4rem); }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding-top: 4.65rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+  .hero-meta > span:first-child { max-width: 26ch; }
+  .hero-meta > .online::before {
+    width: .36rem !important;
+    height: .36rem !important;
+    margin-right: .35rem !important;
+    box-shadow: none !important;
+  }
+  .hero-poster { min-height: clamp(27rem,125vw,32rem) !important; }
+  .hero-face--front h1::before,
+  .hero-face--system h2::before { font-size: clamp(2.85rem,13.8vw,4.25rem) !important; }
+  .poster-code span:last-child { display: none !important; }
+  .hero-portrait { width: clamp(6rem,28vw,7.4rem) !important; }
+
+  .direction-head h2,
+  .section-head h2 {
+    font-size: clamp(2.85rem,13.2vw,4.65rem) !important;
+    line-height: .84 !important;
+  }
+  .direction-head > p,
+  .section-head > p { font-size: .72rem !important; }
+
+  .project-panel,
+  .project-panel.is-active { min-height: clamp(28rem,132vw,34rem) !important; }
+  .project-panel__copy h3,
+  .project-panel:not(.is-active) .project-panel__copy h3 {
+    font-size: clamp(2.2rem,10.5vw,3.55rem) !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-meta { grid-template-columns: 1fr !important; }
+  .hero-meta > span:first-child,
+  .hero-meta > .online,
+  .hero-meta > span:nth-child(2) {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    justify-self: start !important;
+  }
+  .hero-face--front h1::before,
+  .hero-face--system h2::before { font-size: clamp(2.65rem,13.3vw,3.7rem) !important; }
+  .project-panel__top small { max-width: 60%; }
+}
