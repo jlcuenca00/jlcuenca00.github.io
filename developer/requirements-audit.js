@@ -188,6 +188,24 @@
     });
   }
 
+  function updateProjectAndContact() {
+    const wordspace = $('[data-project-panel="todo"]');
+    if (wordspace) {
+      wordspace.dataset.projectPanel = 'wordspace';
+      wordspace.setAttribute('aria-label', 'Wordspace project — open in new tab');
+      const stack = $('.project-panel__stack', wordspace);
+      if (stack) {
+        stack.innerHTML = '<i>REACT 19</i><i>REACT ROUTER 7</i><i>VITE 7</i><i>JAVASCRIPT ES6+</i>';
+      }
+    }
+
+    const emailLink = $('#contact .contact-v2__actions a[href^="mailto:"]');
+    if (emailLink) {
+      emailLink.href = 'mailto:cuencajakekevin@gmail.com';
+      setText($('strong', emailLink), 'CUENCAJAKEKEVIN@GMAIL.COM');
+    }
+  }
+
   function updateAffiliationIntro() {
     const intro = $('.aff-position__intro');
     if (!intro) return;
@@ -257,6 +275,7 @@
     updateSectionLabels();
     updateAbout();
     updateSkills();
+    updateProjectAndContact();
     updateAffiliationIntro();
   }
 
