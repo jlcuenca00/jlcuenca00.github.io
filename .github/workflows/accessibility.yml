@@ -1,0 +1,42 @@
+name: Accessibility
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  wcag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install audit tools
+        run: npm install --no-save playwright @axe-core/playwright http-server
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start local site
+        run: |
+          npx http-server . -p 4173 -c-1 > /tmp/portfolio-http.log 2>&1 &
+          echo $! > /tmp/portfolio-http.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/portfolio-http.log
+          exit 1
+
+      - name: Run WCAG 2.2 AA audit
+        run: node .github/scripts/accessibility-audit.cjs
