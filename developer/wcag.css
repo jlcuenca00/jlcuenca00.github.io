@@ -44,8 +44,24 @@
 .aff-position__role,
 .profile-manifesto__label,
 .profile-manifesto__eyebrow,
-.profile-manifesto__note {
-  color: rgba(255,255,255,.68) !important;
+.profile-manifesto__note,
+.profile-map-head > span:nth-child(2),
+.resume-audit__actions a > span,
+a[download="Jake-Cuenca-Resume.pdf"] > span {
+  color: rgba(255,255,255,.72) !important;
+}
+
+/* Footer text is content, not decorative metadata. Keep all of it comfortably above AA contrast. */
+.site-footer,
+.site-footer > span,
+.site-footer [data-current-year],
+.site-footer a,
+.site-footer a[href$="#top"] {
+  color: rgba(255,255,255,.78) !important;
+}
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: #fff !important;
 }
 
 /* Strong, two-color focus indicator works on red, black, photography, and outlined surfaces. */
@@ -137,8 +153,13 @@ main > section[id] {
   .cap-card__top small,
   .secondary-track article small,
   .affiliation-v2__head strong,
-  .contact-v2__meta strong {
-    color: rgba(255,255,255,.9) !important;
+  .contact-v2__meta strong,
+  .profile-map-head > span:nth-child(2),
+  .profile-manifesto__eyebrow,
+  .resume-audit__actions a > span,
+  .site-footer,
+  .site-footer a {
+    color: rgba(255,255,255,.92) !important;
   }
 }
 
