@@ -2,6 +2,19 @@
 
 /* Final micro-polish for section rhythm and spacing. */
 
+/* Keep the portfolio copy-led, not instruction-led. Section headings and the
+   actual work carry the page; generic helper/explainer copy stays out. */
+#work > .direction-head > p,
+#profile > .direction-head > p,
+#capabilities > .section-head > p,
+#history > .direction-head > p,
+#credentials > .section-head > p,
+.aff-position__intro > p,
+#work .reel-caption,
+.hero-portrait > span {
+  display: none !important;
+}
+
 /* Leadership / Media: one header break, then records immediately. */
 .affiliation-v2 {
   margin-top: clamp(3.75rem, 6vw, 6rem) !important;
@@ -128,10 +141,6 @@
 
   .aff-position__intro {
     padding: .7rem 0 !important;
-  }
-
-  .aff-position__intro > p {
-    margin-top: .35rem !important;
   }
 
   .aff-position__row {
