@@ -33,8 +33,7 @@
       actions.className = 'contact-v2__actions';
     }
 
-    // The original art direction keeps the message and links as sibling columns.
-    // A later accessibility pass accidentally nested the links inside the hero.
+    // Original repo composition: statement on the left, four destinations on the right.
     if (actions.parentElement !== glow || actions.previousElementSibling !== hero) {
       hero.insertAdjacentElement('afterend', actions);
     }
@@ -62,13 +61,13 @@
 
     const description = credentials.querySelector('.section-head > p');
     if (description) {
-      description.textContent = 'Training and developer certifications with title, issuing organization, and issue date. Open each certificate PDF or verify the issuer credential where available.';
+      description.textContent = 'Training and developer certifications with title, issuing organization, and issue date. Open each certificate record or verify the issuer credential where available.';
     }
 
     if (!folio.querySelector('[data-certificate="networking-basics"]')) {
       folio.insertAdjacentHTML('beforeend', `
-        <article class="certificate-card" data-certificate="networking-basics" data-cursor="PDF">
-          <a class="certificate-paper" href="assets/certificates/networking-basics.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Networking Basics certificate PDF in a new tab">
+        <article class="certificate-card" data-certificate="networking-basics" data-cursor="OPEN">
+          <a class="certificate-paper" href="assets/certificates/networking-basics.html" target="_blank" rel="noopener noreferrer" aria-label="Open Networking Basics certificate record in a new tab">
             <header><span>05 / COURSE CERTIFICATE</span><strong>CISCO NETWORKING ACADEMY</strong></header>
             <div class="certificate-body"><small>DICT-ITU DTC INITIATIVE</small><p>JAKE KEVIN KLAIR CUENCA</p><h3>NETWORKING<br />BASICS</h3></div>
             <footer><div><span>ISSUED</span><strong>24 OCT 2025</strong></div><div><span>TYPE</span><strong>COURSE COMPLETION</strong></div><i>CISCO</i></footer>
@@ -79,8 +78,8 @@
 
     if (!folio.querySelector('[data-certificate="intro-cybersecurity"]')) {
       folio.insertAdjacentHTML('beforeend', `
-        <article class="certificate-card" data-certificate="intro-cybersecurity" data-cursor="PDF">
-          <a class="certificate-paper" href="assets/certificates/introduction-to-cybersecurity.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Introduction to Cybersecurity certificate PDF in a new tab">
+        <article class="certificate-card" data-certificate="intro-cybersecurity" data-cursor="OPEN">
+          <a class="certificate-paper" href="assets/certificates/introduction-to-cybersecurity.html" target="_blank" rel="noopener noreferrer" aria-label="Open Introduction to Cybersecurity certificate record in a new tab">
             <header><span>06 / COURSE CERTIFICATE</span><strong>CISCO NETWORKING ACADEMY</strong></header>
             <div class="certificate-body"><small>NETWORKING ACADEMY</small><p>JAKE KEVIN CUENCA</p><h3>INTRODUCTION TO<br />CYBERSECURITY</h3></div>
             <footer><div><span>ISSUED</span><strong>30 AUG 2026</strong></div><div><span>CERT ID</span><strong>2A90BEC1…FFDAE9</strong></div><i>CISCO</i></footer>
@@ -103,8 +102,8 @@
     document.addEventListener('DOMContentLoaded', sync, { once: true });
   }
 
-  // requirements-audit.js performs a late normalization pass; re-assert these
-  // intended project/contact/certificate details afterwards.
+  // requirements-audit.js performs late normalization passes; restore intended
+  // contact/certificate structure after those passes as well.
   window.setTimeout(sync, 180);
   window.setTimeout(sync, 560);
 })();
