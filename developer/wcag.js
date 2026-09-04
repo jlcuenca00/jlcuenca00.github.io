@@ -1,13 +1,17 @@
 (() => {
   const start = () => {
     const main = document.querySelector('main');
-    if (main && !main.id) main.id = 'main-content';
+    if (main) {
+      if (!main.id) main.id = 'main-content';
+      main.setAttribute('tabindex', '-1');
+    }
 
     if (!document.querySelector('.skip-link')) {
       const skip = document.createElement('a');
       skip.className = 'skip-link';
       skip.href = '#main-content';
       skip.textContent = 'Skip to main content';
+      skip.addEventListener('click', () => requestAnimationFrame(() => main?.focus({ preventScroll: true })));
       document.body.prepend(skip);
     }
 
@@ -101,6 +105,20 @@
       });
       syncEducation();
     }
+
+    const affiliationButtons = [...document.querySelectorAll('[data-aff-v2], .aff-strip')];
+    const syncAffiliations = () => affiliationButtons.forEach(button => {
+      if (!button.matches('button')) return;
+      const expanded = button.getAttribute('aria-expanded') === 'true' || button.classList.contains('is-open');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      const name = button.querySelector('.aff-strip__name, strong')?.textContent?.trim();
+      if (name && !button.getAttribute('aria-label')) button.setAttribute('aria-label', `${name} affiliation details`);
+    });
+    affiliationButtons.forEach(button => {
+      button.addEventListener('click', () => requestAnimationFrame(syncAffiliations));
+      button.addEventListener('focus', () => requestAnimationFrame(syncAffiliations));
+    });
+    syncAffiliations();
 
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
       if (link.dataset.wcagNewTab === 'true') return;
