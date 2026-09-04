@@ -17,10 +17,18 @@
     if (!document.querySelector('link[data-section-polish]')) {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = 'section-polish.css?v=20260904-1';
+      link.href = 'section-polish.css?v=20260904-2';
       link.dataset.sectionPolish = 'true';
       document.head.appendChild(link);
     }
+  }
+
+  function ensureWcagLayer() {
+    if (document.querySelector('script[data-wcag-developer]')) return;
+    const script = document.createElement('script');
+    script.src = 'wcag.js?v=20260904-1';
+    script.dataset.wcagDeveloper = 'true';
+    document.head.appendChild(script);
   }
 
   function ensureCursor() {
@@ -298,6 +306,7 @@
 
   const start = () => {
     ensureFinalRefinement();
+    ensureWcagLayer();
     applyAudit();
     observeProfileBuild();
     ensureCursor();
@@ -305,6 +314,7 @@
     window.setTimeout(() => {
       applyAudit();
       ensureCursor();
+      ensureWcagLayer();
     }, 420);
   };
 
