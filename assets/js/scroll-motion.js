@@ -8,11 +8,13 @@
     const body = document.body;
     const mm = gsap.matchMedia();
 
+    /* Motion may translate/scale readable content, but must not make that content
+       fail contrast while it enters the viewport. Keep settle animations opaque. */
     const settle = (target, fromVars, trigger, options = {}) => {
         if (!target || !trigger) return null;
         return gsap.fromTo(
             target,
-            fromVars,
+            { ...fromVars, opacity: 1 },
             {
                 x: 0,
                 y: 0,
@@ -55,7 +57,7 @@
     const chapterTitle = (heading) => {
         if (!heading) return;
         const opener = heading.closest(".section-title, .creator-section-head") || heading.parentElement || heading;
-        settle(heading, { y: 86, scale: 0.94, opacity: 0.24 }, opener, {
+        settle(heading, { y: 86, scale: 0.94 }, opener, {
             start: "top 88%",
             end: "top 40%",
             scrub: 0.28,
@@ -72,16 +74,16 @@
             end: "bottom top",
             scrub: 0.28,
         });
-        parallax(heroStatus, { y: 0, opacity: 1 }, { y: 28, opacity: 0.38 }, hero, {
+        parallax(heroStatus, { y: 0, opacity: 1 }, { y: 28, opacity: 1 }, hero, {
             start: "top top",
             end: "bottom 35%",
             scrub: 0.22,
         });
 
         document.querySelectorAll(".project-row").forEach((row, index) => {
-            settle(row.querySelector(".project-no"), { x: -18, opacity: 0.2 }, row, { end: "top 62%" });
-            settle(row.querySelector(".project-name"), { x: index % 2 ? 28 : -28, opacity: 0.52 }, row, { end: "top 58%" });
-            settle(row.querySelector(".project-arrow"), { x: 16, opacity: 0.18 }, row, { end: "top 62%" });
+            settle(row.querySelector(".project-no"), { x: -18 }, row, { end: "top 62%" });
+            settle(row.querySelector(".project-name"), { x: index % 2 ? 28 : -28 }, row, { end: "top 58%" });
+            settle(row.querySelector(".project-arrow"), { x: 16 }, row, { end: "top 62%" });
         });
 
         const preview = document.querySelector(".project-preview .preview-window");
@@ -93,7 +95,7 @@
         });
 
         document.querySelectorAll(".case-card").forEach((card, index) => {
-            settle(card, { y: 48 + index * 6, opacity: 0.32 }, card, {
+            settle(card, { y: 48 + index * 6 }, card, {
                 start: "top 94%",
                 end: "top 60%",
                 scrub: 0.28,
@@ -107,7 +109,7 @@
         document.querySelectorAll(".dev-skills > .section-title h2, .dev-education > .section-title h2, .dev-certificates > .section-title h2").forEach(chapterTitle);
 
         const profileHeading = document.querySelector(".dev-about h2");
-        settle(profileHeading, { y: 70, opacity: 0.28 }, profileHeading, {
+        settle(profileHeading, { y: 70 }, profileHeading, {
             start: "top 90%",
             end: "top 56%",
             scrub: 0.25,
@@ -118,7 +120,7 @@
         parallax(portrait, { y: 12 }, { y: -12 }, profile, { scrub: 0.28 });
 
         document.querySelectorAll(".skill-grid article").forEach((item, index) => {
-            settle(item, { y: 28 + index * 3, opacity: 0.38 }, item, {
+            settle(item, { y: 28 + index * 3 }, item, {
                 start: "top 95%",
                 end: "top 66%",
                 scrub: 0.21,
@@ -126,7 +128,7 @@
         });
 
         document.querySelectorAll(".education-card, .achievement-list > div").forEach((item, index) => {
-            settle(item, { y: 24 + (index % 3) * 6, opacity: 0.38 }, item, {
+            settle(item, { y: 24 + (index % 3) * 6 }, item, {
                 start: "top 95%",
                 end: "top 68%",
                 scrub: 0.2,
@@ -134,7 +136,7 @@
         });
 
         document.querySelectorAll(".certificate-card").forEach((card, index) => {
-            settle(card, { y: 34 + index * 5, opacity: 0.36 }, card, {
+            settle(card, { y: 34 + index * 5 }, card, {
                 start: "top 94%",
                 end: "top 64%",
                 scrub: 0.22,
@@ -146,7 +148,7 @@
         });
 
         [document.querySelector(".cv-copy h2"), document.querySelector(".dev-contact h2")].forEach((heading) => {
-            settle(heading, { y: 70, scale: 0.96, opacity: 0.28 }, heading, {
+            settle(heading, { y: 70, scale: 0.96 }, heading, {
                 start: "top 90%",
                 end: "top 56%",
                 scrub: 0.24,
@@ -154,7 +156,7 @@
         });
 
         document.querySelectorAll(".contact-links a").forEach((link, index) => {
-            settle(link, { x: 28 + index * 6, opacity: 0.28 }, link, {
+            settle(link, { x: 28 + index * 6 }, link, {
                 start: "top 96%",
                 end: "top 72%",
                 scrub: 0.18,
@@ -178,14 +180,14 @@
             end: "bottom top",
             scrub: 0.28,
         });
-        parallax(heroMeta, { y: 0, opacity: 1 }, { y: 26, opacity: 0.36 }, hero, {
+        parallax(heroMeta, { y: 0, opacity: 1 }, { y: 26, opacity: 1 }, hero, {
             start: "top top",
             end: "bottom 35%",
             scrub: 0.22,
         });
 
         const intro = document.querySelector(".intro-statement");
-        settle(intro, { y: 46, opacity: 0.32 }, intro, {
+        settle(intro, { y: 46 }, intro, {
             start: "top 92%",
             end: "top 58%",
             scrub: 0.24,
@@ -194,7 +196,7 @@
         document.querySelectorAll(".selected-work .creator-section-head h2, .motion-section .creator-section-head h2").forEach(chapterTitle);
 
         document.querySelectorAll(".gallery-frame").forEach((frame, index) => {
-            settle(frame, { y: 24 + (index % 4) * 6, opacity: 0.32 }, frame, {
+            settle(frame, { y: 24 + (index % 4) * 6 }, frame, {
                 start: "top 96%",
                 end: "top 74%",
                 scrub: 0.18,
@@ -212,7 +214,7 @@
         });
 
         document.querySelectorAll(".motion-item").forEach((item, index) => {
-            settle(item, { y: 48 + index * 8, opacity: 0.32 }, item, {
+            settle(item, { y: 48 + index * 8 }, item, {
                 start: "top 94%",
                 end: "top 60%",
                 scrub: 0.24,
@@ -225,26 +227,26 @@
 
         const aboutHeading = document.querySelector(".creator-about h2");
         const aboutCopy = document.querySelector(".creator-about__copy");
-        settle(aboutHeading, { y: 72, scale: 0.96, opacity: 0.26 }, aboutHeading, {
+        settle(aboutHeading, { y: 72, scale: 0.96 }, aboutHeading, {
             start: "top 90%",
             end: "top 54%",
             scrub: 0.24,
         });
-        settle(aboutCopy, { y: 38, opacity: 0.34 }, aboutCopy, {
+        settle(aboutCopy, { y: 38 }, aboutCopy, {
             start: "top 92%",
             end: "top 64%",
             scrub: 0.2,
         });
 
         const contactHeading = document.querySelector(".creator-contact h2");
-        settle(contactHeading, { y: 72, scale: 0.96, opacity: 0.26 }, contactHeading, {
+        settle(contactHeading, { y: 72, scale: 0.96 }, contactHeading, {
             start: "top 90%",
             end: "top 54%",
             scrub: 0.24,
         });
 
         document.querySelectorAll(".creator-contact__links a").forEach((link, index) => {
-            settle(link, { x: 28 + index * 8, opacity: 0.28 }, link, {
+            settle(link, { x: 28 + index * 8 }, link, {
                 start: "top 96%",
                 end: "top 72%",
                 scrub: 0.18,
@@ -262,7 +264,7 @@
         });
 
         document.querySelectorAll(".gallery-frame, .case-card, .certificate-card, .skill-grid article").forEach((item) => {
-            settle(item, { y: 18, opacity: 0.42 }, item, {
+            settle(item, { y: 18 }, item, {
                 start: "top 96%",
                 end: "top 76%",
                 scrub: 0.15,
