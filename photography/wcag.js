@@ -13,11 +13,9 @@
 
         const lightbox = document.getElementById('lightbox');
         if (lightbox) {
-            lightbox.setAttribute('aria-labelledby', 'lightbox-caption-text');
+            lightbox.setAttribute('aria-labelledby', 'lightbox-text');
             const caption = document.querySelector('.lightbox-caption');
-            const captionText = document.getElementById('lightbox-text');
             if (caption) caption.setAttribute('aria-live', 'polite');
-            if (captionText) captionText.id = 'lightbox-caption-text';
 
             const pageRegions = [
                 document.querySelector('.creator-nav'),
