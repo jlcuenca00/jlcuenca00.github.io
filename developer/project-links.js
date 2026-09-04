@@ -14,7 +14,7 @@
     if (document.querySelector('link[data-contact-layout-restored]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'section-polish.css?v=20260904-4';
+    link.href = 'section-polish.css?v=20260904-5';
     link.dataset.contactLayoutRestored = 'true';
     document.head.appendChild(link);
   };
@@ -28,6 +28,21 @@
 
     const action = fourfold.querySelector('.project-panel__open');
     if (action) action.textContent = 'LIVE ↗';
+  };
+
+  const removeHelperCopy = () => {
+    [
+      '#work > .direction-head > p',
+      '#profile > .direction-head > p',
+      '#capabilities > .section-head > p',
+      '#history > .direction-head > p',
+      '#credentials > .section-head > p',
+      '.aff-position__intro > p',
+      '#work .reel-caption',
+      '.hero-portrait > span'
+    ].forEach((selector) => {
+      document.querySelectorAll(selector).forEach((node) => node.remove());
+    });
   };
 
   const restoreContactSwitchboard = () => {
@@ -68,11 +83,6 @@
     const folio = credentials?.querySelector('.certificate-folio');
     if (!credentials || !folio) return;
 
-    const description = credentials.querySelector('.section-head > p');
-    if (description) {
-      description.textContent = 'Training and developer certifications with title, issuing organization, and issue date. Open the original issued PDF for each certificate; freeCodeCamp credentials also include issuer verification.';
-    }
-
     if (!folio.querySelector('[data-certificate="networking-basics"]')) {
       folio.insertAdjacentHTML('beforeend', `
         <article class="certificate-card" data-certificate="networking-basics" data-cursor="PDF">
@@ -102,6 +112,7 @@
     syncProjectLinks();
     restoreContactSwitchboard();
     addCiscoCertificates();
+    removeHelperCopy();
   };
 
   ensureWcag();
@@ -111,8 +122,8 @@
     document.addEventListener('DOMContentLoaded', sync, { once: true });
   }
 
-  // requirements-audit.js performs late normalization passes; restore intended
-  // contact/certificate structure after those passes as well.
+  // Legacy scripts perform late normalization passes. Re-assert the intended
+  // links/certificates and the stricter copy discipline afterwards.
   window.setTimeout(sync, 180);
   window.setTimeout(sync, 560);
 })();
