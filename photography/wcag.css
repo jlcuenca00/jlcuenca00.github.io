@@ -1,0 +1,113 @@
+/* WCAG 2.2 AA accessibility layer for the Creator portfolio. */
+
+.photography-page {
+    /* Original #2f67ff is slightly under 4.5:1 against #050505 for small text. */
+    --accent: #4d7cff;
+    --accent-rgb: 77, 124, 255;
+    --creator-muted: rgba(255, 255, 255, 0.76);
+    --creator-soft: rgba(255, 255, 255, 0.60);
+    --creator-line: rgba(255, 255, 255, 0.24);
+}
+
+.skip-link {
+    position: fixed;
+    z-index: 10000;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    color: #050505;
+    font: 700 0.78rem/1 "JetBrains Mono", monospace;
+    text-decoration: none;
+    transform: translateY(-180%);
+    transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.creator-nav__links a,
+.creator-brand,
+.creator-hero__foot a,
+.creator-contact__links a,
+.creator-footer a,
+.lightbox button {
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.creator-nav__links a {
+    color: rgba(255, 255, 255, 0.72);
+    padding-inline: 0.2rem;
+}
+
+.creator-brand small,
+.intro-index,
+.creator-section-head span,
+.about-index span:first-child,
+.contact-index span:first-child,
+.motion-copy > span {
+    color: var(--accent);
+}
+
+.creator-contact h2 span {
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.52);
+}
+
+.gallery-frame::after {
+    padding: 0.22rem 0.35rem;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #ffffff;
+}
+
+/* Strong two-color focus ring survives image, black, and blue backgrounds. */
+.photography-page :where(a, button, [tabindex]):focus-visible {
+    outline: 3px solid #ffffff !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 6px var(--accent) !important;
+}
+
+/* Keep keyboard focus below the fixed navigation rather than obscured by it. */
+html {
+    scroll-padding-top: 6.5rem;
+}
+
+/* Continuous decorative motion must not be required to understand the page. */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal,
+    .hidden,
+    .gallery-frame img,
+    .creator-contact__links a,
+    .creator-nav__links a {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .photography-page,
+    .photography-page.creator-cursor-enabled,
+    .photography-page.creator-cursor-enabled a,
+    .photography-page.creator-cursor-enabled button {
+        cursor: auto !important;
+    }
+
+    .creator-cursor-light,
+    .creator-cursor-ring,
+    .creator-cursor-dot,
+    .hero-image__veil {
+        display: none !important;
+    }
+
+    .photography-page :where(a, button, [tabindex]):focus-visible {
+        outline: 3px solid Highlight !important;
+        box-shadow: none !important;
+    }
+}
