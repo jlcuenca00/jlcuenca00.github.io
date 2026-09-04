@@ -35,6 +35,9 @@
 
             const syncDialogIsolation = () => {
                 const open = lightbox.classList.contains('active') && lightbox.getAttribute('aria-hidden') !== 'true';
+                if (open) lightbox.removeAttribute('inert');
+                else lightbox.setAttribute('inert', '');
+
                 pageRegions.forEach(region => {
                     if (open) region.setAttribute('inert', '');
                     else region.removeAttribute('inert');
