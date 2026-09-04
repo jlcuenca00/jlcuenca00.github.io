@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 800px) {
-  /* Photo 2: on touch/narrow layouts the hero becomes a real two-sided card.
+  /* Hero: on touch/narrow layouts the poster becomes a real two-sided card.
      Front = FRONTEND + formal portrait. Back = FULL STACK + thumbs-up portrait. */
   .hero-poster {
     perspective: 1200px !important;
@@ -88,7 +88,64 @@
     transform: rotate(1.5deg) !important;
   }
 
-  /* Photo 3: remove decorative layers that compete with the actual role copy. */
+  /* FULL STACK has to read immediately against the red reverse side. */
+  .hero-face--system h2,
+  .hero-face--system h2::before {
+    color: #080808 !important;
+    -webkit-text-stroke: 0 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+  }
+  .hero-face--system h2::after {
+    color: #080808 !important;
+    border-color: rgba(8,8,8,.66) !important;
+    background: rgba(8,8,8,.045) !important;
+  }
+  .hero-face--system .poster-code,
+  .hero-face--system .poster-note,
+  .hero-face--system .poster-note::after {
+    color: rgba(8,8,8,.78) !important;
+  }
+  .hero-face--system .poster-note::before {
+    background: rgba(8,8,8,.72) !important;
+  }
+
+  /* Certificates: keep long titles and issuer labels inside the card. */
+  .certificate-paper {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .certificate-paper header {
+    min-width: 0 !important;
+    gap: .65rem !important;
+  }
+  .certificate-paper header strong {
+    max-width: 52% !important;
+    min-width: 0 !important;
+    text-align: right !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    line-height: 1.25 !important;
+  }
+  .certificate-body {
+    min-width: 0 !important;
+  }
+  .certificate-body h3 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    font-size: clamp(1.72rem,7.35vw,2.55rem) !important;
+    line-height: .88 !important;
+    letter-spacing: -.052em !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+  .certificate-card[data-certificate="intro-cybersecurity"] .certificate-body h3 {
+    font-size: clamp(1.65rem,7vw,2.4rem) !important;
+  }
+
+  /* Leadership / Media: remove decorative layers that compete with role copy. */
   .aff-position__row::after {
     display: none !important;
     content: none !important;
@@ -132,6 +189,16 @@
     line-height: .9 !important;
   }
 
+  /* PHOTOJOURNALIST is a single role label; keep it on one line on phones. */
+  .aff-position__row:nth-child(3) .aff-position__primary strong {
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    font-size: clamp(1.55rem,7.2vw,2.35rem) !important;
+    letter-spacing: -.045em !important;
+  }
+
   .aff-position__secondary {
     display: grid !important;
     grid-template-columns: minmax(0,1fr) !important;
@@ -171,9 +238,18 @@
     grid-template-columns: 1.55rem minmax(0,1fr) !important;
     gap: .55rem .7rem !important;
   }
-  .aff-position__primary strong,
-  .aff-position__row:nth-child(3) .aff-position__primary strong {
+  .aff-position__primary strong {
     font-size: clamp(1.85rem,9vw,2.85rem) !important;
+  }
+  .aff-position__row:nth-child(3) .aff-position__primary strong {
+    font-size: clamp(1.42rem,6.7vw,2rem) !important;
+  }
+
+  .certificate-body h3 {
+    font-size: clamp(1.55rem,7.05vw,2.15rem) !important;
+  }
+  .certificate-card[data-certificate="intro-cybersecurity"] .certificate-body h3 {
+    font-size: clamp(1.48rem,6.6vw,2rem) !important;
   }
 }
 
