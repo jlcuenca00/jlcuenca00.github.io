@@ -13,7 +13,10 @@
 
         const lightbox = document.getElementById('lightbox');
         if (lightbox) {
+            lightbox.removeAttribute('aria-label');
             lightbox.setAttribute('aria-labelledby', 'lightbox-text');
+            lightbox.setAttribute('aria-describedby', 'lightbox-count');
+
             const caption = document.querySelector('.lightbox-caption');
             if (caption) caption.setAttribute('aria-live', 'polite');
 
@@ -60,6 +63,8 @@
             const label = existing || link.textContent.trim().replace(/\s+/g, ' ');
             if (label && !/new tab/i.test(label)) link.setAttribute('aria-label', `${label} — opens in a new tab`);
         });
+
+        document.querySelectorAll('main > section[id]').forEach(section => section.setAttribute('tabindex', '-1'));
     };
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
