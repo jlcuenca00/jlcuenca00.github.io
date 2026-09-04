@@ -14,7 +14,7 @@
     if (document.querySelector('link[data-contact-layout-restored]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'section-polish.css?v=20260904-3';
+    link.href = 'section-polish.css?v=20260904-4';
     link.dataset.contactLayoutRestored = 'true';
     document.head.appendChild(link);
   };
@@ -70,13 +70,13 @@
 
     const description = credentials.querySelector('.section-head > p');
     if (description) {
-      description.textContent = 'Training and developer certifications with title, issuing organization, and issue date. Open each certificate record or verify the issuer credential where available.';
+      description.textContent = 'Training and developer certifications with title, issuing organization, and issue date. Open the original issued PDF for each certificate; freeCodeCamp credentials also include issuer verification.';
     }
 
     if (!folio.querySelector('[data-certificate="networking-basics"]')) {
       folio.insertAdjacentHTML('beforeend', `
-        <article class="certificate-card" data-certificate="networking-basics" data-cursor="OPEN">
-          <a class="certificate-paper" href="assets/certificates/networking-basics.html" target="_blank" rel="noopener noreferrer" aria-label="Open Networking Basics certificate record in a new tab">
+        <article class="certificate-card" data-certificate="networking-basics" data-cursor="PDF">
+          <a class="certificate-paper" href="assets/certificates/networking-basics.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original Networking Basics certificate PDF in a new tab">
             <header><span>05 / COURSE CERTIFICATE</span><strong>CISCO NETWORKING ACADEMY</strong></header>
             <div class="certificate-body"><small>DICT-ITU DTC INITIATIVE</small><p>JAKE KEVIN KLAIR CUENCA</p><h3>NETWORKING<br />BASICS</h3></div>
             <footer><div><span>ISSUED</span><strong>24 OCT 2025</strong></div><div><span>TYPE</span><strong>COURSE COMPLETION</strong></div><i>CISCO</i></footer>
@@ -87,13 +87,12 @@
 
     if (!folio.querySelector('[data-certificate="intro-cybersecurity"]')) {
       folio.insertAdjacentHTML('beforeend', `
-        <article class="certificate-card" data-certificate="intro-cybersecurity" data-cursor="OPEN">
-          <a class="certificate-paper" href="assets/certificates/introduction-to-cybersecurity.html" target="_blank" rel="noopener noreferrer" aria-label="Open Introduction to Cybersecurity certificate record in a new tab">
+        <article class="certificate-card" data-certificate="intro-cybersecurity" data-cursor="PDF">
+          <a class="certificate-paper" href="assets/certificates/introduction-to-cybersecurity.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original Introduction to Cybersecurity certificate PDF in a new tab">
             <header><span>06 / COURSE CERTIFICATE</span><strong>CISCO NETWORKING ACADEMY</strong></header>
             <div class="certificate-body"><small>NETWORKING ACADEMY</small><p>JAKE KEVIN CUENCA</p><h3>INTRODUCTION TO<br />CYBERSECURITY</h3></div>
             <footer><div><span>ISSUED</span><strong>30 AUG 2026</strong></div><div><span>CERT ID</span><strong>2A90BEC1…FFDAE9</strong></div><i>CISCO</i></footer>
           </a>
-          <a class="certificate-verify" href="https://www.netacad.com/recognitions/verify/2a90bec1-e9c3-4b48-932a-1e8564ffdae9" target="_blank" rel="noopener noreferrer" aria-label="Verify Introduction to Cybersecurity certificate with Cisco Networking Academy — opens in a new tab">VERIFY ↗</a>
         </article>
       `);
     }
