@@ -10,6 +10,15 @@
     document.head.appendChild(script);
   };
 
+  const ensureRestoredLayout = () => {
+    if (document.querySelector('link[data-contact-layout-restored]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'section-polish.css?v=20260904-3';
+    link.dataset.contactLayoutRestored = 'true';
+    document.head.appendChild(link);
+  };
+
   const syncProjectLinks = () => {
     const fourfold = document.querySelector('[data-project-panel="fourfold"]');
     if (!fourfold) return;
@@ -42,10 +51,10 @@
       <a href="mailto:cuencajakekevin@gmail.com" data-cursor="MAIL">
         <span>01 / EMAIL</span><strong>CUENCAJAKEKEVIN@GMAIL.COM</strong><i>↗</i>
       </a>
-      <a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer" data-cursor="OPEN">
+      <a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer" data-cursor="OPEN" aria-label="GitHub, JLCUENCA00 — opens in a new tab">
         <span>02 / GITHUB</span><strong>JLCUENCA00</strong><i>↗</i>
       </a>
-      <a href="resume.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
+      <a href="resume.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF" aria-label="Open CV — opens PDF in a new tab">
         <span>03 / RESUME</span><strong>OPEN CV</strong><i>↗</i>
       </a>
       <a class="contact-v2__creator" href="../photography/index.html" data-world-link data-cursor="ENTER">
@@ -84,7 +93,7 @@
             <div class="certificate-body"><small>NETWORKING ACADEMY</small><p>JAKE KEVIN CUENCA</p><h3>INTRODUCTION TO<br />CYBERSECURITY</h3></div>
             <footer><div><span>ISSUED</span><strong>30 AUG 2026</strong></div><div><span>CERT ID</span><strong>2A90BEC1…FFDAE9</strong></div><i>CISCO</i></footer>
           </a>
-          <a class="certificate-verify" href="https://www.netacad.com/recognitions/verify/2a90bec1-e9c3-4b48-932a-1e8564ffdae9" target="_blank" rel="noopener noreferrer">VERIFY ↗</a>
+          <a class="certificate-verify" href="https://www.netacad.com/recognitions/verify/2a90bec1-e9c3-4b48-932a-1e8564ffdae9" target="_blank" rel="noopener noreferrer" aria-label="Verify Introduction to Cybersecurity certificate with Cisco Networking Academy — opens in a new tab">VERIFY ↗</a>
         </article>
       `);
     }
@@ -97,6 +106,7 @@
   };
 
   ensureWcag();
+  ensureRestoredLayout();
   sync();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', sync, { once: true });
