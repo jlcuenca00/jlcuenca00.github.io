@@ -1,0 +1,122 @@
+/* WCAG 2.2 AA accessibility layer for the Developer portfolio. */
+
+:root {
+  --soft: rgba(245,245,242,.72);
+  --faint: rgba(245,245,242,.40);
+  --line: rgba(245,245,242,.20);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: .75rem;
+  left: .75rem;
+  padding: .75rem 1rem;
+  background: #fff;
+  color: #050505;
+  font: 700 .78rem/1 var(--mono);
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform .16s ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Small navigation text was below AA contrast. Keep the same quiet hierarchy, not the low contrast. */
+.nav-links a {
+  color: rgba(255,255,255,.72) !important;
+  font-size: max(.66rem, 10.5px) !important;
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Important metadata that was rendered around 30–44% white is still intentionally secondary, but readable. */
+.hero-meta,
+.hero-face--front .poster-code,
+.hero-face--front .poster-note,
+.cap-card__top small,
+.secondary-track article small,
+.affiliation-v2__head strong,
+.contact-v2__meta strong,
+.aff-card__meta span:last-child,
+.aff-position__intro > p,
+.aff-position__context,
+.aff-position__role,
+.profile-manifesto__label,
+.profile-manifesto__eyebrow,
+.profile-manifesto__note {
+  color: rgba(255,255,255,.68) !important;
+}
+
+/* Strong, two-color focus indicator works on red, black, photography, and outlined surfaces. */
+.dev-page :where(a,button,[role="button"],[tabindex="0"]):focus-visible {
+  outline: 3px solid #fff !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 6px var(--red) !important;
+}
+
+/* Meet WCAG 2.2 target-size expectations without visually turning links into buttons. */
+.nav-toggle,
+.education-levels button,
+.aff-node,
+.certificate-verify,
+.hero-foot a,
+.contact-v2__actions a {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+/* Decorative ticker no longer begins moving automatically; motion is opt-in by hover. */
+.profile-ticker > div {
+  animation-play-state: paused !important;
+}
+@media (hover:hover) and (pointer:fine) {
+  .profile-ticker:hover > div { animation-play-state: running !important; }
+}
+
+/* Roving education tabs expose the inactive panels semantically and visually consistently. */
+.education-panel[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .signal-canvas { display: none !important; }
+  .profile-ticker > div,
+  [data-reveal],
+  .project-panel,
+  .project-panel *,
+  .hero-poster *,
+  .certificate-paper {
+    animation: none !important;
+    transition: none !important;
+    transform: none;
+  }
+  [data-reveal] { opacity: 1 !important; }
+}
+
+@media (forced-colors: active) {
+  .dev-page,
+  .dev-page.cursor-enabled,
+  .dev-page.cursor-enabled a,
+  .dev-page.cursor-enabled button {
+    cursor: auto !important;
+  }
+
+  .cursor,
+  .signal-canvas,
+  .grain,
+  .contact-glow::before,
+  .contact-glow::after {
+    display: none !important;
+  }
+
+  .dev-page :where(a,button,[role="button"],[tabindex="0"]):focus-visible {
+    outline: 3px solid Highlight !important;
+    box-shadow: none !important;
+  }
+}
