@@ -1,0 +1,78 @@
+/* WCAG 2.2 AA hardening for the portfolio landing page. */
+
+:root {
+    --creator-accessible: #4d7cff;
+}
+
+/* Preserve the split-screen art direction while raising the blue path above AA contrast. */
+.path--creator h1,
+.path--creator h2 {
+    color: var(--creator-accessible);
+}
+
+/* Two-color focus treatment remains visible against either red, blue, or near-black surfaces. */
+.path:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: -8px;
+    box-shadow: inset 0 0 0 6px rgba(5, 5, 5, 0.92);
+}
+
+.path:focus-visible::after {
+    border: 2px solid currentColor;
+    inset: 1.1rem;
+}
+
+/* Keep supporting copy comfortably above normal-text contrast requirements. */
+.path p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.watermark__year {
+    color: #a7a7a7;
+}
+
+/* Do not hide the operating-system pointer in forced-colors/high-contrast modes. */
+@media (forced-colors: active) {
+    body,
+    body.portal-cursor-enabled,
+    body.portal-cursor-enabled a,
+    body.portal-cursor-enabled button {
+        cursor: auto !important;
+    }
+
+    .portal-cursor-aura,
+    .portal-cursor-ring,
+    .portal-cursor-dot,
+    .portal-cursor-label,
+    .landing::before,
+    .split-glow {
+        display: none !important;
+    }
+
+    .path {
+        forced-color-adjust: auto;
+        border: 1px solid CanvasText;
+    }
+
+    .path h1,
+    .path h2,
+    .path p,
+    .watermark,
+    .watermark__year {
+        color: CanvasText !important;
+        -webkit-text-stroke: 0 !important;
+        filter: none !important;
+    }
+
+    .path:focus-visible {
+        outline: 3px solid Highlight !important;
+        outline-offset: -8px;
+        box-shadow: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
