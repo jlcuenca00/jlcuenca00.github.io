@@ -1,15 +1,22 @@
 (() => {
     const start = () => {
         const main = document.querySelector('main');
-        if (main && !main.id) main.id = 'main-content';
+        if (main) {
+            if (!main.id) main.id = 'main-content';
+            main.setAttribute('tabindex', '-1');
+        }
 
         if (!document.querySelector('.skip-link')) {
             const skip = document.createElement('a');
             skip.className = 'skip-link';
             skip.href = '#main-content';
             skip.textContent = 'Skip to main content';
+            skip.addEventListener('click', () => requestAnimationFrame(() => main?.focus({ preventScroll: true })));
             document.body.prepend(skip);
         }
+
+        const gallery = document.getElementById('photo-container');
+        if (gallery) gallery.removeAttribute('aria-live');
 
         const lightbox = document.getElementById('lightbox');
         if (lightbox) {
