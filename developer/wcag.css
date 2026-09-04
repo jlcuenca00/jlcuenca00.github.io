@@ -30,7 +30,7 @@
   align-items: center;
 }
 
-/* Important metadata that was rendered around 30–44% white is still intentionally secondary, but readable. */
+/* Important metadata on dark surfaces remains secondary, but readable. */
 .hero-meta,
 .hero-face--front .poster-code,
 .hero-face--front .poster-note,
@@ -43,12 +43,21 @@
 .aff-position__context,
 .aff-position__role,
 .profile-manifesto__label,
-.profile-manifesto__eyebrow,
-.profile-manifesto__note,
 .profile-map-head > span:nth-child(2),
 .resume-audit__actions a > span,
 a[download="Jake-Cuenca-Resume.pdf"] > span {
   color: rgba(255,255,255,.72) !important;
+}
+
+/* The final profile composition uses a light paper panel. Do not apply dark-surface text colors there. */
+.profile-manifesto .profile-manifesto__eyebrow {
+  color: #c71818 !important;
+}
+.profile-manifesto .profile-manifesto__eyebrow::before {
+  background: #c71818 !important;
+}
+.profile-manifesto .profile-manifesto__note {
+  color: #343430 !important;
 }
 
 /* Footer text is content, not decorative metadata. Keep all of it comfortably above AA contrast. */
@@ -155,11 +164,20 @@ main > section[id] {
   .affiliation-v2__head strong,
   .contact-v2__meta strong,
   .profile-map-head > span:nth-child(2),
-  .profile-manifesto__eyebrow,
   .resume-audit__actions a > span,
   .site-footer,
   .site-footer a {
     color: rgba(255,255,255,.92) !important;
+  }
+
+  .profile-manifesto .profile-manifesto__eyebrow {
+    color: #8f0000 !important;
+  }
+  .profile-manifesto .profile-manifesto__eyebrow::before {
+    background: #8f0000 !important;
+  }
+  .profile-manifesto .profile-manifesto__note {
+    color: #161614 !important;
   }
 }
 
