@@ -19,6 +19,25 @@
     document.head.appendChild(link);
   };
 
+  const ensureFinalResponsivePass = () => {
+    const existingStyle = document.querySelector('link[data-final-responsive-pass]');
+    if (existingStyle) existingStyle.remove();
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'final-responsive-pass.css?v=20260904-1';
+    link.dataset.finalResponsivePass = 'true';
+    document.head.appendChild(link);
+
+    if (!document.querySelector('script[data-final-responsive-pass]')) {
+      const script = document.createElement('script');
+      script.src = 'final-responsive-pass.js?v=20260904-1';
+      script.defer = true;
+      script.dataset.finalResponsivePass = 'true';
+      document.head.appendChild(script);
+    }
+  };
+
   const syncProjectLinks = () => {
     const fourfold = document.querySelector('[data-project-panel="fourfold"]');
     if (!fourfold) return;
@@ -126,4 +145,8 @@
   // links/certificates and the stricter copy discipline afterwards.
   window.setTimeout(sync, 180);
   window.setTimeout(sync, 560);
+
+  // director.js appends its responsive layers on DOMContentLoaded. Re-append this
+  // pass after those layers so it remains the final mobile authority.
+  window.setTimeout(ensureFinalResponsivePass, 900);
 })();
