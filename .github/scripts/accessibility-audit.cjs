@@ -21,7 +21,8 @@ const formatNodes = (nodes) => nodes.slice(0, 5).map((node) => `      ${node.tar
   try {
     for (const [pageName, path] of pages) {
       for (const [viewportName, viewport] of viewports) {
-        const page = await browser.newPage({ viewport });
+        const context = await browser.newContext({ viewport });
+        const page = await context.newPage();
         const url = `http://127.0.0.1:4173${path}`;
         await page.goto(url, { waitUntil: 'networkidle' });
 
@@ -53,7 +54,7 @@ const formatNodes = (nodes) => nodes.slice(0, 5).map((node) => `      ${node.tar
           console.log('  reflow: no horizontal page overflow');
         }
 
-        await page.close();
+        await context.close();
       }
     }
   } finally {
