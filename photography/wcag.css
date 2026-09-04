@@ -151,7 +151,7 @@ main > section[id] {
         font-size: clamp(2.85rem, 16vw, 4.5rem) !important;
     }
 
-    /* A late-loaded layout layer had a 3.5rem minimum, making PHOTOGRAPHY 438px wide on a 320px viewport. */
+    /* Late-loaded layout layers used large minimum title sizes. */
     .selected-work .creator-section-head,
     .motion-section .creator-section-head {
         max-width: 100% !important;
@@ -177,6 +177,33 @@ main > section[id] {
 
     .creator-view-modes {
         flex-wrap: wrap !important;
+    }
+
+    /* The exhibition About spread also had intrinsic grid/title widths wider than 320px. */
+    .creator-about,
+    .creator-about__main,
+    .creator-about__main > *,
+    .creator-about__copy,
+    .creator-about h2 {
+        max-width: 100% !important;
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    .creator-about__main {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 2rem !important;
+    }
+
+    .creator-about h2 {
+        font-size: clamp(2.6rem, 14vw, 4rem) !important;
+        overflow-wrap: anywhere;
+    }
+
+    .creator-about__copy p {
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-wrap: anywhere;
     }
 
     html,
