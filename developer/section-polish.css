@@ -30,6 +30,76 @@
   padding-bottom: 1rem !important;
 }
 
+/*
+  CONTACT
+  Restore the original switchboard composition from the repo's final art-direction pass:
+  statement/hero on the left, contact destinations stacked in the right column.
+  Keep the accessibility layers intact; this only restores layout placement.
+*/
+@media (min-width: 960px) {
+  .contact-glow {
+    display: grid !important;
+    grid-template-columns: minmax(31rem, 1.16fr) minmax(28rem, .84fr) !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    column-gap: clamp(4rem, 7vw, 9rem) !important;
+    row-gap: 0 !important;
+  }
+
+  .contact-v2__meta {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+  }
+
+  .contact-v2__hero {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    align-self: stretch !important;
+    min-width: 0 !important;
+    min-height: clamp(27rem, 49vh, 35rem) !important;
+    padding-right: 1rem !important;
+  }
+
+  .contact-v2__hero h2 {
+    max-width: 11.5ch !important;
+    font-size: clamp(3.6rem, 5.35vw, 6.45rem) !important;
+    line-height: .8 !important;
+  }
+
+  .contact-v2__actions {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    align-self: stretch !important;
+    justify-self: stretch !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-left: 1px solid rgba(255,255,255,.11) !important;
+    border-top: 0 !important;
+  }
+
+  .contact-v2__actions a {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 959px) {
+  .contact-glow {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-v2__hero,
+  .contact-v2__actions {
+    grid-column: 1 !important;
+  }
+
+  .contact-v2__actions {
+    border-left: 0 !important;
+    border-top: 1px solid rgba(255,255,255,.11) !important;
+  }
+}
+
 @media (max-width: 800px) {
   .affiliation-v2 {
     margin-top: 3rem !important;
