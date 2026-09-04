@@ -1,5 +1,14 @@
 /* Final responsive pass - intentionally loaded after every other Developer stylesheet. */
 
+/* The portfolio already exposes Work in navigation and CV in the contact switchboard.
+   Keep the hero as one decisive poster rather than repeating navigation underneath it. */
+.hero-foot {
+  display: none !important;
+}
+.hero-poster {
+  margin-bottom: 0 !important;
+}
+
 /* Photo 1: keep the brand lockup compact and visually balanced. */
 .site-nav .brand {
   gap: .52rem !important;
