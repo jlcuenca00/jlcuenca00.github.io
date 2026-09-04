@@ -85,3 +85,20 @@ const latestLayout = [
 // Mutating them here keeps the existing gallery/lightbox/cursor implementation intact.
 photos.unshift(...latestPhotos);
 layoutPattern.unshift(...latestLayout);
+
+// Accessibility is intentionally loaded last so its focus/contrast rules win the cascade
+// without flattening the Creator page's art direction.
+if (!document.querySelector('link[data-wcag-creator]')) {
+    const wcagStyle = document.createElement('link');
+    wcagStyle.rel = 'stylesheet';
+    wcagStyle.href = 'wcag.css?v=20260904-1';
+    wcagStyle.dataset.wcagCreator = 'true';
+    document.head.appendChild(wcagStyle);
+}
+
+if (!document.querySelector('script[data-wcag-creator]')) {
+    const wcagScript = document.createElement('script');
+    wcagScript.src = 'wcag.js?v=20260904-1';
+    wcagScript.dataset.wcagCreator = 'true';
+    document.head.appendChild(wcagScript);
+}
