@@ -59,15 +59,29 @@
 .nav-toggle,
 .education-levels button,
 .aff-node,
+.aff-strip,
 .certificate-verify,
 .hero-foot a,
-.contact-v2__actions a {
+.contact-v2__actions a,
+.site-footer a {
   min-width: 24px;
   min-height: 24px;
 }
 
+.contact-v2__actions strong,
+.site-footer,
+.education-panel h3,
+.secondary-track h3,
+.profile-facts-v2 strong {
+  overflow-wrap: anywhere;
+}
+
 html {
   scroll-padding-top: 5.5rem;
+}
+
+main > section[id] {
+  scroll-margin-top: 5.5rem;
 }
 
 /* Decorative ticker no longer begins moving automatically; motion is opt-in by hover. */
@@ -81,6 +95,51 @@ html {
 /* Roving education tabs expose the inactive panels semantically and visually consistently. */
 .education-panel[hidden] {
   display: none !important;
+}
+
+@media (hover:none), (pointer:coarse) {
+  .nav-toggle,
+  .education-levels button,
+  .aff-node,
+  .aff-strip,
+  .certificate-verify,
+  .hero-foot a,
+  .contact-v2__actions a,
+  .site-footer a {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-v2__actions strong {
+    font-size: clamp(.72rem, 3.4vw, .9rem) !important;
+    line-height: 1.35 !important;
+  }
+
+  .site-footer {
+    gap: .75rem !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --soft: rgba(245,245,242,.88);
+    --faint: rgba(245,245,242,.66);
+    --line: rgba(245,245,242,.38);
+  }
+
+  .nav-links a,
+  .hero-meta,
+  .hero-face--front .poster-code,
+  .hero-face--front .poster-note,
+  .cap-card__top small,
+  .secondary-track article small,
+  .affiliation-v2__head strong,
+  .contact-v2__meta strong {
+    color: rgba(255,255,255,.9) !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
