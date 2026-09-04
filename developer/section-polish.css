@@ -32,9 +32,9 @@
 
 /*
   CONTACT
-  Restore the original switchboard composition from the repo's final art-direction pass:
-  statement/hero on the left, contact destinations stacked in the right column.
-  Keep the accessibility layers intact; this only restores layout placement.
+  Original switchboard composition: statement on the left, four destinations
+  filling the entire right column. Separators belong between every row so the
+  OPEN CV / ENTER CREATOR division never disappears.
 */
 @media (min-width: 960px) {
   .contact-glow {
@@ -71,16 +71,29 @@
     align-self: stretch !important;
     justify-self: stretch !important;
     display: grid !important;
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: repeat(4, minmax(0, 1fr)) !important;
     width: 100% !important;
+    height: 100% !important;
+    min-height: clamp(27rem, 49vh, 35rem) !important;
     margin: 0 !important;
     border-left: 1px solid rgba(255,255,255,.11) !important;
     border-top: 0 !important;
+    border-bottom: 0 !important;
   }
 
   .contact-v2__actions a {
     width: 100% !important;
+    height: 100% !important;
     min-width: 0 !important;
+    min-height: 0 !important;
+    align-self: stretch !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .contact-v2__actions a + a {
+    border-top: 1px solid rgba(255,255,255,.11) !important;
   }
 }
 
@@ -96,6 +109,14 @@
 
   .contact-v2__actions {
     border-left: 0 !important;
+    border-top: 1px solid rgba(255,255,255,.11) !important;
+  }
+
+  .contact-v2__actions a {
+    border-bottom: 0 !important;
+  }
+
+  .contact-v2__actions a + a {
     border-top: 1px solid rgba(255,255,255,.11) !important;
   }
 }
