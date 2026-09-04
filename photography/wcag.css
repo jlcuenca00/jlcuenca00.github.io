@@ -56,6 +56,13 @@
     -webkit-text-stroke-color: rgba(255, 255, 255, 0.52);
 }
 
+.creator-contact__links a,
+.creator-footer,
+.lightbox-caption,
+.kit-line span {
+    overflow-wrap: anywhere;
+}
+
 .gallery-frame::after {
     padding: 0.22rem 0.35rem;
     border-radius: 2px;
@@ -75,6 +82,61 @@ html {
     scroll-padding-top: 6.5rem;
 }
 
+main > section[id] {
+    scroll-margin-top: 6.5rem;
+}
+
+/* Touch users get comfortable targets without changing the desktop composition. */
+@media (hover: none), (pointer: coarse) {
+    .creator-nav__links a,
+    .creator-brand,
+    .creator-hero__foot a,
+    .creator-contact__links a,
+    .creator-footer a,
+    .lightbox button {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Preserve all navigation destinations at narrow widths instead of hiding sections. */
+@media (max-width: 480px) {
+    .creator-nav__links a:nth-child(2),
+    .creator-nav__links a:nth-child(3),
+    .creator-nav__links a:nth-child(4) {
+        display: inline-flex !important;
+    }
+
+    .creator-nav {
+        gap: 0.55rem;
+        padding-bottom: 0.7rem;
+    }
+
+    .creator-nav__links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.15rem 0.55rem;
+    }
+
+    .creator-nav__links a {
+        font-size: 0.68rem;
+    }
+
+    .creator-hero {
+        padding-top: 9.5rem;
+    }
+
+    html,
+    main > section[id] {
+        scroll-padding-top: 9rem;
+        scroll-margin-top: 9rem;
+    }
+
+    .creator-footer {
+        flex-wrap: wrap;
+    }
+}
+
 /* Continuous decorative motion must not be required to understand the page. */
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -88,6 +150,14 @@ html {
     .creator-nav__links a {
         transition: none !important;
         animation: none !important;
+    }
+}
+
+@media (prefers-contrast: more) {
+    .photography-page {
+        --creator-muted: rgba(255, 255, 255, 0.88);
+        --creator-soft: rgba(255, 255, 255, 0.76);
+        --creator-line: rgba(255, 255, 255, 0.42);
     }
 }
 
