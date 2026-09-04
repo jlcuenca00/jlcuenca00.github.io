@@ -25,7 +25,7 @@
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'final-responsive-pass.css?v=20260904-1';
+    link.href = 'final-responsive-pass.css?v=20260904-2';
     link.dataset.finalResponsivePass = 'true';
     document.head.appendChild(link);
 
