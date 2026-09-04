@@ -52,6 +52,11 @@
     color: var(--accent);
 }
 
+/* This is primary editorial copy, not decorative ghost text. */
+.intro-statement > p {
+    color: #ffffff !important;
+}
+
 .creator-contact h2 span {
     -webkit-text-stroke-color: rgba(255, 255, 255, 0.52);
 }
