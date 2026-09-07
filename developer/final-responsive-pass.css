@@ -9,6 +9,19 @@
   margin-bottom: 0 !important;
 }
 
+/* Desktop hero reveal: make the red system lens substantially larger while
+   preserving the same pointer-following interaction and leaving mobile untouched. */
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-face--system {
+    clip-path: circle(0px at var(--rx) var(--ry)) !important;
+  }
+
+  .hero-poster:hover .hero-face--system,
+  .hero-poster:focus-within .hero-face--system {
+    clip-path: circle(clamp(260px, 20vw, 380px) at var(--rx) var(--ry)) !important;
+  }
+}
+
 /* Photo 1: keep the brand lockup compact and visually balanced. */
 .site-nav .brand {
   gap: .52rem !important;
