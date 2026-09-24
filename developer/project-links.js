@@ -142,6 +142,9 @@
     const reel = work?.querySelector('.project-reel');
     if (!work || !reel) return;
 
+    const workTitle = work.querySelector('#workTitle');
+    if (workTitle) workTitle.innerHTML = 'FEATURED WORK.<br /><i>PROJECT INDEX.</i>';
+
     let archive = work.querySelector('#projectArchive');
     if (!archive) {
       archive = document.createElement('section');
@@ -154,12 +157,12 @@
     archive.innerHTML = `
       <header class="project-archive__head">
         <div>
-          <span class="project-archive__kicker">PROJECT ARCHIVE / 04</span>
-          <h3 class="project-archive__title" id="projectArchiveTitle">MORE WORK.</h3>
+          <span class="project-archive__kicker">ALL PROJECTS / 04</span>
+          <h3 class="project-archive__title" id="projectArchiveTitle">PROJECT INDEX.</h3>
         </div>
         <div class="project-archive__filters" role="group" aria-label="Filter projects">
           <button class="project-filter is-active" type="button" data-project-filter="all">ALL</button>
-          <button class="project-filter" type="button" data-project-filter="systems">SYSTEMS</button>
+          <button class="project-filter" type="button" data-project-filter="professional">PROFESSIONAL</button>
           <button class="project-filter" type="button" data-project-filter="personal">PERSONAL</button>
           <button class="project-filter" type="button" data-project-filter="tools">TOOLS</button>
         </div>
