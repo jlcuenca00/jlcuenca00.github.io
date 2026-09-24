@@ -127,15 +127,135 @@
     }
   };
 
+
+  const ensureProjectArchiveStyles = () => {
+    if (document.querySelector('link[data-project-archive]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'project-archive.css?v=20260925-1';
+    link.dataset.projectArchive = 'true';
+    document.head.appendChild(link);
+  };
+
+  const buildProjectArchive = () => {
+    const work = document.getElementById('work');
+    const reel = work?.querySelector('.project-reel');
+    if (!work || !reel) return;
+
+    let archive = work.querySelector('#projectArchive');
+    if (!archive) {
+      archive = document.createElement('section');
+      archive.className = 'project-archive';
+      archive.id = 'projectArchive';
+      archive.setAttribute('aria-labelledby', 'projectArchiveTitle');
+      reel.insertAdjacentElement('afterend', archive);
+    }
+
+    archive.innerHTML = `
+      <header class="project-archive__head">
+        <div>
+          <span class="project-archive__kicker">PROJECT ARCHIVE / 04</span>
+          <h3 class="project-archive__title" id="projectArchiveTitle">MORE WORK.</h3>
+        </div>
+        <div class="project-archive__filters" role="group" aria-label="Filter projects">
+          <button class="project-filter is-active" type="button" data-project-filter="all">ALL</button>
+          <button class="project-filter" type="button" data-project-filter="systems">SYSTEMS</button>
+          <button class="project-filter" type="button" data-project-filter="personal">PERSONAL</button>
+          <button class="project-filter" type="button" data-project-filter="tools">TOOLS</button>
+        </div>
+      </header>
+
+      <div class="project-archive__list">
+        <article class="project-record" data-project-tags="systems professional">
+          <span class="project-record__index">01</span>
+          <div class="project-record__identity">
+            <span class="project-record__type">PUBLIC-SECTOR SYSTEM / 2026</span>
+            <h4>DAR-LTCMS</h4>
+          </div>
+          <div class="project-record__body">
+            <p>Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.</p>
+            <div class="project-record__stack"><span>LARAVEL 12</span><span>PHP</span><span>POSTGRESQL</span><span>BLADE</span></div>
+          </div>
+          <div class="project-record__links">
+            <a class="project-record__primary" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer">LIVE ↗</a>
+          </div>
+        </article>
+
+        <article class="project-record" data-project-tags="personal">
+          <span class="project-record__index">02</span>
+          <div class="project-record__identity">
+            <span class="project-record__type">PERSONAL PRODUCT / 2026</span>
+            <h4>FOURFOLD</h4>
+          </div>
+          <div class="project-record__body">
+            <p>Keyboard-first personality test with a one-question flow, persistent progress, automatic results, and sixteen original profiles.</p>
+            <div class="project-record__stack"><span>FLASK</span><span>PYTHON</span><span>JAVASCRIPT</span><span>RESPONSIVE UI</span></div>
+          </div>
+          <div class="project-record__links">
+            <a class="project-record__primary" href="https://mbti-test-khip.onrender.com/" target="_blank" rel="noopener noreferrer">LIVE ↗</a>
+            <a href="https://github.com/jlcuenca00/mbti-test" target="_blank" rel="noopener noreferrer">SOURCE ↗</a>
+          </div>
+        </article>
+
+        <article class="project-record" data-project-tags="personal tools">
+          <span class="project-record__index">03</span>
+          <div class="project-record__identity">
+            <span class="project-record__type">PERSONAL PRODUCT / 2026</span>
+            <h4>WORDSPACE</h4>
+          </div>
+          <div class="project-record__body">
+            <p>Feature-rich typing experience with configurable tests, themes, behavior controls, live WPM and accuracy, and typing history.</p>
+            <div class="project-record__stack"><span>REACT 19</span><span>VITE 7</span><span>JAVASCRIPT</span><span>RESPONSIVE UI</span></div>
+          </div>
+          <div class="project-record__links">
+            <a class="project-record__primary" href="https://spiffy-scone-a17658.netlify.app/" target="_blank" rel="noopener noreferrer">LIVE ↗</a>
+            <a href="https://github.com/jlcuenca00/wordspace" target="_blank" rel="noopener noreferrer">SOURCE ↗</a>
+          </div>
+        </article>
+
+        <article class="project-record" data-project-tags="personal tools systems">
+          <span class="project-record__index">04</span>
+          <div class="project-record__identity">
+            <span class="project-record__type">WINDOWS COMPANION / MODDING TOOL / 2026</span>
+            <h4>COTW LIVE TRACKER</h4>
+          </div>
+          <div class="project-record__body">
+            <p>Read-only Windows companion for theHunter: Call of the Wild with live animal tracking, reserve population scanning, trophy and fur analysis, filters, radar, and reserve-map overlays.</p>
+            <div class="project-record__stack"><span>C#</span><span>.NET</span><span>WPF</span><span>MEMORY READING</span><span>GAME DATA</span></div>
+          </div>
+          <div class="project-record__links">
+            <a class="project-record__primary" href="https://www.nexusmods.com/thehuntercallofthewild/mods/1143?published=1" target="_blank" rel="noopener noreferrer">NEXUS ↗</a>
+            <a href="https://github.com/jlcuenca00/cotw-live-tracker" target="_blank" rel="noopener noreferrer">SOURCE ↗</a>
+          </div>
+        </article>
+      </div>
+    `;
+
+    const filters = [...archive.querySelectorAll('[data-project-filter]')];
+    const records = [...archive.querySelectorAll('.project-record')];
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.projectFilter || 'all';
+        filters.forEach((item) => item.classList.toggle('is-active', item === button));
+        records.forEach((record) => {
+          const tags = (record.dataset.projectTags || '').split(/\s+/);
+          record.hidden = filter !== 'all' && !tags.includes(filter);
+        });
+      });
+    });
+  };
+
   const sync = () => {
     syncProjectLinks();
     restoreContactSwitchboard();
     addCiscoCertificates();
+    buildProjectArchive();
     removeHelperCopy();
   };
 
   ensureWcag();
   ensureRestoredLayout();
+  ensureProjectArchiveStyles();
   sync();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', sync, { once: true });
