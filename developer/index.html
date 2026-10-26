@@ -1,340 +1,351 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jake Cuenca — front-end designer and full-stack system developer. Experimental interfaces, practical systems, and selected work." />
-  <meta name="theme-color" content="#050505" />
-  <title>Jake Cuenca — Front-End Designer / System Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260831-polish2" />
-  <link rel="stylesheet" href="director.css?v=20260831-1" />
-  <script src="script.js?v=20260831-polish2" defer></script>
-  <script src="director.js?v=20260904-4" defer></script>
-  <script src="project-links.js?v=20260904-1" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Jake Cuenca, a developer based in Dumaguete City. Selected interfaces, full-stack systems, and personal projects.">
+<meta name="theme-color" content="#101010">
+<title>Jake Cuenca — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=taste-v2">
+<script src="script.js?v=taste-v2" defer>
+</script>
 </head>
-<body class="dev-page">
-  <div class="intro-loader" id="introLoader" aria-hidden="true">
-    <span>J/C</span><i></i><strong>FRONTEND / SYSTEMS</strong>
-  </div>
-
-  <canvas class="signal-canvas" id="signalCanvas" aria-hidden="true"></canvas>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="page-progress" aria-hidden="true"><i id="pageProgress"></i></div>
-
-  <nav class="site-nav" id="siteNav" aria-label="Developer portfolio navigation">
-    <a class="brand" href="../index.html" aria-label="Portfolio landing page"><strong>J/C</strong><span>F/E + SYSTEMS</span></a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
-    <div class="nav-links" id="navLinks">
-      <a href="#work">WORK</a>
-      <a href="#profile">PROFILE</a>
-      <a href="#capabilities">TOOLS</a>
-      <a href="#history">HISTORY</a>
-      <a href="#credentials">CERTS</a>
-      <a href="#contact">CONTACT</a>
-      <a class="creator-link" href="../photography/index.html" data-world-link data-cursor="ENTER">CREATOR ↗</a>
-    </div>
-  </nav>
-
-  <main>
-    <section class="hero scene" id="top" data-signal="hero">
-      <div class="scene-meta hero-meta" data-reveal>
-        <span>JAKE KEVIN KLAIR L. CUENCA</span>
-        <span>4TH YEAR / BS INFORMATION TECHNOLOGY / DUMAGUETE, PH</span>
-        <span class="online">AVAILABLE / 2026</span>
-      </div>
-
-      <div class="hero-poster" id="heroPoster" data-reveal>
-        <div class="hero-face hero-face--front">
-          <div class="poster-code"><span>JC.01</span><span>INTERACTION / UI / MOTION</span></div>
-          <h1 aria-label="Front-end designer"><span>FRONT</span><span>END</span><em>DESIGNER</em></h1>
-          <p class="poster-note">DESIGN THE SURFACE.</p>
-        </div>
-
-        <div class="hero-face hero-face--system" id="systemReveal" aria-hidden="true">
-          <div class="poster-code"><span>JC.02</span><span>LARAVEL / DATA / WORKFLOWS</span></div>
-          <h2><span>SYSTEM</span><span>BUILDER</span><em>FULL STACK</em></h2>
-          <p class="poster-note">BUILD WHAT RUNS UNDER IT.</p>
-        </div>
-
-        <figure class="hero-portrait" aria-hidden="true">
-          <img src="assets/profile/portrait-03.jpg" alt="" />
-          <span>MOVE / REVEAL</span>
-        </figure>
-
-        <div class="hero-cross" aria-hidden="true"><i></i><i></i></div>
-      </div>
-
-      <div class="hero-foot" data-reveal>
-        <p>Front-end design is the first impression. Systems engineering makes it real.</p>
-        <div>
-          <a href="#work" data-cursor="VIEW">SELECTED WORK ↓</a>
-          <a href="resume.pdf" target="_blank" rel="noopener" data-cursor="PDF">RESUME ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="work-v2 scene" id="work" data-signal="network" aria-labelledby="workTitle">
-      <header class="direction-head" data-reveal>
-        <div><span>01 / SELECTED WORK</span><h2 id="workTitle">THREE BUILDS.<br /><i>THREE WORLDS.</i></h2></div>
-        <p>Three real builds, presented with actual system screenshots, project context, tools, role, and a working live or source link.</p>
-      </header>
-
-      <div class="project-reel" id="projectReel" data-reveal aria-label="Selected projects">
-        <a class="project-panel is-active" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer" data-project-panel="dar" data-cursor="OPEN" aria-label="DAR-LTCMS project — open in new tab">
-          <img src="assets/project-screenshots/dar-ltcms.png" alt="Screenshot of the DAR-LTCMS system" loading="lazy" decoding="async" />
-          <div class="project-shot-placeholder" aria-hidden="true"><span>SYSTEM SCREENSHOT / PLACEHOLDER</span><strong>DAR-LTCMS</strong><small>UPLOAD: assets/project-screenshots/dar-ltcms.png</small></div>
-          <div class="project-panel__wash"></div>
-          <div class="project-panel__top"><span>01</span><small>2026 / FULL-STACK SYSTEM</small></div>
-          <div class="project-panel__copy">
-            <span>LEAD / INTEGRATOR</span>
-            <h3>DAR-LTCMS</h3>
-            <p>Land transfer clearance, parcel records, mapping, monitoring, reporting, and auditable workflow for DAR Negros Oriental.</p>
-            <div class="project-panel__stack"><i>LARAVEL 12</i><i>PHP</i><i>POSTGRESQL</i><i>BLADE</i></div>
-          </div>
-          <strong class="project-panel__open">OPEN ↗</strong>
-        </a>
-
-        <a class="project-panel" href="https://mbti-test-khip.onrender.com/" target="_blank" rel="noopener noreferrer" data-project-panel="fourfold" data-cursor="OPEN" aria-label="Fourfold personality test project — open live app in new tab">
-          <img src="assets/project-screenshots/fourfold.png" alt="Screenshot of the Fourfold personality test" loading="lazy" decoding="async" />
-          <div class="project-shot-placeholder" aria-hidden="true"><span>SYSTEM SCREENSHOT / PLACEHOLDER</span><strong>FOURFOLD</strong><small>UPLOAD: assets/project-screenshots/fourfold.png</small></div>
-          <div class="project-panel__wash"></div>
-          <div class="project-panel__top"><span>02</span><small>2026 / PERSONALITY TEST</small></div>
-          <div class="project-panel__copy">
-            <span>INDIVIDUAL / FRONT-END</span>
-            <h3>FOURFOLD</h3>
-            <p>Focused personality test with a one-question flow, keyboard controls, refresh-safe progress, 16 original profiles, and preference breakdowns.</p>
-            <div class="project-panel__stack"><i>FLASK</i><i>PYTHON</i><i>JAVASCRIPT</i><i>RESPONSIVE UI</i></div>
-          </div>
-          <strong class="project-panel__open">LIVE ↗</strong>
-        </a>
-
-        <a class="project-panel" href="https://spiffy-scone-a17658.netlify.app/" target="_blank" rel="noopener noreferrer" data-project-panel="todo" data-cursor="OPEN" aria-label="Wordspace project — open in new tab">
-          <img src="assets/project-screenshots/wordspace.png" alt="Screenshot of the Wordspace typing website" loading="lazy" decoding="async" />
-          <div class="project-shot-placeholder" aria-hidden="true"><span>SYSTEM SCREENSHOT / PLACEHOLDER</span><strong>WORDSPACE</strong><small>UPLOAD: assets/project-screenshots/wordspace.png</small></div>
-          <div class="project-panel__wash"></div>
-          <div class="project-panel__top"><span>03</span><small>2026 / TYPING EXPERIENCE</small></div>
-          <div class="project-panel__copy">
-            <span>INDIVIDUAL / FRONT-END</span>
-            <h3>WORDSPACE</h3>
-            <p>Feature-rich typing experience with configurable test modes, themes, behavior settings, live WPM and accuracy, and a distraction-light responsive interface.</p>
-            <div class="project-panel__stack"><i>REACT 19</i><i>VITE 7</i><i>JAVASCRIPT</i><i>RESPONSIVE UI</i></div>
-          </div>
-          <strong class="project-panel__open">LIVE ↗</strong>
-        </a>
-      </div>
-      <div class="reel-caption" data-reveal><span>VIEW SYSTEM SCREENSHOTS</span><i></i><span>OPEN PROJECT ↗</span></div>
-    </section>
-
-    <section class="profile-v2 scene" id="profile" data-signal="dual" aria-labelledby="profileTitle">
-      <header class="direction-head direction-head--profile" data-reveal>
-        <div><span>02 / PROFILE</span><h2 id="profileTitle">DESIGN WHAT<br /><i>PEOPLE TOUCH.</i></h2></div>
-        <p>Front-end is the direction. Full-stack experience is the advantage underneath it.</p>
-      </header>
-
-      <div class="profile-spread" data-reveal>
-        <div class="profile-collage" id="profileCollage" aria-label="Portraits of Jake Cuenca">
-          <figure class="profile-frame profile-frame--one is-active"><img src="assets/profile/portrait-01.jpg" alt="Jake Cuenca smiling in an Asian College uniform" /><figcaption>01 / CURRENT</figcaption></figure>
-          <figure class="profile-frame profile-frame--two"><img src="assets/profile/portrait-02.jpg" alt="Jake Cuenca posing with crossed peace signs" /><figcaption>02 / CREATIVE</figcaption></figure>
-          <figure class="profile-frame profile-frame--three"><img src="assets/profile/portrait-03.jpg" alt="Jake Cuenca giving a thumbs-up" /><figcaption>03 / BUILDER</figcaption></figure>
-          <div class="profile-collage__stamp" aria-hidden="true"><span>J/C</span><i>04</i></div>
-        </div>
-
-        <article class="profile-manifesto">
-          <span class="profile-manifesto__label">CURRENT DIRECTION / FRONT-END DESIGN</span>
-          <h3>I WANT THE<br />INTERFACE TO<br /><i>DO THE TALKING.</i></h3>
-          <p>4th Year BS Information Technology student in Dumaguete City. I build expressive interfaces, but I also understand the workflows, data, and backend decisions that make them useful.</p>
-
-          <div class="profile-facts-v2">
-            <div><span>FOCUS</span><strong>FRONT-END / CREATIVE DEV</strong></div>
-            <div><span>BACKEND</span><strong>LARAVEL / PHP / POSTGRESQL</strong></div>
-            <div><span>PROGRAM</span><strong>BS INFORMATION TECHNOLOGY</strong></div>
-            <div><span>STATUS</span><strong>4TH YEAR / 2023—PRESENT</strong></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="profile-ticker" aria-hidden="true"><div>INTERACTION — TYPOGRAPHY — MOTION — SYSTEMS — PHOTOGRAPHY — FRONT-END — INTERACTION — TYPOGRAPHY — MOTION — SYSTEMS — PHOTOGRAPHY — FRONT-END —</div></div>
-    </section>
-
-    <section class="capabilities scene" id="capabilities" data-signal="grid" aria-labelledby="capabilitiesTitle">
-      <header class="section-head" data-reveal>
-        <div><span>03 / CAPABILITIES</span><h2 id="capabilitiesTitle">FOUR MODES.<br /><i>ONE TOOLKIT.</i></h2></div>
-        <p>Hover, focus, or tap a mode. The stack opens without turning into a résumé wall.</p>
-      </header>
-
-      <div class="capability-deck" id="capabilityDeck" data-reveal>
-        <article class="cap-card is-active" tabindex="0" data-capability="frontend">
-          <div class="cap-card__top"><span>01</span><small>PRIMARY</small></div>
-          <h3>FRONT<br />END</h3>
-          <div class="cap-card__details"><span>JAVASCRIPT</span><span>HTML / CSS</span><span>RESPONSIVE UI</span><span>REACT + VITE</span><span>FLUTTER / DART</span></div>
-        </article>
-        <article class="cap-card" tabindex="0" data-capability="design">
-          <div class="cap-card__top"><span>02</span><small>VISUAL</small></div>
-          <h3>DESIGN</h3>
-          <div class="cap-card__details"><span>INTERACTION</span><span>TYPOGRAPHY</span><span>MOTION</span><span>UI SYSTEMS</span><span>ACCESSIBILITY</span></div>
-        </article>
-        <article class="cap-card" tabindex="0" data-capability="systems">
-          <div class="cap-card__top"><span>03</span><small>BACKEND</small></div>
-          <h3>SYSTEMS</h3>
-          <div class="cap-card__details"><span>LARAVEL / PHP</span><span>POSTGRESQL</span><span>REST APIs</span><span>AUTH / VALIDATION</span><span>WORKFLOW DESIGN</span></div>
-        </article>
-        <article class="cap-card" tabindex="0" data-capability="creative">
-          <div class="cap-card__top"><span>04</span><small>MEDIA</small></div>
-          <h3>CREATIVE</h3>
-          <div class="cap-card__details"><span>PHOTOGRAPHY</span><span>FILMMAKING</span><span>LIGHTROOM</span><span>PREMIERE PRO</span><span>DAVINCI RESOLVE</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="journey scene" id="history" data-signal="timeline" aria-labelledby="historyTitle">
-      <header class="direction-head" data-reveal>
-        <div><span>04 / HISTORY</span><h2 id="historyTitle">THREE LEVELS.<br /><i>ONE PATH.</i></h2></div>
-        <p>Primary. Secondary — high school and senior high together. Tertiary — the current BSIT chapter.</p>
-      </header>
-
-      <div class="education-v2" id="educationV2" data-active="tertiary" data-reveal>
-        <div class="education-levels" role="tablist" aria-label="Education levels">
-          <button type="button" data-edu-level="primary" aria-selected="false"><span>01</span><strong>PRIMARY</strong><small>2011—2017</small><i></i></button>
-          <button type="button" data-edu-level="secondary" aria-selected="false"><span>02</span><strong>SECONDARY</strong><small>2017—2023</small><i></i></button>
-          <button class="is-active" type="button" data-edu-level="tertiary" aria-selected="true"><span>03</span><strong>TERTIARY</strong><small>2023—NOW</small><i></i></button>
-        </div>
-
-        <div class="education-stage">
-          <article class="education-panel" data-edu-panel="primary">
-            <div class="education-panel__index">01</div>
-            <div class="education-panel__meta"><span>PRIMARY EDUCATION</span><strong>2011 — 2017</strong></div>
-            <h3>SANTA CATALINA CENTRAL ELEMENTARY SCHOOL</h3>
-            <div class="education-panel__footer"><span>SANTA CATALINA</span><strong>GRADUATED WITH HIGH HONORS</strong></div>
-          </article>
-
-          <article class="education-panel education-panel--secondary" data-edu-panel="secondary">
-            <div class="education-panel__index">02</div>
-            <div class="education-panel__meta"><span>SECONDARY EDUCATION</span><strong>2017 — 2023</strong></div>
-            <div class="secondary-track">
-              <article>
-                <span>HIGH SCHOOL / 2017—2021</span>
-                <h3>SAINT AUGUSTINE ACADEMY OF BAYAWAN, INC.</h3>
-                <p>Graduated with Honors.</p>
-                <small>PIONEER MEMBER / AEMT — VIDEO / PHOTO / GRAPHICS</small>
-              </article>
-              <i aria-hidden="true"></i>
-              <article>
-                <span>SENIOR HIGH / 2021—2023</span>
-                <h3>BAYAWAN CITY SCIENCE AND TECHNOLOGY EDUCATION CENTER</h3>
-                <p>Graduated with High Honors.</p>
-                <small>FOUNDING MEMBER / TWG — CREATIVE HEAD 2021—2023</small>
-              </article>
-            </div>
-          </article>
-
-          <article class="education-panel is-active" data-edu-panel="tertiary">
-            <div class="education-panel__index">03</div>
-            <div class="education-panel__meta"><span>TERTIARY / CURRENT</span><strong>2023 — PRESENT</strong></div>
-            <h3>ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY</h3>
-            <p class="education-degree">BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY / 4TH YEAR</p>
-            <div class="education-panel__footer"><span>DUMAGUETE CITY</span><strong>CURRENT CHAPTER</strong></div>
-          </article>
-        </div>
-      </div>
-
-      <div class="affiliation-v2" data-reveal>
-        <div class="affiliation-v2__head"><span>LEADERSHIP / MEDIA</span><strong>SELECT A NODE</strong></div>
-        <div class="affiliation-constellation" id="affiliationConstellation">
-          <div class="affiliation-core" aria-hidden="true"><span>LEAD</span><i>+</i><span>CREATE</span><i>+</i><span>DOCUMENT</span></div>
-
-          <button class="aff-node aff-node--1 is-active" type="button" data-aff-v2="acclaimed"><span>01</span><strong>ACCLAIMED</strong></button>
-          <button class="aff-node aff-node--2" type="button" data-aff-v2="ccse"><span>02</span><strong>CCSE</strong></button>
-          <button class="aff-node aff-node--3" type="button" data-aff-v2="acer"><span>03</span><strong>ACER CHRONICLES</strong></button>
-          <button class="aff-node aff-node--4" type="button" data-aff-v2="twg"><span>04</span><strong>TWG / BCSTEC</strong></button>
-          <button class="aff-node aff-node--5" type="button" data-aff-v2="aemt"><span>05</span><strong>AEMT</strong></button>
-
-          <article class="aff-readout" aria-live="polite">
-            <div class="aff-readout__meta"><span id="affV2Category">CAMPUS CREATIVE ORGANIZATION</span><strong id="affV2Period">FOUNDING → 2026</strong></div>
-            <h3 id="affV2Title">ACCLAIMED</h3>
-            <p id="affV2Institution">ASIAN COLLEGE OF SCIENCE AND TECHNOLOGY — DUMAGUETE CITY</p>
-            <div id="affV2Roles" class="aff-readout__roles"><span>PIO / 2025—2026</span><span>PRESIDENT / 2024—2025</span><span>FOUNDING MEMBER</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="credentials scene" id="credentials" data-signal="quiet" aria-labelledby="credentialsTitle">
-      <header class="section-head" data-reveal>
-        <div><span>05 / CREDENTIALS</span><h2 id="credentialsTitle">PROOF.<br /><i>NOT BADGES.</i></h2></div>
-        <p>Original issued PDFs. Open any certificate directly; freeCodeCamp credentials also include issuer verification.</p>
-      </header>
-
-      <div class="certificate-folio" data-reveal>
-        <article class="certificate-card" data-cursor="PDF">
-          <a class="certificate-paper" href="assets/certificates/intro-sql.pdf" target="_blank" rel="noopener noreferrer">
-            <header><span>01 / CERTIFICATE OF COMPLETION</span><strong>SIMPLILEARN SKILLUP</strong></header>
-            <div class="certificate-body"><small>THIS CERTIFIES</small><p>JAKE KEVIN L. CUENCA</p><h3>INTRODUCTION<br />TO SQL</h3></div>
-            <footer><div><span>ISSUED</span><strong>29 APR 2024</strong></div><div><span>CODE</span><strong>5095970</strong></div><i>SQL</i></footer>
-          </a>
-        </article>
-
-        <article class="certificate-card" data-cursor="PDF">
-          <a class="certificate-paper" href="assets/certificates/intro-php.pdf" target="_blank" rel="noopener noreferrer">
-            <header><span>02 / CERTIFICATE OF COMPLETION</span><strong>SIMPLILEARN SKILLUP</strong></header>
-            <div class="certificate-body"><small>THIS CERTIFIES</small><p>JAKE KEVIN L. CUENCA</p><h3>INTRODUCTION<br />TO PHP</h3></div>
-            <footer><div><span>ISSUED</span><strong>30 APR 2024</strong></div><div><span>CODE</span><strong>5100892</strong></div><i>PHP</i></footer>
-          </a>
-        </article>
-
-        <article class="certificate-card certificate-card--fcc">
-          <a class="certificate-paper" href="assets/certificates/freecodecamp-front-end-libraries.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
-            <header><span>03 / DEVELOPER CERTIFICATION</span><strong>FREECODECAMP</strong></header>
-            <div class="certificate-body"><small>~300 HOURS</small><p>JAKE KEVIN KLAIR L. CUENCA</p><h3>FRONT-END DEVELOPMENT<br />LIBRARIES V8</h3></div>
-            <footer><div><span>ISSUED</span><strong>18 MAY 2025</strong></div><div><span>TYPE</span><strong>DEVELOPER CERTIFICATION</strong></div><i>FCC</i></footer>
-          </a>
-          <a class="certificate-verify" href="https://freecodecamp.org/certification/gojooo/front-end-development-libraries" target="_blank" rel="noopener noreferrer">VERIFY ↗</a>
-        </article>
-
-        <article class="certificate-card certificate-card--fcc">
-          <a class="certificate-paper" href="assets/certificates/freecodecamp-responsive-web-design.pdf" target="_blank" rel="noopener noreferrer" data-cursor="PDF">
-            <header><span>04 / DEVELOPER CERTIFICATION</span><strong>FREECODECAMP</strong></header>
-            <div class="certificate-body"><small>~300 HOURS</small><p>JAKE KEVIN KLAIR L. CUENCA</p><h3>LEGACY RESPONSIVE<br />WEB DESIGN V8</h3></div>
-            <footer><div><span>ISSUED</span><strong>11 FEB 2025</strong></div><div><span>TYPE</span><strong>DEVELOPER CERTIFICATION</strong></div><i>FCC</i></footer>
-          </a>
-          <a class="certificate-verify" href="https://freecodecamp.org/certification/gojooo/responsive-web-design" target="_blank" rel="noopener noreferrer">VERIFY ↗</a>
-        </article>
-
-        <article class="certificate-card" data-certificate="ai-future-trends" data-cursor="PDF" style="order:7">
-          <a class="certificate-paper" href="assets/certificates/ai-and-future-trends.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original AI and Future Trends certificate PDF in a new tab">
-            <header><span>07 / CERTIFICATE OF COMPLETION</span><strong>SIMPLILEARN SKILLUP</strong></header>
-            <div class="certificate-body"><small>ONLINE COURSE</small><p>JAKE KEVIN L. CUENCA</p><h3>AI AND FUTURE<br />TRENDS</h3></div>
-            <footer><div><span>ISSUED</span><strong>25 SEP 2026</strong></div><div><span>CODE</span><strong>10787091</strong></div><i>AI</i></footer>
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <section class="contact-v2 scene" id="contact" data-signal="contact" aria-labelledby="contactTitle">
-      <div class="contact-glow" id="contactGlow" data-reveal>
-        <div class="contact-v2__meta"><span>06 / OPEN CHANNEL</span><strong>DUMAGUETE / PH</strong></div>
-        <div class="contact-v2__hero">
-          <span class="contact-kicker">HAVE A SYSTEM / IDEA / INTERFACE?</span>
-          <h2 id="contactTitle">LET'S MAKE<br />THE WEB FEEL<br /><i>ALIVE.</i></h2>
-          <div class="contact-target" aria-hidden="true"><span></span><i></i></div>
-          <div class="contact-v2__actions">
-            <a href="mailto:cuencajakekevin@gmail.com" data-cursor="MAIL"><span>EMAIL</span><strong>CUENCAJAKEKEVIN@GMAIL.COM</strong><i>↗</i></a>
-            <a class="contact-v2__creator" href="../photography/index.html" data-world-link data-cursor="ENTER"><span>OTHER WORLD</span><strong>ENTER CREATOR</strong><i>↗</i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <span>JAKE CUENCA / DEVELOPER</span>
-    <span>© <span data-current-year>2026</span></span>
-    <a href="#top">BACK TO TOP ↑</a>
-  </footer>
-
-  <div class="cursor" id="cursor" aria-hidden="true"><span></span><i id="cursorLabel">VIEW</i></div>
-  <div class="world-transition" id="worldTransition" aria-hidden="true"></div>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" id="top">
+<a class="wordmark" href="../index.html" aria-label="Jake Cuenca, choose a portfolio">Jake Cuenca
+</a>
+<nav aria-label="Main navigation">
+<a href="#work">Work</a>
+<a href="#profile">About</a>
+<a href="#credentials">Credentials</a>
+<a href="#contact">Contact</a>
+<a class="world-link" href="../photography/index.html">Creator ↗</a>
+</nav>
+</header>
+<main id="main-content">
+<section class="hero" aria-labelledby="hero-title">
+<div class="hero-intro">
+<p class="hero-role">Developer with <br>a visual instinct.</p>
+<p>I’m Jake, a developer in Dumaguete City building expressive interfaces and practical full-stack systems.</p>
+<a class="button" href="#work">Explore my work <span aria-hidden="true">↘</span>
+</a>
+</div>
+<figure class="hero-screen">
+<img src="assets/project-screenshots/wordspace.png" alt="Wordspace, my configurable typing experience" width="1878" height="1040" fetchpriority="high" decoding="async">
+<figcaption>
+<span>Wordspace</span>
+<span>Interface & development</span>
+</figcaption>
+</figure>
+<h1 id="hero-title">Jake Cuenca</h1>
+<div class="hero-bottom">
+<p>Interfaces with character. Systems with purpose.</p>
+<a href="resume.pdf" target="_blank" rel="noopener noreferrer">View résumé</a>
+</div>
+</section>
+<section class="work section" id="work" aria-labelledby="work-title">
+<div class="section-opening">
+<h2 id="work-title">Selected work</h2>
+<p>Public-sector workflows, personal tools, and interfaces made to be used.</p>
+</div>
+<div class="work-layout">
+<div class="project-list">
+<article class="project" id="project-dar" data-project="dar">
+<img class="project-mobile-image" src="assets/project-screenshots/dar-ltcms.png" alt="DAR-LTCMS public landing page" width="1878" height="1040" loading="lazy" decoding="async">
+<button class="project-select" type="button" aria-pressed="true" aria-controls="project-preview" data-preview="dar">
+<span>DAR-LTCMS</span>
+<span class="project-kind">Public-sector system</span>
+<span class="selection-mark" aria-hidden="true">↗</span>
+</button>
+<div class="project-content">
+<p>Land transfer clearance and monitoring for the Department of Agrarian Reform in Negros Oriental.</p>
+<p>I lead integration across the interface, application workflows, parcel records, and supporting data. The system brings clearance processing, mapping, and reporting into one place.</p>
+<dl>
+<div>
+<dt>Contribution</dt>
+<dd>Lead / Integrator</dd>
+</div>
+<div>
+<dt>Built with</dt>
+<dd>Laravel, PHP, PostgreSQL, Blade</dd>
+</div>
+</dl>
+<div class="project-links">
+<a class="text-link" href="https://darltcms.me/" target="_blank" rel="noopener noreferrer">Open project</a>
+<a class="text-link" href="https://github.com/jlcuenca00/DAR-LTCMS" target="_blank" rel="noopener noreferrer">Source code</a>
+</div>
+</div>
+</article>
+<article class="project" id="project-wordspace" data-project="wordspace">
+<img class="project-mobile-image" src="assets/project-screenshots/wordspace.png" alt="Wordspace typing test interface" width="1878" height="1040" loading="lazy" decoding="async">
+<button class="project-select" type="button" aria-pressed="false" aria-controls="project-preview" data-preview="wordspace">
+<span>Wordspace</span>
+<span class="project-kind">Typing experience</span>
+<span class="selection-mark" aria-hidden="true">↗</span>
+</button>
+<div class="project-content">
+<p>A typing experience with configurable tests, themes, and live speed and accuracy feedback.</p>
+<p>A focused interface around the act of typing. Test modes, appearance settings, and performance feedback support the experience without interrupting it.</p>
+<dl>
+<div>
+<dt>Contribution</dt>
+<dd>Individual project</dd>
+</div>
+<div>
+<dt>Built with</dt>
+<dd>React, Vite, JavaScript</dd>
+</div>
+</dl>
+<div class="project-links">
+<a class="text-link" href="https://spiffy-scone-a17658.netlify.app/" target="_blank" rel="noopener noreferrer">Open project</a>
+<a class="text-link" href="https://github.com/jlcuenca00/wordspace" target="_blank" rel="noopener noreferrer">Source code</a>
+</div>
+</div>
+</article>
+<article class="project" id="project-fourfold" data-project="fourfold">
+<img class="project-mobile-image" src="assets/project-screenshots/fourfold.png" alt="Fourfold personality test interface" width="1878" height="1040" loading="lazy" decoding="async">
+<button class="project-select" type="button" aria-pressed="false" aria-controls="project-preview" data-preview="fourfold">
+<span>Fourfold</span>
+<span class="project-kind">Personality test</span>
+<span class="selection-mark" aria-hidden="true">↗</span>
+</button>
+<div class="project-content">
+<p>A personality test built around one question at a time, with sixteen original result profiles.</p>
+<p>Keyboard controls, saved progress, and preference breakdowns make the question flow easy to follow from the first answer to the result.</p>
+<dl>
+<div>
+<dt>Contribution</dt>
+<dd>Individual / Front-end</dd>
+</div>
+<div>
+<dt>Built with</dt>
+<dd>Flask, Python, JavaScript</dd>
+</div>
+</dl>
+<div class="project-links">
+<a class="text-link" href="https://mbti-test-khip.onrender.com/" target="_blank" rel="noopener noreferrer">Open project</a>
+<a class="text-link" href="https://github.com/jlcuenca00/mbti-test" target="_blank" rel="noopener noreferrer">Source code</a>
+</div>
+</div>
+</article>
+</div>
+<aside class="project-preview" id="project-preview" aria-label="Selected project preview">
+<div class="preview-images">
+<img data-preview-image="dar" class="is-active" src="assets/project-screenshots/dar-ltcms.png" alt="DAR-LTCMS public landing page" width="1878" height="1040" loading="lazy" decoding="async" aria-hidden="false">
+<img data-preview-image="wordspace" class="" src="assets/project-screenshots/wordspace.png" alt="Wordspace typing test interface" width="1878" height="1040" loading="lazy" decoding="async" aria-hidden="true">
+<img data-preview-image="fourfold" class="" src="assets/project-screenshots/fourfold.png" alt="Fourfold personality test interface" width="1878" height="1040" loading="lazy" decoding="async" aria-hidden="true">
+</div>
+<p class="preview-caption" aria-live="polite">
+<span id="preview-name">DAR-LTCMS</span>
+<span id="preview-kind">Public-sector system</span>
+</p>
+</aside>
+</div>
+<div class="more-work">
+<h3>Also building</h3>
+<div>
+<a href="https://github.com/jlcuenca00/cotw-live-tracker" target="_blank" rel="noopener noreferrer">WildTrace <span>C# / .NET / WPF</span>
+</a>
+<p>A Windows companion for theHunter: Call of the Wild, with live tracking, population analysis, and reserve maps.</p>
+<div class="project-links">
+<a class="text-link" href="https://www.nexusmods.com/thehuntercallofthewild/mods/1143?published=1" target="_blank" rel="noopener noreferrer">View on Nexus Mods</a>
+<a class="text-link" href="https://github.com/jlcuenca00/typing-roguelite" target="_blank" rel="noopener noreferrer">Typing Roguelite source</a>
+</div>
+</div>
+</div>
+</section>
+<section class="about section" id="profile" aria-labelledby="about-title">
+<div class="section-opening">
+<h2 id="about-title">Behind the work</h2>
+<a class="text-link" href="../photography/index.html">My creative side</a>
+</div>
+<div class="about-layout">
+<div class="about-facts">
+<img src="assets/profile/portrait-01.jpg" alt="Jake Cuenca smiling in an Asian College uniform" width="240" height="360" loading="lazy" decoding="async">
+<dl>
+<div>
+<dt>Based in</dt>
+<dd>Dumaguete City, Philippines</dd>
+</div>
+<div>
+<dt>Education</dt>
+<dd>BS Information Technology<br>Asian College of Science and Technology</dd>
+</div>
+</dl>
+</div>
+<div class="about-story">
+<p class="lead">I care about how an interface feels, and how the system behind it works.</p>
+<p>My work connects front-end development with data, permissions, validation, and real application workflows. Leading integration on DAR-LTCMS means thinking across those layers, from a landowner’s records to the staff interface.</p>
+<p>Photography and filmmaking shape how I approach composition, contrast, and rhythm. That visual practice carries into my development work.</p>
+<div class="skills" id="capabilities">
+<h3>My toolkit</h3>
+<dl>
+<div>
+<dt>Interface</dt>
+<dd>HTML, CSS, JavaScript, React, Vite</dd>
+</div>
+<div>
+<dt>Systems</dt>
+<dd>PHP, Laravel, Blade, REST APIs</dd>
+</div>
+<div>
+<dt>Data</dt>
+<dd>PostgreSQL, SQL, Eloquent</dd>
+</div>
+<div>
+<dt>Tools</dt>
+<dd>Git, VS Code, Composer, npm, Netlify</dd>
+</div>
+<div>
+<dt>Other work</dt>
+<dd>C#, .NET, WPF, Python, Flask, Flutter</dd>
+</div>
+</dl>
+</div>
+</div>
+</div>
+</section>
+<section class="record section" id="history" aria-labelledby="record-title">
+<div class="record-heading">
+<h2 id="record-title">The record</h2>
+<p>Education, creative responsibilities, and continued learning.</p>
+<a class="text-link" href="resume.pdf" target="_blank" rel="noopener noreferrer">Open résumé</a>
+</div>
+<div class="record-details">
+<details open>
+<summary>Education <span aria-hidden="true">+</span>
+</summary>
+<div class="detail-body">
+<p>
+<strong>BS Information Technology</strong>
+<br>Asian College of Science and Technology, Dumaguete City<br>Graduated June 2026</p>
+<p>
+<strong>Bayawan City Science and Technology Education Center</strong>
+<br>Senior High School, 2021–2023 · High Honors</p>
+<p>
+<strong>Saint Augustine Academy of Bayawan, Inc.</strong>
+<br>High School, 2017–2021 · Honors</p>
+<p>
+<strong>Santa Catalina Central Elementary School</strong>
+<br>2011–2017 · High Honors</p>
+</div>
+</details>
+<details>
+<summary>Leadership & media <span aria-hidden="true">+</span>
+</summary>
+<div class="detail-body">
+<p>
+<strong>ACCLAIMED</strong>
+<br>Founding member; President, 2024–2025; Public Information Officer, 2025–2026.</p>
+<p>
+<strong>CCSE</strong>
+<br>Vice President; IT Treasurer, 2024–2025.</p>
+<p>
+<strong>ACER Chronicles</strong>
+<br>Photojournalist.</p>
+<p>
+<strong>TWG / BCSTEC</strong>
+<br>Founding member and Creative Head, 2021–2023.</p>
+<p>
+<strong>AEMT</strong>
+<br>Pioneer member working in video, photography, and graphics.</p>
+</div>
+</details>
+<details id="credentials">
+<summary>Certificates <span aria-hidden="true">+</span>
+</summary>
+<div class="detail-body">
+<ul class="certificate-list">
+<li>
+<div>
+<a href="assets/certificates/freecodecamp-front-end-libraries.pdf" target="_blank" rel="noopener noreferrer">Front End Development Libraries</a>
+<p>freeCodeCamp · 18 May 2025</p>
+</div>
+<a class="text-link" href="https://freecodecamp.org/certification/gojooo/front-end-development-libraries" target="_blank" rel="noopener noreferrer">Verify</a>
+</li>
+<li>
+<div>
+<a href="assets/certificates/freecodecamp-responsive-web-design.pdf" target="_blank" rel="noopener noreferrer">Responsive Web Design</a>
+<p>freeCodeCamp · 11 February 2025</p>
+</div>
+<a class="text-link" href="https://freecodecamp.org/certification/gojooo/responsive-web-design" target="_blank" rel="noopener noreferrer">Verify</a>
+</li>
+<li>
+<div>
+<a href="assets/certificates/intro-sql.pdf" target="_blank" rel="noopener noreferrer">Introduction to SQL</a>
+<p>Simplilearn SkillUp · 29 April 2024</p>
+</div>
+<span>PDF</span>
+</li>
+<li>
+<div>
+<a href="assets/certificates/intro-php.pdf" target="_blank" rel="noopener noreferrer">Introduction to PHP</a>
+<p>Simplilearn SkillUp · 30 April 2024</p>
+</div>
+<span>PDF</span>
+</li>
+<li>
+<div>
+<a href="assets/certificates/networking-basics.pdf" target="_blank" rel="noopener noreferrer">Networking Basics</a>
+<p>Cisco Networking Academy · 24 October 2025</p>
+</div>
+<span>PDF</span>
+</li>
+<li>
+<div>
+<a href="assets/certificates/introduction-to-cybersecurity.pdf" target="_blank" rel="noopener noreferrer">Introduction to Cybersecurity</a>
+<p>Cisco Networking Academy · 30 August 2026</p>
+</div>
+<span>PDF</span>
+</li>
+<li>
+<div>
+<a href="assets/certificates/ai-and-future-trends.pdf" target="_blank" rel="noopener noreferrer">AI and Future Trends</a>
+<p>Simplilearn SkillUp · 25 September 2026</p>
+</div>
+<span>PDF</span>
+</li>
+</ul>
+</div>
+</details>
+<details id="resume">
+<summary>Résumé <span aria-hidden="true">+</span>
+</summary>
+<div class="detail-body">
+<p>View the PDF or keep a copy for later.</p>
+<div class="project-links">
+<a class="text-link" href="resume.pdf" target="_blank" rel="noopener noreferrer">View résumé</a>
+<a class="text-link" href="resume.pdf" download="Jake-Cuenca-Resume.pdf">Download PDF</a>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section class="contact section" id="contact" aria-labelledby="contact-title">
+<div class="section-opening">
+<h2 id="contact-title">Have something in mind?</h2>
+<p>Let’s talk about the interface, the system, or the idea you want to build.</p>
+</div>
+<a class="contact-email" href="mailto:cuencajakekevin@gmail.com">Email Jake <span aria-hidden="true">↗</span>
+</a>
+<div class="contact-links">
+<a href="mailto:cuencajakekevin@gmail.com">cuencajakekevin@gmail.com</a>
+<a href="https://github.com/jlcuenca00" target="_blank" rel="noopener noreferrer">GitHub</a>
+<a href="../photography/index.html">Photography & film</a>
+<a href="../index.html">Choose a portfolio</a>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div>
+<p>© <span data-year>2026</span> Jake Cuenca</p>
+<a href="#top">Back to top ↑</a>
+</div>
+<p class="footer-name" aria-hidden="true">CUENCA</p>
+</footer>
 </body>
 </html>
