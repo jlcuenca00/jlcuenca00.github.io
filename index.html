@@ -1,51 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Jake Cuenca. Developer, photographer, and filmmaker in Dumaguete City. Choose a portfolio.">
-<meta name="theme-color" content="#101010">
-<title>Jake Cuenca — Two ways of seeing</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,400..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="landing-style.css?v=taste-v2">
-<script src="landing-script.js?v=taste-v2" defer>
-</script>
-</head>
-<body>
-<header class="portal-header">
-<h1>Jake Cuenca</h1>
-<p>Two ways of seeing.</p>
-</header>
-<main class="landing" aria-label="Choose a portfolio">
-<a class="path path--developer" href="developer/index.html" aria-label="Open developer portfolio">
-<div class="path__media">
-<img src="developer/assets/project-screenshots/wordspace.png" alt="Wordspace typing interface" width="1878" height="1040" decoding="async" fetchpriority="high">
-</div>
-<div class="path__content">
-<h2>Developer</h2>
-<p>Web interfaces and full-stack systems.</p>
-<span class="path__action">Explore development <span aria-hidden="true">↗</span>
-</span>
-</div>
-</a>
-<a class="path path--creator" href="photography/index.html" aria-label="Open photography and filmmaking portfolio">
-<div class="path__media">
-<img src="https://live.staticflickr.com/65535/55044685184_893a6b55e6_b.jpg" alt="A selected photograph from Jake Cuenca’s creator portfolio" width="1024" height="683" decoding="async">
-</div>
-<div class="path__content">
-<h2>Creator</h2>
-<p>Photography and filmmaking.</p>
-<span class="path__action">Explore photography & film <span aria-hidden="true">↗</span>
-</span>
-</div>
-</a>
-</main>
-<footer class="portal-footer">
-<p>Based in Dumaguete City</p>
-<p>© <span data-year>2026</span>
-</p>
-</footer>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Portfolio of Jake Cuenca. Choose between developer work and photography and visual storytelling."
+        />
+        <meta name="theme-color" content="#050505" />
+        <title>Jake Cuenca | Select Path</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="landing-style.css" />
+        <link rel="stylesheet" href="accessibility.css?v=20260904-1" />
+        <script src="landing-script.js?v=20260828-4" defer></script>
+    </head>
+
+    <body>
+        <main class="landing" aria-label="Portfolio paths">
+            <a
+                href="developer/index.html"
+                class="path path--developer"
+                data-path="developer"
+                aria-label="Open Jake Cuenca's developer portfolio"
+            >
+                <div class="path__content">
+                    <span class="path__outline" aria-hidden="true">DEVELOPER</span>
+                    <h1>DEVELOPER</h1>
+                    <p>CODE <span aria-hidden="true">•</span> ARCHITECTURE <span aria-hidden="true">•</span> LOGIC</p>
+                </div>
+            </a>
+
+            <a
+                href="photography/index.html"
+                class="path path--creator"
+                data-path="creator"
+                aria-label="Open Jake Cuenca's creator portfolio"
+            >
+                <div class="path__content">
+                    <span class="path__outline" aria-hidden="true">CREATOR</span>
+                    <h1>CREATOR</h1>
+                    <p>LENS <span aria-hidden="true">•</span> LIGHT <span aria-hidden="true">•</span> PERSPECTIVE</p>
+                </div>
+            </a>
+
+            <div class="split-glow split-glow--developer" aria-hidden="true"></div>
+            <div class="split-glow split-glow--creator" aria-hidden="true"></div>
+
+            <footer class="watermark" aria-label="Jake Cuenca portfolio">
+                JAKE CUENCA <span class="watermark__year" data-current-year>2026</span>
+            </footer>
+        </main>
+    </body>
 </html>

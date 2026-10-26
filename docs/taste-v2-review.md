@@ -1,8 +1,6 @@
-# Taste v2 portfolio redesign
+# Developer portfolio redesign
 
-## Scope
-
-Preserve the split entry and both portfolio routes. Redesign the entry and developer page; retain the photography page and all of its dependencies. Keep the static HTML/CSS/JavaScript stack and GitHub Pages paths.
+The split entry is restored byte-for-byte from original main commit `ac0331b`. Its HTML, stylesheet, and script are unchanged in this PR. The redesign applies only to the developer page. The photography page is unchanged.
 
 ## Direction
 
@@ -47,22 +45,8 @@ Classic scrollbars reduce the frame's available document width by 15px in this b
 
 The bundled `inspect.mjs` was attempted but cannot run: no local Chrome/Edge/Chromium executable. Browser screenshots and DOM measurements were used instead. No claim of a full automated inspector pass, automated motion count, reduced-motion emulation, or complete before/after screenshot comparison is made. Reduced-motion and no-script behavior were checked in source. No new runtime dependencies.
 
-## Visual critique
+## Assets and limits
 
-ROUND 2
-Seen in one second: a bold name and actual development work; two distinct choices on entry.
-Idea (one sentence): Jake's software and photographic output become neighboring routes into one portfolio.
-Live thing: project selection changes the desktop preview.
-Layout words by section: hero=name / work=index-with-preview / about=facts-and-story / record=disclosures / contact=display-link / footer=inverse-name.
-Scores: design 7.5 · usability 8.0 · creativity 7.0 · content 8.0 → overall 7.6.
-Caps applied: creativity limited to 7 because a dual-practice portfolio is an established concept. Scores are an internal visual assessment, not an award or independent rating. Automated inspector unavailable.
-Top three problems (most visible first), each with the screenshot it shows in and the fix:
-1. Phone selector footer overlapped the Creator title in the first review. Put the footer in normal flow on phones. Fixed.
-2. Full-screen clipped selector anchors could send a semantic center click to the neighboring destination. Give each link a separate half-width hit box. Fixed; both destinations verified afterward.
-3. Existing project screenshots and portrait have limited resolution/freshness, visible in project previews and About. Retain real assets rather than fabricate updated interfaces; replace with current higher-resolution originals in a future content pass.
+All developer screenshots and portraits are existing repository assets. Existing project screenshots and the résumé PDF may need a future content refresh. No stock or generated imagery was added.
 
-## Assets and remaining limits
-
-All screenshots and portraits are existing repository assets. The entry creator image reuses the existing creator hero Flickr photograph, `https://live.staticflickr.com/65535/55044685184_893a6b55e6_b.jpg`. No stock image, generated image, invented testimonial, user statistic, or new license claim was added. Google Fonts and that existing Flickr source remain external dependencies. The résumé PDF itself is unchanged and should be reviewed separately for current content.
-
-![Split entry preview](taste-v2-entry.jpg)
+The initial entry redesign and its screenshot were removed at the user’s request. The entry HTML, CSS, and JavaScript match the original main commit byte-for-byte. All entry-specific initial review findings are superseded by that restoration; no entry redesign is included.

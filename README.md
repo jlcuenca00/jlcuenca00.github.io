@@ -2,14 +2,14 @@
 
 Static HTML, CSS, and JavaScript portfolio, published with GitHub Pages.
 
-The diagonal entry page preserves two destinations:
+The original diagonal entry page is unchanged and offers two destinations:
 
 - **Developer:** selected projects, background, toolkit, education, leadership, credentials, résumé, and contact.
 - **Creator:** the existing photography and filmmaking portfolio.
 
 ## Developer page
 
-The Taste Skill v2 redesign uses a bold name-led composition, one type family (TikTok Sans), real project screenshots, and a dark palette with a red action accent. Project selection crossfades the desktop preview; phones show an image beside every project. All project descriptions, certificate links, and résumé links are in the HTML. Native details elements hold the longer records.
+The developer-only Taste Skill v2 redesign uses a bold name-led composition, one type family (TikTok Sans), real project screenshots, and a dark palette with a red action accent. Project selection crossfades the desktop preview; phones show an image beside every project. All project descriptions, certificate links, and résumé links are in the HTML. Native details elements hold the longer records.
 
 Active entry files: `index.html`, `landing-style.css`, `landing-script.js`.
 Active developer files: `developer/index.html`, `developer/style.css`, `developer/script.js`.
